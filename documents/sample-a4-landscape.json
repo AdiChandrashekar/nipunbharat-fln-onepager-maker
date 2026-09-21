@@ -1,0 +1,1141 @@
+{
+ "schema_version": 1,
+ "id": "sample-a4-landscape",
+ "title": "ब्लेंडिंग और शब्द निर्माण",
+ "language": "hi",
+ "page": {
+  "size": "A4",
+  "orientation": "landscape",
+  "width_mm": 297,
+  "height_mm": 210,
+  "margins_mm": {
+   "top": 12,
+   "right": 12,
+   "bottom": 12,
+   "left": 12
+  },
+  "bleed_mm": 0
+ },
+ "selection": [
+  {
+   "kind": "competency",
+   "id": "DC5",
+   "strategies": [
+    "dc-break-and-blend"
+   ]
+  },
+  {
+   "kind": "competency",
+   "id": "DC7",
+   "strategies": [
+    "dc-grid-word-search"
+   ]
+  }
+ ],
+ "layout": {
+  "template": "hand-written-sample",
+  "tier": "auto",
+  "fit_pages": "auto",
+  "manually_edited": true
+ },
+ "theme": {
+  "palette": {
+   "paper": "#FFFFFF",
+   "ink": "#15202C",
+   "muted": "#4C5A6B",
+   "accent": "#1F4F9A",
+   "accent_ink": "#FFFFFF",
+   "tint": "#EDF1F6",
+   "rule": "#D5DDE8",
+   "mark": "#8F5F00",
+   "mark_bg": "#FBE9C2",
+   "d_OL": "#B04E28",
+   "d_SE": "#A03A6E",
+   "d_DC": "#2A7553",
+   "d_RF": "#1F4F9A",
+   "d_RC": "#6146A3",
+   "d_WR": "#855F00",
+   "d_GA": "#4C5A6B"
+  },
+  "fonts": {
+   "display": "Tiro Devanagari Hindi",
+   "body": "Mukta",
+   "mono": "IBM Plex Mono"
+  }
+ },
+ "meta": {
+  "organisation": "",
+  "author": "",
+  "date": "",
+  "subtitle": "शिक्षक एवं मेंटर हेतु मार्गदर्शिका · कक्षा 2 हिंदी · A4 landscape (297 × 210 मिमी)",
+  "created": "2026-09-21T17:01:27.642Z",
+  "updated": "2026-09-21T17:01:27.642Z"
+ },
+ "pages": [
+  {
+   "id": "page-mubhsf6i-2g",
+   "elements": [
+    {
+     "id": "el-mubhsf6c-19",
+     "x_mm": 0,
+     "y_mm": 0,
+     "w_mm": 297,
+     "h_mm": 31.70091196298599,
+     "rotation": 0,
+     "z": 0,
+     "locked": false,
+     "type": "shape",
+     "name": "header band",
+     "style": {
+      "fill": "#1F4F9A"
+     },
+     "content": {
+      "shape_kind": "rect"
+     }
+    },
+    {
+     "id": "el-mubhsf6c-1a",
+     "x_mm": 12,
+     "y_mm": 10,
+     "w_mm": 273,
+     "h_mm": 9.700287063916523,
+     "rotation": 0,
+     "z": 1,
+     "locked": false,
+     "type": "text",
+     "style": {
+      "font_family": "Tiro Devanagari Hindi",
+      "font_size_pt": 22,
+      "line_height": 1.25,
+      "colour": "#FFFFFF"
+     },
+     "content": {
+      "text": "ब्लेंडिंग और शब्द निर्माण"
+     },
+     "name": "title",
+     "binding": {
+      "field": "title"
+     }
+    },
+    {
+     "id": "el-mubhsf6c-1b",
+     "x_mm": 12,
+     "y_mm": 20.700287063916523,
+     "w_mm": 273,
+     "h_mm": 5.000624899069468,
+     "rotation": 0,
+     "z": 2,
+     "locked": false,
+     "type": "text",
+     "style": {
+      "font_family": "Mukta",
+      "font_size_pt": 10.5,
+      "line_height": 1.35,
+      "colour": "#DCE6F5"
+     },
+     "content": {
+      "text": "शिक्षक एवं मेंटर हेतु मार्गदर्शिका · कक्षा 2 हिंदी · A4 landscape (297 × 210 मिमी)"
+     },
+     "name": "subtitle",
+     "binding": {
+      "field": "subtitle"
+     }
+    },
+    {
+     "id": "el-mubhsf6c-1c",
+     "x_mm": 12,
+     "y_mm": 192.19330734213193,
+     "w_mm": 273,
+     "h_mm": 0,
+     "rotation": 0,
+     "z": 3,
+     "locked": false,
+     "type": "line",
+     "name": "footer rule",
+     "style": {
+      "stroke": {
+       "colour": "#D5DDE8",
+       "width_mm": 0.3
+      }
+     },
+     "content": {
+      "line": true
+     }
+    },
+    {
+     "id": "el-mubhsf6d-1d",
+     "x_mm": 12,
+     "y_mm": 194.19330734213193,
+     "w_mm": 169.26,
+     "h_mm": 3.806692657868067,
+     "rotation": 0,
+     "z": 4,
+     "locked": false,
+     "type": "text",
+     "style": {
+      "font_family": "Mukta",
+      "font_size_pt": 8,
+      "line_height": 1.35,
+      "colour": "#4C5A6B"
+     },
+     "content": {
+      "text": "स्रोत: आधारशिला क्रियान्वयन शिक्षक संदर्शिका, कक्षा 2 हिंदी (उत्तर प्रदेश), 2026-27"
+     },
+     "name": "source credit",
+     "binding": {
+      "field": "footer_credit"
+     }
+    },
+    {
+     "id": "el-mubhsf6e-1e",
+     "x_mm": 181.26,
+     "y_mm": 194.19330734213193,
+     "w_mm": 103.74000000000001,
+     "h_mm": 3.806692657868067,
+     "rotation": 0,
+     "z": 5,
+     "locked": false,
+     "type": "text",
+     "style": {
+      "font_family": "Mukta",
+      "font_size_pt": 8,
+      "line_height": 1.35,
+      "colour": "#4C5A6B",
+      "align": "right"
+     },
+     "content": {
+      "text": "संस्था · लेखक · दिनांक"
+     },
+     "name": "org · author · date",
+     "binding": {
+      "field": "footer_meta"
+     }
+    },
+    {
+     "id": "el-mubhsf6f-1f",
+     "x_mm": 12,
+     "y_mm": 38.30091196298599,
+     "w_mm": 10.313698522249856,
+     "h_mm": 5.440494791666666,
+     "rotation": 0,
+     "z": 6,
+     "locked": false,
+     "type": "text",
+     "style": {
+      "font_family": "IBM Plex Mono",
+      "font_size_pt": 9,
+      "weight": 500,
+      "colour": "#2A7553",
+      "fill": "#E1ECE7",
+      "radius_mm": [
+       3,
+       3,
+       3,
+       1
+      ],
+      "padding_mm": [
+       0.6,
+       2.2,
+       0.4,
+       2.2
+      ],
+      "line_height": 1.4
+     },
+     "content": {
+      "text": "DC5"
+     },
+     "binding": {
+      "competency_id": "DC5",
+      "field": "code"
+     },
+     "name": "chip DC5"
+    },
+    {
+     "id": "el-mubhsf6f-1g",
+     "x_mm": 24.813698522249858,
+     "y_mm": 37.70091196298599,
+     "w_mm": 120.18630147775013,
+     "h_mm": 7.338880511124928,
+     "rotation": 0,
+     "z": 7,
+     "locked": false,
+     "type": "text",
+     "style": {
+      "font_family": "Tiro Devanagari Hindi",
+      "font_size_pt": 16,
+      "line_height": 1.3,
+      "colour": "#15202C"
+     },
+     "content": {
+      "text": "ब्लेंडिंग (वर्णों/अक्षरों को मिलाकर पढ़ना)"
+     },
+     "name": "DC5 name",
+     "binding": {
+      "competency_id": "DC5",
+      "field": "name"
+     }
+    },
+    {
+     "id": "el-mubhsf6f-1h",
+     "x_mm": 12,
+     "y_mm": 46.23979247411092,
+     "w_mm": 133,
+     "h_mm": 5.840677285194396,
+     "rotation": 0,
+     "z": 8,
+     "locked": false,
+     "type": "text",
+     "style": {
+      "font_family": "Mukta",
+      "font_size_pt": 9,
+      "line_height": 1.4,
+      "colour": "#8F5F00",
+      "fill": "#FBE9C2",
+      "radius_mm": [
+       3,
+       3,
+       3,
+       1
+      ],
+      "padding_mm": [
+       0.8,
+       2.4,
+       0.6,
+       2.4
+      ]
+     },
+     "content": {
+      "text": "R2/R3 की पूर्व-तैयारी"
+     },
+     "name": "NIPUN chip",
+     "binding": {
+      "competency_id": "DC5",
+      "field": "nipun_chip"
+     }
+    },
+    {
+     "id": "el-mubhsf6f-1i",
+     "x_mm": 12,
+     "y_mm": 55.580469759305316,
+     "w_mm": 83.78,
+     "h_mm": 5.883672177791595,
+     "rotation": 0,
+     "z": 9,
+     "locked": false,
+     "type": "text",
+     "style": {
+      "font_family": "Mukta",
+      "font_size_pt": 11.5,
+      "line_height": 1.45,
+      "colour": "#1F4F9A",
+      "weight": 700
+     },
+     "content": {
+      "text": "वर्णों/अक्षरों को तोड़कर लिखना और मिलाकर पढ़ना"
+     },
+     "name": "strategy name",
+     "binding": {
+      "strategy_id": "dc-break-and-blend",
+      "field": "name"
+     }
+    },
+    {
+     "id": "el-mubhsf6f-1j",
+     "x_mm": 12,
+     "y_mm": 62.26414193709691,
+     "w_mm": 83.78,
+     "h_mm": 16.113125403722126,
+     "rotation": 0,
+     "z": 10,
+     "locked": false,
+     "type": "text",
+     "style": {
+      "font_family": "Mukta",
+      "font_size_pt": 10.5,
+      "line_height": 1.45,
+      "colour": "#15202C"
+     },
+     "content": {
+      "text": "बोर्ड पर शब्द के वर्ण/अक्षर अलग-अलग लिखें (जैसे क र - कर); पहले प्रत्येक का अलग उच्चारण करें, फिर मिलाकर एक इकाई के रूप में पढ़कर दिखाएँ; बच्चे शब्दों को कॉपी में लिखें और पढ़ें।"
+     },
+     "name": "how-to",
+     "binding": {
+      "strategy_id": "dc-break-and-blend",
+      "field": "how_to"
+     }
+    },
+    {
+     "id": "el-mubhsf6g-1k",
+     "x_mm": 12,
+     "y_mm": 79.37726734081903,
+     "w_mm": 83.78,
+     "h_mm": 9.207499798138935,
+     "rotation": 0,
+     "z": 11,
+     "locked": false,
+     "type": "text",
+     "style": {
+      "font_family": "Mukta",
+      "font_size_pt": 9,
+      "line_height": 1.45,
+      "colour": "#4C5A6B"
+     },
+     "content": {
+      "text": "कहाँ: स.1 · दि. 2, 3, 4, 5; स.2 · दि. 1, 2, 3, 4, 5; स.3 · दि. 1, 2, 3, 4, 5; स.4 · दि. 1, 2, 3, 4 …"
+     },
+     "name": "weeks",
+     "binding": {
+      "strategy_id": "dc-break-and-blend",
+      "field": "weeks"
+     }
+    },
+    {
+     "id": "el-mubhsf6g-1l",
+     "x_mm": 99.78,
+     "y_mm": 56.38046975930531,
+     "w_mm": 45.220000000000006,
+     "h_mm": 40.1277841867069,
+     "rotation": 0,
+     "z": 12,
+     "locked": false,
+     "type": "image",
+     "name": "Blending",
+     "style": {
+      "stroke": {
+       "colour": "#D5DDE8",
+       "width_mm": 0.25
+      },
+      "radius_mm": 1.5
+     },
+     "content": {
+      "image_ref": "tg:tg-blending",
+      "natural_px": [
+       879,
+       780
+      ],
+      "crop": {
+       "x": 0,
+       "y": 0,
+       "w": 1,
+       "h": 1
+      },
+      "fit": "cover",
+      "alt": "ब्लेंडिंग पर कार्य"
+     },
+     "binding": {
+      "strategy_id": "dc-break-and-blend",
+      "field": "image"
+     }
+    },
+    {
+     "id": "el-mubhsf6g-1m",
+     "x_mm": 152,
+     "y_mm": 38.30091196298599,
+     "w_mm": 10.313698522249856,
+     "h_mm": 5.440494791666666,
+     "rotation": 0,
+     "z": 13,
+     "locked": false,
+     "type": "text",
+     "style": {
+      "font_family": "IBM Plex Mono",
+      "font_size_pt": 9,
+      "weight": 500,
+      "colour": "#2A7553",
+      "fill": "#E1ECE7",
+      "radius_mm": [
+       3,
+       3,
+       3,
+       1
+      ],
+      "padding_mm": [
+       0.6,
+       2.2,
+       0.4,
+       2.2
+      ],
+      "line_height": 1.4
+     },
+     "content": {
+      "text": "DC7"
+     },
+     "binding": {
+      "competency_id": "DC7",
+      "field": "code"
+     },
+     "name": "chip DC7"
+    },
+    {
+     "id": "el-mubhsf6g-1n",
+     "x_mm": 164.81369852224987,
+     "y_mm": 37.70091196298599,
+     "w_mm": 120.18630147775013,
+     "h_mm": 7.338880511124928,
+     "rotation": 0,
+     "z": 14,
+     "locked": false,
+     "type": "text",
+     "style": {
+      "font_family": "Tiro Devanagari Hindi",
+      "font_size_pt": 16,
+      "line_height": 1.3,
+      "colour": "#15202C"
+     },
+     "content": {
+      "text": "शब्द बनाना (ग्रिड से शब्द खोजना, वर्ण-क्रम बदलना)"
+     },
+     "name": "DC7 name",
+     "binding": {
+      "competency_id": "DC7",
+      "field": "name"
+     }
+    },
+    {
+     "id": "el-mubhsf6g-1o",
+     "x_mm": 152,
+     "y_mm": 46.23979247411092,
+     "w_mm": 133,
+     "h_mm": 5.840677285194396,
+     "rotation": 0,
+     "z": 15,
+     "locked": false,
+     "type": "text",
+     "style": {
+      "font_family": "Mukta",
+      "font_size_pt": 9,
+      "line_height": 1.4,
+      "colour": "#8F5F00",
+      "fill": "#FBE9C2",
+      "radius_mm": [
+       3,
+       3,
+       3,
+       1
+      ],
+      "padding_mm": [
+       0.8,
+       2.4,
+       0.6,
+       2.4
+      ]
+     },
+     "content": {
+      "text": "निपुण R2: किसी दिए गए शब्द के अक्षरों से नए सार्थक सरल शब्द बनाना।"
+     },
+     "name": "NIPUN chip",
+     "binding": {
+      "competency_id": "DC7",
+      "field": "nipun_chip"
+     }
+    },
+    {
+     "id": "el-mubhsf6g-1p",
+     "x_mm": 152,
+     "y_mm": 55.580469759305316,
+     "w_mm": 83.78,
+     "h_mm": 5.883672177791595,
+     "rotation": 0,
+     "z": 16,
+     "locked": false,
+     "type": "text",
+     "style": {
+      "font_family": "Mukta",
+      "font_size_pt": 11.5,
+      "line_height": 1.45,
+      "colour": "#1F4F9A",
+      "weight": 700
+     },
+     "content": {
+      "text": "ग्रिड से शब्द खोजना"
+     },
+     "name": "strategy name",
+     "binding": {
+      "strategy_id": "dc-grid-word-search",
+      "field": "name"
+     }
+    },
+    {
+     "id": "el-mubhsf6g-1q",
+     "x_mm": 152,
+     "y_mm": 62.26414193709691,
+     "w_mm": 83.78,
+     "h_mm": 16.113125403722126,
+     "rotation": 0,
+     "z": 17,
+     "locked": false,
+     "type": "text",
+     "style": {
+      "font_family": "Mukta",
+      "font_size_pt": 10.5,
+      "line_height": 1.45,
+      "colour": "#15202C"
+     },
+     "content": {
+      "text": "बोर्ड पर एक छोटी ग्रिड बनाएँ जिसमें सीखे गए वर्णों से बने कुछ शब्द छिपे हों; शब्द खोजने की प्रक्रिया करके दिखाएँ; फिर बच्चे खोजे गए शब्द पढ़ते हुए कॉपी में लिखें।"
+     },
+     "name": "how-to",
+     "binding": {
+      "strategy_id": "dc-grid-word-search",
+      "field": "how_to"
+     }
+    },
+    {
+     "id": "el-mubhsf6h-1r",
+     "x_mm": 152,
+     "y_mm": 79.37726734081903,
+     "w_mm": 83.78,
+     "h_mm": 4.603749899069467,
+     "rotation": 0,
+     "z": 18,
+     "locked": false,
+     "type": "text",
+     "style": {
+      "font_family": "Mukta",
+      "font_size_pt": 9,
+      "line_height": 1.45,
+      "colour": "#4C5A6B"
+     },
+     "content": {
+      "text": "कहाँ: स.1 · दि. 5; स.2 · दि. 1; स.3 · दि. 1, 3, 4, 5; स.4 · दि. 1, 2 …"
+     },
+     "name": "weeks",
+     "binding": {
+      "strategy_id": "dc-grid-word-search",
+      "field": "weeks"
+     }
+    },
+    {
+     "id": "el-mubhsf6h-1s",
+     "x_mm": 239.78,
+     "y_mm": 56.38046975930531,
+     "w_mm": 45.220000000000006,
+     "h_mm": 43.64022389500097,
+     "rotation": 0,
+     "z": 19,
+     "locked": false,
+     "type": "image",
+     "name": "Word reading",
+     "style": {
+      "stroke": {
+       "colour": "#D5DDE8",
+       "width_mm": 0.25
+      },
+      "radius_mm": 1.5
+     },
+     "content": {
+      "image_ref": "tg:tg-word-reading",
+      "natural_px": [
+       715,
+       690
+      ],
+      "crop": {
+       "x": 0,
+       "y": 0,
+       "w": 1,
+       "h": 1
+      },
+      "fit": "cover",
+      "alt": "शब्द पठन"
+     },
+     "binding": {
+      "strategy_id": "dc-grid-word-search",
+      "field": "image"
+     }
+    },
+    {
+     "id": "el-mubhsf6i-1t",
+     "x_mm": 12,
+     "y_mm": 106.02069365430629,
+     "w_mm": 273,
+     "h_mm": 49.247605478763575,
+     "rotation": 0,
+     "z": 20,
+     "locked": false,
+     "type": "shape",
+     "name": "check panel",
+     "style": {
+      "fill": "#EDF1F6",
+      "radius_mm": [
+       4,
+       4,
+       4,
+       1.5
+      ]
+     },
+     "content": {
+      "shape_kind": "rect"
+     }
+    },
+    {
+     "id": "el-mubhsf6i-1u",
+     "x_mm": 15.5,
+     "y_mm": 109.52069365430629,
+     "w_mm": 266,
+     "h_mm": 4.127500100930531,
+     "rotation": 0,
+     "z": 21,
+     "locked": false,
+     "type": "text",
+     "style": {
+      "font_family": "Mukta",
+      "font_size_pt": 9,
+      "weight": 600,
+      "colour": "#1F4F9A",
+      "line_height": 1.3
+     },
+     "content": {
+      "text": "देवनागरी जाँच (संयुक्ताक्षर एवं मात्राएँ) · Devanagari shaping check"
+     },
+     "name": "check heading"
+    },
+    {
+     "id": "el-mubhsf6i-1v",
+     "x_mm": 15.5,
+     "y_mm": 117.25070692746596,
+     "w_mm": 42,
+     "h_mm": 3.4395833333333328,
+     "rotation": 0,
+     "z": 22,
+     "locked": false,
+     "type": "text",
+     "style": {
+      "font_family": "IBM Plex Mono",
+      "font_size_pt": 7.5,
+      "weight": 500,
+      "colour": "#4C5A6B",
+      "line_height": 1.3
+     },
+     "content": {
+      "text": "Tiro Devanagari Hindi"
+     },
+     "name": "label Tiro Devanagari Hindi"
+    },
+    {
+     "id": "el-mubhsf6i-1w",
+     "x_mm": 57.5,
+     "y_mm": 115.14819375523682,
+     "w_mm": 224,
+     "h_mm": 7.405026344458261,
+     "rotation": 0,
+     "z": 23,
+     "locked": false,
+     "type": "text",
+     "style": {
+      "font_family": "Tiro Devanagari Hindi",
+      "font_size_pt": 14,
+      "line_height": 1.5,
+      "colour": "#15202C"
+     },
+     "content": {
+      "text": "क्षत्रिय प्रवाहपूर्ण श्रुतलेख स्त्रीलिंग"
+     },
+     "name": "test Tiro Devanagari Hindi"
+    },
+    {
+     "id": "el-mubhsf6i-1x",
+     "x_mm": 15.5,
+     "y_mm": 124.65573327192422,
+     "w_mm": 42,
+     "h_mm": 3.4395833333333328,
+     "rotation": 0,
+     "z": 24,
+     "locked": false,
+     "type": "text",
+     "style": {
+      "font_family": "IBM Plex Mono",
+      "font_size_pt": 7.5,
+      "weight": 500,
+      "colour": "#4C5A6B",
+      "line_height": 1.3
+     },
+     "content": {
+      "text": "Mukta"
+     },
+     "name": "label Mukta"
+    },
+    {
+     "id": "el-mubhsf6i-1y",
+     "x_mm": 57.5,
+     "y_mm": 122.55322009969508,
+     "w_mm": 224,
+     "h_mm": 7.405026344458261,
+     "rotation": 0,
+     "z": 25,
+     "locked": false,
+     "type": "text",
+     "style": {
+      "font_family": "Mukta",
+      "font_size_pt": 14,
+      "line_height": 1.5,
+      "colour": "#15202C"
+     },
+     "content": {
+      "text": "क्षत्रिय प्रवाहपूर्ण श्रुतलेख स्त्रीलिंग"
+     },
+     "name": "test Mukta"
+    },
+    {
+     "id": "el-mubhsf6i-1z",
+     "x_mm": 15.5,
+     "y_mm": 132.06075961638246,
+     "w_mm": 42,
+     "h_mm": 3.4395833333333328,
+     "rotation": 0,
+     "z": 26,
+     "locked": false,
+     "type": "text",
+     "style": {
+      "font_family": "IBM Plex Mono",
+      "font_size_pt": 7.5,
+      "weight": 500,
+      "colour": "#4C5A6B",
+      "line_height": 1.3
+     },
+     "content": {
+      "text": "Noto Sans Devanagari"
+     },
+     "name": "label Noto Sans Devanagari"
+    },
+    {
+     "id": "el-mubhsf6i-20",
+     "x_mm": 57.5,
+     "y_mm": 129.95824644415333,
+     "w_mm": 224,
+     "h_mm": 7.405026344458261,
+     "rotation": 0,
+     "z": 27,
+     "locked": false,
+     "type": "text",
+     "style": {
+      "font_family": "Noto Sans Devanagari",
+      "font_size_pt": 14,
+      "line_height": 1.5,
+      "colour": "#15202C"
+     },
+     "content": {
+      "text": "क्षत्रिय प्रवाहपूर्ण श्रुतलेख स्त्रीलिंग"
+     },
+     "name": "test Noto Sans Devanagari"
+    },
+    {
+     "id": "el-mubhsf6i-21",
+     "x_mm": 15.5,
+     "y_mm": 139.46578596084072,
+     "w_mm": 42,
+     "h_mm": 3.4395833333333328,
+     "rotation": 0,
+     "z": 28,
+     "locked": false,
+     "type": "text",
+     "style": {
+      "font_family": "IBM Plex Mono",
+      "font_size_pt": 7.5,
+      "weight": 500,
+      "colour": "#4C5A6B",
+      "line_height": 1.3
+     },
+     "content": {
+      "text": "IBM Plex Mono"
+     },
+     "name": "label IBM Plex Mono"
+    },
+    {
+     "id": "el-mubhsf6i-22",
+     "x_mm": 57.5,
+     "y_mm": 137.3632727886116,
+     "w_mm": 224,
+     "h_mm": 7.405026344458261,
+     "rotation": 0,
+     "z": 29,
+     "locked": false,
+     "type": "text",
+     "style": {
+      "font_family": "IBM Plex Mono",
+      "font_size_pt": 14,
+      "line_height": 1.5,
+      "colour": "#15202C"
+     },
+     "content": {
+      "text": "क्षत्रिय प्रवाहपूर्ण श्रुतलेख स्त्रीलिंग"
+     },
+     "name": "test IBM Plex Mono"
+    },
+    {
+     "id": "el-mubhsf6i-23",
+     "x_mm": 15.5,
+     "y_mm": 147.76829913306986,
+     "w_mm": 100,
+     "h_mm": 0,
+     "rotation": 0,
+     "z": 30,
+     "locked": false,
+     "type": "line",
+     "name": "100 mm bar",
+     "style": {
+      "stroke": {
+       "colour": "#15202C",
+       "width_mm": 0.35
+      }
+     },
+     "content": {
+      "line": true
+     }
+    },
+    {
+     "id": "el-mubhsf6i-24",
+     "x_mm": 15.5,
+     "y_mm": 145.96829913306985,
+     "w_mm": 0,
+     "h_mm": 1.8,
+     "rotation": 0,
+     "z": 31,
+     "locked": false,
+     "type": "line",
+     "name": "tick 0",
+     "style": {
+      "stroke": {
+       "colour": "#15202C",
+       "width_mm": 0.3
+      }
+     },
+     "content": {
+      "line": true
+     }
+    },
+    {
+     "id": "el-mubhsf6i-25",
+     "x_mm": 25.5,
+     "y_mm": 146.76829913306986,
+     "w_mm": 0,
+     "h_mm": 1,
+     "rotation": 0,
+     "z": 32,
+     "locked": false,
+     "type": "line",
+     "name": "tick 10",
+     "style": {
+      "stroke": {
+       "colour": "#15202C",
+       "width_mm": 0.3
+      }
+     },
+     "content": {
+      "line": true
+     }
+    },
+    {
+     "id": "el-mubhsf6i-26",
+     "x_mm": 35.5,
+     "y_mm": 146.76829913306986,
+     "w_mm": 0,
+     "h_mm": 1,
+     "rotation": 0,
+     "z": 33,
+     "locked": false,
+     "type": "line",
+     "name": "tick 20",
+     "style": {
+      "stroke": {
+       "colour": "#15202C",
+       "width_mm": 0.3
+      }
+     },
+     "content": {
+      "line": true
+     }
+    },
+    {
+     "id": "el-mubhsf6i-27",
+     "x_mm": 45.5,
+     "y_mm": 146.76829913306986,
+     "w_mm": 0,
+     "h_mm": 1,
+     "rotation": 0,
+     "z": 34,
+     "locked": false,
+     "type": "line",
+     "name": "tick 30",
+     "style": {
+      "stroke": {
+       "colour": "#15202C",
+       "width_mm": 0.3
+      }
+     },
+     "content": {
+      "line": true
+     }
+    },
+    {
+     "id": "el-mubhsf6i-28",
+     "x_mm": 55.5,
+     "y_mm": 146.76829913306986,
+     "w_mm": 0,
+     "h_mm": 1,
+     "rotation": 0,
+     "z": 35,
+     "locked": false,
+     "type": "line",
+     "name": "tick 40",
+     "style": {
+      "stroke": {
+       "colour": "#15202C",
+       "width_mm": 0.3
+      }
+     },
+     "content": {
+      "line": true
+     }
+    },
+    {
+     "id": "el-mubhsf6i-29",
+     "x_mm": 65.5,
+     "y_mm": 145.96829913306985,
+     "w_mm": 0,
+     "h_mm": 1.8,
+     "rotation": 0,
+     "z": 36,
+     "locked": false,
+     "type": "line",
+     "name": "tick 50",
+     "style": {
+      "stroke": {
+       "colour": "#15202C",
+       "width_mm": 0.3
+      }
+     },
+     "content": {
+      "line": true
+     }
+    },
+    {
+     "id": "el-mubhsf6i-2a",
+     "x_mm": 75.5,
+     "y_mm": 146.76829913306986,
+     "w_mm": 0,
+     "h_mm": 1,
+     "rotation": 0,
+     "z": 37,
+     "locked": false,
+     "type": "line",
+     "name": "tick 60",
+     "style": {
+      "stroke": {
+       "colour": "#15202C",
+       "width_mm": 0.3
+      }
+     },
+     "content": {
+      "line": true
+     }
+    },
+    {
+     "id": "el-mubhsf6i-2b",
+     "x_mm": 85.5,
+     "y_mm": 146.76829913306986,
+     "w_mm": 0,
+     "h_mm": 1,
+     "rotation": 0,
+     "z": 38,
+     "locked": false,
+     "type": "line",
+     "name": "tick 70",
+     "style": {
+      "stroke": {
+       "colour": "#15202C",
+       "width_mm": 0.3
+      }
+     },
+     "content": {
+      "line": true
+     }
+    },
+    {
+     "id": "el-mubhsf6i-2c",
+     "x_mm": 95.5,
+     "y_mm": 146.76829913306986,
+     "w_mm": 0,
+     "h_mm": 1,
+     "rotation": 0,
+     "z": 39,
+     "locked": false,
+     "type": "line",
+     "name": "tick 80",
+     "style": {
+      "stroke": {
+       "colour": "#15202C",
+       "width_mm": 0.3
+      }
+     },
+     "content": {
+      "line": true
+     }
+    },
+    {
+     "id": "el-mubhsf6i-2d",
+     "x_mm": 105.5,
+     "y_mm": 146.76829913306986,
+     "w_mm": 0,
+     "h_mm": 1,
+     "rotation": 0,
+     "z": 40,
+     "locked": false,
+     "type": "line",
+     "name": "tick 90",
+     "style": {
+      "stroke": {
+       "colour": "#15202C",
+       "width_mm": 0.3
+      }
+     },
+     "content": {
+      "line": true
+     }
+    },
+    {
+     "id": "el-mubhsf6i-2e",
+     "x_mm": 115.5,
+     "y_mm": 145.96829913306985,
+     "w_mm": 0,
+     "h_mm": 1.8,
+     "rotation": 0,
+     "z": 41,
+     "locked": false,
+     "type": "line",
+     "name": "tick 100",
+     "style": {
+      "stroke": {
+       "colour": "#15202C",
+       "width_mm": 0.3
+      }
+     },
+     "content": {
+      "line": true
+     }
+    },
+    {
+     "id": "el-mubhsf6i-2f",
+     "x_mm": 117.5,
+     "y_mm": 145.96829913306985,
+     "w_mm": 30,
+     "h_mm": 3.4395833333333328,
+     "rotation": 0,
+     "z": 42,
+     "locked": false,
+     "type": "text",
+     "style": {
+      "font_family": "IBM Plex Mono",
+      "font_size_pt": 7.5,
+      "weight": 500,
+      "colour": "#4C5A6B",
+      "line_height": 1.3
+     },
+     "content": {
+      "text": "100 mm"
+     },
+     "name": "scale label"
+    }
+   ]
+  }
+ ]
+}

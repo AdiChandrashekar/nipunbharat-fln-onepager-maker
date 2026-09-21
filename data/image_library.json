@@ -120,10 +120,13 @@
      "ol-game-karke-dikhao",
      "ol-game-main-jo-kahun",
      "ol-game-baat-suno",
-     "ga-create-suno-pata-lagao"
+     "ga-create-suno-pata-lagao",
+     "ol-vilom-shabd",
+     "ol-sound-words"
     ],
     "competency_ids": [
-     "OL7"
+     "OL7",
+     "OL4"
     ],
     "bucket_ids": [],
     "routine_ids": []
@@ -1397,6 +1400,12 @@
   "ga-create-suno-pata-lagao": [
    "tg-oral-games"
   ],
+  "ol-vilom-shabd": [
+   "tg-oral-games"
+  ],
+  "ol-sound-words": [
+   "tg-oral-games"
+  ],
   "ol-oral-storytelling": [
    "tg-oral-storytelling",
    "tg-story-poster"
@@ -1632,6 +1641,11 @@
    "tg-oral-games",
    "tg-oral-wheel"
   ],
+  "OL4": [
+   "tg-oral-games",
+   "tg-textbook",
+   "tg-oral-wheel"
+  ],
   "OL5": [
    "tg-oral-storytelling",
    "tg-picture-story-poster",
@@ -1666,10 +1680,6 @@
   ],
   "WR5": [
    "tg-textbook"
-  ],
-  "OL4": [
-   "tg-textbook",
-   "tg-oral-wheel"
   ],
   "WR1": [
    "tg-creative"
@@ -1785,8 +1795,5 @@
    "tg-remedial"
   ]
  },
- "strategies_without_image": [
-  "ol-vilom-shabd",
-  "ol-sound-words"
- ]
+ "strategies_without_image": []
 }
