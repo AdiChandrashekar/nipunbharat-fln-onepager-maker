@@ -291,6 +291,17 @@ await page.waitForTimeout(500);
 const reopened = await doc();
 check("reopen restores document without re-flow", reopened.pages.length === saved.pages.length && JSON.stringify(reopened.pages) === JSON.stringify(saved.pages), `${reopened.pages.length} pages`);
 await page.screenshot({ path: `${out}/5-reopened.png` });
+
+// --- export from the toolbar: PDF and PNG downloads (the exporters themselves: scripts/export-test.mjs)
+for (const [item, ext] of [[/^PDF/, ".pdf"], [/^PNG · 150 dpi/, reopened.pages.length > 1 ? ".zip" : ".png"]]) {
+  await page.getByRole("button", { name: "Export ▾" }).click();
+  const [dl] = await Promise.all([page.waitForEvent("download", { timeout: 60000 }), page.locator(".export-pop button", { hasText: item }).click()]);
+  const p = `${out}/${dl.suggestedFilename()}`;
+  await dl.saveAs(p);
+  check(`export ${ext} from the toolbar`, dl.suggestedFilename().endsWith(ext) && fs.statSync(p).size > 20000, `${dl.suggestedFilename()} ${(fs.statSync(p).size / 1024).toFixed(0)} KB`);
+  const exported = `exports/${dl.suggestedFilename()}`;
+  if (fs.existsSync(exported)) fs.unlinkSync(exported);
+}
 fs.unlinkSync(file);
 // Remove every upload this run created.
 for (const f of fs.readdirSync("documents/uploads")) if (!uploadsBefore.has(f)) fs.unlinkSync(`documents/uploads/${f}`);

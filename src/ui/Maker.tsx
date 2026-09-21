@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { FIELD_NAMES } from "../content/fields";
 import { createDocument } from "../doc/newDoc";
 import { Canvas, type ContextInfo } from "../editor/Canvas";
+import { ExportMenu } from "../export/ExportMenu";
 import { ContextMenu, type MenuEntry } from "../editor/ContextMenu";
 import { useHistory } from "../editor/history";
 import { ImageLibrary, type PickedImage } from "../editor/ImageLibrary";
@@ -384,6 +385,7 @@ export function Maker() {
       {savedAt && <span className="muted small">{dirty ? "unsaved changes" : `at ${savedAt}`}</span>}
       <button onClick={h.undo} disabled={!h.canUndo} title="Undo (Ctrl+Z)">↶</button>
       <button onClick={h.redo} disabled={!h.canRedo} title="Redo (Ctrl+Shift+Z)">↷</button>
+      <ExportMenu doc={doc} setMessage={setMessage} />
     </span>
   );
 

@@ -3,11 +3,13 @@ import { createDocument, demoSelection } from "./doc/newDoc";
 import { fitDocument } from "./layout/fit";
 import type { Language, Orientation, PageSizeId } from "./model/types";
 import { PageView } from "./render/PageView";
+import { RenderView } from "./export/RenderView";
 import { SamplesPreview } from "./samples/SamplesPreview";
 import { Maker } from "./ui/Maker";
 
 export function App() {
   const params = new URLSearchParams(location.search);
+  if (params.get("render")) return <RenderView token={params.get("render")!} bleed={params.get("bleed") === "1"} scale={Number(params.get("scale") ?? 1)} />;
   if (params.get("samples")) return <SamplesPreview />;
   if (params.get("demo")) return <DemoRender params={params} />;
   return <Maker />;

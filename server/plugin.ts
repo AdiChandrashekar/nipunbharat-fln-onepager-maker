@@ -1,15 +1,24 @@
 /**
  * Dev-server plugin: the tool's only "backend". Reads/writes documents on disk and serves uploads.
- * (Phase 5 adds the Playwright export endpoints here.)
+ * Also runs the PDF/PNG exporters (server/exporters/, headless Chromium via Playwright).
  */
 import fs from "node:fs";
 import path from "node:path";
 import type { IncomingMessage, ServerResponse } from "node:http";
 import type { Plugin } from "vite";
+import { pending } from "./exporters/browser";
+import { exportPdf } from "./exporters/pdf";
+import { exportPng, zipFiles } from "./exporters/png";
 
 const DOCS = path.resolve(__dirname, "../documents");
 const UPLOADS = path.join(DOCS, "uploads");
 const SAFE_ID = /^[a-z0-9][a-z0-9._-]{0,120}$/i;
+const EXPORTS = path.resolve(__dirname, "../exports");
+
+/** ASCII file stem for downloads: document id plus date (titles are often Hindi). */
+function stem(doc: { id?: string }): string {
+  return `${(doc.id ?? "onepager").replace(/[^a-z0-9-]+/gi, "-")}-${new Date().toISOString().slice(0, 10)}`;
+}
 
 function send(res: ServerResponse, status: number, body: unknown) {
   res.statusCode = status;
@@ -34,6 +43,45 @@ export function onepagerFiles(): Plugin {
       server.middlewares.use(async (req, res, next) => {
         const url = new URL(req.url ?? "/", "http://x");
         try {
+          // Render view fetches the document it should print: GET /api/render/<token>
+          const rt = /^\/api\/render\/([^/]+)$/.exec(url.pathname);
+          if (rt && req.method === "GET") {
+            const doc = pending.get(decodeURIComponent(rt[1]));
+            return doc ? send(res, 200, doc) : send(res, 404, { error: "unknown render token" });
+          }
+          // Export: POST /api/export?format=pdf|png&dpi=150|300&bleed=0|1, body = document JSON → file download.
+          // A copy is kept in onepager/exports/ (git-ignored).
+          if (url.pathname === "/api/export" && req.method === "POST") {
+            const doc = JSON.parse((await readBody(req)).toString("utf-8"));
+            const format = url.searchParams.get("format");
+            const bleed = url.searchParams.get("bleed") === "1";
+            const origin = `http://localhost:${server.config.server.port ?? 5178}`;
+            fs.mkdirSync(EXPORTS, { recursive: true });
+            let name: string, type: string, data: Buffer;
+            if (format === "pdf") {
+              data = await exportPdf(origin, doc, { bleed });
+              name = `${stem(doc)}.pdf`;
+              type = "application/pdf";
+            } else if (format === "png") {
+              const dpi = Math.min(600, Math.max(72, Number(url.searchParams.get("dpi") ?? 150)));
+              const { files } = await exportPng(origin, doc, { bleed, dpi });
+              if (files.length === 1) {
+                data = files[0].data;
+                name = `${stem(doc)}-${dpi}dpi.png`;
+                type = "image/png";
+              } else {
+                data = zipFiles(files);
+                name = `${stem(doc)}-${dpi}dpi.zip`;
+                type = "application/zip";
+              }
+            } else return send(res, 400, { error: "format must be pdf or png" });
+            fs.writeFileSync(path.join(EXPORTS, name), data);
+            res.statusCode = 200;
+            res.setHeader("Content-Type", type);
+            res.setHeader("Content-Disposition", `attachment; filename="${name}"`);
+            res.setHeader("X-Export-Path", `onepager/exports/${name}`);
+            return res.end(data);
+          }
           // GET /api/documents → list; GET/PUT/DELETE /api/documents/<id>
           if (url.pathname === "/api/documents" && req.method === "GET") {
             const list = fs.readdirSync(DOCS).filter((f) => f.endsWith(".json")).map((f) => {
