@@ -523,7 +523,7 @@ function headerFooter(ctx: Ctx) {
           const lw = logoH * 2.2;
           out.push({
             id: uid(), name: "logo", type: "image", x_mm: R(W - m.right - lw), y_mm: R(top), w_mm: R(lw), h_mm: R(logoH), rotation: 0, z: c.z++, locked: false,
-            style: {}, content: { image_ref: doc.meta.logo_ref, natural_px: [lw * 10, logoH * 10], crop: { x: 0, y: 0, w: 1, h: 1 }, fit: "contain" }, binding: { field: "logo" },
+            style: {}, content: { image_ref: doc.meta.logo_ref, natural_px: doc.meta.logo_px ?? [lw * 10, logoH * 10], crop: { x: 0, y: 0, w: 1, h: 1 }, fit: "contain" }, binding: { field: "logo" },
           });
         }
       } else {

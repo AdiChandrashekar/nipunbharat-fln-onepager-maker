@@ -1,12 +1,18 @@
-import type { CSSProperties } from "react";
+import { useEffect, useRef, type CSSProperties } from "react";
 import type { Element } from "../model/types";
 import { boxCss, frameCss, imagePlacement, imageUrl, textCss } from "./styles";
 
 const JUSTIFY = { top: "flex-start", middle: "center", bottom: "flex-end" } as const;
 
-export function ElementView({ el }: { el: Element }) {
+/** Editor hooks; the export renderer passes none of these, so output stays pure. */
+export interface EditHooks {
+  editingId?: string;
+  onTextCommit?: (id: string, text: string) => void;
+}
+
+export function ElementView({ el, top = false, hooks }: { el: Element; top?: boolean; hooks?: EditHooks }) {
   const frame = frameCss(el);
-  const attrs = { "data-el": el.id, "data-type": el.type } as Record<string, string>;
+  const attrs = { "data-el": el.id, "data-type": el.type, ...(top ? { "data-top": "" } : {}) } as Record<string, string>;
 
   switch (el.type) {
     case "text": {
@@ -19,6 +25,13 @@ export function ElementView({ el }: { el: Element }) {
         justifyContent: JUSTIFY[el.style.vertical_align ?? "top"],
       };
       const runs = el.content.runs;
+      if (hooks?.editingId === el.id) {
+        return (
+          <div style={css} {...attrs}>
+            <EditableText text={el.content.text} onCommit={(t) => hooks.onTextCommit?.(el.id, t)} />
+          </div>
+        );
+      }
       return (
         <div style={css} {...attrs}>
           <div>
@@ -83,11 +96,49 @@ export function ElementView({ el }: { el: Element }) {
       return (
         <div style={{ ...frame, ...boxCss(el.style) }} {...attrs}>
           {sortByZ(el.content.children).map((c) => (
-            <ElementView key={c.id} el={c} />
+            <ElementView key={c.id} el={c} hooks={hooks} />
           ))}
         </div>
       );
   }
+}
+
+/** Plain-text inline editor: Enter adds a line, Escape or click-away commits. */
+function EditableText({ text, onCommit }: { text: string; onCommit: (t: string) => void }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const ready = useRef(false);
+  useEffect(() => {
+    const node = ref.current!;
+    node.textContent = text;
+    // Focus on the next frame, after the click that opened the editor has finished moving focus.
+    const raf = requestAnimationFrame(() => {
+      node.focus();
+      const range = document.createRange();
+      range.selectNodeContents(node);
+      const sel = window.getSelection()!;
+      sel.removeAllRanges();
+      sel.addRange(range);
+      ready.current = true;
+    });
+    return () => cancelAnimationFrame(raf);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  return (
+    <div
+      ref={ref}
+      contentEditable="plaintext-only"
+      suppressContentEditableWarning
+      className="editing-text"
+      spellCheck={false}
+      onBlur={(e) => ready.current && onCommit((e.currentTarget.innerText ?? "").replace(/\n$/, ""))}
+      onKeyDown={(e) => {
+        e.stopPropagation();
+        if (e.key === "Escape") (e.currentTarget as HTMLDivElement).blur();
+      }}
+      onPointerDown={(e) => e.stopPropagation()}
+      style={{ outline: "none", minHeight: "1em", cursor: "text" }}
+    />
+  );
 }
 
 function textRunCss(s: NonNullable<NonNullable<import("../model/types").TextContent["runs"]>[number]["style"]>): CSSProperties {

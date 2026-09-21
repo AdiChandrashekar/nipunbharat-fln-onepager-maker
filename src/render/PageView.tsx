@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import type { Page, PageSetup } from "../model/types";
-import { ElementView, sortByZ } from "./ElementView";
+import { ElementView, sortByZ, type EditHooks } from "./ElementView";
 
 interface Props {
   page: Page;
@@ -11,10 +11,11 @@ interface Props {
   withBleed?: boolean;
   /** Editor overlays (selection handles, margin guides) drawn in page mm coordinates. */
   overlay?: ReactNode;
+  hooks?: EditHooks;
 }
 
 /** Renders one page as absolutely positioned DOM in mm. The same component serves editor, thumbnails and export. */
-export function PageView({ page, setup, scale = 1, withBleed = false, overlay }: Props) {
+export function PageView({ page, setup, scale = 1, withBleed = false, overlay, hooks }: Props) {
   const bleed = withBleed ? setup.bleed_mm : 0;
   const w = setup.width_mm + 2 * bleed;
   const h = setup.height_mm + 2 * bleed;
@@ -35,9 +36,9 @@ export function PageView({ page, setup, scale = 1, withBleed = false, overlay }:
           overflow: "hidden",
         }}
       >
-        <div style={{ position: "absolute", left: `${bleed}mm`, top: `${bleed}mm`, width: `${setup.width_mm}mm`, height: `${setup.height_mm}mm` }}>
+        <div className="trim" style={{ position: "absolute", left: `${bleed}mm`, top: `${bleed}mm`, width: `${setup.width_mm}mm`, height: `${setup.height_mm}mm` }}>
           {sortByZ(page.elements).map((el) => (
-            <ElementView key={el.id} el={el} />
+            <ElementView key={el.id} el={el} top hooks={hooks} />
           ))}
           {overlay}
         </div>

@@ -1,21 +1,22 @@
+import type { ReactNode } from "react";
 import { label } from "../content/fields";
-import type { FitResult } from "../layout/fit";
+import { uploadImage } from "../editor/ImageLibrary";
 import { makePage, PAGE_SIZES } from "../model/pageSizes";
 import type { Language, OnePagerDocument, Orientation, PageSizeId, Tier } from "../model/types";
 import { TEMPLATES } from "../templates";
 
 interface Props {
   doc: OnePagerDocument;
-  update: (fn: (d: OnePagerDocument) => OnePagerDocument) => void;
+  /** mergeKey groups rapid edits (typing) into one undo step. */
+  update: (fn: (d: OnePagerDocument) => OnePagerDocument, mergeKey?: string) => void;
   readout: string;
-  fit: FitResult | null;
-  zoom: number;
-  setZoom: (z: number) => void;
+  overflow: boolean;
+  actions?: ReactNode;
 }
 
 const LANGS: [Language, string][] = [["hi", "हिंदी"], ["en", "English"], ["bi", "द्विभाषी"]];
 
-export function Toolbar({ doc, update, readout, fit, zoom, setZoom }: Props) {
+export function Toolbar({ doc, update, readout, overflow, actions }: Props) {
   const p = doc.page;
   const setPage = (size: PageSizeId, orientation: Orientation, custom?: { w: number; h: number }) =>
     update((d) => {
@@ -23,17 +24,18 @@ export function Toolbar({ doc, update, readout, fit, zoom, setZoom }: Props) {
       return { ...d, page: next };
     });
   const setLayout = (patch: Partial<OnePagerDocument["layout"]>) => update((d) => ({ ...d, layout: { ...d.layout, ...patch } }));
-  const setMeta = (patch: Partial<OnePagerDocument["meta"]>) => update((d) => ({ ...d, meta: { ...d.meta, ...patch } }));
+  const setMeta = (patch: Partial<OnePagerDocument["meta"]>, key?: string) => update((d) => ({ ...d, meta: { ...d.meta, ...patch } }), key);
 
   return (
     <header className="toolbar">
       <div className="row">
         <strong className="brand">One-Pager Maker</strong>
+        {actions}
         <input className="title-input" value={doc.title} placeholder={label("defaultTitle", doc.language)}
-          onChange={(e) => update((d) => ({ ...d, title: e.target.value }))} aria-label="Title" />
+          onChange={(e) => update((d) => ({ ...d, title: e.target.value }), "title")} aria-label="Title" />
         <input className="sub-input" value={doc.meta.subtitle} placeholder="Subtitle (optional)"
-          onChange={(e) => setMeta({ subtitle: e.target.value })} aria-label="Subtitle" />
-        <span className={`readout mono${fit?.overflow ? " warn" : ""}`} aria-live="polite">{readout}</span>
+          onChange={(e) => setMeta({ subtitle: e.target.value }, "subtitle")} aria-label="Subtitle" />
+        <span className={`readout mono${overflow ? " warn" : ""}`} aria-live="polite">{readout}</span>
       </div>
       <div className="row controls">
         <label>Template
@@ -89,14 +91,24 @@ export function Toolbar({ doc, update, readout, fit, zoom, setZoom }: Props) {
             {[1, 2, 3, 4, 5, 6].map((n) => <option key={n} value={n}>Fit to {n}</option>)}
           </select>
         </label>
-        <label>Zoom
-          <input type="range" min={0.3} max={1.4} step={0.02} value={zoom} onChange={(e) => setZoom(+e.target.value)} />
-        </label>
       </div>
       <div className="row details">
-        <input value={doc.meta.organisation} placeholder="Organisation" onChange={(e) => setMeta({ organisation: e.target.value })} aria-label="Organisation" />
-        <input value={doc.meta.author} placeholder="Author" onChange={(e) => setMeta({ author: e.target.value })} aria-label="Author" />
-        <input value={doc.meta.date} placeholder="Date" onChange={(e) => setMeta({ date: e.target.value })} aria-label="Date" />
+        <input value={doc.meta.organisation} placeholder="Organisation" onChange={(e) => setMeta({ organisation: e.target.value }, "org")} aria-label="Organisation" />
+        <input value={doc.meta.author} placeholder="Author" onChange={(e) => setMeta({ author: e.target.value }, "author")} aria-label="Author" />
+        <input value={doc.meta.date} placeholder="Date" onChange={(e) => setMeta({ date: e.target.value }, "date")} aria-label="Date" />
+        <label className="file-btn">
+          {doc.meta.logo_ref ? "Replace logo…" : "Add logo…"}
+          <input type="file" accept=".png,.jpg,.jpeg,.webp,.svg" hidden onChange={async (e) => {
+            const f = e.target.files?.[0];
+            if (!f) return;
+            try {
+              const img = await uploadImage(f);
+              setMeta({ logo_ref: img.image_ref, logo_px: img.natural_px });
+            } catch (err) { alert((err as Error).message); }
+            e.target.value = "";
+          }} />
+        </label>
+        {doc.meta.logo_ref && <button onClick={() => setMeta({ logo_ref: undefined, logo_px: undefined })}>Remove logo</button>}
       </div>
     </header>
   );

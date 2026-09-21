@@ -63,6 +63,18 @@ export function onepagerFiles(): Plugin {
               return send(res, 200, { ok: true });
             }
           }
+          // Upload an image: POST /api/uploads?name=<original name>, raw bytes in the body → { file }
+          if (url.pathname === "/api/uploads" && req.method === "POST") {
+            const orig = (url.searchParams.get("name") ?? "image").toLowerCase();
+            const ext = path.extname(orig);
+            if (![".png", ".jpg", ".jpeg", ".webp", ".svg"].includes(ext)) return send(res, 400, { error: "Use a PNG, JPEG, WebP or SVG image" });
+            const body = await readBody(req);
+            if (body.length > 15 * 1024 * 1024) return send(res, 413, { error: "Image is larger than 15 MB" });
+            const base = path.basename(orig, ext).replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 40) || "image";
+            const name = `${Date.now().toString(36)}-${base}${ext}`;
+            fs.writeFileSync(path.join(UPLOADS, name), body);
+            return send(res, 200, { file: name });
+          }
           // Uploaded images: GET /uploads/<file>
           const u = /^\/uploads\/([^/]+)$/.exec(url.pathname);
           if (u && req.method === "GET") {
