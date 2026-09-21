@@ -33,17 +33,27 @@ export interface PageSetup {
   bleed_mm: number;
 }
 
-export type SelectionKind = "competency" | "strategy" | "routine";
+/**
+ * The selection tray: an ordered list of groups, each holding ordered items. The document follows this order.
+ * - kind "competency": a competency heading (id = competency_id); items are strategy_ids.
+ * - kind "bucket": a general-activity bucket (id = bucket_id, e.g. GA-CFU); items are strategy_ids.
+ * - kind "routines": the differentiation routines group (id = "DR"); items are routine_ids.
+ * origin records how the group arrived: "competency" = added whole (top strategies pre-ticked),
+ * "strategy" = created automatically when a single strategy or routine was added.
+ */
+export type GroupKind = "competency" | "bucket" | "routines";
 
-export interface SelectionItem {
-  kind: SelectionKind;
-  /** competency_id, strategy_id or routine_id. For strategies added on their own, the group is derived. */
+export interface SelectionGroup {
+  kind: GroupKind;
   id: string;
-  /** For kind=competency: the strategies ticked under it, in tray order. */
-  strategies?: string[];
+  origin: "competency" | "strategy";
+  items: string[];
 }
 
 export type Tier = "spacious" | "standard" | "compact";
+
+/** Strategy fields a template may show; they are the first to drop when space is short. */
+export type OptionalField = "explanation" | "example" | "materials" | "variants" | "weeks" | "english";
 
 export interface LayoutSettings {
   template: string;
@@ -52,9 +62,9 @@ export interface LayoutSettings {
   /** Set once the user hand-edits a populated page; auto re-flow then asks before overwriting. */
   manually_edited: boolean;
   /** Result of the last fit, for the "Standard · 2 pages, A4 portrait" readout. */
-  resolved?: { tier: Tier; pages: number; dropped_fields: string[] };
+  resolved?: { tier: Tier; pages: number; dropped_fields: OptionalField[]; overflow: boolean };
   /** Optional fields the user switched back on even though the tier would drop them. */
-  forced_fields?: string[];
+  forced_fields?: OptionalField[];
 }
 
 export interface Theme {
@@ -79,7 +89,7 @@ export interface OnePagerDocument {
   title: string;
   language: Language;
   page: PageSetup;
-  selection: SelectionItem[];
+  selection: SelectionGroup[];
   layout: LayoutSettings;
   theme: Theme;
   meta: DocMeta;
@@ -166,6 +176,7 @@ export interface Binding {
   competency_id?: string;
   strategy_id?: string;
   routine_id?: string;
+  bucket_id?: string;
   /** e.g. "name", "how_to", "nipun_chip", "image", "detailed_explanation", "weeks", "footer". */
   field: string;
 }

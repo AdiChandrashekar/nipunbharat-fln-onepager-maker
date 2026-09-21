@@ -94,8 +94,8 @@ export function buildSample(size: PageSizeId, orientation: Orientation): OnePage
     language: "hi",
     page,
     selection: [
-      { kind: "competency", id: "DC5", strategies: ["dc-break-and-blend"] },
-      { kind: "competency", id: "DC7", strategies: ["dc-grid-word-search"] },
+      { kind: "competency", id: "DC5", origin: "competency", items: ["dc-break-and-blend"] },
+      { kind: "competency", id: "DC7", origin: "competency", items: ["dc-grid-word-search"] },
     ],
     layout: { template: "hand-written-sample", tier: "auto", fit_pages: "auto", manually_edited: true },
     theme: KOSH_LIGHT,
