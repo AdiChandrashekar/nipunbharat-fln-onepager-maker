@@ -16,17 +16,26 @@ export interface FitResult {
   pageCount: number;
   /** Optional fields the most spacious tier would show but this result leaves out (only fields with content). */
   dropped: OptionalField[];
+  /** Opt-in extras no template shows by default (weeks, variants) that have content and aren't switched on. */
+  extras: OptionalField[];
   /** True when the target (fit to N / forced tier) couldn't be met, or a block is taller than a column. */
   overflow: boolean;
   /** Pages each rung of the ladder needed, for the UI. */
   ladder: { tier: Tier; step: number; pages: number }[];
 }
 
+/** Never shown unless the user adds them: "संदर्शिका में" (weeks) and "अन्य रूप" (variants). */
+export const OPT_IN: OptionalField[] = ["weeks", "variants"];
+
 export function fitDocument(doc: OnePagerDocument): FitResult {
   const t = templateById.get(doc.layout.template)!;
   const forced = doc.layout.forced_fields ?? [];
   const groups = resolve(doc.selection);
-  let ladder = configLadder(t, doc.page, forced);
+  // Cards the selection makes: one per group (competency cards) or one per shown strategy (other card templates).
+  const units = t.recipe === "table" ? Infinity
+    : t.frame === "group" ? groups.length
+    : groups.reduce((n, g) => n + g.entries.filter((e) => !e.pointerTo).length, 0);
+  let ladder = configLadder(t, doc.page, forced, Math.max(1, units));
   if (doc.layout.tier !== "auto") ladder = ladder.filter((c) => c.tier === doc.layout.tier);
 
   const results = ladder.map((cfg) => ({ cfg, ...layoutDocument(doc, t, cfg, groups) }));
@@ -41,6 +50,7 @@ export function fitDocument(doc: OnePagerDocument): FitResult {
   const available = contentFields(doc);
   const full = new Set<OptionalField>([...t.tiers.spacious.fields, ...forced]);
   const dropped = [...full].filter((f) => available.has(f) && !pick.cfg.fields.has(f));
+  const extras = OPT_IN.filter((f) => available.has(f) && !forced.includes(f) && !full.has(f));
   return {
     pages: pick.pages,
     tier: pick.cfg.tier,
@@ -48,6 +58,7 @@ export function fitDocument(doc: OnePagerDocument): FitResult {
     cols: pick.cfg.cols,
     pageCount: pick.pages.length,
     dropped,
+    extras,
     overflow: pick.overflow || (target !== "auto" && pick.pages.length > target),
     ladder: results.map((r) => ({ tier: r.cfg.tier, step: r.cfg.step, pages: r.pages.length })),
   };

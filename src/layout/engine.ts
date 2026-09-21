@@ -31,7 +31,8 @@ export interface LayoutConfig {
 
 const A4_AREA = 210 * 297;
 
-export function makeConfig(t: TemplateDef, tierName: Tier, step: number, page: PageSetup, forced: OptionalField[] = []): LayoutConfig {
+/** `units`: how many cards the selection makes (groups or strategies); never lay out more columns than that. */
+export function makeConfig(t: TemplateDef, tierName: Tier, step: number, page: PageSetup, forced: OptionalField[] = [], units = Infinity): LayoutConfig {
   const base = t.tiers[tierName];
   const f = Math.min(1.5, Math.max(0.7, Math.sqrt((page.width_mm * page.height_mm) / A4_AREA)));
   const minBody = minBodyPt(page);
@@ -62,6 +63,7 @@ export function makeConfig(t: TemplateDef, tierName: Tier, step: number, page: P
   const maxCols = base.max_cols[page.orientation];
   let cols = Math.max(1, Math.min(maxCols, Math.round((contentW + spec.gap_mm) / (spec.col_width_mm + spec.gap_mm))));
   while (cols > 1 && (contentW - spec.gap_mm * (cols - 1)) / cols < 48 * f) cols--;
+  cols = Math.max(1, Math.min(cols, units)); // two posters on a landscape page: two columns, not three with one empty
   const colW = (contentW - spec.gap_mm * (cols - 1)) / cols;
   // Order of sacrifice: optional fields go first (step ≥ 1), then image size (2), then text size (3).
   const fields = new Set<OptionalField>([...(step >= 1 ? [] : base.fields), ...forced]);
@@ -73,10 +75,10 @@ export function makeConfig(t: TemplateDef, tierName: Tier, step: number, page: P
  * leaves them out (so a spacious page isn't abandoned just for a read-more paragraph); compact then
  * shrinks images and finally takes core text to the minimum readable size.
  */
-export function configLadder(t: TemplateDef, page: PageSetup, forced: OptionalField[]): LayoutConfig[] {
+export function configLadder(t: TemplateDef, page: PageSetup, forced: OptionalField[], units = Infinity): LayoutConfig[] {
   const rungs: [Tier, number][] = [["spacious", 0], ["spacious", 1], ["standard", 0], ["standard", 1], ["compact", 0], ["compact", 1], ["compact", 2], ["compact", 3]];
   return rungs
-    .map(([tier, step]) => makeConfig(t, tier, step, page, forced))
+    .map(([tier, step]) => makeConfig(t, tier, step, page, forced, units))
     // A "leave fields out" rung is pointless when the tier shows no optional fields anyway.
     .filter((c, i, all) => !(c.step === 1 && all[i - 1].tier === c.tier && all[i - 1].fields.size === c.fields.size));
 }
@@ -90,6 +92,8 @@ interface Ctx {
   P: Record<string, string>;
   F: OnePagerDocument["theme"]["fonts"];
   z: number;
+  /** Usable column height (mm) on continuation pages; hero images are capped against it. */
+  colH: number;
 }
 
 interface Block {
@@ -101,6 +105,8 @@ interface Block {
   /** Selection group this block belongs to; a group continuing into a new column gets a "continued" label. */
   group?: string;
   cont?: Block;
+  /** One strategy's blocks (main + its fields) share a unit and move to a new column together when they fit. */
+  unit?: string;
   render(ctx: Ctx, x: number, y: number): Element[];
 }
 
@@ -237,8 +243,9 @@ function itemMainBlock(ctx: Ctx, e: ResolvedEntry, w: number, domain: string, wi
   }
   if (img && spec.image.placement === "top") {
     const im = imageById.get(img)!;
-    const imgW = w * spec.image.frac;
-    const imgH = Math.min(imgW / im.aspect, w * 0.7);
+    // Hero image: full card width, but never taller than half a column (wide landscape columns).
+    const imgH = Math.min((w * spec.image.frac) / im.aspect, w * 0.7, ctx.colH * 0.5);
+    const imgW = imgH * im.aspect;
     const core = itemCore(ctx, e, w, domain);
     return {
       h: imgH + gap + core.h,
@@ -325,7 +332,7 @@ function cardBlocks(ctx: Ctx, groups: ResolvedGroup[]): Block[] {
           imageEl(c, x + headW - imgW, y + 0.5, imgW, imgH, img, first ? itemBinding(first, "image") : groupBinding(g, "image")),
         ],
       });
-      if (first) for (const fb of fieldBlocks(ctx, first, headW, domain)) blocks.push({ ...fb, frame: groupFrame, frameStyle: groupStyle });
+      if (first) for (const fb of fieldBlocks(ctx, first, headW, domain)) blocks.push({ ...fb, frame: groupFrame, frameStyle: groupStyle, unit: `${g.group.id}/${first.id}` });
     } else {
       const head = headingPieces(ctx, g, headW);
       const rule = t.heading_style === "section";
@@ -347,11 +354,12 @@ function cardBlocks(ctx: Ctx, groups: ResolvedGroup[]): Block[] {
       const main = itemMainBlock(ctx, e, w, domain, t.item_image);
       // Deep-dive (no frames) separates items with a hairline.
       const divider = t.frame === "none" && (i > 0 || img) ? 2.5 : 0;
+      const unit = `${g.group.id}/${e.id}`;
       blocks.push({
-        h: main.h + divider, frame: itemFrame, frameStyle: style,
+        h: main.h + divider, frame: itemFrame, frameStyle: style, unit,
         render: (c, x, y) => [...(divider ? [lineEl(c, x, y, w, P.rule, 0.25, "divider")] : []), ...main.render(c, x, y + divider)],
       });
-      for (const fb of fieldBlocks(ctx, e, w, domain)) blocks.push({ ...fb, frame: itemFrame, frameStyle: style });
+      for (const fb of fieldBlocks(ctx, e, w, domain)) blocks.push({ ...fb, frame: itemFrame, frameStyle: style, unit });
     });
     // The label sits inside the group card (competency cards) or above the item cards (other templates).
     const cont = contBlock(ctx, g, headW, groupFrame, groupStyle);
@@ -581,6 +589,13 @@ function place(blocks: Block[], o: PlaceOpts): { placed: Placed[]; lastPage: num
     const padTop = b.frame !== undefined && (b.frame !== prevFrame || cont) ? o.pad : 0;
     let need = lead + padTop + (cont ? cont.h + o.gap : 0) + b.h + (b.frame ? o.pad : 0);
     if (b.keepWithNext && next) need += o.gap + next.h + (next.frame ? o.pad : 0);
+    // Keep a strategy's blocks together: at its first block, ask for room for the whole unit — unless the unit
+    // is taller than a column anyway, in which case it may split.
+    if (b.unit && blocks[i - 1]?.unit !== b.unit) {
+      let rest = 0;
+      for (let j = i + 1; j < blocks.length && blocks[j].unit === b.unit; j++) rest += o.gap + blocks[j].h;
+      if (rest && need + rest <= o.bottom - o.top(page)) need += rest;
+    }
     if (y + need > o.bottom && !colStart) {
       col++;
       if (col >= o.cols) {
@@ -608,9 +623,10 @@ function place(blocks: Block[], o: PlaceOpts): { placed: Placed[]; lastPage: num
 }
 
 export function layoutDocument(doc: OnePagerDocument, t: TemplateDef, cfg: LayoutConfig, groups = resolve(doc.selection)): LayoutResult {
-  const ctx: Ctx = { doc, t, cfg, P: doc.theme.palette, F: doc.theme.fonts, z: 100 };
+  const ctx: Ctx = { doc, t, cfg, P: doc.theme.palette, F: doc.theme.fonts, z: 100, colH: 1e6 };
   const { margins_mm: m } = doc.page;
   const hf = headerFooter(ctx);
+  ctx.colH = hf.contentBottom - hf.contentTop(1);
   const isTable = t.recipe === "table";
   const tableW = doc.page.width_mm - m.left - m.right;
   const { header: tableHeader, rows } = isTable ? tableBlocks(ctx, groups, tableW) : { header: undefined, rows: [] };
@@ -639,7 +655,16 @@ export function layoutDocument(doc: OnePagerDocument, t: TemplateDef, cfg: Layou
       for (let k = 0; k < 16; k++) {
         const mid = (lo + hi) / 2;
         const r = place(tail, { ...opts, firstPage: page, bottom: mid, maxPage: page, prevGroup: blocks[startBlock - 1]?.group });
-        if (r && !r.overflow) { best = r.placed; hi = mid; } else lo = mid;
+        // Balancing may not break a strategy across columns (the full pass only does so when it's taller than one).
+        const unitCol = new Map<string, number>();
+        const splits = r?.placed.some((pl) => {
+          const u = pl.block.unit;
+          if (!u) return false;
+          if (unitCol.has(u) && unitCol.get(u) !== pl.col) return true;
+          unitCol.set(u, pl.col);
+          return false;
+        });
+        if (r && !r.overflow && !splits) { best = r.placed; hi = mid; } else lo = mid;
       }
       if (best) placed = [...placed.filter((p) => p.page < page), ...best];
     }

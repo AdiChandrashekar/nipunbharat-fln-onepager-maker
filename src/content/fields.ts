@@ -30,8 +30,8 @@ export const FIELD_NAMES: Record<OptionalField, string> = {
   explanation: "Read-more explanation",
   example: "Example",
   materials: "Materials",
-  variants: "Variants",
-  weeks: "Weeks in the guide",
+  variants: "अन्य रूप (variants)",
+  weeks: "संदर्शिका में (weeks in the guide)",
   english: "English secondary text",
 };
 

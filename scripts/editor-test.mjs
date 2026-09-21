@@ -32,6 +32,24 @@ const pageText = (await doc()).pages.flatMap((p) => p.elements).filter((e) => e.
 check("no competency codes on the page", !/\b(OL|SE|DC|RF|RC|WR)\d\b|\bCFU\b|\bDR\d?\b/.test(pageText));
 check("no NIPUN / preparation chips on the page", !/निपुण\s+[A-Z]+\d|NIPUN\s+[A-Z]+\d|पूर्व-तैयारी/.test(pageText));
 
+// --- "संदर्शिका में" (weeks) and "अन्य रूप" (variants) are opt-in extras, off in every template by default
+{
+  const labels = () => doc().then((x) => x.pages.flatMap((p) => p.elements).filter((e) => e.type === "text").map((e) => e.content.text));
+  const has = (arr, t) => arr.some((s) => s === t);
+  let texts = await labels();
+  check("weeks / variants absent by default", !has(texts, "संदर्शिका में") && !has(texts, "अन्य रूप"));
+  const chips = await page.locator(".fieldbar .chip.extra").allInnerTexts();
+  check("offered as optional extras", chips.some((c) => c.includes("संदर्शिका में")) && chips.some((c) => c.includes("अन्य रूप")), chips.join(" | "));
+  await page.locator(".fieldbar .chip.extra", { hasText: "संदर्शिका में" }).click();
+  await page.waitForTimeout(400);
+  texts = await labels();
+  check("switching an extra on adds it", has(texts, "संदर्शिका में"));
+  await page.locator(".fieldbar .chip.on", { hasText: "संदर्शिका में" }).click();
+  await page.waitForTimeout(400);
+  check("switching it off removes it again", !has(await labels(), "संदर्शिका में"));
+  d = await doc(); // toggling re-flowed the page: element ids are new
+}
+
 // --- marquee: drag from the empty left margin around the first card
 {
   const first = (await doc()).pages[0].elements.find((e) => e.name === "card");

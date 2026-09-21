@@ -1,6 +1,10 @@
 import type { TableColumn, TemplateDef, TierSpec } from "./types";
 
-const ALL = ["explanation", "example", "materials", "variants", "weeks", "english"] as const;
+/**
+ * Fields a template may show by default. "weeks" (संदर्शिका में) and "variants" (अन्य रूप) are deliberately
+ * absent from every template: they are opt-in extras the user switches on per document (forced_fields).
+ */
+const CORE = ["explanation", "example", "materials", "english"] as const;
 
 const tier = (t: Partial<TierSpec> & Pick<TierSpec, "col_width_mm" | "type" | "image">): TierSpec => ({
   max_cols: { portrait: 2, landscape: 3 },
@@ -14,7 +18,7 @@ const tier = (t: Partial<TierSpec> & Pick<TierSpec, "col_width_mm" | "type" | "i
 export const competencyCards: TemplateDef = {
   id: "competency-cards",
   name: { en: "Competency cards", hi: "दक्षता कार्ड" },
-  description: "One card per competency group: code, name, NIPUN chip, its strategies and one image.",
+  description: "One card per competency group: its name, its strategies and one TG illustration.",
   best_for: "Whole competencies or a whole domain",
   recipe: "cards",
   frame: "group",
@@ -25,19 +29,19 @@ export const competencyCards: TemplateDef = {
     spacious: tier({
       col_width_mm: 186, max_cols: { portrait: 1, landscape: 2 },
       type: { title: 26, subtitle: 12, group: 19, name: 14, body: 12, meta: 10 },
-      image: { placement: "right", frac: 0.36 }, gap_mm: 8, block_gap_mm: 4, frame_pad_mm: 6,
-      fields: ["explanation", "example", "materials", "variants", "weeks", "english"],
+      image: { placement: "right", frac: 0.38 }, gap_mm: 8, block_gap_mm: 4, frame_pad_mm: 6,
+      fields: [...CORE],
     }),
     standard: tier({
       col_width_mm: 90,
-      type: { title: 22, subtitle: 11, group: 14.5, name: 11.5, body: 10, meta: 8.5 },
-      image: { placement: "right", frac: 0.34 }, block_gap_mm: 2.8,
-      fields: ["example", "materials", "weeks", "english"],
+      type: { title: 22, subtitle: 11, group: 15, name: 12, body: 10.5, meta: 9 },
+      image: { placement: "right", frac: 0.36 }, block_gap_mm: 3,
+      fields: ["example", "materials", "english"],
     }),
     compact: tier({
       col_width_mm: 86,
-      type: { title: 18, subtitle: 10, group: 12, name: 10, body: 9, meta: 8 },
-      image: { placement: "right", frac: 0.3 }, gap_mm: 5, block_gap_mm: 2, frame_pad_mm: 3,
+      type: { title: 18, subtitle: 10, group: 12.5, name: 10.5, body: 9.5, meta: 8 },
+      image: { placement: "right", frac: 0.32 }, gap_mm: 5, block_gap_mm: 2.2, frame_pad_mm: 3,
     }),
   },
 };
@@ -45,7 +49,7 @@ export const competencyCards: TemplateDef = {
 export const strategyCards: TemplateDef = {
   id: "strategy-cards",
   name: { en: "Strategy cards", hi: "रणनीति कार्ड" },
-  description: "One card per strategy: name, how-to, image and competency chips, under slim competency headings.",
+  description: "One card per strategy: name, how-to and image, under slim competency headings.",
   best_for: "A hand-picked list of strategies from different competencies",
   recipe: "cards",
   frame: "item",
@@ -54,21 +58,21 @@ export const strategyCards: TemplateDef = {
   heading_style: "section",
   tiers: {
     spacious: tier({
-      col_width_mm: 186, max_cols: { portrait: 1, landscape: 2 },
+      col_width_mm: 130, max_cols: { portrait: 1, landscape: 2 },
       type: { title: 26, subtitle: 12, group: 16, name: 15, body: 12, meta: 10 },
-      image: { placement: "right", frac: 0.38 }, gap_mm: 8, block_gap_mm: 5, frame_pad_mm: 5,
-      fields: ["explanation", "example", "materials", "weeks", "english"],
+      image: { placement: "right", frac: 0.4 }, gap_mm: 8, block_gap_mm: 5, frame_pad_mm: 5,
+      fields: [...CORE],
     }),
     standard: tier({
       col_width_mm: 90,
-      type: { title: 22, subtitle: 11, group: 12.5, name: 11.5, body: 10, meta: 8.5 },
+      type: { title: 22, subtitle: 11, group: 13, name: 12, body: 10.5, meta: 9 },
       image: { placement: "top", frac: 1 }, block_gap_mm: 3.5,
-      fields: ["weeks", "english"],
+      fields: ["example", "english"],
     }),
     compact: tier({
       col_width_mm: 86,
-      type: { title: 18, subtitle: 10, group: 11, name: 10, body: 9, meta: 8 },
-      image: { placement: "right", frac: 0.32 }, gap_mm: 5, block_gap_mm: 2.5, frame_pad_mm: 3,
+      type: { title: 18, subtitle: 10, group: 11.5, name: 10.5, body: 9.5, meta: 8 },
+      image: { placement: "right", frac: 0.34 }, gap_mm: 5, block_gap_mm: 2.5, frame_pad_mm: 3,
     }),
   },
 };
@@ -76,7 +80,7 @@ export const strategyCards: TemplateDef = {
 export const deepDive: TemplateDef = {
   id: "deep-dive",
   name: { en: "Deep-dive", hi: "विस्तृत विवरण" },
-  description: "Full detail per strategy: how-to, read-more explanation, example, materials, variants, weeks.",
+  description: "Full detail per strategy: how-to, read-more explanation, example and materials.",
   best_for: "1–4 strategies",
   recipe: "cards",
   frame: "none",
@@ -85,22 +89,22 @@ export const deepDive: TemplateDef = {
   heading_style: "section",
   tiers: {
     spacious: tier({
-      col_width_mm: 186, max_cols: { portrait: 1, landscape: 2 },
+      col_width_mm: 130, max_cols: { portrait: 1, landscape: 2 },
       type: { title: 26, subtitle: 12, group: 17, name: 16, body: 12, meta: 10.5 },
-      image: { placement: "right", frac: 0.42 }, gap_mm: 9, block_gap_mm: 3.5,
-      fields: [...ALL],
+      image: { placement: "right", frac: 0.44 }, gap_mm: 9, block_gap_mm: 3.5,
+      fields: [...CORE],
     }),
     standard: tier({
       col_width_mm: 150, max_cols: { portrait: 1, landscape: 2 },
-      type: { title: 22, subtitle: 11, group: 14, name: 13, body: 10.5, meta: 9 },
-      image: { placement: "right", frac: 0.36 }, gap_mm: 8, block_gap_mm: 3,
-      fields: [...ALL],
+      type: { title: 22, subtitle: 11, group: 14.5, name: 13.5, body: 11, meta: 9.5 },
+      image: { placement: "right", frac: 0.38 }, gap_mm: 8, block_gap_mm: 3,
+      fields: [...CORE],
     }),
     compact: tier({
       col_width_mm: 88,
-      type: { title: 18, subtitle: 10, group: 12, name: 10.5, body: 9, meta: 8 },
-      image: { placement: "right", frac: 0.32 }, gap_mm: 6, block_gap_mm: 2.2,
-      fields: ["explanation", "weeks"],
+      type: { title: 18, subtitle: 10, group: 12.5, name: 11, body: 9.5, meta: 8.5 },
+      image: { placement: "right", frac: 0.34 }, gap_mm: 6, block_gap_mm: 2.2,
+      fields: ["explanation"],
     }),
   },
 };
@@ -132,17 +136,17 @@ export const strategyTable: TemplateDef = {
       col_width_mm: 400, max_cols: { portrait: 1, landscape: 1 },
       type: { title: 24, subtitle: 11.5, group: 13, name: 11.5, body: 11, meta: 9.5 },
       image: { placement: "right", frac: 1 }, block_gap_mm: 0, frame_pad_mm: 2.5,
-      fields: ["example", "materials", "weeks", "english"],
+      fields: ["example", "materials", "english"],
     }),
     standard: tier({
       col_width_mm: 400, max_cols: { portrait: 1, landscape: 1 },
-      type: { title: 21, subtitle: 10.5, group: 11.5, name: 10.5, body: 9.5, meta: 8.5 },
+      type: { title: 21, subtitle: 10.5, group: 12, name: 11, body: 10, meta: 9 },
       image: { placement: "none", frac: 0 }, block_gap_mm: 0, frame_pad_mm: 2,
-      fields: ["weeks"],
+      fields: ["example", "materials"],
     }),
     compact: tier({
       col_width_mm: 400, max_cols: { portrait: 1, landscape: 1 },
-      type: { title: 18, subtitle: 10, group: 10.5, name: 9.5, body: 9, meta: 8 },
+      type: { title: 18, subtitle: 10, group: 11, name: 10, body: 9.5, meta: 8.5 },
       image: { placement: "none", frac: 0 }, block_gap_mm: 0, frame_pad_mm: 1.6,
     }),
   },
@@ -165,7 +169,7 @@ export const poster: TemplateDef = {
   heading_style: "section",
   tiers: {
     spacious: tier({
-      col_width_mm: 186, max_cols: { portrait: 1, landscape: 2 },
+      col_width_mm: 130, max_cols: { portrait: 1, landscape: 2 },
       type: { title: 40, subtitle: 16, group: 22, name: 24, body: 17, meta: 13 },
       image: { placement: "top", frac: 1 }, gap_mm: 10, block_gap_mm: 6, frame_pad_mm: 7,
       fields: ["english"],

@@ -90,7 +90,7 @@ export function Maker() {
       ...cur,
       pages: r.pages,
       layout: { ...cur.layout, manually_edited: false, fit_key: keys(cur).full,
-        resolved: { tier: r.tier, step: r.step, pages: r.pageCount, dropped_fields: r.dropped, overflow: r.overflow } },
+        resolved: { tier: r.tier, step: r.step, pages: r.pageCount, dropped_fields: r.dropped, extra_fields: r.extras, overflow: r.overflow } },
     });
     if (asUndoStep) h.commit(apply); else h.replace(apply);
     setPendingReflow(false);
@@ -390,11 +390,15 @@ export function Maker() {
   return (
     <div className="maker">
       <Toolbar doc={doc} update={update} readout={readout} overflow={!!res?.overflow} actions={actions} />
-      {(res?.dropped_fields.length || forced.length) && templateById.has(doc.layout.template) ? (
+      {(res?.dropped_fields.length || res?.extra_fields?.length || forced.length) && templateById.has(doc.layout.template) ? (
         <div className="fieldbar">
           {res?.dropped_fields.length ? <span className="muted">Left out to fit — click to switch back on:</span> : null}
           {res?.dropped_fields.map((f) => (
             <button key={f} className="chip off" onClick={() => toggleField(f)} title="Show this field (may add a page)">+ {FIELD_NAMES[f]}</button>
+          ))}
+          {res?.extra_fields?.length ? <span className="muted">Optional extras (not in any template):</span> : null}
+          {res?.extra_fields?.map((f) => (
+            <button key={f} className="chip off extra" onClick={() => toggleField(f)} title="Add this to every strategy in the document (may add a page)">+ {FIELD_NAMES[f]}</button>
           ))}
           {forced.length ? <span className="muted">Kept on:</span> : null}
           {forced.map((f) => (

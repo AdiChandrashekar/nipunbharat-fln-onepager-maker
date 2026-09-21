@@ -62,7 +62,7 @@ export interface LayoutSettings {
   /** Set once the user hand-edits a populated page; auto re-flow then asks before overwriting. */
   manually_edited: boolean;
   /** Result of the last fit, for the "Standard · 2 pages, A4 portrait" readout. */
-  resolved?: { tier: Tier; step: number; pages: number; dropped_fields: OptionalField[]; overflow: boolean };
+  resolved?: { tier: Tier; step: number; pages: number; dropped_fields: OptionalField[]; extra_fields?: OptionalField[]; overflow: boolean };
   /** Inputs the current pages were laid out from; when they match, opening or undoing needs no re-flow. */
   fit_key?: string;
   /** Optional fields the user switched back on even though the tier would drop them. */
