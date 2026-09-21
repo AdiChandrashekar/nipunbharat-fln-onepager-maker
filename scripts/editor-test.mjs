@@ -27,6 +27,62 @@ check("auto-populated pages", d.pages.length >= 1 && d.pages[0].elements.length 
 
 // Distances below are in screen px at the default zoom; checks use generous thresholds.
 
+// --- one-pagers carry no internal codes (DC5, OL2 …) or NIPUN / preparation chips
+const pageText = (await doc()).pages.flatMap((p) => p.elements).filter((e) => e.type === "text").map((e) => e.content.text).join("\n");
+check("no competency codes on the page", !/\b(OL|SE|DC|RF|RC|WR)\d\b|\bCFU\b|\bDR\d?\b/.test(pageText));
+check("no NIPUN / preparation chips on the page", !/निपुण\s+[A-Z]+\d|NIPUN\s+[A-Z]+\d|पूर्व-तैयारी/.test(pageText));
+
+// --- marquee: drag from the empty left margin around the first card
+{
+  const first = (await doc()).pages[0].elements.find((e) => e.name === "card");
+  const trim = await page.locator(".canvas-edit .page .trim").first().boundingBox();
+  const k = trim.width / (await doc()).page.width_mm; // screen px per mm
+  await page.mouse.move(trim.x + 3 * k, trim.y + (first.y_mm - 1.5) * k);
+  await page.mouse.down();
+  await page.mouse.move(trim.x + 100 * k, trim.y + (first.y_mm + 20) * k, { steps: 5 });
+  await page.mouse.move(trim.x + (first.x_mm + first.w_mm + 1.5) * k, trim.y + (first.y_mm + first.h_mm + 1.5) * k, { steps: 8 });
+  await page.mouse.up();
+  await page.waitForTimeout(250);
+  const head = await page.locator(".props-head").innerText().catch(() => "");
+  const n = parseInt(head);
+  check("marquee selects everything inside the box", n > 3 && head.includes("elements"), head.replace(/\s+/g, " "));
+  await page.keyboard.press("Escape");
+}
+
+// --- right-click menu on an element: copy, then paste at an empty spot; lock
+{
+  const target = (await doc()).pages[0].elements.find((e) => e.binding?.field === "name" && e.binding.strategy_id);
+  const loc = page.locator(`.canvas-edit [data-top][data-el="${target.id}"]`);
+  await loc.click({ button: "right", force: true });
+  await page.waitForSelector(".ctx-menu");
+  const items = await page.locator(".ctx-menu button").allInnerTexts();
+  check("context menu on element", ["Edit text", "Copy", "Bring to front", "Lock", "Refresh from data"].every((l) => items.some((t) => t.startsWith(l))), items.length + " items");
+  await page.locator(".ctx-menu button", { hasText: /^Copy/ }).click();
+  const trim = await page.locator(".canvas-edit .page .trim").first().boundingBox();
+  const k = trim.width / (await doc()).page.width_mm;
+  const before = (await doc()).pages[0].elements.length;
+  await page.mouse.click(trim.x + 3 * k, trim.y + 250 * k, { button: "right" }); // left margin, empty
+  await page.waitForSelector(".ctx-menu");
+  const empty = await page.locator(".ctx-menu button").allInnerTexts();
+  check("context menu on empty space", empty.some((t) => t.startsWith("Paste here")) && empty.some((t) => t.startsWith("Add text here")));
+  await page.locator(".ctx-menu button", { hasText: /^Paste here/ }).click();
+  await page.waitForTimeout(150);
+  const after = (await doc()).pages[0].elements;
+  const pasted = after.at(-1);
+  check("paste here places the copy at the pointer", after.length === before + 1 && pasted.content.text === target.content.text && Math.abs(pasted.x_mm - 3) < 1 && Math.abs(pasted.y_mm - 250) < 1, `(${pasted.x_mm}, ${pasted.y_mm})`);
+  await page.locator(`.canvas-edit [data-top][data-el="${pasted.id}"]`).click({ button: "right", force: true });
+  await page.locator(".ctx-menu button", { hasText: /^Lock/ }).click();
+  check("lock from context menu", (await el(pasted.id)).locked === true);
+  await page.mouse.click(trim.x + 3 * k, trim.y + 150 * k, { button: "right" });
+  await page.locator(".ctx-menu button", { hasText: /^Add text here/ }).click();
+  await page.waitForSelector(".editing-text");
+  await page.keyboard.press("Escape");
+  const added = (await doc()).pages[0].elements.at(-1);
+  check("add text here", added.type === "text" && Math.abs(added.y_mm - 150) < 1);
+  for (let i = 0; i < 3; i++) await page.keyboard.press("Control+z"); // back to the auto layout for the checks below
+  await page.waitForTimeout(200);
+}
+
 // --- select + drag a strategy name
 const nameEl = d.pages[0].elements.find((e) => e.binding?.field === "how_to");
 const node = page.locator(`.canvas-edit [data-top][data-el="${nameEl.id}"]`);

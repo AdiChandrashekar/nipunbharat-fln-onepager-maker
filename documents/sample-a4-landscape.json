@@ -20,14 +20,16 @@
   {
    "kind": "competency",
    "id": "DC5",
-   "strategies": [
+   "origin": "competency",
+   "items": [
     "dc-break-and-blend"
    ]
   },
   {
    "kind": "competency",
    "id": "DC7",
-   "strategies": [
+   "origin": "competency",
+   "items": [
     "dc-grid-word-search"
    ]
   }
@@ -68,19 +70,19 @@
   "author": "",
   "date": "",
   "subtitle": "शिक्षक एवं मेंटर हेतु मार्गदर्शिका · कक्षा 2 हिंदी · A4 landscape (297 × 210 मिमी)",
-  "created": "2026-09-21T17:01:27.642Z",
-  "updated": "2026-09-21T17:01:27.642Z"
+  "created": "2026-09-21T20:19:35.476Z",
+  "updated": "2026-09-21T20:19:35.476Z"
  },
  "pages": [
   {
-   "id": "page-mubhsf6i-2g",
+   "id": "page-mubov7w4-28",
    "elements": [
     {
-     "id": "el-mubhsf6c-19",
+     "id": "el-mubov7w2-15",
      "x_mm": 0,
      "y_mm": 0,
      "w_mm": 297,
-     "h_mm": 31.70091196298599,
+     "h_mm": 31.69677734375,
      "rotation": 0,
      "z": 0,
      "locked": false,
@@ -94,11 +96,11 @@
      }
     },
     {
-     "id": "el-mubhsf6c-1a",
+     "id": "el-mubov7w2-16",
      "x_mm": 12,
      "y_mm": 10,
      "w_mm": 273,
-     "h_mm": 9.700287063916523,
+     "h_mm": 9.6986328125,
      "rotation": 0,
      "z": 1,
      "locked": false,
@@ -118,11 +120,11 @@
      }
     },
     {
-     "id": "el-mubhsf6c-1b",
+     "id": "el-mubov7w2-17",
      "x_mm": 12,
-     "y_mm": 20.700287063916523,
+     "y_mm": 20.6986328125,
      "w_mm": 273,
-     "h_mm": 5.000624899069468,
+     "h_mm": 4.9981445312499995,
      "rotation": 0,
      "z": 2,
      "locked": false,
@@ -142,9 +144,9 @@
      }
     },
     {
-     "id": "el-mubhsf6c-1c",
+     "id": "el-mubov7w2-18",
      "x_mm": 12,
-     "y_mm": 192.19330734213193,
+     "y_mm": 192.18834635416667,
      "w_mm": 273,
      "h_mm": 0,
      "rotation": 0,
@@ -163,11 +165,11 @@
      }
     },
     {
-     "id": "el-mubhsf6d-1d",
+     "id": "el-mubov7w2-19",
      "x_mm": 12,
-     "y_mm": 194.19330734213193,
+     "y_mm": 194.18834635416667,
      "w_mm": 169.26,
-     "h_mm": 3.806692657868067,
+     "h_mm": 3.8116536458333328,
      "rotation": 0,
      "z": 4,
      "locked": false,
@@ -187,11 +189,11 @@
      }
     },
     {
-     "id": "el-mubhsf6e-1e",
+     "id": "el-mubov7w2-1a",
      "x_mm": 181.26,
-     "y_mm": 194.19330734213193,
+     "y_mm": 194.18834635416667,
      "w_mm": 103.74000000000001,
-     "h_mm": 3.806692657868067,
+     "h_mm": 3.8116536458333328,
      "rotation": 0,
      "z": 5,
      "locked": false,
@@ -212,52 +214,13 @@
      }
     },
     {
-     "id": "el-mubhsf6f-1f",
+     "id": "el-mubov7w2-1b",
      "x_mm": 12,
-     "y_mm": 38.30091196298599,
-     "w_mm": 10.313698522249856,
-     "h_mm": 5.440494791666666,
+     "y_mm": 37.69677734375,
+     "w_mm": 133,
+     "h_mm": 7.3339192708333325,
      "rotation": 0,
      "z": 6,
-     "locked": false,
-     "type": "text",
-     "style": {
-      "font_family": "IBM Plex Mono",
-      "font_size_pt": 9,
-      "weight": 500,
-      "colour": "#2A7553",
-      "fill": "#E1ECE7",
-      "radius_mm": [
-       3,
-       3,
-       3,
-       1
-      ],
-      "padding_mm": [
-       0.6,
-       2.2,
-       0.4,
-       2.2
-      ],
-      "line_height": 1.4
-     },
-     "content": {
-      "text": "DC5"
-     },
-     "binding": {
-      "competency_id": "DC5",
-      "field": "code"
-     },
-     "name": "chip DC5"
-    },
-    {
-     "id": "el-mubhsf6f-1g",
-     "x_mm": 24.813698522249858,
-     "y_mm": 37.70091196298599,
-     "w_mm": 120.18630147775013,
-     "h_mm": 7.338880511124928,
-     "rotation": 0,
-     "z": 7,
      "locked": false,
      "type": "text",
      "style": {
@@ -269,58 +232,20 @@
      "content": {
       "text": "ब्लेंडिंग (वर्णों/अक्षरों को मिलाकर पढ़ना)"
      },
-     "name": "DC5 name",
+     "name": "competency name",
      "binding": {
       "competency_id": "DC5",
       "field": "name"
      }
     },
     {
-     "id": "el-mubhsf6f-1h",
+     "id": "el-mubov7w2-1c",
      "x_mm": 12,
-     "y_mm": 46.23979247411092,
-     "w_mm": 133,
-     "h_mm": 5.840677285194396,
-     "rotation": 0,
-     "z": 8,
-     "locked": false,
-     "type": "text",
-     "style": {
-      "font_family": "Mukta",
-      "font_size_pt": 9,
-      "line_height": 1.4,
-      "colour": "#8F5F00",
-      "fill": "#FBE9C2",
-      "radius_mm": [
-       3,
-       3,
-       3,
-       1
-      ],
-      "padding_mm": [
-       0.8,
-       2.4,
-       0.6,
-       2.4
-      ]
-     },
-     "content": {
-      "text": "R2/R3 की पूर्व-तैयारी"
-     },
-     "name": "NIPUN chip",
-     "binding": {
-      "competency_id": "DC5",
-      "field": "nipun_chip"
-     }
-    },
-    {
-     "id": "el-mubhsf6f-1i",
-     "x_mm": 12,
-     "y_mm": 55.580469759305316,
+     "y_mm": 48.530696614583334,
      "w_mm": 83.78,
-     "h_mm": 5.883672177791595,
+     "h_mm": 5.878710937499999,
      "rotation": 0,
-     "z": 9,
+     "z": 7,
      "locked": false,
      "type": "text",
      "style": {
@@ -340,13 +265,13 @@
      }
     },
     {
-     "id": "el-mubhsf6f-1j",
+     "id": "el-mubov7w3-1d",
      "x_mm": 12,
-     "y_mm": 62.26414193709691,
+     "y_mm": 55.209407552083334,
      "w_mm": 83.78,
-     "h_mm": 16.113125403722126,
+     "h_mm": 16.11064453125,
      "rotation": 0,
-     "z": 10,
+     "z": 8,
      "locked": false,
      "type": "text",
      "style": {
@@ -365,13 +290,13 @@
      }
     },
     {
-     "id": "el-mubhsf6g-1k",
+     "id": "el-mubov7w3-1e",
      "x_mm": 12,
-     "y_mm": 79.37726734081903,
+     "y_mm": 72.32005208333334,
      "w_mm": 83.78,
-     "h_mm": 9.207499798138935,
+     "h_mm": 9.2025390625,
      "rotation": 0,
-     "z": 11,
+     "z": 9,
      "locked": false,
      "type": "text",
      "style": {
@@ -390,13 +315,13 @@
      }
     },
     {
-     "id": "el-mubhsf6g-1l",
+     "id": "el-mubov7w3-1f",
      "x_mm": 99.78,
-     "y_mm": 56.38046975930531,
+     "y_mm": 49.33069661458333,
      "w_mm": 45.220000000000006,
      "h_mm": 40.1277841867069,
      "rotation": 0,
-     "z": 12,
+     "z": 10,
      "locked": false,
      "type": "image",
      "name": "Blending",
@@ -428,52 +353,13 @@
      }
     },
     {
-     "id": "el-mubhsf6g-1m",
+     "id": "el-mubov7w3-1g",
      "x_mm": 152,
-     "y_mm": 38.30091196298599,
-     "w_mm": 10.313698522249856,
-     "h_mm": 5.440494791666666,
+     "y_mm": 37.69677734375,
+     "w_mm": 133,
+     "h_mm": 7.3339192708333325,
      "rotation": 0,
-     "z": 13,
-     "locked": false,
-     "type": "text",
-     "style": {
-      "font_family": "IBM Plex Mono",
-      "font_size_pt": 9,
-      "weight": 500,
-      "colour": "#2A7553",
-      "fill": "#E1ECE7",
-      "radius_mm": [
-       3,
-       3,
-       3,
-       1
-      ],
-      "padding_mm": [
-       0.6,
-       2.2,
-       0.4,
-       2.2
-      ],
-      "line_height": 1.4
-     },
-     "content": {
-      "text": "DC7"
-     },
-     "binding": {
-      "competency_id": "DC7",
-      "field": "code"
-     },
-     "name": "chip DC7"
-    },
-    {
-     "id": "el-mubhsf6g-1n",
-     "x_mm": 164.81369852224987,
-     "y_mm": 37.70091196298599,
-     "w_mm": 120.18630147775013,
-     "h_mm": 7.338880511124928,
-     "rotation": 0,
-     "z": 14,
+     "z": 11,
      "locked": false,
      "type": "text",
      "style": {
@@ -485,58 +371,20 @@
      "content": {
       "text": "शब्द बनाना (ग्रिड से शब्द खोजना, वर्ण-क्रम बदलना)"
      },
-     "name": "DC7 name",
+     "name": "competency name",
      "binding": {
       "competency_id": "DC7",
       "field": "name"
      }
     },
     {
-     "id": "el-mubhsf6g-1o",
+     "id": "el-mubov7w3-1h",
      "x_mm": 152,
-     "y_mm": 46.23979247411092,
-     "w_mm": 133,
-     "h_mm": 5.840677285194396,
-     "rotation": 0,
-     "z": 15,
-     "locked": false,
-     "type": "text",
-     "style": {
-      "font_family": "Mukta",
-      "font_size_pt": 9,
-      "line_height": 1.4,
-      "colour": "#8F5F00",
-      "fill": "#FBE9C2",
-      "radius_mm": [
-       3,
-       3,
-       3,
-       1
-      ],
-      "padding_mm": [
-       0.8,
-       2.4,
-       0.6,
-       2.4
-      ]
-     },
-     "content": {
-      "text": "निपुण R2: किसी दिए गए शब्द के अक्षरों से नए सार्थक सरल शब्द बनाना।"
-     },
-     "name": "NIPUN chip",
-     "binding": {
-      "competency_id": "DC7",
-      "field": "nipun_chip"
-     }
-    },
-    {
-     "id": "el-mubhsf6g-1p",
-     "x_mm": 152,
-     "y_mm": 55.580469759305316,
+     "y_mm": 48.530696614583334,
      "w_mm": 83.78,
-     "h_mm": 5.883672177791595,
+     "h_mm": 5.878710937499999,
      "rotation": 0,
-     "z": 16,
+     "z": 12,
      "locked": false,
      "type": "text",
      "style": {
@@ -556,13 +404,13 @@
      }
     },
     {
-     "id": "el-mubhsf6g-1q",
+     "id": "el-mubov7w3-1i",
      "x_mm": 152,
-     "y_mm": 62.26414193709691,
+     "y_mm": 55.209407552083334,
      "w_mm": 83.78,
-     "h_mm": 16.113125403722126,
+     "h_mm": 16.11064453125,
      "rotation": 0,
-     "z": 17,
+     "z": 13,
      "locked": false,
      "type": "text",
      "style": {
@@ -581,13 +429,13 @@
      }
     },
     {
-     "id": "el-mubhsf6h-1r",
+     "id": "el-mubov7w3-1j",
      "x_mm": 152,
-     "y_mm": 79.37726734081903,
+     "y_mm": 72.32005208333334,
      "w_mm": 83.78,
-     "h_mm": 4.603749899069467,
+     "h_mm": 4.60126953125,
      "rotation": 0,
-     "z": 18,
+     "z": 14,
      "locked": false,
      "type": "text",
      "style": {
@@ -606,13 +454,13 @@
      }
     },
     {
-     "id": "el-mubhsf6h-1s",
+     "id": "el-mubov7w3-1k",
      "x_mm": 239.78,
-     "y_mm": 56.38046975930531,
+     "y_mm": 49.33069661458333,
      "w_mm": 45.220000000000006,
      "h_mm": 43.64022389500097,
      "rotation": 0,
-     "z": 19,
+     "z": 15,
      "locked": false,
      "type": "image",
      "name": "Word reading",
@@ -644,13 +492,13 @@
      }
     },
     {
-     "id": "el-mubhsf6i-1t",
+     "id": "el-mubov7w4-1l",
      "x_mm": 12,
-     "y_mm": 106.02069365430629,
+     "y_mm": 98.9709205095843,
      "w_mm": 273,
-     "h_mm": 49.247605478763575,
+     "h_mm": 49.259179687499994,
      "rotation": 0,
-     "z": 20,
+     "z": 16,
      "locked": false,
      "type": "shape",
      "name": "check panel",
@@ -668,13 +516,13 @@
      }
     },
     {
-     "id": "el-mubhsf6i-1u",
+     "id": "el-mubov7w4-1m",
      "x_mm": 15.5,
-     "y_mm": 109.52069365430629,
+     "y_mm": 102.4709205095843,
      "w_mm": 266,
-     "h_mm": 4.127500100930531,
+     "h_mm": 4.125846354166666,
      "rotation": 0,
-     "z": 21,
+     "z": 17,
      "locked": false,
      "type": "text",
      "style": {
@@ -690,13 +538,13 @@
      "name": "check heading"
     },
     {
-     "id": "el-mubhsf6i-1v",
+     "id": "el-mubov7w4-1n",
      "x_mm": 15.5,
-     "y_mm": 117.25070692746596,
+     "y_mm": 110.20093353041764,
      "w_mm": 42,
      "h_mm": 3.4395833333333328,
      "rotation": 0,
-     "z": 22,
+     "z": 18,
      "locked": false,
      "type": "text",
      "style": {
@@ -712,13 +560,13 @@
      "name": "label Tiro Devanagari Hindi"
     },
     {
-     "id": "el-mubhsf6i-1w",
+     "id": "el-mubov7w4-1o",
      "x_mm": 57.5,
-     "y_mm": 115.14819375523682,
+     "y_mm": 108.09676686375097,
      "w_mm": 224,
-     "h_mm": 7.405026344458261,
+     "h_mm": 7.408333333333332,
      "rotation": 0,
-     "z": 23,
+     "z": 19,
      "locked": false,
      "type": "text",
      "style": {
@@ -733,13 +581,13 @@
      "name": "test Tiro Devanagari Hindi"
     },
     {
-     "id": "el-mubhsf6i-1x",
+     "id": "el-mubov7w4-1p",
      "x_mm": 15.5,
-     "y_mm": 124.65573327192422,
+     "y_mm": 117.60926686375097,
      "w_mm": 42,
      "h_mm": 3.4395833333333328,
      "rotation": 0,
-     "z": 24,
+     "z": 20,
      "locked": false,
      "type": "text",
      "style": {
@@ -755,13 +603,13 @@
      "name": "label Mukta"
     },
     {
-     "id": "el-mubhsf6i-1y",
+     "id": "el-mubov7w4-1q",
      "x_mm": 57.5,
-     "y_mm": 122.55322009969508,
+     "y_mm": 115.5051001970843,
      "w_mm": 224,
-     "h_mm": 7.405026344458261,
+     "h_mm": 7.408333333333332,
      "rotation": 0,
-     "z": 25,
+     "z": 21,
      "locked": false,
      "type": "text",
      "style": {
@@ -776,13 +624,13 @@
      "name": "test Mukta"
     },
     {
-     "id": "el-mubhsf6i-1z",
+     "id": "el-mubov7w4-1r",
      "x_mm": 15.5,
-     "y_mm": 132.06075961638246,
+     "y_mm": 125.0176001970843,
      "w_mm": 42,
      "h_mm": 3.4395833333333328,
      "rotation": 0,
-     "z": 26,
+     "z": 22,
      "locked": false,
      "type": "text",
      "style": {
@@ -798,13 +646,13 @@
      "name": "label Noto Sans Devanagari"
     },
     {
-     "id": "el-mubhsf6i-20",
+     "id": "el-mubov7w4-1s",
      "x_mm": 57.5,
-     "y_mm": 129.95824644415333,
+     "y_mm": 122.91343353041763,
      "w_mm": 224,
-     "h_mm": 7.405026344458261,
+     "h_mm": 7.408333333333332,
      "rotation": 0,
-     "z": 27,
+     "z": 23,
      "locked": false,
      "type": "text",
      "style": {
@@ -819,13 +667,13 @@
      "name": "test Noto Sans Devanagari"
     },
     {
-     "id": "el-mubhsf6i-21",
+     "id": "el-mubov7w4-1t",
      "x_mm": 15.5,
-     "y_mm": 139.46578596084072,
+     "y_mm": 132.42593353041764,
      "w_mm": 42,
      "h_mm": 3.4395833333333328,
      "rotation": 0,
-     "z": 28,
+     "z": 24,
      "locked": false,
      "type": "text",
      "style": {
@@ -841,13 +689,13 @@
      "name": "label IBM Plex Mono"
     },
     {
-     "id": "el-mubhsf6i-22",
+     "id": "el-mubov7w4-1u",
      "x_mm": 57.5,
-     "y_mm": 137.3632727886116,
+     "y_mm": 130.32176686375098,
      "w_mm": 224,
-     "h_mm": 7.405026344458261,
+     "h_mm": 7.408333333333332,
      "rotation": 0,
-     "z": 29,
+     "z": 25,
      "locked": false,
      "type": "text",
      "style": {
@@ -862,13 +710,13 @@
      "name": "test IBM Plex Mono"
     },
     {
-     "id": "el-mubhsf6i-23",
+     "id": "el-mubov7w4-1v",
      "x_mm": 15.5,
-     "y_mm": 147.76829913306986,
+     "y_mm": 140.7301001970843,
      "w_mm": 100,
      "h_mm": 0,
      "rotation": 0,
-     "z": 30,
+     "z": 26,
      "locked": false,
      "type": "line",
      "name": "100 mm bar",
@@ -883,13 +731,13 @@
      }
     },
     {
-     "id": "el-mubhsf6i-24",
+     "id": "el-mubov7w4-1w",
      "x_mm": 15.5,
-     "y_mm": 145.96829913306985,
+     "y_mm": 138.9301001970843,
      "w_mm": 0,
      "h_mm": 1.8,
      "rotation": 0,
-     "z": 31,
+     "z": 27,
      "locked": false,
      "type": "line",
      "name": "tick 0",
@@ -904,13 +752,13 @@
      }
     },
     {
-     "id": "el-mubhsf6i-25",
+     "id": "el-mubov7w4-1x",
      "x_mm": 25.5,
-     "y_mm": 146.76829913306986,
+     "y_mm": 139.7301001970843,
      "w_mm": 0,
      "h_mm": 1,
      "rotation": 0,
-     "z": 32,
+     "z": 28,
      "locked": false,
      "type": "line",
      "name": "tick 10",
@@ -925,13 +773,13 @@
      }
     },
     {
-     "id": "el-mubhsf6i-26",
+     "id": "el-mubov7w4-1y",
      "x_mm": 35.5,
-     "y_mm": 146.76829913306986,
+     "y_mm": 139.7301001970843,
      "w_mm": 0,
      "h_mm": 1,
      "rotation": 0,
-     "z": 33,
+     "z": 29,
      "locked": false,
      "type": "line",
      "name": "tick 20",
@@ -946,13 +794,13 @@
      }
     },
     {
-     "id": "el-mubhsf6i-27",
+     "id": "el-mubov7w4-1z",
      "x_mm": 45.5,
-     "y_mm": 146.76829913306986,
+     "y_mm": 139.7301001970843,
      "w_mm": 0,
      "h_mm": 1,
      "rotation": 0,
-     "z": 34,
+     "z": 30,
      "locked": false,
      "type": "line",
      "name": "tick 30",
@@ -967,13 +815,13 @@
      }
     },
     {
-     "id": "el-mubhsf6i-28",
+     "id": "el-mubov7w4-20",
      "x_mm": 55.5,
-     "y_mm": 146.76829913306986,
+     "y_mm": 139.7301001970843,
      "w_mm": 0,
      "h_mm": 1,
      "rotation": 0,
-     "z": 35,
+     "z": 31,
      "locked": false,
      "type": "line",
      "name": "tick 40",
@@ -988,13 +836,13 @@
      }
     },
     {
-     "id": "el-mubhsf6i-29",
+     "id": "el-mubov7w4-21",
      "x_mm": 65.5,
-     "y_mm": 145.96829913306985,
+     "y_mm": 138.9301001970843,
      "w_mm": 0,
      "h_mm": 1.8,
      "rotation": 0,
-     "z": 36,
+     "z": 32,
      "locked": false,
      "type": "line",
      "name": "tick 50",
@@ -1009,13 +857,13 @@
      }
     },
     {
-     "id": "el-mubhsf6i-2a",
+     "id": "el-mubov7w4-22",
      "x_mm": 75.5,
-     "y_mm": 146.76829913306986,
+     "y_mm": 139.7301001970843,
      "w_mm": 0,
      "h_mm": 1,
      "rotation": 0,
-     "z": 37,
+     "z": 33,
      "locked": false,
      "type": "line",
      "name": "tick 60",
@@ -1030,13 +878,13 @@
      }
     },
     {
-     "id": "el-mubhsf6i-2b",
+     "id": "el-mubov7w4-23",
      "x_mm": 85.5,
-     "y_mm": 146.76829913306986,
+     "y_mm": 139.7301001970843,
      "w_mm": 0,
      "h_mm": 1,
      "rotation": 0,
-     "z": 38,
+     "z": 34,
      "locked": false,
      "type": "line",
      "name": "tick 70",
@@ -1051,13 +899,13 @@
      }
     },
     {
-     "id": "el-mubhsf6i-2c",
+     "id": "el-mubov7w4-24",
      "x_mm": 95.5,
-     "y_mm": 146.76829913306986,
+     "y_mm": 139.7301001970843,
      "w_mm": 0,
      "h_mm": 1,
      "rotation": 0,
-     "z": 39,
+     "z": 35,
      "locked": false,
      "type": "line",
      "name": "tick 80",
@@ -1072,13 +920,13 @@
      }
     },
     {
-     "id": "el-mubhsf6i-2d",
+     "id": "el-mubov7w4-25",
      "x_mm": 105.5,
-     "y_mm": 146.76829913306986,
+     "y_mm": 139.7301001970843,
      "w_mm": 0,
      "h_mm": 1,
      "rotation": 0,
-     "z": 40,
+     "z": 36,
      "locked": false,
      "type": "line",
      "name": "tick 90",
@@ -1093,13 +941,13 @@
      }
     },
     {
-     "id": "el-mubhsf6i-2e",
+     "id": "el-mubov7w4-26",
      "x_mm": 115.5,
-     "y_mm": 145.96829913306985,
+     "y_mm": 138.9301001970843,
      "w_mm": 0,
      "h_mm": 1.8,
      "rotation": 0,
-     "z": 41,
+     "z": 37,
      "locked": false,
      "type": "line",
      "name": "tick 100",
@@ -1114,13 +962,13 @@
      }
     },
     {
-     "id": "el-mubhsf6i-2f",
+     "id": "el-mubov7w4-27",
      "x_mm": 117.5,
-     "y_mm": 145.96829913306985,
+     "y_mm": 138.9301001970843,
      "w_mm": 30,
      "h_mm": 3.4395833333333328,
      "rotation": 0,
-     "z": 42,
+     "z": 38,
      "locked": false,
      "type": "text",
      "style": {

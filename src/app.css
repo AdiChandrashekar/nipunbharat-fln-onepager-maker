@@ -167,3 +167,12 @@ button:disabled { opacity: .45; cursor: default; }
 .open-list button { width: 100%; text-align: left; margin: 3px 0; }
 .open-list small { display: block; }
 .editing-text { user-select: text; -webkit-user-select: text; }
+
+/* ---------- context menu ---------- */
+.ctx-menu { position: fixed; z-index: 2000; min-width: 230px; background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 4px; box-shadow: 0 10px 30px rgba(15, 25, 40, .18); display: flex; flex-direction: column; }
+.ctx-menu button { display: flex; justify-content: space-between; gap: 18px; align-items: center; border: 0; border-radius: 6px; padding: 5px 10px; text-align: left; font-size: 13px; background: none; }
+.ctx-menu button:hover:not(:disabled) { background: #E2EAF5; }
+.ctx-menu button.danger { color: #A0341A; }
+.ctx-menu kbd { font-family: "IBM Plex Mono", monospace; font-size: 11px; color: var(--muted); }
+.ctx-sep { height: 1px; background: #EEF1F5; margin: 4px 6px; }
+.selecto-selection { border: 1px solid #1F4F9A !important; background: rgba(31, 79, 154, .10) !important; }

@@ -2,9 +2,7 @@
  * Language-aware text for auto-population. Rule: never mix languages inside one field. Hindi documents use
  * the *_hindi fields, English documents the English ones; bilingual = Hindi primary + English secondary.
  */
-import {
-  bucketById, competencyById, formatWeeks, isPrepCompetency, nipunGoals, routineById, strategyById,
-} from "../data/compendium";
+import { bucketById, competencyById, formatWeeks, routineById, strategyById } from "../data/compendium";
 import type { Language, OptionalField, SelectionGroup } from "../model/types";
 
 export const UI_LABELS = {
@@ -15,14 +13,14 @@ export const UI_LABELS = {
   weeks: { hi: "संदर्शिका में", en: "In the guide" },
   english: { hi: "English", en: "English" },
   applies: { hi: "कब", en: "When" },
-  also: { hi: "यह भी:", en: "also" },
+  also: { hi: "इनमें भी सहायक:", en: "Also supports:" },
   see: { hi: "देखें", en: "see" },
+  continued: { hi: "जारी", en: "continued" },
   page: { hi: "पृष्ठ", en: "Page" },
   credit: {
     hi: "स्रोत: आधारशिला क्रियान्वयन शिक्षक संदर्शिका, कक्षा 2 हिंदी (उत्तर प्रदेश), 2026-27",
     en: "Source: Aadharshila Kriyanvayan Shikshak Sandarshika (Teacher Guide), Grade 2 Hindi, Uttar Pradesh, 2026-27",
   },
-  prep: { hi: "R2/R3 की पूर्व-तैयारी", en: "Prepares for NIPUN R2/R3" },
   routines: { hi: "विभेदित शिक्षण की दिनचर्या", en: "Differentiation routines" },
   defaultTitle: { hi: "शिक्षण रणनीतियाँ: शिक्षक एवं मेंटर हेतु", en: "Teaching strategies for teachers and mentors" },
   defaultSubtitle: { hi: "कक्षा 2 हिंदी · निपुण भारत", en: "Grade 2 Hindi · NIPUN Bharat" },
@@ -40,12 +38,14 @@ export const FIELD_NAMES: Record<OptionalField, string> = {
 const primary = (lang: Language): "hi" | "en" => (lang === "en" ? "en" : "hi");
 export const label = (key: keyof typeof UI_LABELS, lang: Language) => UI_LABELS[key][primary(lang)];
 
+/**
+ * Group heading text. `code` (DC5, OL2, CFU …) is our internal categorisation: it appears in the selector
+ * and tray only, never on a one-pager, because it isn't Sandarshika nomenclature. Likewise no NIPUN chips.
+ */
 export interface GroupText {
   code: string;
   name: string;
   name_secondary?: string;
-  /** NIPUN chip / preparation chip text; undefined for buckets and routines. */
-  chip?: string;
   kind: SelectionGroup["kind"];
   domain: string; // colour key: OL, DC, …, GA
 }
@@ -53,19 +53,10 @@ export interface GroupText {
 export function groupText(g: SelectionGroup, lang: Language): GroupText {
   if (g.kind === "competency") {
     const c = competencyById.get(g.id)!;
-    let chip: string | undefined;
-    if (isPrepCompetency(g.id)) chip = label("prep", lang);
-    else if (c.nipun_codes.length) {
-      // Goal text exists only in Hindi (meta.nipun_codes); English documents show the codes alone.
-      chip = lang === "en"
-        ? `NIPUN ${c.nipun_codes.join(", ")}`
-        : c.nipun_codes.map((n) => `निपुण ${n}: ${nipunGoals[n]}`).join("   ");
-    }
     return {
       code: g.id,
       name: lang === "en" ? c.competency_name_english : c.competency_name_hindi,
       name_secondary: lang === "bi" ? c.competency_name_english : undefined,
-      chip,
       kind: g.kind,
       domain: c.domain_id,
     };
@@ -145,7 +136,24 @@ export function itemText(kind: "strategy" | "routine", id: string, lang: Languag
   };
 }
 
-/** Short code for "also OL2" notes and pointers. */
-export function groupCode(gid: string): string {
-  return gid.replace(/^GA-/, "");
+/** Heading name of a selected group, for cross-references printed on the page (names, never codes). */
+export function groupName(sel: SelectionGroup[], gid: string, lang: Language): string {
+  const g = sel.find((x) => x.id === gid);
+  return g ? groupText(g, lang).name : gid;
+}
+
+/** "इनमें भी सहायक: चित्र के बारे में …; समृद्ध चर्चा …" under a strategy that serves other selected groups. */
+export function alsoText(sel: SelectionGroup[], also: string[], lang: Language): string {
+  return also.length ? `${label("also", lang)} ${also.map((g) => groupName(sel, g, lang)).join("; ")}` : "";
+}
+
+/** One-line pointer where a strategy is shown in full under an earlier group. */
+export function pointerText(sel: SelectionGroup[], itemName: string, toGroup: string, lang: Language): string {
+  const where = groupName(sel, toGroup, lang);
+  return lang === "en" ? `→ ${itemName} (see “${where}”)` : `→ ${itemName} (“${where}” में देखें)`;
+}
+
+/** Label at the top of a column where a group carries on. */
+export function continuedText(name: string, lang: Language): string {
+  return `${name} (${label("continued", lang)})`;
 }

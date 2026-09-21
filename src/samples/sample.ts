@@ -3,14 +3,14 @@
  * page sizes, mm geometry and Devanagari rendering. Content comes from compendium.json.
  */
 import {
-  competencyById, formatWeeks, imageById, imagesForStrategy, nipunGoals, strategyById,
+  competencyById, formatWeeks, imageById, imagesForStrategy, strategyById,
 } from "../data/compendium";
-import { measureTextHeight, measureTextWidth } from "../layout/measure";
+import { measureTextHeight } from "../layout/measure";
 import { makePage, pageLabel } from "../model/pageSizes";
 import type { Element, OnePagerDocument, Orientation, PageSizeId, Style } from "../model/types";
 import { SCHEMA_VERSION } from "../model/types";
 import { uid } from "../model/units";
-import { KOSH_LIGHT, tint } from "../theme/tokens";
+import { KOSH_LIGHT } from "../theme/tokens";
 
 const P = KOSH_LIGHT.palette;
 const F = KOSH_LIGHT.fonts;
@@ -24,10 +24,6 @@ function text(x: number, y: number, w: number, t: string, style: Style, extra: P
   return { ...base(x, y, w, height), type: "text", style, content: { text: t }, ...extra } as Element;
 }
 
-function chip(x: number, y: number, t: string, style: Style, binding?: Element["binding"]): Element {
-  const w = measureTextWidth(t, style) + 0.2;
-  return text(x, y, w, t, style, { binding, name: `chip ${t}` });
-}
 
 function image(x: number, y: number, w: number, imageId: string, strategyId: string): Element {
   const im = imageById.get(imageId)!;
@@ -106,24 +102,11 @@ export function buildSample(size: PageSizeId, orientation: Orientation): OnePage
 
 function competencyBlock(els: Element[], x: number, y: number, w: number, cid: string, sids: string[], body: Style, small: boolean): number {
   const c = competencyById.get(cid)!;
-  const dom = P[`d_${c.domain_id}`];
-  const chipStyle: Style = { font_family: F.mono, font_size_pt: small ? 8 : 9, weight: 500, colour: dom, fill: tint(dom, 0.86), radius_mm: [3, 3, 3, 1], padding_mm: [0.6, 2.2, 0.4, 2.2], line_height: 1.4 };
-  const code = chip(x, y + 0.6, cid, chipStyle, { competency_id: cid, field: "code" });
-  els.push(code);
+  // Heading is the competency name only: internal codes and NIPUN chips are not Sandarshika language.
   const nameStyle: Style = { font_family: F.display, font_size_pt: small ? 13 : 16, line_height: 1.3, colour: P.ink };
-  const nameX = x + code.w_mm + 2.5;
-  const name = text(nameX, y, x + w - nameX, c.competency_name_hindi, nameStyle, { name: `${cid} name`, binding: { competency_id: cid, field: "name" } });
+  const name = text(x, y, w, c.competency_name_hindi, nameStyle, { name: "competency name", binding: { competency_id: cid, field: "name" } });
   els.push(name);
-  y += Math.max(name.h_mm, code.h_mm) + 1.2;
-
-  // NIPUN chip with goal text, or the DC1–DC6 preparation chip.
-  const goalStyle: Style = { font_family: F.body, font_size_pt: small ? 8 : 9, line_height: 1.4, colour: P.mark, fill: P.mark_bg, radius_mm: [3, 3, 3, 1], padding_mm: [0.8, 2.4, 0.6, 2.4] };
-  const goal = /^DC[1-6]$/.test(cid)
-    ? "R2/R3 की पूर्व-तैयारी"
-    : c.nipun_codes.map((n) => `निपुण ${n}: ${nipunGoals[n]}`).join("  ");
-  const g = text(x, y, w, goal, goalStyle, { name: "NIPUN chip", binding: { competency_id: cid, field: "nipun_chip" } });
-  els.push(g);
-  y += g.h_mm + (small ? 2.5 : 3.5);
+  y += name.h_mm + (small ? 2.5 : 3.5);
 
   for (const sid of sids) {
     const s = strategyById.get(sid)!;

@@ -1,12 +1,14 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { FIELD_NAMES } from "../content/fields";
 import { createDocument } from "../doc/newDoc";
-import { Canvas } from "../editor/Canvas";
+import { Canvas, type ContextInfo } from "../editor/Canvas";
+import { ContextMenu, type MenuEntry } from "../editor/ContextMenu";
 import { useHistory } from "../editor/history";
 import { ImageLibrary, type PickedImage } from "../editor/ImageLibrary";
 import { Layers } from "../editor/Layers";
 import {
-  addElement, deleteElements, duplicateElements, findElement, groupElements, mapElements, patchMetaTexts, renumberPages, reorderZ, ungroup, type Doc,
+  addElement, addPage, deleteElements, deletePage, duplicateElements, findElement, groupElements, mapElements, pasteElements, patchElements,
+  patchMetaTexts, refreshFromData, renumberPages, reorderZ, ungroup, type Doc,
 } from "../editor/ops";
 import { Pages } from "../editor/Pages";
 import { Properties } from "../editor/Properties";
@@ -67,7 +69,9 @@ export function Maker() {
   const [currentPage, setCurrentPage] = useState(0);
   const [left, setLeft] = useState<LeftTab>("content");
   const [right, setRight] = useState<RightTab>("tray");
-  const [library, setLibrary] = useState<{ mode: "swap" | "insert"; id?: string } | null>(null);
+  const [library, setLibrary] = useState<{ mode: "swap" | "insert"; id?: string; pageIndex?: number; at?: { x: number; y: number } } | null>(null);
+  const [menu, setMenu] = useState<ContextInfo | null>(null);
+  const clipboard = useRef<Element[]>([]);
   const [guides, setGuides] = useState(true);
   const [openList, setOpenList] = useState<{ id: string; title: string; updated?: string }[] | null>(null);
   const savedRef = useRef<Doc | null>(null);
@@ -163,10 +167,11 @@ export function Maker() {
 
   // ---------------------------------------------------------------- insert
   const P = KOSH_LIGHT.palette;
-  function insert(kind: "text" | "rect" | "ellipse" | "line") {
+  /** Add an element at the page centre, or with its top-left at `place.at` (right-click "Add … here"). */
+  function insert(kind: "text" | "rect" | "ellipse" | "line", place?: { pageIndex: number; at: { x: number; y: number } }) {
     const d = h.get();
     if (!d.pages.length) return;
-    const pi = Math.min(currentPage, d.pages.length - 1);
+    const pi = place?.pageIndex ?? Math.min(currentPage, d.pages.length - 1);
     const { width_mm: W, height_mm: H } = d.page;
     let el: Omit<Element, "id" | "z">;
     if (kind === "text") {
@@ -179,11 +184,29 @@ export function Maker() {
       el = { type: "shape", name: kind === "rect" ? "rectangle" : "ellipse", x_mm: W / 2 - 20, y_mm: H / 2 - 12, w_mm: 40, h_mm: 25, rotation: 0, locked: false,
         style: { fill: tint(P.accent, 0.85), radius_mm: kind === "rect" ? 2 : 0 }, content: { shape_kind: kind } };
     }
+    if (place) el = { ...el, x_mm: Math.round(place.at.x * 10) / 10, y_mm: Math.round(place.at.y * 10) / 10 };
     const r = addElement(d, pi, el);
     h.commit(() => r.doc);
     setSelected([r.id]);
     if (kind === "text") setEditingId(r.id);
   }
+
+  // ---------------------------------------------------------------- clipboard (in-app)
+  const copy = () => {
+    const d = h.get();
+    clipboard.current = selected.map((id) => findElement(d, id)?.el).filter(Boolean).map((e) => structuredClone(e)) as Element[];
+  };
+  const cut = () => { copy(); del(); };
+  const paste = (pageIndex = currentPage, at?: { x: number; y: number }) => {
+    if (!clipboard.current.length) return;
+    const r = pasteElements(h.get(), Math.min(pageIndex, h.get().pages.length - 1), clipboard.current, at);
+    h.commit(() => r.doc);
+    setSelected(r.ids);
+    if (!at) clipboard.current = clipboard.current.map((e) => ({ ...e, x_mm: e.x_mm + 5, y_mm: e.y_mm + 5 }) as Element); // repeated pastes cascade
+  };
+  const selectAll = (pageIndex = currentPage) => setSelected((h.get().pages[pageIndex]?.elements ?? []).filter((e) => !e.locked && !e.hidden).map((e) => e.id));
+  const doGroup = () => { const r = groupElements(h.get(), selected); h.commit(() => r.doc); if (r.id) setSelected([r.id]); };
+  const doUngroup = () => { const r = ungroup(h.get(), selected[0]); h.commit(() => r.doc); setSelected(r.ids); };
 
   function onPickImage(img: PickedImage) {
     const mode = library;
@@ -195,14 +218,76 @@ export function Maker() {
       return;
     }
     const d = h.get();
-    const pi = Math.min(currentPage, d.pages.length - 1);
+    const pi = Math.min(mode.pageIndex ?? currentPage, d.pages.length - 1);
     const w = 70, hgt = w * (img.natural_px[1] / img.natural_px[0]);
     const r = addElement(d, pi, {
-      type: "image", name: img.alt, x_mm: d.page.width_mm / 2 - w / 2, y_mm: d.page.height_mm / 2 - hgt / 2, w_mm: w, h_mm: hgt, rotation: 0, locked: false,
+      type: "image", name: img.alt, x_mm: mode.at?.x ?? d.page.width_mm / 2 - w / 2, y_mm: mode.at?.y ?? d.page.height_mm / 2 - hgt / 2, w_mm: w, h_mm: hgt, rotation: 0, locked: false,
       style: { radius_mm: 1.5 }, content: { image_ref: img.image_ref, natural_px: img.natural_px, crop: { x: 0, y: 0, w: 1, h: 1 }, fit: "cover", alt: img.alt },
     });
     h.commit(() => r.doc);
     setSelected([r.id]);
+  }
+
+  // ---------------------------------------------------------------- right-click menu
+  function menuItems(m: ContextInfo): MenuEntry[] {
+    const d = h.get();
+    // The canvas has already selected the element under the pointer; act on the whole selection.
+    const ids = m.elementId ? (selected.includes(m.elementId) ? selected : [m.elementId]) : [];
+    const els = ids.map((id) => findElement(d, id)?.el).filter(Boolean) as Element[];
+    const one = els.length === 1 ? els[0] : undefined;
+    const here = { pageIndex: m.pageIndex, at: m.at };
+    const canPaste = clipboard.current.length > 0;
+    if (!els.length) {
+      return [
+        { label: "Paste here", hint: "Ctrl+V", onClick: () => paste(m.pageIndex, m.at), disabled: !canPaste },
+        "sep",
+        { label: "Add text here", onClick: () => insert("text", here) },
+        { label: "Add image here…", onClick: () => setLibrary({ mode: "insert", ...here }) },
+        { label: "Add rectangle here", onClick: () => insert("rect", here) },
+        { label: "Add ellipse here", onClick: () => insert("ellipse", here) },
+        { label: "Add line here", onClick: () => insert("line", here) },
+        "sep",
+        { label: "Select all on this page", hint: "Ctrl+A", onClick: () => selectAll(m.pageIndex) },
+        { label: "Add blank page after this", onClick: () => h.commit((x) => addPage(x, m.pageIndex)) },
+        { label: "Delete this page", onClick: () => h.commit((x) => deletePage(x, m.pageIndex)), disabled: d.pages.length <= 1, danger: true },
+      ];
+    }
+    const allLocked = els.every((e) => e.locked);
+    const alignTo = (a: Parameters<typeof align>[0]) => () => align(a);
+    return [
+      ...(one?.type === "text" && !one.locked ? [{ label: "Edit text", hint: "Enter", onClick: () => setEditingId(one.id) }] : []),
+      ...(one?.type === "image" && !one.locked ? [
+        { label: "Crop / reposition image", onClick: () => setCropId(one.id) },
+        { label: "Swap or upload image…", onClick: () => setLibrary({ mode: "swap", id: one.id }) },
+      ] : []),
+      ...(els.some((e) => e.binding) ? [{ label: "Refresh from data", onClick: () => h.commit((x) => refreshFromData(x, ids)) }] : []),
+      "sep",
+      { label: "Cut", hint: "Ctrl+X", onClick: cut },
+      { label: "Copy", hint: "Ctrl+C", onClick: copy },
+      { label: "Paste", hint: "Ctrl+V", onClick: () => paste(m.pageIndex), disabled: !canPaste },
+      { label: "Duplicate", hint: "Ctrl+D", onClick: dup },
+      { label: "Delete", hint: "Del", onClick: del, danger: true },
+      "sep",
+      { label: "Bring to front", onClick: () => h.commit((x) => ids.reduce((acc, id) => reorderZ(acc, id, "front"), x)) },
+      { label: "Bring forward", onClick: () => h.commit((x) => ids.reduce((acc, id) => reorderZ(acc, id, "forward"), x)) },
+      { label: "Send backward", onClick: () => h.commit((x) => ids.reduce((acc, id) => reorderZ(acc, id, "backward"), x)) },
+      { label: "Send to back", onClick: () => h.commit((x) => [...ids].reverse().reduce((acc, id) => reorderZ(acc, id, "back"), x)) },
+      "sep",
+      ...(els.length > 1 ? [
+        { label: "Group", hint: "Ctrl+G", onClick: doGroup },
+        { label: "Align left", onClick: alignTo("left") },
+        { label: "Align centre", onClick: alignTo("center") },
+        { label: "Align right", onClick: alignTo("right") },
+        { label: "Align top", onClick: alignTo("top") },
+        { label: "Align middle", onClick: alignTo("middle") },
+        { label: "Align bottom", onClick: alignTo("bottom") },
+        "sep" as const,
+      ] : []),
+      ...(one?.type === "group" ? [{ label: "Ungroup", hint: "Ctrl+Shift+G", onClick: doUngroup }, "sep" as const] : []),
+      { label: allLocked ? "Unlock" : "Lock", onClick: () => h.commit((x) => patchElements(x, ids, { locked: !allLocked })) },
+      { label: "Hide", onClick: () => { h.commit((x) => patchElements(x, ids, { hidden: true })); setSelected([]); } },
+      { label: "Select all on this page", hint: "Ctrl+A", onClick: () => selectAll(m.pageIndex) },
+    ];
   }
 
   // ---------------------------------------------------------------- files
@@ -251,10 +336,14 @@ export function Maker() {
       if (mod && e.key.toLowerCase() === "y") { e.preventDefault(); h.redo(); return; }
       if (mod && e.key.toLowerCase() === "s") { e.preventDefault(); save(); return; }
       if (mod && e.key.toLowerCase() === "d") { e.preventDefault(); dup(); return; }
+      if (mod && e.key.toLowerCase() === "c") { if (selected.length) { e.preventDefault(); copy(); } return; }
+      if (mod && e.key.toLowerCase() === "x") { if (selected.length) { e.preventDefault(); cut(); } return; }
+      if (mod && e.key.toLowerCase() === "v") { if (clipboard.current.length) { e.preventDefault(); paste(); } return; }
+      if (mod && e.key.toLowerCase() === "a") { e.preventDefault(); selectAll(); return; }
       if (mod && e.key.toLowerCase() === "g") {
         e.preventDefault();
-        if (e.shiftKey && selected.length === 1) { const r = ungroup(h.get(), selected[0]); h.commit(() => r.doc); setSelected(r.ids); }
-        else if (selected.length > 1) { const r = groupElements(h.get(), selected); h.commit(() => r.doc); if (r.id) setSelected([r.id]); }
+        if (e.shiftKey && selected.length === 1) doUngroup();
+        else if (selected.length > 1) doGroup();
         return;
       }
       if (e.key === "Delete" || e.key === "Backspace") { e.preventDefault(); del(); return; }
@@ -369,7 +458,7 @@ export function Maker() {
           <Canvas
             doc={doc} zoom={zoom} selected={selected} setSelected={setSelected}
             editingId={editingId} setEditingId={setEditingId} cropId={cropId} setCropId={setCropId}
-            setCurrentPage={setCurrentPage} commit={h.commit} showGuides={guides}
+            setCurrentPage={setCurrentPage} commit={h.commit} showGuides={guides} onContextMenu={setMenu}
           />
         </main>
         <aside className="panel right">
@@ -383,8 +472,8 @@ export function Maker() {
                 doc={doc} selected={selected} commit={h.commit}
                 onDuplicate={dup} onDelete={del}
                 onZ={(m) => selected[0] && h.commit((d) => reorderZ(d, selected[0], m))}
-                onGroup={() => { const r = groupElements(h.get(), selected); h.commit(() => r.doc); if (r.id) setSelected([r.id]); }}
-                onUngroup={() => { const r = ungroup(h.get(), selected[0]); h.commit(() => r.doc); setSelected(r.ids); }}
+                onGroup={doGroup}
+                onUngroup={doUngroup}
                 onSwapImage={() => selectedImage && setLibrary({ mode: "swap", id: selectedImage.id })}
                 onCrop={() => selectedImage && setCropId(selectedImage.id)}
                 onAlign={align}
@@ -395,6 +484,7 @@ export function Maker() {
           </div>
         </aside>
       </div>
+      {menu && <ContextMenu x={menu.clientX} y={menu.clientY} items={menuItems(menu)} onClose={() => setMenu(null)} />}
       {library && (
         <ImageLibrary binding={library.id ? findElement(doc, library.id)?.el.binding : undefined} lang={doc.language} onPick={onPickImage} onClose={() => setLibrary(null)} />
       )}

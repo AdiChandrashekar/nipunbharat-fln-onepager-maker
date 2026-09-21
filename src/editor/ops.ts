@@ -2,7 +2,7 @@
  * Pure document edits for the editor. Each returns a new document; the caller commits it to history.
  * Any edit to page content marks the layout as hand-edited, so auto re-flow asks before overwriting.
  */
-import { groupCode, groupText, itemText, label } from "../content/fields";
+import { alsoText, continuedText, groupText, itemText, label, pointerText } from "../content/fields";
 import { imageById, imagesForRoutine, imagesForStrategy } from "../data/compendium";
 import { measureTextHeight } from "../layout/measure";
 import type { Binding, Element, OnePagerDocument, Page, Style } from "../model/types";
@@ -79,6 +79,23 @@ export function duplicateElements(d: Doc, ids: string[]): { doc: Doc; ids: strin
     return { ...p, elements: [...p.elements, ...copies] };
   });
   return { doc: edited({ ...d, pages }), ids: newIds };
+}
+
+/**
+ * Paste copies of `els` onto a page: at `at` (their bounding box's top-left goes there) or offset 5 mm
+ * from where they were. Copies get new ids, sit on top of the stack and are unlocked.
+ */
+export function pasteElements(d: Doc, pageIndex: number, els: Element[], at?: { x: number; y: number }): { doc: Doc; ids: string[] } {
+  if (!els.length || !d.pages[pageIndex]) return { doc: d, ids: [] };
+  const x0 = Math.min(...els.map((e) => e.x_mm)), y0 = Math.min(...els.map((e) => e.y_mm));
+  const dx = at ? at.x - x0 : 5, dy = at ? at.y - y0 : 5;
+  const page = d.pages[pageIndex];
+  let z = Math.max(100, ...page.elements.map((e) => e.z));
+  const copies = els.map((e) => ({ ...cloneWithNewIds(e), x_mm: Math.round((e.x_mm + dx) * 100) / 100, y_mm: Math.round((e.y_mm + dy) * 100) / 100, z: ++z, locked: false }) as Element);
+  return {
+    doc: edited({ ...d, pages: d.pages.map((p, i) => (i === pageIndex ? { ...p, elements: [...p.elements, ...copies] } : p)) }),
+    ids: copies.map((c) => c.id),
+  };
 }
 
 export type ZMove = "front" | "back" | "forward" | "backward";
@@ -176,11 +193,9 @@ export function boundText(d: Doc, b: Binding, pageIndex: number): string | undef
   if (group && !b.strategy_id && !b.routine_id) {
     const gt = groupText(group, lang);
     const key = f.replace(/^routines_/, "");
-    if (key === "code") return gt.code;
     if (key === "name") return gt.name;
     if (key === "name_english") return gt.name_secondary;
-    if (key === "nipun_chip") return gt.chip;
-    if (key === "continued") return `${gt.code} · ${gt.name} ${lang === "en" ? "(continued)" : "(जारी)"}`;
+    if (key === "continued") return continuedText(gt.name, lang);
   }
   const itemId = b.strategy_id ?? b.routine_id;
   if (!itemId) return undefined;
@@ -190,7 +205,11 @@ export function boundText(d: Doc, b: Binding, pageIndex: number): string | undef
   if (f === "how_to") return it.how_to;
   if (f === "also") {
     const e = resolve(d.selection).flatMap((g) => g.entries).find((x) => x.id === itemId && !x.pointerTo);
-    return e?.also.length ? `${label("also", lang)} ${e.also.map(groupCode).join(", ")}` : undefined;
+    return e?.also.length ? alsoText(d.selection, e.also, lang) : undefined;
+  }
+  if (f === "pointer") {
+    const e = resolve(d.selection).flatMap((g) => g.entries).find((x) => x.id === itemId && x.pointerTo);
+    return e ? pointerText(d.selection, it.name, e.pointerTo!, lang) : undefined;
   }
   const v = it.optional[f as keyof typeof it.optional];
   if (v) return Array.isArray(v) ? v.map((s) => `• ${s}`).join("\n") : v;

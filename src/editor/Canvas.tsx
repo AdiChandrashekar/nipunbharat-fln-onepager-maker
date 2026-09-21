@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState, type PointerEvent as RPointerEvent } from "react";
 import { flushSync } from "react-dom";
 import Moveable, { type OnDragEnd, type OnResizeEnd, type OnRotateEnd } from "react-moveable";
+import Selecto from "react-selecto";
 import type { Crop, Element, ImageElement } from "../model/types";
 import { PX_PER_MM } from "../model/units";
 import { PageView } from "../render/PageView";
@@ -19,6 +20,17 @@ export interface CanvasProps {
   setCurrentPage: (i: number) => void;
   commit: (fn: (d: Doc) => Doc) => void;
   showGuides: boolean;
+  /** Right-click: the element under the pointer (already selected by then) and the page point in mm. */
+  onContextMenu: (info: ContextInfo) => void;
+}
+
+export interface ContextInfo {
+  clientX: number;
+  clientY: number;
+  pageIndex: number;
+  /** Pointer position on the page, in mm from the trim box's top-left. */
+  at: { x: number; y: number };
+  elementId?: string;
 }
 
 const px2mm = (v: string) => (v.endsWith("px") ? parseFloat(v) / PX_PER_MM : parseFloat(v));
@@ -39,6 +51,7 @@ export function Canvas(p: CanvasProps) {
     window.addEventListener("pointerup", up, true);
     return () => window.removeEventListener("pointerup", up, true);
   }, []);
+  const container = useRef<HTMLDivElement>(null);
   const [targets, setTargets] = useState<HTMLElement[]>([]);
   const [guideNodes, setGuideNodes] = useState<HTMLElement[]>([]);
   const selectedEls = useMemo(() => selected.map((id) => findElement(doc, id)?.el).filter(Boolean) as Element[], [doc, selected]);
@@ -67,9 +80,11 @@ export function Canvas(p: CanvasProps) {
     if (p.cropId && node?.dataset.el !== p.cropId) p.setCropId(undefined);
     if (p.editingId && node?.dataset.el !== p.editingId) p.setEditingId(undefined);
     if (!node) {
-      if (!moveable.current?.isMoveableElement(e.target as HTMLElement)) setSelected([]);
+      // Empty page area: clear (unless shift, which extends a marquee selection).
+      if (!e.shiftKey && !moveable.current?.isMoveableElement(e.target as HTMLElement)) setSelected([]);
       return;
     }
+    if (e.button !== 0) return; // right-click is handled by onContextMenu
     const id = node.dataset.el!;
     // Double-click detection here (Moveable's drag handling can swallow native dblclick events).
     const now = performance.now();
@@ -95,6 +110,25 @@ export function Canvas(p: CanvasProps) {
     // Start dragging in the same gesture once Moveable has picked up the new target — but only if the
     // button is still held (a quick click must not leave the element following the pointer).
     if (el && !el.locked) moveable.current?.waitToChangeTarget().then(() => { if (pointerDown.current) moveable.current?.dragStart(native); });
+  }
+
+  function onContextMenu(e: React.MouseEvent) {
+    const onHandle = !!moveable.current?.isMoveableElement(e.target as HTMLElement);
+    // Right-clicking a selection handle (drawn outside the page DOM) means "the current selection".
+    const handlePage = onHandle && selected.length ? findElement(doc, selected[0])?.page.id : undefined;
+    const pageNode = (e.target as HTMLElement).closest<HTMLElement>(".canvas-edit .page")
+      ?? (handlePage ? document.querySelector<HTMLElement>(`.canvas-edit .page[data-page="${CSS.escape(handlePage)}"]`) : null);
+    if (!pageNode) return;
+    e.preventDefault();
+    const pageIndex = doc.pages.findIndex((pg) => pg.id === pageNode.dataset.page);
+    const trim = pageNode.querySelector<HTMLElement>(".trim")!.getBoundingClientRect();
+    const at = { x: (e.clientX - trim.left) / (PX_PER_MM * zoom), y: (e.clientY - trim.top) / (PX_PER_MM * zoom) };
+    const node = (e.target as HTMLElement).closest<HTMLElement>("[data-top]");
+    const id = node?.dataset.el;
+    if (id && !selected.includes(id)) setSelected([id]);
+    if (!id && !moveable.current?.isMoveableElement(e.target as HTMLElement)) setSelected([]);
+    p.setCurrentPage(pageIndex);
+    p.onContextMenu({ clientX: e.clientX, clientY: e.clientY, pageIndex, at, elementId: id ?? (moveable.current?.isMoveableElement(e.target as HTMLElement) ? selected[0] : undefined) });
   }
 
   /** Double-click: edit text in place, or enter crop mode for an image. */
@@ -133,7 +167,7 @@ export function Canvas(p: CanvasProps) {
   };
 
   return (
-    <div className="canvas-edit" onDoubleClick={(e) => enter(e.target)}>
+    <div className="canvas-edit" ref={container} onDoubleClick={(e) => enter(e.target)} onContextMenu={onContextMenu}>
       {doc.pages.map((page, i) => (
         <div key={page.id} className="page-wrap" onPointerDown={(e) => onPointerDown(e, i)}>
           <div className="page-label mono">{i + 1}</div>
@@ -158,6 +192,34 @@ export function Canvas(p: CanvasProps) {
           </div>
         </div>
       ))}
+      {/* Marquee selection: drag on empty page area to select everything fully inside the box. */}
+      <Selecto
+        dragContainer={container.current ?? undefined}
+        selectableTargets={[".canvas-edit [data-top]"]}
+        hitRate={100}
+        selectByClick={false}
+        selectFromInside={false}
+        toggleContinueSelect={["shift"]}
+        ratio={0}
+        onDragStart={(e) => {
+          const t = e.inputEvent.target as HTMLElement;
+          const onPage = t.closest(".canvas-edit .page");
+          // Only start from empty page space: elements, handles, editors and the gaps between pages don't count.
+          if (!onPage || t.closest("[data-top], .editing-text, .crop-live") || moveable.current?.isMoveableElement(t) || (e.inputEvent as MouseEvent).button > 0) e.stop();
+        }}
+        onSelectEnd={(e) => {
+          if (!e.isDragStart && !e.selected.length && !e.added.length) return;
+          const start = (e.inputEvent.target as HTMLElement).closest(".canvas-edit .page")?.getAttribute("data-page");
+          // One page at a time: keep what lies on the page where the drag began.
+          const ids = e.selected
+            .filter((n) => n.closest(".page")?.getAttribute("data-page") === start)
+            .map((n) => (n as HTMLElement).dataset.el!)
+            .filter((id) => !findElement(doc, id)?.el.hidden);
+          const extend = (e.inputEvent as MouseEvent).shiftKey;
+          const onStart = selected.filter((id) => doc.pages.find((pg) => pg.id === start)?.elements.some((x) => x.id === id));
+          setSelected(extend ? [...new Set([...onStart, ...ids])] : ids);
+        }}
+      />
       <Moveable
         ref={moveable}
         target={targets.length === 1 ? targets[0] : targets}

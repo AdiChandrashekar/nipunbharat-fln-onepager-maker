@@ -4,7 +4,7 @@
  * into columns and pages ("newspaper" order). After this, elements are ordinary model elements.
  */
 import { imageById, imagesForBucket, imagesForCompetency, imagesForRoutine, imagesForStrategy } from "../data/compendium";
-import { groupCode, groupText, itemText, label } from "../content/fields";
+import { alsoText, continuedText, groupText, itemText, label, pointerText } from "../content/fields";
 import { minBodyPt } from "../model/pageSizes";
 import type { Binding, Element, OnePagerDocument, OptionalField, Page, PageSetup, Style, Tier } from "../model/types";
 import { uid } from "../model/units";
@@ -196,42 +196,26 @@ function groupImage(g: ResolvedGroup): string | undefined {
 
 // ---------------------------------------------------------------- blocks: cards recipe
 
-/** Competency heading: code chip + name (+ English) + NIPUN / preparation chip. */
+/** Group heading: the competency / activity name (+ English in bilingual documents). No codes, no chips. */
 function headingPieces(ctx: Ctx, g: ResolvedGroup, w: number) {
   const lang = ctx.doc.language;
   const gt = groupText(g.group, lang);
   const st = styles(ctx, gt.domain);
-  const codeW = measureTextWidth(gt.code, st.code) + 0.2;
-  const nameW = w - codeW - 2.2;
-  const nameH = measureTextHeight(gt.name, st.group, nameW);
-  const codeH = measureTextHeight(gt.code, st.code, codeW);
-  const rest = stack([
-    { text: gt.name_secondary ?? "", style: st.secondary, binding: groupBinding(g, "name_english"), name: "competency name (English)" },
-    { text: gt.chip ?? "", style: st.chip, binding: groupBinding(g, "nipun_chip"), name: "NIPUN chip", gapBefore: 1.2 },
+  return stack([
+    { text: gt.name, style: st.group, binding: groupBinding(g, "name"), name: "competency name" },
+    { text: gt.name_secondary ?? "", style: st.secondary, binding: groupBinding(g, "name_english"), name: "competency name (English)", gapBefore: 0.6 },
   ], w);
-  const topH = Math.max(nameH, codeH);
-  return {
-    h: topH + (rest.h ? rest.h + 1 : 0),
-    render(ctx: Ctx, x: number, y: number): Element[] {
-      const codeY = y + Math.max(0, (Math.min(nameH, st.group.font_size_pt! * 0.3528 * 1.25) - codeH) / 2);
-      return [
-        textEl(ctx, x, codeY, codeW, codeH, gt.code, st.code, groupBinding(g, "code"), `code ${gt.code}`),
-        textEl(ctx, x + codeW + 2.2, y, nameW, nameH, gt.name, st.group, groupBinding(g, "name"), "competency name"),
-        ...rest.render(ctx, x, y + topH + 1),
-      ];
-    },
-  };
 }
 
 function itemCore(ctx: Ctx, e: ResolvedEntry, w: number, domain: string) {
   const lang = ctx.doc.language;
   const it = itemText(e.kind, e.id, lang);
   const st = styles(ctx, domain);
-  const alsoText = e.also.length ? `${label("also", lang)} ${e.also.map(groupCode).join(", ")}` : "";
+  const also = alsoText(ctx.doc.selection, e.also, lang);
   return stack([
     { text: it.name, style: st.name, binding: itemBinding(e, "name"), name: "strategy name" },
     { text: it.name_secondary ?? "", style: st.secondary, binding: itemBinding(e, "name_english"), name: "strategy name (English)", gapBefore: 0.3 },
-    { text: alsoText, style: st.also, binding: itemBinding(e, "also"), name: "also note", gapBefore: 0.3 },
+    { text: also, style: st.also, binding: itemBinding(e, "also"), name: "also note", gapBefore: 0.3 },
     { text: it.how_to, style: st.body, binding: itemBinding(e, "how_to"), name: "how-to", gapBefore: 1 },
   ], w);
 }
@@ -289,19 +273,18 @@ function fieldBlocks(ctx: Ctx, e: ResolvedEntry, w: number, domain: string): Omi
 function pointerBlock(ctx: Ctx, e: ResolvedEntry, w: number, domain: string): Omit<Block, "frame"> {
   const lang = ctx.doc.language;
   const it = itemText(e.kind, e.id, lang);
-  const code = groupCode(e.pointerTo!);
-  const text = lang === "en" ? `→ ${it.name} (${label("see", lang)} ${code})` : `→ ${it.name} (${code} में ${label("see", lang)})`;
+  const text = pointerText(ctx.doc.selection, it.name, e.pointerTo!, lang);
   const st = styles(ctx, domain);
   const s = stack([{ text, style: st.pointer, binding: itemBinding(e, "pointer"), name: "cross-reference" }], w);
   return { h: s.h, render: (c, x, y) => s.render(c, x, y) };
 }
 
-/** "OL4 · मौखिक शब्दावली विकास (जारी)" at the top of a column where a group carries on. */
+/** "मौखिक शब्दावली विकास (जारी)" at the top of a column where a group carries on. */
 function contBlock(ctx: Ctx, g: ResolvedGroup, w: number, frame?: string, frameStyle?: Style): Block {
   const lang = ctx.doc.language;
   const gt = groupText(g.group, lang);
   const st = styles(ctx, gt.domain);
-  const text = `${gt.code} · ${gt.name} ${lang === "en" ? "(continued)" : "(जारी)"}`;
+  const text = continuedText(gt.name, lang);
   const s = stack([{ text, style: { ...st.fieldLabel, colour: st.dom }, binding: groupBinding(g, "continued"), name: "continued label" }], w);
   return { h: s.h, frame, frameStyle, group: g.group.id, render: (c, x, y) => s.render(c, x, y) };
 }
@@ -473,11 +456,11 @@ function itemCoreNameOnly(ctx: Ctx, e: ResolvedEntry, w: number, domain: string)
   const lang = ctx.doc.language;
   const it = itemText(e.kind, e.id, lang);
   const st = styles(ctx, domain);
-  const alsoText = e.also.length ? `${label("also", lang)} ${e.also.map(groupCode).join(", ")}` : "";
+  const also = alsoText(ctx.doc.selection, e.also, lang);
   return stack([
     { text: it.name, style: st.name, binding: itemBinding(e, "name"), name: "strategy name" },
     { text: it.name_secondary ?? "", style: st.secondary, binding: itemBinding(e, "name_english"), name: "strategy name (English)", gapBefore: 0.3 },
-    { text: alsoText, style: st.also, binding: itemBinding(e, "also"), name: "also note", gapBefore: 0.5 },
+    { text: also, style: st.also, binding: itemBinding(e, "also"), name: "also note", gapBefore: 0.5 },
   ], w);
 }
 
