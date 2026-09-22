@@ -1,0 +1,4705 @@
+{
+  "meta": {
+    "source": "Grade 2 Hindi Sandarshika (आधारशिला क्रियान्वयन शिक्षक संदर्शिका, कक्षा 2, 2026-27)",
+    "weeks_covered": "1-25",
+    "generated": "2026-09-21",
+    "nipun_codes": {
+      "ML1": "कक्षा में उपलब्ध प्रिंट सामग्री पर बातचीत एवं चर्चा करना।",
+      "ML2": "प्रश्न पूछने एवं दूसरों की बात सुनने के लिए बातचीत में सम्मिलित होना।",
+      "ML3": "हाव-भाव एवं उतार-चढ़ाव के साथ गीत एवं कविताएँ सुनाना।",
+      "ML4": "कहानियों/कविताओं/प्रिंट आदि में आने वाले परिचित शब्दों को दोहराना।",
+      "R1": "बच्चों के साहित्य एवं पाठ्यपुस्तकों से कहानियों को पढ़ना/वर्णन करना/फिर से सुनाना।",
+      "R2": "किसी दिए गए शब्द के अक्षरों से नए सार्थक सरल शब्द बनाना।",
+      "R3": "सरल शब्दों से युक्त 6 से 8 वाक्यों के आयु उपयुक्त अज्ञात पाठ को बोध, स्पष्टता और प्रवाह के साथ पढ़ना।",
+      "W1": "स्वयं की समझ एवं भावनाओं को व्यक्त करने के लिए छोटे/सरल वाक्यों को सही ढंग से लिखना।",
+      "W2": "पठनीय लेखन के साथ 4 से 5 छोटे वाक्य लिखना।"
+    },
+    "notes": "reference_pages (extension) cites front/back-matter pages for strategies described only in the method chapters; their frequency_count is 0 because no daily plan assigns them. BM p.N = back-matter printed page."
+  },
+  "taxonomy": {
+    "domains": [
+      {
+        "domain_id": "OL",
+        "domain_name_english": "Oral Language",
+        "competencies": [
+          {
+            "competency_id": "OL1",
+            "competency_name_hindi": "चित्र के बारे में अपने घर की भाषा में बात करना",
+            "competency_name_english": "Picture-based talk in home language",
+            "nipun_codes": [
+              "ML1"
+            ]
+          },
+          {
+            "competency_id": "OL2",
+            "competency_name_hindi": "समृद्ध चर्चा (बंद एवं खुले छोर के प्रश्न)",
+            "competency_name_english": "Rich discussion & questioning",
+            "nipun_codes": [
+              "ML2"
+            ]
+          },
+          {
+            "competency_id": "OL3",
+            "competency_name_hindi": "हाव-भाव के साथ कविता गायन",
+            "competency_name_english": "Expressive poem/song recitation",
+            "nipun_codes": [
+              "ML3"
+            ]
+          },
+          {
+            "competency_id": "OL4",
+            "competency_name_hindi": "मौखिक शब्दावली विकास",
+            "competency_name_english": "Oral vocabulary development",
+            "nipun_codes": [
+              "ML4"
+            ]
+          },
+          {
+            "competency_id": "OL5",
+            "competency_name_hindi": "मौखिक कहानी सुनना-सुनाना / अपने शब्दों में सुनाना",
+            "competency_name_english": "Oral storytelling, retelling & story creation",
+            "nipun_codes": [
+              "ML2",
+              "R1"
+            ]
+          },
+          {
+            "competency_id": "OL6",
+            "competency_name_hindi": "अनुभव पर चर्चा / अनुभव साझा करना",
+            "competency_name_english": "Sharing personal experiences",
+            "nipun_codes": [
+              "ML1",
+              "ML2"
+            ]
+          },
+          {
+            "competency_id": "OL7",
+            "competency_name_hindi": "मौखिक भाषा विकास की खेल गतिविधियाँ / अभिनय",
+            "competency_name_english": "Oral language games & role play",
+            "nipun_codes": [
+              "ML2"
+            ]
+          }
+        ]
+      },
+      {
+        "domain_id": "SE",
+        "domain_name_english": "Social-Emotional Development",
+        "competencies": [
+          {
+            "competency_id": "SE1",
+            "competency_name_hindi": "विद्यालय और साथियों से जुड़ाव",
+            "competency_name_english": "Belonging & peer connection",
+            "nipun_codes": []
+          },
+          {
+            "competency_id": "SE2",
+            "competency_name_hindi": "भावनाओं को पहचानना एवं व्यक्त करना",
+            "competency_name_english": "Recognising & expressing feelings",
+            "nipun_codes": []
+          }
+        ]
+      },
+      {
+        "domain_id": "DC",
+        "domain_name_english": "Decoding / Phonics",
+        "competencies": [
+          {
+            "competency_id": "DC1",
+            "competency_name_hindi": "पहली ध्वनि पहचानना",
+            "competency_name_english": "Phonological awareness (first sound, nasalisation)",
+            "nipun_codes": [],
+            "nipun_note": "Prerequisite for R2/R3"
+          },
+          {
+            "competency_id": "DC2",
+            "competency_name_hindi": "वर्ण पहचान",
+            "competency_name_english": "Letter–sound recognition",
+            "nipun_codes": [],
+            "nipun_note": "Prerequisite for R2/R3"
+          },
+          {
+            "competency_id": "DC3",
+            "competency_name_hindi": "मात्रा पहचान",
+            "competency_name_english": "Vowel-sign (matra) recognition",
+            "nipun_codes": [],
+            "nipun_note": "Prerequisite for R2/R3"
+          },
+          {
+            "competency_id": "DC4",
+            "competency_name_hindi": "अक्षर पहचान (क्रमिक/अक्रमिक ग्रिड)",
+            "competency_name_english": "Syllable (akshar) recognition",
+            "nipun_codes": [],
+            "nipun_note": "Prerequisite for R2/R3"
+          },
+          {
+            "competency_id": "DC5",
+            "competency_name_hindi": "ब्लेंडिंग (वर्णों/अक्षरों को मिलाकर पढ़ना)",
+            "competency_name_english": "Blending",
+            "nipun_codes": [],
+            "nipun_note": "Prerequisite for R3"
+          },
+          {
+            "competency_id": "DC6",
+            "competency_name_hindi": "शब्द पठन",
+            "competency_name_english": "Whole-word reading",
+            "nipun_codes": [],
+            "nipun_note": "Prerequisite for R3"
+          },
+          {
+            "competency_id": "DC7",
+            "competency_name_hindi": "शब्द बनाना (ग्रिड से शब्द खोजना, वर्ण-क्रम बदलना)",
+            "competency_name_english": "Word building from given letters",
+            "nipun_codes": [
+              "R2"
+            ]
+          }
+        ]
+      },
+      {
+        "domain_id": "RF",
+        "domain_name_english": "Reading Fluency",
+        "competencies": [
+          {
+            "competency_id": "RF1",
+            "competency_name_hindi": "पठन अभ्यास",
+            "competency_name_english": "Supported reading practice",
+            "nipun_codes": [
+              "R3"
+            ]
+          },
+          {
+            "competency_id": "RF2",
+            "competency_name_hindi": "वाक्यांश एवं वाक्य पठन",
+            "competency_name_english": "Phrase & sentence reading",
+            "nipun_codes": [
+              "R3"
+            ]
+          },
+          {
+            "competency_id": "RF3",
+            "competency_name_hindi": "प्रवाहपूर्ण पठन",
+            "competency_name_english": "Timed fluency reading",
+            "nipun_codes": [
+              "R3"
+            ]
+          },
+          {
+            "competency_id": "RF4",
+            "competency_name_hindi": "स्वतंत्र पठन",
+            "competency_name_english": "Independent / choice reading",
+            "nipun_codes": [
+              "R1"
+            ]
+          }
+        ]
+      },
+      {
+        "domain_id": "RC",
+        "domain_name_english": "Reading Comprehension",
+        "competencies": [
+          {
+            "competency_id": "RC1",
+            "competency_name_hindi": "चित्रों एवं शीर्षक पर अनुमान लगाना",
+            "competency_name_english": "Prediction from pictures & title",
+            "nipun_codes": [
+              "R1"
+            ]
+          },
+          {
+            "competency_id": "RC2",
+            "competency_name_hindi": "पाठ आधारित प्रश्नों के उत्तर देना",
+            "competency_name_english": "Answering text-based questions",
+            "nipun_codes": [
+              "R1",
+              "R3"
+            ]
+          },
+          {
+            "competency_id": "RC3",
+            "competency_name_hindi": "मार्गदर्शन में पठन",
+            "competency_name_english": "Guided reading of a text excerpt",
+            "nipun_codes": [
+              "R3"
+            ]
+          },
+          {
+            "competency_id": "RC4",
+            "competency_name_hindi": "प्रश्न निर्माण",
+            "competency_name_english": "Children generating questions about a text",
+            "nipun_codes": [
+              "ML2",
+              "R1"
+            ]
+          },
+          {
+            "competency_id": "RC5",
+            "competency_name_hindi": "पाठ को बच्चों के अनुभवों से जोड़ना",
+            "competency_name_english": "Connecting text to own experience",
+            "nipun_codes": [
+              "R1"
+            ]
+          }
+        ]
+      },
+      {
+        "domain_id": "WR",
+        "domain_name_english": "Writing",
+        "competencies": [
+          {
+            "competency_id": "WR1",
+            "competency_name_hindi": "चित्र बनाकर अभिव्यक्ति",
+            "competency_name_english": "Drawing as emergent writing",
+            "nipun_codes": [
+              "W1"
+            ]
+          },
+          {
+            "competency_id": "WR2",
+            "competency_name_hindi": "वर्ण/शब्द लेखन",
+            "competency_name_english": "Letter formation & word copying",
+            "nipun_codes": [
+              "W2"
+            ]
+          },
+          {
+            "competency_id": "WR3",
+            "competency_name_hindi": "श्रुतलेख / सुनकर लिखें",
+            "competency_name_english": "Dictation",
+            "nipun_codes": [
+              "W2"
+            ]
+          },
+          {
+            "competency_id": "WR4",
+            "competency_name_hindi": "अपने विचार/समझ वाक्यों में लिखना",
+            "competency_name_english": "Expressive sentence writing",
+            "nipun_codes": [
+              "W1"
+            ]
+          },
+          {
+            "competency_id": "WR5",
+            "competency_name_hindi": "पाठ अभ्यास एवं संबंधित लेखन",
+            "competency_name_english": "Written response to textbook exercises",
+            "nipun_codes": [
+              "W1"
+            ]
+          },
+          {
+            "competency_id": "WR6",
+            "competency_name_hindi": "विराम चिह्न एवं वाक्य-रचना",
+            "competency_name_english": "Punctuation & sentence types",
+            "nipun_codes": [
+              "W2"
+            ]
+          },
+          {
+            "competency_id": "WR7",
+            "competency_name_hindi": "रचनात्मक/विस्तारित लेखन",
+            "competency_name_english": "Extended writing (story, paragraph, lists)",
+            "nipun_codes": [
+              "W1",
+              "W2"
+            ]
+          }
+        ]
+      }
+    ],
+    "general_activity_buckets": [
+      {
+        "bucket_id": "GA-WARM",
+        "bucket_name_english": "Warm-up & Classroom Climate"
+      },
+      {
+        "bucket_id": "GA-CFU",
+        "bucket_name_english": "Check for Understanding"
+      },
+      {
+        "bucket_id": "GA-ASSESS",
+        "bucket_name_english": "Weekly Assessment Routine (method only)"
+      },
+      {
+        "bucket_id": "GA-REVIEW",
+        "bucket_name_english": "Revision"
+      },
+      {
+        "bucket_id": "GA-PEER",
+        "bucket_name_english": "Pair & Group Learning Structures"
+      },
+      {
+        "bucket_id": "GA-DISPLAY",
+        "bucket_name_english": "Sharing & Display"
+      },
+      {
+        "bucket_id": "GA-CREATE",
+        "bucket_name_english": "Creative / Project Activities"
+      },
+      {
+        "bucket_id": "GA-FACIL",
+        "bucket_name_english": "Cross-cutting Facilitation Practices"
+      }
+    ]
+  },
+  "shared_resources": [
+    {
+      "resource_id": "SR-DIGITAL-WB",
+      "resource_name_hindi": "डिजिटल कार्यपुस्तिका",
+      "resource_name_english": "Digital Workbook (Weeks 1-4)",
+      "description_english": "Soft-copy worksheets for Weeks 1-4 (Grade-1 skill review and decoding), sent to schools via chatbot. Activities are done from print/photocopy or copied from the board into children's notebooks. Also contains the early reading-practice passages and the Day-6 'मैंने सीख लिया' sheets for Weeks 1-4."
+    },
+    {
+      "resource_id": "SR-PATHAN-ABHYAS",
+      "resource_name_hindi": "पठन अभ्यास (क्रमांकित)",
+      "resource_name_english": "Numbered Reading-Practice Passages",
+      "description_english": "A graded, numbered series of word lists and short passages (in the digital workbook for Weeks 1-4, then Workbook Part 2) used in Period 3, Days 1-4, Weeks 1-12. Typically two passages per week, each worked on across two days."
+    },
+    {
+      "resource_id": "SR-CHITRA-CHART",
+      "resource_name_hindi": "चित्र चार्ट",
+      "resource_name_english": "Picture Charts",
+      "description_english": "Large themed conversation charts depicting a scene with many simultaneous events (e.g. a village, a fair, rain). Used in Period 1, Weeks 1-19, for oral discussion in children's home language, prediction, reasoning and imagination."
+    },
+    {
+      "resource_id": "SR-KAVITA-POSTER",
+      "resource_name_hindi": "कविता पोस्टर",
+      "resource_name_english": "Poem Posters",
+      "description_english": "Colourful illustrated posters each carrying a short, level-appropriate poem. Used in Period 1, Weeks 1-5, for recitation and oral vocabulary."
+    },
+    {
+      "resource_id": "SR-MAINE-SEEKH-LIYA",
+      "resource_name_hindi": "'मैंने सीख लिया' पत्रक",
+      "resource_name_english": "'I Have Learnt' Weekly Assessment Sheet",
+      "description_english": "The Day-6 assessment sheet in the (digital) workbook. Weeks 1-7: letters/akshars/words to read aloud (decoding). Weeks 8-25: a short passage to read aloud plus comprehension questions."
+    },
+    {
+      "resource_id": "SR-TRACKER",
+      "resource_name_hindi": "साप्ताहिक आकलन ट्रैकर",
+      "resource_name_english": "Weekly Assessment Tracker",
+      "description_english": "Class record in the Sandarshika (printed pp.192-196) where each child's weekly assessment result is entered; used to assign children to Group A (remedial) or Group B (independent) for the following week."
+    },
+    {
+      "resource_id": "SR-LIBRARY",
+      "resource_name_hindi": "पुस्तकालय / रीडिंग कॉर्नर",
+      "resource_name_english": "Library / Reading Corner",
+      "description_english": "The school library or classroom reading corner stocked with picture books; source of books for Day-5 independent reading."
+    },
+    {
+      "resource_id": "SR-KAHANI-POSTER",
+      "resource_name_hindi": "कहानी पोस्टर",
+      "resource_name_english": "Story Posters",
+      "description_english": "Colourful illustrated posters each carrying a short, level-appropriate story. Used in Period 1 on Day 5, Weeks 2-6, for oral storytelling, prediction, vocabulary and higher-order talk (inference, analysis)."
+    },
+    {
+      "resource_id": "SR-SARANGI-2",
+      "resource_name_hindi": "पाठ्यपुस्तक 'सारंगी-2'",
+      "resource_name_english": "Sarangi-2 Textbook",
+      "description_english": "The NCERT Grade-2 Hindi textbook (revised by SCERT UP), built on the four-block model (oral language, decoding, reading, writing). 26 lessons (stories and poems), each followed by exercise sections such as 'शब्दों का खेल', 'खोजें-जानें', 'बातचीत के लिए', 'लिखिए', 'मिलकर पढ़िए', 'आओ बूझें पहेली'. Used in Period 1 from Week 5."
+    },
+    {
+      "resource_id": "SR-WORKBOOK-1",
+      "resource_name_hindi": "कार्यपुस्तिका (भाग-1)",
+      "resource_name_english": "Workbook Part 1",
+      "description_english": "Printed workbook aligned to Sarangi-2 lessons (from Week 5): extended activities per lesson, levelled texts (स्तरित पाठ) from Week 8, revision pages, and the weekly 'मैंने सीख लिया' assessment page. Used in Period 2."
+    },
+    {
+      "resource_id": "SR-STARIT-PATH",
+      "resource_name_hindi": "स्तरित पाठ",
+      "resource_name_english": "Levelled Texts",
+      "description_english": "Short texts in Workbook Part 1 (from Week 8), each built on the theme, central idea or characters of that week's textbook lesson and graded simple-to-complex by age and learning level. Worked through a three-day cycle (Days 3-5) that moves children from model reading to guided and then independent reading of unseen text."
+    },
+    {
+      "resource_id": "SR-CHITRA-KAHANI-POSTER",
+      "resource_name_hindi": "चित्र कहानी पोस्टर",
+      "resource_name_english": "Picture-Story Posters",
+      "description_english": "Posters showing four sequential pictures with no text; the teacher and children build one or more oral stories from them. Used from Week 12 to develop sequencing, cause-and-effect reasoning and story creation."
+    },
+    {
+      "resource_id": "SR-PUNARAVRITTI-PATRAK",
+      "resource_name_hindi": "पुनरावृत्ति अभ्यास पत्रक (1-5)",
+      "resource_name_english": "Revision Practice Sheets",
+      "description_english": "Five numbered revision worksheets in Workbook Part 1, one per day on Days 2-6 of each revision week (Weeks 13 and 20). Both groups work the same sheet: Group A with teacher guidance, Group B independently."
+    },
+    {
+      "resource_id": "SR-PRAVAH-PATHAN",
+      "resource_name_hindi": "प्रवाहपूर्ण पठन अभ्यास (क्रमांकित, क्रम संख्या 1-4)",
+      "resource_name_english": "Numbered Fluency Passages",
+      "description_english": "From Week 14, a numbered fluency set per week in Workbook Part 2 (प्रवाहपूर्ण पठन अभ्यास-25, 26, 27…), each containing four short texts (क्रम संख्या 1-4) used on Days 1-4. The child reads from their own copy while the teacher times one minute and records words read correctly in the child's workbook. Replaces the earlier पठन अभ्यास series."
+    }
+  ],
+  "differentiation_routines": [
+    {
+      "routine_id": "DR1",
+      "routine_name_hindi": "समूह-A के साथ रिमीडियल कार्य / समूह-B स्वतंत्र रूप से पढ़ना एवं लिखना",
+      "routine_name_english": "Daily Remedial Split (Group A / Group B)",
+      "how_to_hindi": "कालांश-3 के अंतिम 20 मिनट में, पिछले साप्ताहिक आकलन के आधार पर बने समूह-A के बच्चों के साथ शिक्षक बोर्ड पर लक्षित अभ्यास कराते हैं, जबकि समूह-B के बच्चे स्वतंत्र रूप से पढ़ने-लिखने का कार्य करते हैं। समूह-A के भीतर भी स्तर के अनुसार कार्य बँटता है — जो वर्ण नहीं पहचानते उनके साथ पहचान, जो पहचानते हैं उनके साथ मिलाकर पढ़ना।",
+      "how_to_english": "In the last 20 minutes of Period 3, the teacher works at the board with Group A (children who scored low on the previous weekly assessment) on a targeted skill, while Group B reads and writes independently. Group A is further tiered: children who can't yet recognise letters do recognition work; those who can move on to blending.",
+      "applies_to": [
+        "letter/akshar recognition grids",
+        "blending matra-free words",
+        "word dictation",
+        "category word listing in pairs",
+        "theme-word brainstorming in pairs",
+        "themed word-search grid",
+        "reading a list of board words",
+        "completing words with missing letters",
+        "completing sentences from word options",
+        "sentence dictation",
+        "experience-prompt writing in pairs",
+        "unjumbling sentences",
+        "describing a textbook picture in pairs",
+        "making words from given letters and matras",
+        "Group B independent-work menu (BM p.182): theme word lists, grid word building, paragraph attempts, peer retelling, question writing, word-to-sentence, word chains, 3-4 sentences on a heard story, story-linked experience sharing"
+      ],
+      "source_refs": [
+        "W1D2",
+        "W1D3",
+        "W1D4",
+        "W1D5",
+        "W2D1",
+        "W2D2",
+        "W2D3",
+        "W2D4",
+        "W2D5",
+        "W3D1",
+        "W3D2",
+        "W3D3",
+        "W3D4",
+        "W3D5",
+        "W4D1",
+        "W4D2",
+        "W4D3",
+        "W4D4",
+        "W4D5",
+        "W5D1",
+        "W5D2",
+        "W5D3",
+        "W5D4",
+        "W5D5",
+        "W6D1",
+        "W6D2",
+        "W6D3",
+        "W6D4",
+        "W6D5",
+        "W7D1",
+        "W7D2",
+        "W7D3",
+        "W7D4",
+        "W7D5",
+        "W8D1",
+        "W8D2",
+        "W8D3",
+        "W8D4",
+        "W8D5",
+        "W9D1",
+        "W9D2",
+        "W9D3",
+        "W9D4",
+        "W9D5",
+        "W10D1",
+        "W10D2",
+        "W10D3",
+        "W10D4",
+        "W10D5",
+        "W11D1",
+        "W11D2",
+        "W11D3",
+        "W11D4",
+        "W11D5",
+        "W12D1",
+        "W12D2",
+        "W12D3",
+        "W12D4",
+        "W12D5",
+        "W14D1",
+        "W14D2",
+        "W14D3",
+        "W14D4",
+        "W14D5",
+        "W15D1",
+        "W15D2",
+        "W15D3",
+        "W15D4",
+        "W15D5",
+        "W16D1",
+        "W16D2",
+        "W16D3",
+        "W16D4",
+        "W16D5",
+        "W17D1",
+        "W17D2",
+        "W17D3",
+        "W17D4",
+        "W17D5",
+        "W18D1",
+        "W18D2",
+        "W18D3",
+        "W18D4",
+        "W18D5",
+        "W19D1",
+        "W19D2",
+        "W19D3",
+        "W19D4",
+        "W19D5",
+        "W21D1",
+        "W21D2",
+        "W21D3",
+        "W21D4",
+        "W21D5",
+        "W22D1",
+        "W22D2",
+        "W22D3",
+        "W22D4",
+        "W22D5",
+        "W23D1",
+        "W23D2",
+        "W23D3",
+        "W23D4",
+        "W23D5",
+        "W24D1",
+        "W24D2",
+        "W24D3",
+        "W24D4",
+        "W24D5",
+        "W25D1",
+        "W25D2",
+        "W25D3",
+        "W25D4",
+        "W25D5"
+      ],
+      "frequency_count": 114
+    },
+    {
+      "routine_id": "DR4",
+      "routine_name_hindi": "मार्गदर्शन में पठन के दौरान शब्द स्तर पर पढ़ने वाले बच्चों पर विशेष ध्यान",
+      "routine_name_english": "Targeted Support for Word-Level Readers during Guided Reading",
+      "how_to_hindi": "जब बच्चे जोड़ियों/समूहों में बारी-बारी से पाठ्यांश पढ़ रहे हों, तब शिक्षक कक्षा में घूमकर उन बच्चों के पास रुकते हैं जो अभी भी शब्द-दर-शब्द पढ़ते हैं, और उन्हें विशेष ध्यान व सहायता देते हैं; बाकी बच्चे अपने साथियों के साथ पढ़ना जारी रखते हैं।",
+      "how_to_english": "While pairs or groups take turns reading a text excerpt, the teacher circulates and concentrates on children still reading word by word, giving them focused help, while the rest continue reading with peers.",
+      "applies_to": [
+        "guided reading of a textbook excerpt",
+        "guided reading of a levelled text"
+      ],
+      "source_refs": [
+        "W6D3",
+        "W7D3",
+        "W8D4",
+        "W9D1",
+        "W9D4",
+        "W10D4",
+        "W11D4",
+        "W12D4",
+        "W14D4",
+        "W15D4",
+        "W16D4",
+        "W17D4",
+        "W18D4",
+        "W19D4",
+        "W21D4",
+        "W22D4",
+        "W23D4",
+        "W24D4",
+        "W25D4"
+      ],
+      "frequency_count": 19
+    },
+    {
+      "routine_id": "DR2",
+      "routine_name_hindi": "समूह-A शिक्षक के मार्गदर्शन में / समूह-B स्वतंत्र रूप से — पुनरावृत्ति अभ्यास पत्रक",
+      "routine_name_english": "Revision-Week Same-Task Split",
+      "how_to_hindi": "पुनरावृत्ति सप्ताह में पूरी कक्षा एक ही अभ्यास पत्रक/कार्य पर काम करती है — समूह-A के बच्चे शिक्षक के मार्गदर्शन में सात्विक (सहायता सहित) रूप से और समूह-B के बच्चे स्वतंत्र रूप से। पठन कालांश में भी समूह-A वर्ण/अक्षर पहचान, ब्लेंडिंग और शब्द पठन करता है जबकि समूह-B स्वतंत्र पठन करता है।",
+      "how_to_english": "In a revision week the whole class works on the same worksheet or task, but Group A does it with the teacher guiding them step by step while Group B works on its own. In the reading slot the split continues: Group A practises letter recognition, blending and word reading with the teacher while Group B reads independently.",
+      "applies_to": [
+        "revision worksheets",
+        "letter/akshar recognition and blending",
+        "blending and word reading",
+        "word and sentence reading",
+        "thematic grid (both groups together)"
+      ],
+      "source_refs": [
+        "W13D2",
+        "W13D3",
+        "W13D4",
+        "W13D5",
+        "W13D6",
+        "W20D2",
+        "W20D3",
+        "W20D4",
+        "W20D5",
+        "W20D6"
+      ],
+      "frequency_count": 10
+    },
+    {
+      "routine_id": "DR3",
+      "routine_name_hindi": "प्रवाहपूर्ण पठन — प्रतिदिन कक्षा के 25% बच्चों के साथ एक-एक करके",
+      "routine_name_english": "Rotating One-to-One Fluency Check",
+      "how_to_hindi": "सभी बच्चे जोड़ियों/समूहों में उस दिन का प्रवाहपूर्ण पठन पाठ पढ़ते रहते हैं, जबकि शिक्षक प्रतिदिन कक्षा के लगभग 25% बच्चों को एक-एक करके अपने पास बुलाकर उनका प्रवाहपूर्ण पठन सुनते और दर्ज करते हैं — इस तरह सप्ताह में सभी बच्चों का पठन हो जाता है।",
+      "how_to_english": "While the class reads the day's fluency passage in pairs or groups, the teacher calls about a quarter of the children one at a time for a timed reading and records the result, so every child is heard once across the week.",
+      "applies_to": [
+        "timed one-minute fluency reading"
+      ],
+      "source_refs": [
+        "W14D1",
+        "W14D2",
+        "W14D3",
+        "W14D4",
+        "W15D1",
+        "W15D2",
+        "W15D3",
+        "W15D4",
+        "W16D1",
+        "W16D2",
+        "W16D3",
+        "W16D4",
+        "W17D1",
+        "W17D2",
+        "W17D3",
+        "W17D4",
+        "W18D1",
+        "W18D2",
+        "W18D3",
+        "W18D4",
+        "W19D1",
+        "W19D2",
+        "W19D3",
+        "W19D4",
+        "W21D1",
+        "W21D2",
+        "W21D3",
+        "W21D4",
+        "W22D1",
+        "W22D2",
+        "W22D3",
+        "W22D4",
+        "W23D1",
+        "W23D2",
+        "W23D3",
+        "W23D4",
+        "W24D1",
+        "W24D2",
+        "W24D3",
+        "W24D4",
+        "W25D1",
+        "W25D2",
+        "W25D3",
+        "W25D4"
+      ],
+      "frequency_count": 44
+    }
+  ],
+  "strategies": [
+    {
+      "strategy_id": "ol-picture-chart-talk",
+      "strategy_name_hindi": "चित्र चार्ट पर शिक्षक द्वारा चर्चा एवं समृद्ध चर्चा",
+      "strategy_name_english": "Picture Chart Talk",
+      "type": "competency",
+      "competency_ids": [
+        "OL1",
+        "OL2"
+      ],
+      "how_to_hindi": "बच्चों को चित्र चार्ट ध्यान से देखने दें और 1-2 बंद छोर के प्रश्न पूछकर प्रत्येक पर कुछ बच्चों की प्रतिक्रिया लें; फिर 4-5 खुले छोर के प्रश्नों से चर्चा आगे बढ़ाएँ, प्रश्न चार्ट पर केंद्रित रखें और हर उत्तर का सम्मान करें।",
+      "how_to_english": "Let children study a themed picture chart; ask 1–2 closed questions and take several answers to each, then deepen with 4–5 open-ended questions anchored in the chart, respecting every answer.",
+      "detailed_explanation_hindi": "यह दो दिन का क्रम है। दिवस-1: चार्ट ध्यान से देखना → बंद प्रश्न (5-7 मिनट) → चार्ट पर केंद्रित खुले प्रश्न (10-15 मिनट) → लेखन कार्य। दिवस-2: कल की चर्चा संक्षेप में दोहराएँ → कुछ नए बंद प्रश्न → नए खुले प्रश्न जो चार्ट को बच्चों के अपने अनुभवों से जोड़ें → लेखन कार्य। बच्चे अपनी घर की भाषा में बोल सकते हैं। बच्चों के उत्तरों को आधार बनाकर अगले प्रश्न बनाएँ और किसी उत्तर को सही/गलत के पैमाने पर न आँकें।",
+      "detailed_explanation_english": "This runs as a two-day sequence. Day 1: close observation → closed questions (5–7 min) → open questions anchored in the chart (10–15 min) → drawing/writing task. Day 2: brief recap of yesterday → a few new closed questions → new open questions that connect the chart to children's own lives → drawing/writing task. Children may answer in their home language. Build each follow-up question on children's answers and never grade responses as right or wrong. (BM p.165)",
+      "example": "Chart 'गाँव' (village) — closed: 'बच्चे क्या खेल रहे हैं?'; open: 'चारपाई पर बैठे लोग क्या बातें कर रहे होंगे?'; day-2 experience question: 'क्या आपके आसपास की महिलाएँ बाहर काम करती हैं?'",
+      "shared_resource_refs": [
+        "SR-CHITRA-CHART"
+      ],
+      "variants": [
+        {
+          "note": "Day 2 of a chart: recap, then new open questions focused on children's own experiences",
+          "source_refs": [
+            "W1D3"
+          ]
+        },
+        {
+          "note": "A textbook picture page used in place of a wall chart",
+          "source_refs": [
+            "W4D2",
+            "W4D3"
+          ]
+        },
+        {
+          "note": "Chart discussion shortened to one period on a revision day, after a lesson-word review",
+          "source_refs": [
+            "W7D5"
+          ]
+        },
+        {
+          "note": "Single-day version on a textbook picture page, with 4-5 closed then 5-6 open questions",
+          "source_refs": [
+            "W9D4",
+            "W12D4"
+          ]
+        },
+        {
+          "note": "Textbook picture page on its own day (Day 4), 4-5 closed then 5-6 open questions, followed by draw-and-write",
+          "source_refs": [
+            "W18D4",
+            "W19D4"
+          ]
+        }
+      ],
+      "source_refs": [
+        "W1D2",
+        "W1D3",
+        "W2D2",
+        "W2D3",
+        "W3D2",
+        "W3D3",
+        "W4D2",
+        "W4D3",
+        "W7D5",
+        "W7D6",
+        "W8D5",
+        "W8D6",
+        "W9D4",
+        "W12D4",
+        "W13D3",
+        "W13D4",
+        "W14D4",
+        "W18D4",
+        "W19D4",
+        "W20D3",
+        "W20D4"
+      ],
+      "frequency_count": 21
+    },
+    {
+      "strategy_id": "ol-picture-description",
+      "strategy_name_hindi": "चित्र के बारे में 3-4 वाक्य बताना",
+      "strategy_name_english": "Describe a Picture in Sentences",
+      "type": "competency",
+      "competency_ids": [
+        "OL1",
+        "WR4"
+      ],
+      "how_to_hindi": "कोई चित्र (कार्यपुस्तिका से भिन्न) लेकर उसके बारे में 3-4 वाक्यों में बताएँ; इस पर बच्चों से प्रतिक्रिया लें; फिर बच्चे कार्यपुस्तिका के चित्र के बारे में वाक्य लिखें।",
+      "how_to_english": "Model describing a picture (not the workbook's) in 3–4 connected sentences, take children's responses, then have them write sentences describing the workbook picture.",
+      "variants": [
+        {
+          "note": "Remedial (Group A): pairs talk about a textbook picture and write words/sentences about it",
+          "source_refs": [
+            "W22D5"
+          ]
+        }
+      ],
+      "source_refs": [
+        "W15D4",
+        "W22D5",
+        "W23D1",
+        "W25D4"
+      ],
+      "frequency_count": 4
+    },
+    {
+      "strategy_id": "ol-rich-discussion",
+      "strategy_name_hindi": "समृद्ध चर्चा",
+      "strategy_name_english": "Rich Discussion with Open-Ended Questions",
+      "type": "competency",
+      "competency_ids": [
+        "OL2"
+      ],
+      "how_to_hindi": "बच्चों के उत्तरों को आधार बनाकर नए-नए खुले छोर के प्रश्न पूछें ताकि चर्चा गहरी हो; बच्चों को पूरे वाक्यों में अपनी बात रखने के लिए प्रेरित करें और उत्तरों को सही/गलत के पैमाने पर न आँकें।",
+      "how_to_english": "Build on children's answers with follow-up open-ended questions (why, what if, how would you…) so the discussion deepens; encourage full-sentence answers and never mark a response wrong.",
+      "detailed_explanation_hindi": "खुले छोर के प्रश्न कई प्रकार के हो सकते हैं — पूर्वानुमान लगाने वाले, जीवन और अनुभवों से जुड़े, निष्कर्ष निकालने वाले, कल्पना एवं जिज्ञासा वाले (जैसे 'अगर संसार में रंग ना हो तो कैसा लगेगा?')। ऐसे प्रश्न पूछें जिनका उत्तर केवल 'हाँ/ना' में न हो।",
+      "detailed_explanation_english": "Vary the open question types: prediction, connection to life and experience, drawing conclusions, imagination and curiosity (e.g. 'What would the world be like without colours?'). Avoid questions that can be answered with a plain yes/no. (Front matter p.7, BM p.170)",
+      "variants": [
+        {
+          "note": "Pair discussion: after the teacher's questions, pairs discuss a few new questions among themselves, then several pairs report back",
+          "source_refs": [
+            "W1D6"
+          ]
+        }
+      ],
+      "source_refs": [
+        "W1D2",
+        "W1D3",
+        "W1D5",
+        "W1D6",
+        "W2D2",
+        "W2D3",
+        "W2D5",
+        "W2D6",
+        "W3D2",
+        "W3D3",
+        "W3D5",
+        "W3D6",
+        "W4D2",
+        "W4D3",
+        "W4D5",
+        "W4D6",
+        "W5D1",
+        "W5D2",
+        "W5D3",
+        "W5D5",
+        "W6D1",
+        "W6D2",
+        "W6D3",
+        "W6D5",
+        "W7D1",
+        "W7D2",
+        "W7D3",
+        "W7D5",
+        "W7D6",
+        "W8D1",
+        "W8D2",
+        "W8D3",
+        "W8D4",
+        "W8D5",
+        "W8D6",
+        "W9D1",
+        "W9D3",
+        "W9D4",
+        "W9D6",
+        "W10D1",
+        "W10D2",
+        "W10D3",
+        "W10D4",
+        "W10D6",
+        "W11D1",
+        "W11D3",
+        "W11D6",
+        "W12D1",
+        "W12D2",
+        "W12D3",
+        "W12D4",
+        "W12D6",
+        "W13D3",
+        "W13D4",
+        "W13D5",
+        "W14D1",
+        "W14D2",
+        "W14D3",
+        "W14D4",
+        "W14D6",
+        "W15D1",
+        "W15D2",
+        "W15D3",
+        "W15D4",
+        "W15D6",
+        "W16D1",
+        "W16D3",
+        "W16D6",
+        "W17D1",
+        "W17D2",
+        "W17D3",
+        "W17D6",
+        "W18D1",
+        "W18D2",
+        "W18D3",
+        "W18D4",
+        "W19D1",
+        "W19D3",
+        "W19D4",
+        "W20D3",
+        "W20D4",
+        "W20D5",
+        "W21D1",
+        "W21D3",
+        "W22D1",
+        "W22D2",
+        "W22D3",
+        "W22D4",
+        "W23D1",
+        "W23D3",
+        "W23D4",
+        "W24D1",
+        "W24D3",
+        "W25D1",
+        "W25D2",
+        "W25D3"
+      ],
+      "frequency_count": 96
+    },
+    {
+      "strategy_id": "ol-poem-recitation",
+      "strategy_name_hindi": "मौखिक रूप से कविता सुनाना",
+      "strategy_name_english": "Poem Poster Recitation",
+      "type": "competency",
+      "competency_ids": [
+        "OL3",
+        "RC1"
+      ],
+      "how_to_hindi": "कविता पोस्टर के चित्र पर ध्यान दिलाकर शीर्षक और कविता का अनुमान लगवाएँ; हाव-भाव के साथ कविता दो बार सुनाएँ, फिर बच्चों के साथ 1-2 बार गाएँ और कुछ बच्चों को स्वयं सुनाने को कहें।",
+      "how_to_english": "Point children to the poster illustration and have them guess the title and what the poem is about; recite it twice with actions, sing it together 1–2 times, then invite individual children to recite.",
+      "shared_resource_refs": [
+        "SR-KAVITA-POSTER"
+      ],
+      "source_refs": [
+        "W1D5",
+        "W3D5",
+        "W5D5"
+      ],
+      "frequency_count": 3
+    },
+    {
+      "strategy_id": "ol-vocab-contextual",
+      "strategy_name_hindi": "शब्दावली विकास एवं चर्चा",
+      "strategy_name_english": "Contextual Vocabulary Building",
+      "type": "competency",
+      "competency_ids": [
+        "OL4"
+      ],
+      "how_to_hindi": "कविता/कहानी के कठिन और अमूर्त शब्द बोर्ड पर लिखें और उनके अर्थ बच्चों के परिचित संदर्भों से जोड़कर समझाएँ; फिर कुछ प्रश्नों से पाठ पर बातचीत करें।",
+      "how_to_english": "Write the difficult or abstract words from the poem or story on the board and explain each through situations children already know; then talk through the text with a few questions.",
+      "variants": [
+        {
+          "note": "[merged from 'Word Meaning to Oral Sentence'] Extend to production: after discussing meanings, children make an oral sentence with each word; used for the workbook word list and to revisit the previous day's words",
+          "source_refs": [
+            "W5D2",
+            "W5D4",
+            "W6D2",
+            "W6D4",
+            "W7D2",
+            "W7D4",
+            "W8D2",
+            "W8D4",
+            "W9D2",
+            "W10D2",
+            "W10D4",
+            "W12D2",
+            "W14D1",
+            "W14D2",
+            "W15D1",
+            "W15D2",
+            "W15D4",
+            "W16D1",
+            "W17D1",
+            "W17D2",
+            "W18D1",
+            "W18D2",
+            "W19D1",
+            "W21D1",
+            "W22D1",
+            "W22D2",
+            "W23D1",
+            "W24D1",
+            "W24D2",
+            "W25D1",
+            "W25D2"
+          ]
+        },
+        {
+          "note": "Workbook word list: after oral sentences, children read the words independently",
+          "source_refs": [
+            "W5D2",
+            "W5D4",
+            "W6D4",
+            "W7D2",
+            "W7D4"
+          ]
+        },
+        {
+          "note": "Recap of the previous day's lesson words inside the day-2 model reading",
+          "source_refs": [
+            "W5D2",
+            "W6D2",
+            "W7D2"
+          ]
+        },
+        {
+          "note": "Model-read the workbook word list, then pairs/groups read the words",
+          "source_refs": [
+            "W14D1",
+            "W15D1",
+            "W16D1",
+            "W17D1"
+          ]
+        }
+      ],
+      "source_refs": [
+        "W1D5",
+        "W2D5",
+        "W3D5",
+        "W4D5",
+        "W5D2",
+        "W5D4",
+        "W5D5",
+        "W6D2",
+        "W6D4",
+        "W6D5",
+        "W7D2",
+        "W7D4",
+        "W8D2",
+        "W8D4",
+        "W9D2",
+        "W10D2",
+        "W10D4",
+        "W12D2",
+        "W14D1",
+        "W14D2",
+        "W15D1",
+        "W15D2",
+        "W15D4",
+        "W16D1",
+        "W17D1",
+        "W17D2",
+        "W18D1",
+        "W18D2",
+        "W19D1",
+        "W21D1",
+        "W22D1",
+        "W22D2",
+        "W23D1",
+        "W24D1",
+        "W24D2",
+        "W25D1",
+        "W25D2"
+      ],
+      "frequency_count": 37
+    },
+    {
+      "strategy_id": "ol-vilom-shabd",
+      "strategy_name_hindi": "विलोम शब्द",
+      "strategy_name_english": "Opposites (Antonyms)",
+      "type": "competency",
+      "competency_ids": [
+        "OL4"
+      ],
+      "how_to_hindi": "उदाहरण देकर विलोम शब्द की अवधारणा पर चर्चा करें (जैसे दिन का विलोम रात); विलोम शब्दों से वाक्य बनाकर बताएँ, फिर बच्चे गतिविधि करें।",
+      "how_to_english": "Introduce opposites through examples (दिन ↔ रात), model sentences using each pair, then have children do the opposites task.",
+      "source_refs": [
+        "W6D2",
+        "W10D1"
+      ],
+      "frequency_count": 2
+    },
+    {
+      "strategy_id": "ol-sound-words",
+      "strategy_name_hindi": "जानवरों/पक्षियों की आवाज़ों पर वाक्य",
+      "strategy_name_english": "Animal Sound Sentences",
+      "type": "competency",
+      "competency_ids": [
+        "OL4",
+        "WR4"
+      ],
+      "how_to_hindi": "बोर्ड पर उदाहरण दें कि कौन-सी आवाज़ कौन बोलता है (जैसे 'गुटुर गूँ कौन बोलता है?' → 'कबूतर गुटुर गूँ बोलता है।'); अलग-अलग जानवरों/पक्षियों की आवाज़ों पर बच्चों की प्रतिक्रिया लें और फिर उन्हें ऐसे वाक्य बनाने दें।",
+      "how_to_english": "Model on the board how a sound word becomes a sentence ('Who says गुटुर गूँ?' → 'The pigeon says गुटुर गूँ.'); elicit other animal and bird sounds from children, then have them write similar sentences.",
+      "source_refs": [
+        "W8D1",
+        "W17D1"
+      ],
+      "frequency_count": 2
+    },
+    {
+      "strategy_id": "ol-teacher-retell-lesson",
+      "strategy_name_hindi": "पाठ को मौखिक रूप से अपने शब्दों में सुनाना",
+      "strategy_name_english": "Teacher Retell in Own Words",
+      "type": "competency",
+      "competency_ids": [
+        "OL5",
+        "RC2"
+      ],
+      "how_to_hindi": "पढ़े गए पाठ की कहानी या उसके केंद्रीय बिंदु को शिक्षक अपने शब्दों में एक बार मौखिक रूप से सुनाएँ, फिर उस पर प्रश्नों से चर्चा शुरू करें।",
+      "how_to_english": "After reading the lesson, retell its story or central idea once in your own everyday words, then move into questions — giving children a second, simpler pass at the meaning.",
+      "variants": [
+        {
+          "note": "Brief retell used as a warm-up before model-reading an excerpt the next day",
+          "source_refs": [
+            "W6D4",
+            "W7D4"
+          ]
+        }
+      ],
+      "source_refs": [
+        "W5D1",
+        "W6D3",
+        "W6D4",
+        "W7D3",
+        "W7D4",
+        "W9D1",
+        "W9D2",
+        "W9D3",
+        "W11D2",
+        "W12D1",
+        "W12D2",
+        "W14D1",
+        "W14D2",
+        "W16D2",
+        "W17D1",
+        "W17D2",
+        "W18D1",
+        "W18D2",
+        "W19D2",
+        "W21D2",
+        "W23D2",
+        "W24D2",
+        "W25D1",
+        "W25D2"
+      ],
+      "frequency_count": 24
+    },
+    {
+      "strategy_id": "ol-oral-storytelling",
+      "strategy_name_hindi": "मौखिक रूप से कहानी सुनाना",
+      "strategy_name_english": "Oral Storytelling (No Book)",
+      "type": "competency",
+      "competency_ids": [
+        "OL5",
+        "RC1",
+        "OL4"
+      ],
+      "how_to_hindi": "बच्चों के स्तर की कहानी बिना किताब के, हाव-भाव और आवाज़ के उतार-चढ़ाव के साथ सुनाएँ; जुड़ाव बनाए रखने के लिए बीच में 1-2 बंद छोर के प्रश्न पूछें; फिर खुले छोर के प्रश्नों से कहानी पर समृद्ध चर्चा करें।",
+      "how_to_english": "Tell an age-appropriate story from memory with gestures and voice modulation, pausing for 1–2 quick closed questions to keep children engaged; follow with an open-ended discussion of the story.",
+      "detailed_explanation_hindi": "कहानी को रोचक बनाने के लिए चित्र, कठपुतली या मुखौटे का उपयोग कर सकते हैं। कहानी सुनाते समय बीच में अधिक चर्चा न करें — इससे कहानी की तारतम्यता टूटती है और बच्चों की रुचि कम होती है। इस गतिविधि से बच्चे कहानी की संरचना (प्रारंभ, मध्य, अंत) समझ पाते हैं।",
+      "detailed_explanation_english": "Pictures, puppets or masks can make the telling livelier. Keep mid-story questions to a minimum — too much discussion breaks the story's flow and children lose interest. Save the deeper discussion for afterwards; it helps children grasp story structure (beginning, middle, end). (BM p.163)",
+      "example": "During: 'कहानी में कुल कितने पात्र थे?'; after: 'अगर तुम मुख्य पात्र होते तो क्या-क्या करते?', 'कौन-सा पात्र सबसे अच्छा लगा और क्यों?'",
+      "materials": [
+        "चित्र, कठपुतली या मुखौटे — वैकल्पिक (pictures, puppets or masks — optional)"
+      ],
+      "shared_resource_refs": [
+        "SR-KAHANI-POSTER"
+      ],
+      "variants": [
+        {
+          "note": "[merged from 'Story Poster Read-Aloud'] Story-poster version: children predict title and plot from the poster picture first; followed by a hard-words segment",
+          "source_refs": [
+            "W2D5",
+            "W4D5",
+            "W6D5"
+          ]
+        }
+      ],
+      "source_refs": [
+        "W1D6",
+        "W2D5",
+        "W2D6",
+        "W3D6",
+        "W4D5",
+        "W4D6",
+        "W6D5",
+        "W9D6",
+        "W10D6",
+        "W11D6",
+        "W13D5",
+        "W15D6",
+        "W20D5"
+      ],
+      "frequency_count": 13
+    },
+    {
+      "strategy_id": "ol-picture-story-poster",
+      "strategy_name_hindi": "चित्र कहानी पोस्टर पर कार्य",
+      "strategy_name_english": "Four-Picture Story Building",
+      "type": "competency",
+      "competency_ids": [
+        "OL5",
+        "RC1",
+        "WR4"
+      ],
+      "how_to_hindi": "चार क्रमिक चित्रों वाले पोस्टर के चित्र एक-एक करके दिखाते हुए बंद प्रश्न पूछें और बच्चों को चारों चित्र एक साथ देखने का समय दें; चित्रों को जोड़कर छोटी कहानी बनाकर दो बार सुनाएँ और कुछ बच्चे उसे अपने शब्दों में सुनाएँ; अगले दिन छोटे समूह पोस्टर के आधार पर मिलकर नई कहानी बनाएँ और साझा करें।",
+      "how_to_english": "Show a four-panel picture poster one panel at a time with closed questions, then give time to view all four together; link the panels into a short story and tell it twice, and have a few children retell it. Next day, small groups invent a new story from the same poster and share it.",
+      "detailed_explanation_hindi": "दिवस-1: शिक्षक द्वारा चर्चा (5-7 मिनट) → चित्रों पर आधारित कहानी बनाना (10-12 मिनट) → लेखन कार्य। दिवस-2: पोस्टर दिखाते हुए कल की चर्चा दोहराएँ, 5-6 खुले प्रश्न, कुछ बच्चे कल की कहानी अपने शब्दों में सुनाएँ (10-12 मिनट) → बच्चों द्वारा समूह कार्य — नई कहानी बनाना, हर समूह से 1-2 बच्चे साझा करें (10-15 मिनट) → लेखन: समूह में कहानी से संबंधित 1-2 वाक्य। ध्यान दें: कहानी सुनाते समय बच्चों का ध्यान क्रमबद्धता (प्रारंभ, मध्य, अंत) पर दिलाएँ; समूह कार्य का अवलोकन करें और आवश्यकतानुसार सहायता करें। इससे घटनाओं का क्रम, अंतर्संबंध, तर्क और अनुमान जैसे उच्चस्तरीय कौशल विकसित होते हैं।",
+      "detailed_explanation_english": "Day 1: teacher-led discussion of the panels (5–7 min) → building a story from the pictures (10–12 min) → writing a few words or 1–2 sentences about the story, then pair talk. Day 2: recap with the poster and 5–6 open questions, a few children retell yesterday's story (10–12 min) → small groups create a new story, 1–2 children per group share (10–15 min) → groups write 1–2 sentences about their story. Keep drawing attention to sequence (beginning, middle, end), and circulate to support groups. It builds sequencing, cause-and-effect and inference. (BM p.167)",
+      "shared_resource_refs": [
+        "SR-CHITRA-KAHANI-POSTER"
+      ],
+      "source_refs": [
+        "W12D5",
+        "W12D6",
+        "W14D5",
+        "W14D6",
+        "W16D5",
+        "W16D6",
+        "W17D5",
+        "W17D6",
+        "W19D5",
+        "W19D6"
+      ],
+      "frequency_count": 10
+    },
+    {
+      "strategy_id": "ol-child-retelling",
+      "strategy_name_hindi": "बच्चों द्वारा कहानी को अपने शब्दों में सुनाना",
+      "strategy_name_english": "Child Retelling",
+      "type": "competency",
+      "competency_ids": [
+        "OL5"
+      ],
+      "how_to_hindi": "कुछ बच्चों को पाठ की कहानी अपने शब्दों में सुनाने को कहें; बच्चे जैसे भी सुनाएँ, उसे सही/गलत में न देखें, स्वीकार करें और उनकी सराहना करें।",
+      "how_to_english": "Invite a few children to retell the lesson's story in their own words; accept every version without judging it right or wrong, and praise the effort.",
+      "variants": [
+        {
+          "note": "Group B independent work: after reading or hearing a story, children retell it to a partner or group in their own words",
+          "source_refs": [
+            "BM p.182"
+          ]
+        }
+      ],
+      "source_refs": [
+        "W5D3",
+        "W12D3",
+        "W14D3",
+        "W17D3",
+        "W18D3",
+        "W25D3"
+      ],
+      "frequency_count": 6
+    },
+    {
+      "strategy_id": "ol-game-kahani-suno-kramabaddh",
+      "strategy_name_hindi": "कहानी सुनो और क्रमबद्ध करो",
+      "strategy_name_english": "Listen and Sequence the Story",
+      "type": "competency",
+      "competency_ids": [
+        "OL5",
+        "OL7"
+      ],
+      "how_to_hindi": "एक छोटी कहानी हाव-भाव के साथ सुनाएँ; फिर कक्षा को दो समूहों में बाँटें और दोनों समूह बारी-बारी से सुनी हुई कहानी की घटनाओं को सही क्रम में बताएँ; सही क्रम बताने वाले समूह को अंक मिलें।",
+      "how_to_english": "Tell a short story expressively; split the class into two teams that take turns retelling the story's events in the right order, scoring a point for each correct sequence.",
+      "detailed_explanation_hindi": "शुरुआत में गतिविधि का नाम बताकर बच्चों से अनुमान लगवाएँ कि इसमें क्या होगा। कहानी सुनाने के बाद समूहों को एक-एक करके घटनाएँ क्रम में बताने दें; अधिक सही क्रम बताने वाला समूह जीतता है। अंत में कहानी के मुख्य शब्द बोर्ड पर लिखें और शब्द दिखाते हुए पढ़कर बोलें।",
+      "detailed_explanation_english": "Announce the game's name and let children guess what it involves. After the story, teams alternate placing events in order; the team with more correct sequences wins. Close by writing the story's key words on the board and reading them aloud while pointing. (BM p.161–162)",
+      "source_refs": [
+        "W2D1"
+      ],
+      "frequency_count": 1
+    },
+    {
+      "strategy_id": "ol-experience-sharing",
+      "strategy_name_hindi": "बच्चों द्वारा अनुभव साझा करना",
+      "strategy_name_english": "Structured Experience Sharing",
+      "type": "competency",
+      "competency_ids": [
+        "OL6"
+      ],
+      "how_to_hindi": "चयनित विषय पर पहले शिक्षक अपना अनुभव सुनाएँ और 'क्या, कब, कौन, क्यों, कैसे' पर ध्यान दिलाएँ; फिर बच्चे उसी विषय पर अपने अनुभव वाक्यों में साझा करें; कुछ खुले प्रश्न पूछकर उन्हें बात व्यवस्थित रूप से रखने में मदद करें।",
+      "how_to_english": "Share your own experience on the chosen theme first, highlighting the what/when/who/why/how; then children share their own experiences in sentences, with open questions from you helping them organise what they say.",
+      "detailed_explanation_hindi": "चरण: (1) शिक्षक द्वारा अनुभव सुनाना (7-10 मिनट) — बताएँ कि आज 'चयनित विषय' पर अनुभव साझा करेंगे; स्वयं अनुभव सुनाएँ और 'क्या, कब, कौन, क्यों, कैसे' पर ध्यान दिलाएँ। (2) बच्चों द्वारा अनुभव साझा करना (10-15 मिनट) — बच्चों को वाक्यों में अनुभव बताने के लिए प्रोत्साहित करें; खुले प्रश्नों से संरचना में सहायता करें। (3) लेखन कार्य (10-12 मिनट)। सभी बच्चों की भागीदारी सुनिश्चित करें।",
+      "detailed_explanation_english": "Steps: (1) teacher's own account, 7–10 min — announce the theme, tell your story, and point out the what/when/who/why/how elements it contains; (2) children share, 10–15 min — encourage full sentences and use open questions to help them structure their account; (3) related writing, 10–12 min. Make sure everyone participates. (BM pp.169–170)",
+      "variants": [
+        {
+          "note": "Theme drawn from the week's textbook lesson; teacher points out क्या/कब/कौन/क्यों/कैसे in their own account",
+          "source_refs": [
+            "W17D4"
+          ]
+        },
+        {
+          "note": "Weekly experience-sharing day in the home language (Day 6 period 1, or Day 4 of Week 25), always followed by drawing plus 2-4 written sentences and pair talk",
+          "source_refs": [
+            "W18D6",
+            "W21D6",
+            "W22D6",
+            "W23D6",
+            "W24D6",
+            "W25D4",
+            "W25D6"
+          ]
+        }
+      ],
+      "source_refs": [
+        "W5D4",
+        "W17D4",
+        "W18D6",
+        "W21D6",
+        "W22D6",
+        "W23D6",
+        "W24D6",
+        "W25D4",
+        "W25D6"
+      ],
+      "frequency_count": 9
+    },
+    {
+      "strategy_id": "ol-game-dinbhar-ka-mera-samay",
+      "strategy_name_hindi": "दिनभर का मेरा समय",
+      "strategy_name_english": "My Morning, Who Helped",
+      "type": "competency",
+      "competency_ids": [
+        "OL6"
+      ],
+      "how_to_hindi": "घेरे में कागज़ की गेंद घुमाएँ; जिसके पास गेंद पहुँचे, वह बताए कि सुबह से स्कूल आने तक उसने क्या-क्या किया और किस-किसने उसकी सहायता की। शुरुआत शिक्षक अपने अनुभव से करें।",
+      "how_to_english": "Pass a paper ball around the circle; whoever holds it recounts what they did from waking up to reaching school and who helped them along the way. The teacher shares first.",
+      "detailed_explanation_hindi": "पहले शिक्षक अपने दिनभर के अनुभव बताएँ और यह भी कि किन-किन लोगों ने उनकी सहायता की — इससे बच्चों को पता चलता है कि अपनी बातें किस तरह साझा करनी हैं। सुनिश्चित करें कि अंत तक सभी बच्चे अपने अनुभव साझा कर पाएँ।",
+      "detailed_explanation_english": "Model by narrating your own morning, naming the people who helped you — this shows children how to structure a personal account. Make sure every child gets a turn before the activity ends. (BM p.162)",
+      "materials": [
+        "कागज़ की गेंद (paper ball)"
+      ],
+      "source_refs": [
+        "W3D4"
+      ],
+      "frequency_count": 1
+    },
+    {
+      "strategy_id": "ol-game-role-play-pairs",
+      "strategy_name_hindi": "जोड़ियों में अभिनय",
+      "strategy_name_english": "Pair Role Play",
+      "type": "competency",
+      "competency_ids": [
+        "OL7"
+      ],
+      "how_to_hindi": "बच्चों को जोड़ियों में बाँटें और हर जोड़ी को रोज़मर्रा की एक स्थिति दें, जिस पर वे आपस में बातचीत करते हुए रोल प्ले/अभिनय करें।",
+      "how_to_english": "Put children in pairs and give each pair an everyday scenario to act out as a dialogue.",
+      "example": "दो दोस्तों के बीच गर्मी की छुट्टी में जाने पर चर्चा; फल की दुकान पर मोलभाव; कपड़े की दुकान पर कपड़ा वापस करना; दाँतों के डॉक्टर से दाँत दर्द पर बात।",
+      "variants": [
+        {
+          "note": "Set 1 scenarios (holiday plans, fruit shop, returning clothes, dentist)",
+          "source_refs": [
+            "W4D1"
+          ]
+        },
+        {
+          "note": "Set 2 scenarios: bargaining for balloons at a fair, friends discussing studying together, farmer and shopkeeper haggling over seeds, getting clothes stitched by a tailor (BM p.163)",
+          "source_refs": [
+            "W6D6"
+          ]
+        }
+      ],
+      "source_refs": [
+        "W4D1",
+        "W6D6",
+        "W20D2"
+      ],
+      "frequency_count": 3
+    },
+    {
+      "strategy_id": "ol-game-main-hota-to",
+      "strategy_name_hindi": "मैं होता तो क्या करता",
+      "strategy_name_english": "If I Were… Imagination Game",
+      "type": "competency",
+      "competency_ids": [
+        "OL7"
+      ],
+      "how_to_hindi": "प्रत्येक बच्चे को किसी जानवर के नाम की पर्ची या चित्र कार्ड दें; बारी-बारी से बच्चे आगे आकर बताएँ कि अगर वे वह जानवर होते तो क्या करते।",
+      "how_to_english": "Give each child a chit or picture card naming an animal; one by one, children come forward and say what they would do if they were that animal.",
+      "detailed_explanation_hindi": "बच्चों को ऐसी बातें बताने के लिए प्रेरित करें जो वह जानवर आमतौर पर नहीं करता — उद्देश्य कल्पना और अनोखे विचार हैं, तथ्य दोहराना नहीं।",
+      "detailed_explanation_english": "Push for answers describing things the animal would NOT normally do — the goal is imaginative, unusual ideas, not recalling facts about the animal. (BM p.161)",
+      "example": "'अगर मैं साँप होता तो शेर से दोस्ती करता और उसकी पीठ पर बैठकर जंगल घूमता' — not 'मैं दूध पीता'.",
+      "materials": [
+        "जानवरों के नाम की पर्चियाँ या चित्र कार्ड (animal chits or picture cards)"
+      ],
+      "source_refs": [
+        "W1D4",
+        "W13D6"
+      ],
+      "frequency_count": 2
+    },
+    {
+      "strategy_id": "ol-game-mere-bare-mein-batao",
+      "strategy_name_hindi": "मेरे बारे में बताओ",
+      "strategy_name_english": "Mystery Box Tell-About",
+      "type": "competency",
+      "competency_ids": [
+        "OL7",
+        "OL6"
+      ],
+      "how_to_hindi": "एक बक्से में कुछ परिचित वस्तुएँ रखें; बच्चे बारी-बारी से आँख बंद करके एक वस्तु निकालें, छूकर अंदाज़ा लगाएँ कि वह क्या है, फिर उस वस्तु से जुड़ा अपने जीवन का कोई किस्सा/बात बताएँ।",
+      "how_to_english": "Fill a box with everyday objects; one at a time, a child pulls one out with eyes closed, guesses it by touch, then tells a short personal story or anecdote connected to it.",
+      "detailed_explanation_hindi": "वस्तुएँ इकट्ठा करना कठिन हो तो उनके चित्र कार्ड का उपयोग करें। गतिविधि से पहले बच्चों को उदाहरण देकर स्पष्ट रूप से समझाएँ।",
+      "detailed_explanation_english": "Picture cards can replace real objects if gathering them is hard. Model the full turn with an example before starting. (BM p.163)",
+      "example": "पेंसिल निकालने पर: 'मेरी पेंसिल छोटी हो गई थी तो मैंने उसके पीछे पेन का ढक्कन लगाकर उसे बड़ा कर लिया था।'",
+      "materials": [
+        "बक्सा और परिचित वस्तुएँ या उनके चित्र कार्ड (box with everyday objects or picture cards)"
+      ],
+      "source_refs": [
+        "W3D1",
+        "W13D2"
+      ],
+      "frequency_count": 2
+    },
+    {
+      "strategy_id": "ol-game-tota-maina",
+      "strategy_name_hindi": "तोता-मैना की अनोखी जोड़ी",
+      "strategy_name_english": "Matching-Pairs Chant Game",
+      "type": "competency",
+      "competency_ids": [
+        "OL7",
+        "OL4"
+      ],
+      "how_to_hindi": "बच्चों को जोड़ियों में बाँटकर हर जोड़ी को आपस में जुड़ी चीज़ों (जैसे ताला-चाबी) का चित्र कार्ड दें; शिक्षक जोड़ी के पास जाकर लय में पूछें 'तोता-मैना की अनोखी है जोड़ी, अब तुम बताओ एक नई जोड़ी'; बच्चे अपनी जोड़ी का नाम बताएँ और उससे जुड़ा कोई मज़ेदार किस्सा सुनाएँ।",
+      "how_to_english": "Give each pair of children a card showing two things that go together (lock–key, needle–thread). Walk up to a pair and chant the game's rhyme; the pair names their object-pair and tells a fun story about how it's used.",
+      "detailed_explanation_hindi": "जोड़ियों के नाम मौखिक रूप से भी दे सकते हैं। बच्चों को निर्देश दें कि खेल खत्म होने तक उन्हें अपनी जोड़ी का नाम याद रखना है।",
+      "detailed_explanation_english": "Pairs can be assigned orally if there are no cards. Children must remember their pair's name until the game ends. (BM p.162)",
+      "materials": [
+        "जोड़ी वाली वस्तुओं के चित्र कार्ड (paired-object picture cards) — optional"
+      ],
+      "source_refs": [
+        "W4D4",
+        "W20D6"
+      ],
+      "frequency_count": 2
+    },
+    {
+      "strategy_id": "ol-game-karke-dikhao",
+      "strategy_name_hindi": "करके दिखाओ",
+      "strategy_name_english": "Act-It-Out Chit Game",
+      "type": "competency",
+      "competency_ids": [
+        "OL7"
+      ],
+      "how_to_hindi": "गोल घेरे में बैठे बच्चे ताली बजने तक कागज़ की गेंद आगे बढ़ाते हैं; ताली रुकने पर जिसके पास गेंद हो, वह एक पर्ची उठाकर उसमें लिखा कार्य (कविता सुनाना, गाना, जानवर की आवाज़ निकालना, चुटकुला सुनाना आदि) करके दिखाता है।",
+      "how_to_english": "Children sit in a circle and pass a paper ball while the teacher claps. When the clapping stops, the child holding the ball picks a chit and performs the task written on it (recite a poem, sing, mimic an animal, tell a joke).",
+      "detailed_explanation_hindi": "पहले से अलग-अलग कार्यों की पर्चियाँ बनाकर घेरे के बीच रखें। निर्देश एवं उदाहरण देकर खेल समझाएँ, फिर चरणों के अनुसार कराएँ। यदि बच्चा पर्ची नहीं पढ़ पाता तो शिक्षक पढ़कर सुनाएँ — यह पढ़ने की परीक्षा नहीं, बोलने का अवसर है। अंत में आवश्यकतानुसार गतिविधि पर चर्चा करें।",
+      "detailed_explanation_english": "Prepare chits with a mix of performance tasks beforehand and place them in the middle of the circle. Explain with a demonstration before starting. If a child can't read their chit, read it for them — the game is an oral-expression opportunity, not a reading test. Close with a brief discussion if useful. (BM p.161)",
+      "materials": [
+        "पर्चियाँ (chits)",
+        "कागज़ की गेंद (paper ball)"
+      ],
+      "source_refs": [
+        "W1D1"
+      ],
+      "frequency_count": 1
+    },
+    {
+      "strategy_id": "ol-game-main-jo-kahun",
+      "strategy_name_hindi": "जो मैं कहूँ",
+      "strategy_name_english": "Follow My Command",
+      "type": "competency",
+      "competency_ids": [
+        "OL7"
+      ],
+      "how_to_hindi": "गोल घेरे में बैठे बच्चों के लिए संख्या या शब्द से जुड़े निर्देश तय करें (जैसे '1' बोलने पर खड़े होकर ताली बजाना, '2' पर धीरे से कूदना); निर्देश बोलें और बच्चे उसके अनुसार प्रतिक्रिया दें; धीरे-धीरे नए निर्देश जोड़ें।",
+      "how_to_english": "Agree on a code with the circle (say '1' → stand and clap; '2' → hop gently in place); call the codes and children respond; keep adding new commands to raise the listening challenge.",
+      "source_refs": [
+        "W2D4"
+      ],
+      "frequency_count": 1
+    },
+    {
+      "strategy_id": "ol-game-baat-suno",
+      "strategy_name_hindi": "बात सुनो भाई बात सुनो",
+      "strategy_name_english": "Whispered Instruction Circle",
+      "type": "competency",
+      "competency_ids": [
+        "OL7"
+      ],
+      "how_to_hindi": "गोल घेरे में एक बच्चा 'बात सुनो भाई बात सुनो' बोलते हुए चक्कर लगाता है और किसी एक बच्चे के कान में धीरे से कोई निर्देश बोलता है; वह बच्चा निर्देश का पालन करता है और खेल इसी तरह आगे बढ़ता है।",
+      "how_to_english": "One child walks around the circle chanting 'बात सुनो भाई बात सुनो' and whispers an instruction into a seated child's ear (e.g., 'ask the child ahead of you their name'); that child carries it out, then takes the next turn.",
+      "detailed_explanation_hindi": "शिक्षक नए-नए निर्देश जोड़ें, कुछ पूरी कक्षा के लिए भी — जैसे सब बच्चे 'बात सुनो, जल्दी-जल्दी से' एक लाइन बनाओ, या 'बात सुनो, जल्दी-जल्दी से' गाना गाओ।",
+      "detailed_explanation_english": "Keep adding new instructions, including whole-class ones ('बात सुनो, जल्दी-जल्दी से — form a line', '… sing a song'). (BM p.162)",
+      "source_refs": [
+        "W5D6"
+      ],
+      "frequency_count": 1
+    },
+    {
+      "strategy_id": "se-batao-mera-naam",
+      "strategy_name_hindi": "बताओ मेरा नाम",
+      "strategy_name_english": "Name Your Friends",
+      "type": "competency",
+      "competency_ids": [
+        "SE1"
+      ],
+      "how_to_hindi": "कागज़ की गेंद एक-एक बच्चे की ओर बढ़ाएँ; जिसके पास गेंद पहुँचे, वह कक्षा या मोहल्ले के अपने दोस्तों के नाम बताए; जो नाम पहले कोई बता चुका है, उसे न दोहराए।",
+      "how_to_english": "Toss the paper ball to one child at a time; the child names their friends from class or the neighbourhood, without repeating any name already said.",
+      "materials": [
+        "कागज़ की गेंद (paper ball)"
+      ],
+      "source_refs": [
+        "W4D4",
+        "W20D6"
+      ],
+      "frequency_count": 2
+    },
+    {
+      "strategy_id": "se-parichay",
+      "strategy_name_hindi": "परिचय",
+      "strategy_name_english": "Name-and-Likes Circle",
+      "type": "competency",
+      "competency_ids": [
+        "SE1"
+      ],
+      "how_to_hindi": "बच्चों को गोल घेरे में बिठाकर कोई परिचित गीत/कविता पंक्ति-दर-पंक्ति गवाएँ; फिर प्रत्येक बच्चा अपना नाम और उसे क्या अच्छा लगता है, यह बताए।",
+      "how_to_english": "Seat children in a circle and sing a familiar song or poem line by line, with them repeating; then each child says their name and one thing they like.",
+      "detailed_explanation_hindi": "ऐसा गीत चुनें जिसे बच्चे जानते हों। यदि कोई बच्चा परेशान लगे तो पहले उससे बात करके उसे प्रोत्साहित करें। आप एक-एक पंक्ति गाएँ और बच्चे दोहराएँ; पकड़ बन जाने पर पूरा गीत साथ गाएँ, फिर परिचय कराएँ।",
+      "detailed_explanation_english": "Choose a song children already know. If a child looks uneasy, speak with them first and encourage them. Sing one line at a time for children to echo; once they have it, sing together, then move to introductions. (BM p.159)",
+      "source_refs": [
+        "W1D1"
+      ],
+      "frequency_count": 1
+    },
+    {
+      "strategy_id": "se-mehsoos-karein-chalein",
+      "strategy_name_hindi": "महसूस करें और चलें",
+      "strategy_name_english": "Move Like… Circle Game",
+      "type": "competency",
+      "competency_ids": [
+        "SE1"
+      ],
+      "how_to_hindi": "घेरे में बैठे किसी बच्चे की ओर इशारा करके उसे एक अलग तरह से चलने को कहें (जैसे कछुए की तरह धीरे-धीरे, घोड़े की तरह दौड़ना); बारी-बारी से सभी बच्चों को अलग-अलग चाल दिखाने का अवसर दें।",
+      "how_to_english": "Point to a child in the circle and name a way to move (slowly like a tortoise, galloping like a horse); rotate until every child has acted out a different movement.",
+      "detailed_explanation_hindi": "यदि कोई बच्चा चाल न दिखा पाए तो स्वयं उसकी मदद करें या किसी अन्य बच्चे से मदद करवाएँ।",
+      "detailed_explanation_english": "If a child can't manage a movement, help them yourself or pair them with a classmate who can. (BM p.159)",
+      "source_refs": [
+        "W1D4"
+      ],
+      "frequency_count": 1
+    },
+    {
+      "strategy_id": "se-meri-lal-batti",
+      "strategy_name_hindi": "मेरी लाल बत्ती",
+      "strategy_name_english": "Safe Place Traffic Light",
+      "type": "competency",
+      "competency_ids": [
+        "SE1",
+        "SE2"
+      ],
+      "how_to_hindi": "बच्चों को ट्रैफिक लाइट के रंगों का अर्थ समझाएँ; फिर वे घर, स्कूल, पड़ोसी का घर, अस्पताल, दुकान आदि स्थानों के चित्र बनाएँ और सोचें कि कौन-सा स्थान उनके लिए सुरक्षित है — सुरक्षित पर हरा और असुरक्षित पर लाल गोला बनाएँ।",
+      "how_to_english": "Explain what traffic-light colours mean; children draw familiar places (home, school, a neighbour's house, hospital, shop, a relative's or friend's home), think about whether each feels safe, and mark safe places with a green circle and unsafe ones with red.",
+      "detailed_explanation_hindi": "बच्चे चाहें तो बिना जवाब बताए भी रह सकते हैं। यदि किसी बच्चे को सबके सामने बताने में परेशानी हो तो उसे विवश न करें। (किसी बच्चे की प्रतिक्रिया चिंता का संकेत दे तो उस पर ध्यान दें।)",
+      "detailed_explanation_english": "Children may keep their answers private; never press a child who is uncomfortable sharing in front of others. This is a sensitive personal-safety activity — handle disclosures with care. (BM p.160)",
+      "materials": [
+        "कागज़, हरा और लाल रंग (paper, green and red colours)"
+      ],
+      "source_refs": [
+        "W3D4"
+      ],
+      "frequency_count": 1
+    },
+    {
+      "strategy_id": "se-bhavnaen-vyakt-karna",
+      "strategy_name_hindi": "भावनाएँ व्यक्त करना",
+      "strategy_name_english": "Act the Feeling",
+      "type": "competency",
+      "competency_ids": [
+        "SE2"
+      ],
+      "how_to_hindi": "किसी एक स्थिति का अभिनय करके दिखाएँ; फिर बच्चों को कुछ स्थितियाँ दें और वे चेहरे के हाव-भाव से दिखाएँ कि उस स्थिति में वे कैसी प्रतिक्रिया देते; हर स्थिति के लिए 3-4 बच्चों को अवसर दें।",
+      "how_to_english": "Act out one situation yourself as a model; then give children everyday situations and have them show, through facial expression and body language, how they would react — 3–4 children per situation.",
+      "example": "स्थितियाँ: चलते-चलते गिर पड़ना; भाई/बहन ने आपका मनपसंद खाना खा लिया; परिवार वालों ने जन्मदिन पर उपहार दिया।",
+      "source_refs": [
+        "W3D1",
+        "W13D2"
+      ],
+      "frequency_count": 2
+    },
+    {
+      "strategy_id": "se-mujhe-kab-achchha-laga",
+      "strategy_name_hindi": "मुझे कब अच्छा लगा",
+      "strategy_name_english": "Thank-You Moments Circle",
+      "type": "competency",
+      "competency_ids": [
+        "SE2"
+      ],
+      "how_to_hindi": "कागज़ की गेंद बारी-बारी से बच्चों के बीच घुमाएँ; जिसके पास गेंद पहुँचे, वह बताए कि कब उसका मन किसी को 'थैंक्यू' बोलने का हुआ। शुरुआत शिक्षक स्वयं करें।",
+      "how_to_english": "Pass a paper ball around; the child holding it describes a time they felt like thanking someone (e.g., when someone helped them). The teacher models first.",
+      "materials": [
+        "कागज़ की गेंद (paper ball)"
+      ],
+      "source_refs": [
+        "W4D1",
+        "W20D2"
+      ],
+      "frequency_count": 2
+    },
+    {
+      "strategy_id": "se-aalsi-billi",
+      "strategy_name_hindi": "आलसी बिल्ली",
+      "strategy_name_english": "Lazy Cat Relaxation",
+      "type": "competency",
+      "competency_ids": [
+        "SE2"
+      ],
+      "how_to_hindi": "बच्चे देर तक सोकर उठती आलसी बिल्ली का अभिनय करें — लंबी उबासी, म्याऊँ, हाथ-पैर-पीठ फैलाना; फिर हवा में तैरते पंख का अभिनय करें, अचानक मूर्ति बन जाएँ और फिर से पंख की तरह हल्के होकर आराम की अवस्था में आ जाएँ। शिक्षक साथ-साथ स्वयं करें।",
+      "how_to_english": "Children act out a lazy cat waking from a long sleep — big yawn, meow, stretching arms, legs and back; then float like a feather for about 10 seconds, freeze into a statue on cue, and drift back to feather-like rest. The teacher does it alongside them.",
+      "detailed_explanation_hindi": "प्रक्रिया 2-3 बार दोहराएँ। सुनिश्चित करें कि गतिविधि समाप्त होने पर बच्चे पंख की तरह विश्रामपूर्ण अवस्था में हों।",
+      "detailed_explanation_english": "Repeat the sequence 2–3 times, and make sure it ends with children in the calm, feather-like resting state — it works as a settling routine. (BM p.159)",
+      "source_refs": [
+        "W5D6",
+        "W13D6"
+      ],
+      "frequency_count": 2
+    },
+    {
+      "strategy_id": "se-kya-achchha-laga",
+      "strategy_name_hindi": "क्या अच्छा लगा?",
+      "strategy_name_english": "What Did You Like Today?",
+      "type": "competency",
+      "competency_ids": [
+        "SE2"
+      ],
+      "how_to_hindi": "बच्चों को गोल घेरे में बिठाकर कागज़ की गेंद घुमाएँ; गेंद जिसके पास पहुँचे, वह बताए कि आज उसे कौन-सी चीज़ सबसे अच्छी लगी। शुरुआत शिक्षक स्वयं अपनी बात बताकर करें।",
+      "how_to_english": "Pass a paper ball around the circle; whoever receives it says what they liked most today. The teacher goes first, modelling an answer.",
+      "detailed_explanation_hindi": "अपनी बात पूरी कक्षा को संबोधित करते हुए बताएँ। सभी बच्चों को बारी-बारी से अपनी बात कहने में सहायता करें।",
+      "detailed_explanation_english": "When modelling, address the whole class. Support every child to take a turn. (BM p.159)",
+      "materials": [
+        "कागज़ की गेंद (paper ball)"
+      ],
+      "source_refs": [
+        "W2D1"
+      ],
+      "frequency_count": 1
+    },
+    {
+      "strategy_id": "se-bhavnaon-ke-chitra",
+      "strategy_name_hindi": "भावनाओं के भी चित्र होते हैं",
+      "strategy_name_english": "Feelings Have Faces",
+      "type": "competency",
+      "competency_ids": [
+        "SE2"
+      ],
+      "how_to_hindi": "बच्चों को जोड़ियों में बाँटकर कागज़ दें; उन्हें कुछ स्थितियाँ बताएँ और बच्चे उस स्थिति में होने वाली भावना का चेहरा (जैसे हँसता हुआ चेहरा) बनाएँ; फिर एक-दूसरे से भावनाएँ पूछकर उसका चेहरा बनाएँ।",
+      "how_to_english": "Give pairs a sheet of paper; describe a few situations and have children draw the face showing how they would feel (smiling, sad…); partners then ask each other about a feeling and draw it.",
+      "detailed_explanation_hindi": "कागज़ न हो तो यह कार्य कॉपी पर भी कर सकते हैं। सहयोग के लिए बोर्ड पर एक उदाहरण चेहरा (स्माइली) बना दें। आवश्यकतानुसार बच्चों के पास जाकर सहायता करें।",
+      "detailed_explanation_english": "Notebooks work if paper is short. Draw a sample face on the board as support, and circulate to help. (BM p.159)",
+      "materials": [
+        "कागज़ या कॉपी (paper or notebook)"
+      ],
+      "source_refs": [
+        "W2D4"
+      ],
+      "frequency_count": 1
+    },
+    {
+      "strategy_id": "se-superhero",
+      "strategy_name_hindi": "सुपरहीरो की शक्ति",
+      "strategy_name_english": "My Superpower",
+      "type": "competency",
+      "competency_ids": [
+        "SE2",
+        "OL7"
+      ],
+      "how_to_hindi": "प्रचलित सुपरहीरो और उनकी शक्तियों पर बात करें; बच्चों से पूछें कि वे सुपरहीरो होते तो कौन-सी शक्ति चाहते; कुछ समय उन्हें सुपरहीरो की तरह व्यवहार करने दें और पूछें कि वे अपनी शक्ति से क्या करते और किसकी मदद करते।",
+      "how_to_english": "Talk about popular superheroes and their powers; ask children which power they'd want, let them act as that superhero for a moment, then ask what they would do with it and whom they would help.",
+      "detailed_explanation_hindi": "पहले से सुपरहीरो के नाम और उनकी शक्तियों की सूची बनाकर रखें। बच्चों को अपना उत्तर देने से पहले एक उदाहरण देकर बताएँ।",
+      "detailed_explanation_english": "Keep a list of superheroes and their powers ready, and model an answer before children respond. (BM p.160)",
+      "source_refs": [
+        "W6D6"
+      ],
+      "frequency_count": 1
+    },
+    {
+      "strategy_id": "dc-first-sound-words",
+      "strategy_name_hindi": "पहली ध्वनि पहचानकर प्रतीक लिखना",
+      "strategy_name_english": "First-Sound Word Lists",
+      "type": "competency",
+      "competency_ids": [
+        "DC1",
+        "DC2"
+      ],
+      "how_to_hindi": "लक्षित वर्ण से शुरू होने वाले 4-5 शब्द बोर्ड पर लिखकर पढ़ें; बच्चे प्रत्येक शब्द की पहली ध्वनि पहचानें और उसका प्रतीक बोर्ड पर लिखने का अभ्यास करें; फिर शब्दों का पहला वर्ण कॉपी में लिखें।",
+      "how_to_english": "Write and read aloud 4–5 words beginning with the target letter; children identify each word's first sound and practise writing its symbol on the board, then write the first letters in their notebooks.",
+      "example": "'रबर' का पहला वर्ण 'र'; 'नमक' का पहला वर्ण 'न'.",
+      "variants": [
+        {
+          "note": "Target is a letter+matra (e.g. words starting with ी-syllables) rather than a bare letter",
+          "source_refs": [
+            "W1D5"
+          ]
+        },
+        {
+          "note": "Also used for conjunct letters (क्ष, ष, ज्ञ) and nasal/vowel letters (अं, औ, ण)",
+          "source_refs": [
+            "W4D3",
+            "W4D4"
+          ]
+        }
+      ],
+      "source_refs": [
+        "W1D1",
+        "W1D2",
+        "W1D3",
+        "W1D4",
+        "W1D5",
+        "W2D1",
+        "W2D2",
+        "W2D3",
+        "W2D4",
+        "W3D1",
+        "W3D2",
+        "W3D3",
+        "W3D4",
+        "W4D1",
+        "W4D2",
+        "W4D3",
+        "W4D4"
+      ],
+      "frequency_count": 17
+    },
+    {
+      "strategy_id": "dc-letter-grid-drill",
+      "strategy_name_hindi": "ग्रिड बनाकर वर्ण/अक्षर पहचान",
+      "strategy_name_english": "Letter/Akshar Grid Drill",
+      "type": "competency",
+      "competency_ids": [
+        "DC2",
+        "DC4"
+      ],
+      "how_to_hindi": "जो बच्चे वर्ण/अक्षर नहीं पहचान पा रहे, उनके साथ बोर्ड पर सिखाए गए वर्णों (और मात्रा-युक्त अक्षरों) की छोटी ग्रिड बनाकर पहचान का अभ्यास करवाएँ।",
+      "how_to_english": "For children not yet recognising letters, draw a small grid of taught letters (and letter+matra pairs) on the board and practise recognition by pointing and naming.",
+      "detailed_explanation_hindi": "लक्षित क्रमिक ग्रिड बनाएँ और 2-3 बार उच्चारण करके दिखाएँ; बच्चे साथ दोहराएँ; फिर कुछ बच्चों को बुलाकर ग्रिड से वर्ण/अक्षर पहचानने को कहें। अक्षर पहचान से संबंधित कोई खेल कराएँ और कार्यपुस्तिका का अभ्यास कराएँ। ग्रिड में केवल वही वर्ण रखें जिन पर पहले कार्य हो चुका है।",
+      "detailed_explanation_english": "Draw an ordered target grid and read it aloud 2–3 times with children echoing; then call individual children to point to and name letters/akshars. Add a recognition game and workbook practice. Only include letters already taught. (BM p.173)",
+      "example": "Ordered grid: म मा / र रा / स सा / न ना (W1D3).",
+      "variants": [
+        {
+          "note": "Dropped from daily remedial work from Week 14 — Group A starts directly at blending and word reading",
+          "source_refs": [
+            "W13D2",
+            "W13D3"
+          ]
+        }
+      ],
+      "source_refs": [
+        "W1D2",
+        "W1D3",
+        "W1D4",
+        "W2D1",
+        "W2D2",
+        "W2D3",
+        "W2D4",
+        "W3D1",
+        "W3D2",
+        "W3D3",
+        "W3D4",
+        "W4D1",
+        "W4D2",
+        "W4D3",
+        "W4D4",
+        "W5D1",
+        "W5D2",
+        "W5D3",
+        "W5D4",
+        "W6D1",
+        "W6D2",
+        "W6D3",
+        "W6D4",
+        "W7D1",
+        "W7D2",
+        "W7D3",
+        "W7D4",
+        "W8D1",
+        "W8D2",
+        "W8D3",
+        "W8D4",
+        "W9D1",
+        "W9D2",
+        "W9D3",
+        "W9D4",
+        "W10D1",
+        "W10D2",
+        "W10D3",
+        "W10D4",
+        "W11D1",
+        "W11D2",
+        "W11D3",
+        "W11D4",
+        "W12D1",
+        "W12D2",
+        "W12D3",
+        "W12D4",
+        "W13D2",
+        "W13D3",
+        "W20D2"
+      ],
+      "frequency_count": 50
+    },
+    {
+      "strategy_id": "dc-letter-id",
+      "strategy_name_hindi": "वर्ण पहचान पर कार्य (बोर्ड पर गोला लगाना)",
+      "strategy_name_english": "Letter Hunt and Letter-Sound Work",
+      "type": "competency",
+      "competency_ids": [
+        "DC2"
+      ],
+      "how_to_hindi": "लक्षित वर्णों को 8-10 अन्य वर्णों के साथ बोर्ड पर लिखें; 4-5 बच्चों को बुलाकर लक्षित वर्ण पहचानने और उस पर गोला लगाने को कहें।",
+      "how_to_english": "Write the target letters scattered among 8–10 other letters on the board; call 4–5 children up to find and circle the target letters.",
+      "detailed_explanation_hindi": "पूर्ण क्रम: (1) लक्षित वर्ण से शुरू होने वाला कोई परिचित शब्द बोर्ड पर लिखें, शब्द तोड़कर पहली ध्वनि पर बल दें। (2) बच्चों से उसी ध्वनि से शुरू होने वाले 4-5 शब्द पूछकर लिखें। (3) किसी एक शब्द की पहली ध्वनि पर घेरा लगाएँ, उसे अलग लिखें और वर्ण का 3-4 बार स्पष्ट उच्चारण करें। (4) बच्चे बोर्ड के शब्दों में लक्षित वर्ण पर घेरा लगाएँ और उच्चारण करें। (5) कक्षा में प्रदर्शित सामग्रियों और पाठ्यपुस्तक में वर्ण ढूँढवाएँ। (6) हवा, ज़मीन/रेत, हथेली, पीठ पर अंगुली से, और हवा में कोहनी या पैर से लिखवाएँ। (7) कार्यपुस्तिका में अभ्यास। ध्यान दें: यदि बच्चे 'नी', 'ना', 'ने' को 'न' वर्ण की तरह पहचान रहे हैं, तो बताएँ कि इनकी ध्वनियाँ 'न' से अलग हैं। गति धीमी और उच्चारण शुद्ध रखें; लिखवाने से पहले स्वयं लिखकर दिखाएँ।",
+      "detailed_explanation_english": "Full routine: (1) write a familiar word starting with the target letter and break it to stress the first sound; (2) elicit 4–5 more words with that first sound and write them; (3) circle the first sound in one word, write it separately and pronounce it clearly 3–4 times; (4) children circle the letter in the board words and say it; (5) children find the letter in classroom print and the textbook; (6) multisensory writing — finger in the air, on sand/floor, on the palm, on a friend's back, with elbow or foot in the air; (7) workbook practice. Watch-out: if children treat नी/ना/ने as the letter न, point out that these sounds differ from bare न. Keep the pace slow and pronunciation clean; always model writing before children write. (BM p.172)",
+      "shared_resource_refs": [
+        "SR-DIGITAL-WB"
+      ],
+      "source_refs": [
+        "W1D1",
+        "W1D2"
+      ],
+      "frequency_count": 2
+    },
+    {
+      "strategy_id": "dc-matra-sound-contrast",
+      "strategy_name_hindi": "मात्रा लगाकर ध्वनि का अंतर पहचानना",
+      "strategy_name_english": "Matra Sound Contrast",
+      "type": "competency",
+      "competency_ids": [
+        "DC3",
+        "DC4"
+      ],
+      "how_to_hindi": "पहले सीखे गए वर्णों में लक्षित मात्रा का प्रतीक लगाकर जोड़े लिखें (जैसे न-ना, क-का); दोनों का उच्चारण करें और बच्चों से ध्वनि का अंतर पहचानने का अभ्यास करवाएँ।",
+      "how_to_english": "Write known letters with and without the target matra (न–ना, क–का); pronounce both and have children hear and name the difference in sound.",
+      "detailed_explanation_hindi": "बोर्ड पर वर्ण लिखकर उच्चारण करें, फिर उसमें मात्रा लगाकर उच्चारण करें। सिखाए गए वर्णों और लक्षित मात्रा से क्रमिक ग्रिड (स-से, म-मे…) बनाएँ और 2-3 बार सीधे-सीधे उच्चारण करें; फिर अन्य वर्णों पर यही करें। अंत में क्रमिक और अक्रमिक ग्रिड से वर्ण/अक्षर पढ़वाते हुए ध्वनियों का अंतर बताएँ। मात्रा पहचान से जुड़ा कोई खेल कराएँ और पाठ्यपुस्तक/नोटबुक में अभ्यास कराएँ। ग्रिड में केवल सिखाए गए वर्ण ही रखें।",
+      "detailed_explanation_english": "Say a letter, then add the matra and say the new sound. Build an ordered grid of taught letters with and without the matra (स–से, म–मे…) and read it straight through 2–3 times; repeat with other letters. Then have children read from both ordered and jumbled grids, naming the sound differences. Add a matra-recognition game and textbook/notebook practice. Use only letters already taught. (BM p.173)",
+      "variants": [
+        {
+          "note": "ि matra",
+          "source_refs": [
+            "W1D4"
+          ]
+        },
+        {
+          "note": "ी matra, embedded in word-level work",
+          "source_refs": [
+            "W1D5"
+          ]
+        },
+        {
+          "note": "Contrasting two similar matras side by side (ि/ी, ो/ौ, ा/ु)",
+          "source_refs": [
+            "W4D2",
+            "W4D3",
+            "W4D5"
+          ]
+        }
+      ],
+      "source_refs": [
+        "W1D3",
+        "W1D4",
+        "W1D5",
+        "W2D2",
+        "W2D4",
+        "W2D5",
+        "W3D2",
+        "W3D4",
+        "W3D5",
+        "W4D1",
+        "W4D2",
+        "W4D3",
+        "W4D5"
+      ],
+      "frequency_count": 13
+    },
+    {
+      "strategy_id": "dc-break-and-blend",
+      "strategy_name_hindi": "वर्णों/अक्षरों को तोड़कर लिखना और मिलाकर पढ़ना",
+      "strategy_name_english": "Break-and-Blend",
+      "type": "competency",
+      "competency_ids": [
+        "DC5"
+      ],
+      "how_to_hindi": "बोर्ड पर शब्द के वर्ण/अक्षर अलग-अलग लिखें (जैसे क र - कर); पहले प्रत्येक का अलग उच्चारण करें, फिर मिलाकर एक इकाई के रूप में पढ़कर दिखाएँ; बच्चे शब्दों को कॉपी में लिखें और पढ़ें।",
+      "how_to_english": "Write a word split into its letters/syllables (क र → कर); say each part separately, then blend and read it as one unit; children copy and read the words.",
+      "detailed_explanation_hindi": "बोर्ड पर दो छोटे बॉक्स बनाकर उनमें वर्ण/अक्षर बोलते हुए लिखें और सामने बड़े बॉक्स में उनसे बना शब्द लिखें (बा + ल → बाल)। पहले अलग-अलग, फिर एक इकाई के रूप में पढ़ें। कई शब्दों के साथ यही दोहराएँ, कुछ बच्चों से स्वतंत्र रूप से पढ़वाएँ, और शब्द पठन के लिए ग्रिड का उपयोग करें। ध्यान दें: अक्षर को एक इकाई के रूप में पढ़ें — 'ला' को 'ल में आ की मात्रा' की तरह न पढ़ें।",
+      "detailed_explanation_english": "Draw two small boxes on the board, write a letter/akshar in each while saying it, and write the blended word in a larger box beside them (बा + ल → बाल). Read the parts separately, then as one unit. Repeat with several words, let a few children read independently, and use a grid for word reading. Watch-out: read each akshar as a single unit — say 'ला', not 'ल with the आ matra'. (BM p.174)",
+      "example": "क र - कर, न म - नम, म न - मन (matra-free); का र - कार, नी म - नीम (with matras).",
+      "variants": [
+        {
+          "note": "With matra-bearing akshars",
+          "source_refs": [
+            "W1D3",
+            "W1D5"
+          ]
+        },
+        {
+          "note": "Remedial (Group A): matra-free (अमात्रिक) words only, for children who already recognise letters",
+          "source_refs": [
+            "W1D2",
+            "W1D3",
+            "W1D4"
+          ]
+        },
+        {
+          "note": "Remedial (Group A) blending with matra-bearing and 3-4 akshar words once letters are secure",
+          "source_refs": [
+            "W2D2",
+            "W3D1",
+            "W4D1",
+            "W4D4"
+          ]
+        },
+        {
+          "note": "Whole-class blending of 3-4 akshar words (र सो ई → रसोई)",
+          "source_refs": [
+            "W5D4"
+          ]
+        }
+      ],
+      "source_refs": [
+        "W1D2",
+        "W1D3",
+        "W1D4",
+        "W1D5",
+        "W2D1",
+        "W2D2",
+        "W2D3",
+        "W2D4",
+        "W2D5",
+        "W3D1",
+        "W3D2",
+        "W3D3",
+        "W3D4",
+        "W3D5",
+        "W4D1",
+        "W4D2",
+        "W4D3",
+        "W4D4",
+        "W5D1",
+        "W5D2",
+        "W5D3",
+        "W5D4",
+        "W6D1",
+        "W6D2",
+        "W6D3",
+        "W6D4",
+        "W7D1",
+        "W7D2",
+        "W7D3",
+        "W7D4",
+        "W8D1",
+        "W8D2",
+        "W8D3",
+        "W8D4",
+        "W9D1",
+        "W9D2",
+        "W9D3",
+        "W9D4",
+        "W10D1",
+        "W10D2",
+        "W10D3",
+        "W10D4",
+        "W11D1",
+        "W11D2",
+        "W11D3",
+        "W11D4",
+        "W12D1",
+        "W12D2",
+        "W12D3",
+        "W12D4",
+        "W13D2",
+        "W13D3",
+        "W13D4",
+        "W13D5",
+        "W14D1",
+        "W14D3",
+        "W15D1",
+        "W15D3",
+        "W16D1",
+        "W16D3",
+        "W17D1",
+        "W17D3",
+        "W18D1",
+        "W18D3",
+        "W19D1",
+        "W19D3",
+        "W20D2",
+        "W20D3",
+        "W20D4",
+        "W21D1",
+        "W21D3",
+        "W22D1",
+        "W23D1",
+        "W23D3",
+        "W24D1",
+        "W25D1"
+      ],
+      "frequency_count": 76
+    },
+    {
+      "strategy_id": "dc-word-read-copy",
+      "strategy_name_hindi": "शब्द पठन एवं लेखन (बोर्ड से)",
+      "strategy_name_english": "Board Word Reading & Copying",
+      "type": "competency",
+      "competency_ids": [
+        "DC6",
+        "WR2"
+      ],
+      "how_to_hindi": "सीखे गए वर्णों/मात्राओं से बने कुछ शब्द बोर्ड पर लिखें; बच्चे उन्हें एक इकाई के रूप में पढ़ें, फिर नोटबुक/कॉपी में लिखें और पढ़ें।",
+      "how_to_english": "Write several words made only of taught letters/matras; children read each as a whole word, then copy and read them in their notebooks.",
+      "detailed_explanation_hindi": "4-5 शब्द बोर्ड पर लिखकर दो बार आदर्श रूप से पढ़ें। शब्द को एक इकाई की तरह पढ़ें, तोड़कर नहीं; पढ़ते समय शब्द के नीचे अंगुली रखें। फिर कुछ और शब्द लिखकर बच्चों से पढ़वाएँ और कार्यपुस्तिका के अभ्यास कराएँ।",
+      "detailed_explanation_english": "Model-read 4–5 board words twice, running a finger under each word and reading it as one unit, not letter by letter. Add more words for children to read, then do the workbook exercises. Check that children are reading whole words. (BM p.174)",
+      "materials": [
+        "कॉपी/नोटबुक (notebook)"
+      ],
+      "variants": [
+        {
+          "note": "Remedial (Group A): teacher writes a list of words (often lesson words) and children simply read them aloud",
+          "source_refs": [
+            "W14D1",
+            "W14D2",
+            "W14D4",
+            "W15D1",
+            "W15D2",
+            "W15D4",
+            "W16D1",
+            "W16D2",
+            "W16D4",
+            "W17D1",
+            "W17D2",
+            "W17D4"
+          ]
+        }
+      ],
+      "source_refs": [
+        "W1D3",
+        "W1D4",
+        "W1D5",
+        "W2D2",
+        "W2D4",
+        "W2D5",
+        "W3D2",
+        "W3D3",
+        "W3D4",
+        "W3D5",
+        "W4D2",
+        "W4D4",
+        "W4D5",
+        "W13D4",
+        "W13D5",
+        "W14D1",
+        "W14D2",
+        "W14D4",
+        "W15D1",
+        "W15D2",
+        "W15D4",
+        "W16D1",
+        "W16D2",
+        "W16D4",
+        "W17D1",
+        "W17D2",
+        "W17D4",
+        "W18D1",
+        "W18D2",
+        "W18D4",
+        "W19D1",
+        "W19D2",
+        "W19D4",
+        "W20D3",
+        "W20D4",
+        "W20D5",
+        "W21D1",
+        "W21D2",
+        "W21D4",
+        "W22D1",
+        "W22D2",
+        "W22D3",
+        "W22D4",
+        "W23D1",
+        "W23D2",
+        "W23D3",
+        "W23D4",
+        "W24D1",
+        "W24D2",
+        "W24D3",
+        "W24D4",
+        "W25D1",
+        "W25D2",
+        "W25D3",
+        "W25D4"
+      ],
+      "frequency_count": 55
+    },
+    {
+      "strategy_id": "dc-grid-word-search",
+      "strategy_name_hindi": "ग्रिड से शब्द खोजना",
+      "strategy_name_english": "Word Search Grid",
+      "type": "competency",
+      "competency_ids": [
+        "DC7",
+        "DC6"
+      ],
+      "how_to_hindi": "बोर्ड पर एक छोटी ग्रिड बनाएँ जिसमें सीखे गए वर्णों से बने कुछ शब्द छिपे हों; शब्द खोजने की प्रक्रिया करके दिखाएँ; फिर बच्चे खोजे गए शब्द पढ़ते हुए कॉपी में लिखें।",
+      "how_to_english": "Draw a small letter grid on the board with known words hidden in it; model how to find one word, then children find the rest, read them and copy them.",
+      "variants": [
+        {
+          "note": "Model the search directions explicitly: left→right, top→bottom, diagonal",
+          "source_refs": [
+            "W6D3"
+          ]
+        },
+        {
+          "note": "Themed grid in remedial time: pairs find words from one category (e.g., sweets) and share",
+          "source_refs": [
+            "W7D5"
+          ]
+        },
+        {
+          "note": "Thematic grid as a creative activity for both groups together on the last revision day",
+          "source_refs": [
+            "W13D6"
+          ]
+        },
+        {
+          "note": "Model-then-do in the workbook: build a grid and demonstrate finding words left→right, top→bottom and diagonally, then make a sentence with each found word",
+          "source_refs": [
+            "W15D2"
+          ]
+        }
+      ],
+      "source_refs": [
+        "W1D5",
+        "W2D1",
+        "W3D1",
+        "W3D3",
+        "W3D4",
+        "W3D5",
+        "W4D1",
+        "W4D2",
+        "W6D3",
+        "W7D5",
+        "W9D5",
+        "W10D5",
+        "W11D5",
+        "W12D5",
+        "W13D6",
+        "W14D2",
+        "W14D3",
+        "W15D2",
+        "W15D3",
+        "W16D2",
+        "W16D3",
+        "W16D5",
+        "W17D2",
+        "W17D3",
+        "W18D2",
+        "W18D3",
+        "W19D2",
+        "W19D3",
+        "W20D6",
+        "W21D2",
+        "W22D2",
+        "W23D2",
+        "W24D2",
+        "W25D2"
+      ],
+      "frequency_count": 34
+    },
+    {
+      "strategy_id": "dc-make-words-from-letters",
+      "strategy_name_hindi": "दिए गए वर्णों/मात्रा से सार्थक शब्द बनाना",
+      "strategy_name_english": "Make Words from Given Letters",
+      "type": "competency",
+      "competency_ids": [
+        "DC7"
+      ],
+      "how_to_hindi": "बोर्ड पर कुछ वर्ण और मात्राएँ लिखें; उनसे 2-3 सार्थक शब्द बनाकर दिखाएँ; फिर जोड़ियों में बच्चे इन्हीं वर्णों/मात्राओं से ज़्यादा से ज़्यादा शब्द बनाकर कॉपी में लिखें और पढ़ें; अंत में 3-4 जोड़ियाँ अपने शब्द पढ़कर सुनाएँ।",
+      "how_to_english": "Write a set of letters and matras on the board and model building 2–3 meaningful words from them; pairs then make as many words as they can from the same set, write and read them, and 3–4 pairs read their lists aloud.",
+      "example": "वर्ण म, न, स, क, र, द, ल, ज + मात्रा ा → काला, बादल …",
+      "variants": [
+        {
+          "note": "Letters placed in a 4x4 grid; children find meaningful words reading top-to-bottom and left-to-right",
+          "source_refs": [
+            "W9D5"
+          ]
+        },
+        {
+          "note": "4x5 grid",
+          "source_refs": [
+            "W16D5"
+          ]
+        },
+        {
+          "note": "Teacher writes a set of letters plus 3-4 matras and models 2-3 words first; pairs then make as many as they can",
+          "source_refs": [
+            "W18D5",
+            "W19D5",
+            "W25D5"
+          ]
+        },
+        {
+          "note": "5x5 grid version",
+          "source_refs": [
+            "W23D5"
+          ]
+        }
+      ],
+      "source_refs": [
+        "W5D5",
+        "W9D5",
+        "W11D5",
+        "W16D5",
+        "W18D5",
+        "W19D5",
+        "W23D5",
+        "W25D5"
+      ],
+      "frequency_count": 8
+    },
+    {
+      "strategy_id": "dc-word-antakshari",
+      "strategy_name_hindi": "शब्द अंत्याक्षरी",
+      "strategy_name_english": "Word Chain (Last-Letter Chain)",
+      "type": "competency",
+      "competency_ids": [
+        "DC7"
+      ],
+      "how_to_hindi": "बोर्ड पर एक शब्द लिखें और उसके अंतिम वर्ण से नया शब्द बनाकर शृंखला आगे बढ़ाकर दिखाएँ (रात → तबला → लाल → लकीर → रथ); फिर बच्चे किसी दिए गए शब्द से 4-5 नए शब्द बनाकर लिखें।",
+      "how_to_english": "Write a word and model a chain where each new word starts with the last letter of the previous one (रात → तबला → लाल → लकीर → रथ); children then build a 4–5-word chain from a given starting word.",
+      "variants": [
+        {
+          "note": "Played orally as a word game, starting from a word in the lesson (नीमा → माता → ताला)",
+          "source_refs": [
+            "W5D4",
+            "W6D3"
+          ]
+        }
+      ],
+      "source_refs": [
+        "W3D2",
+        "W3D5",
+        "W5D4",
+        "W6D3",
+        "W8D1"
+      ],
+      "frequency_count": 5
+    },
+    {
+      "strategy_id": "dc-add-sign-new-word",
+      "strategy_name_hindi": "मात्रा/अनुस्वार लगाकर नया शब्द बनाना",
+      "strategy_name_english": "Add a Sign, Make a New Word",
+      "type": "competency",
+      "competency_ids": [
+        "DC7",
+        "DC3"
+      ],
+      "how_to_hindi": "बोर्ड पर कुछ शब्द लिखें और उनमें लक्षित मात्रा या अनुस्वार लगाकर नया सार्थक शब्द बनाकर दिखाएँ (जैसे तल → तेल, डक → डंक); उच्चारण करें और बच्चे नए शब्द कॉपी में लिखें और पढ़ें।",
+      "how_to_english": "Write some words on the board and show how adding a matra or anusvara turns each into a new meaningful word (तल → तेल, डक → डंक); say both aloud, and children write and read the new words.",
+      "variants": [
+        {
+          "note": "Adding a vowel matra to matra-free words",
+          "source_refs": [
+            "W2D2"
+          ]
+        },
+        {
+          "note": "Adding anusvara (ं) to the first letter",
+          "source_refs": [
+            "W4D4"
+          ]
+        },
+        {
+          "note": "Fill-in format: word shown with a blank, children add the anusvara (शख → शंख)",
+          "source_refs": [
+            "W4D5"
+          ]
+        },
+        {
+          "note": "Adding chandrabindu (अनुनासिक): चाद → चाँद",
+          "source_refs": [
+            "W5D1"
+          ]
+        }
+      ],
+      "source_refs": [
+        "W2D2",
+        "W4D4",
+        "W4D5",
+        "W5D1"
+      ],
+      "frequency_count": 4
+    },
+    {
+      "strategy_id": "dc-rearrange-letters",
+      "strategy_name_hindi": "वर्णों/अक्षरों का क्रम बदलकर नया शब्द बनाना",
+      "strategy_name_english": "Rearrange Letters, New Word",
+      "type": "competency",
+      "competency_ids": [
+        "DC7"
+      ],
+      "how_to_hindi": "बोर्ड पर कुछ शब्द लिखें; किसी एक शब्द में वर्णों/अक्षरों का क्रम बदलकर नया सार्थक शब्द बनाकर दिखाएँ (बकरी → करीब); फिर जोड़ियों में बच्चे बाकी शब्दों से नए शब्द बनाकर कॉपी में लिखें और पढ़ें।",
+      "how_to_english": "Write several words on the board and model rearranging the letters of one into a new meaningful word (बकरी → करीब); pairs then do the same with the other words, writing and reading their new words.",
+      "detailed_explanation_hindi": "आवश्यकतानुसार बच्चों की सहायता करें — हर शब्द से नया शब्द बनना ज़रूरी नहीं; बच्चे जितने बना सकें, उतने बनाएँ।",
+      "detailed_explanation_english": "Help as needed; not every word will yield a new word, and children should make as many as they can. This is the most direct practice of NIPUN R2.",
+      "example": "शब्द: बकरी, मन, दमन, पाना, बस, नाला, लपट → करीब, नम …",
+      "variants": [
+        {
+          "note": "Nine-word set (जादू → दूजा)",
+          "source_refs": [
+            "W21D5"
+          ]
+        }
+      ],
+      "source_refs": [
+        "W7D5",
+        "W14D5",
+        "W21D5"
+      ],
+      "frequency_count": 3
+    },
+    {
+      "strategy_id": "dc-fill-missing-akshar",
+      "strategy_name_hindi": "अधूरे शब्द पूरे करना (खाली वर्ण/अक्षर भरना)",
+      "strategy_name_english": "Fill the Missing Letter",
+      "type": "competency",
+      "competency_ids": [
+        "DC7",
+        "DC6"
+      ],
+      "how_to_hindi": "बोर्ड पर ऐसे शब्द लिखें जिनमें 1-2 वर्ण/अक्षर खाली हों (जैसे ब...री, सू...ज); बच्चे जोड़ियों में शब्द पूरे करके कॉपी में लिखें और पढ़ें; 3-4 जोड़ियाँ अपने शब्द सबके साथ साझा करें।",
+      "how_to_english": "Write words with 1–2 letters blanked out (ब_री, सू_ज); pairs complete them, write and read them, and 3–4 pairs share their answers — often more than one word fits.",
+      "source_refs": [
+        "W14D5",
+        "W15D5",
+        "W16D5"
+      ],
+      "frequency_count": 3
+    },
+    {
+      "strategy_id": "rf-reading-practice",
+      "strategy_name_hindi": "पठन अभ्यास",
+      "strategy_name_english": "Model–Follow–Pair Reading Practice",
+      "type": "competency",
+      "competency_ids": [
+        "RF1",
+        "DC6"
+      ],
+      "how_to_hindi": "पठन अभ्यास के शब्द/पाठ बोर्ड पर लिखें और आदर्श रूप से पढ़कर सुनाएँ, बच्चे अंगुली रखकर अनुसरण करें; फिर बच्चे जोड़ियों में पढ़ें और कुछ बच्चे सबके सामने स्वतंत्र रूप से पढ़ें।",
+      "how_to_english": "Write the practice words or passage on the board and model-read it while children track with a finger; children then read in pairs, and a few read aloud alone to the class.",
+      "detailed_explanation_hindi": "प्रत्येक पाठ दो दिन चलता है। दिवस-1: आदर्श वाचन + अंगुली से अनुसरण → जोड़ियों में पठन → पाठ के कुछ शब्दों पर बच्चों के संदर्भ और परिवेश से जोड़कर बातचीत। दिवस-2: पिछले पाठ का पुनः आदर्श वाचन → स्वतंत्र पठन → कुछ बच्चे सबके सामने पढ़ें। पठन के दौरान घूम-घूमकर अवलोकन करें और आवश्यकतानुसार सहायता करें। शब्दों पर चर्चा में पहला मौका उन बच्चों को दें जो झिझकते हैं या कम भाग लेते हैं।",
+      "detailed_explanation_english": "Each passage runs over two days. Day 1: model reading with finger-tracking → pair reading → discussion of a few words linked to children's own lives. Day 2: model the passage again → children read independently → a few read aloud to the class. Circulate and support during reading. In word discussions, call on hesitant or quieter children first. (BM p.178)",
+      "shared_resource_refs": [
+        "SR-PATHAN-ABHYAS",
+        "SR-DIGITAL-WB"
+      ],
+      "variants": [
+        {
+          "note": "Day-1 pattern ending with word discussion in children's context, then copying and reading the words",
+          "source_refs": [
+            "W1D1",
+            "W1D3"
+          ]
+        },
+        {
+          "note": "Day-2 pattern ending with some children reading aloud alone to the class",
+          "source_refs": [
+            "W1D2",
+            "W1D4"
+          ]
+        }
+      ],
+      "source_refs": [
+        "W1D1",
+        "W1D2",
+        "W1D3",
+        "W1D4",
+        "W2D1",
+        "W2D2",
+        "W2D3",
+        "W2D4",
+        "W3D1",
+        "W3D2",
+        "W3D3",
+        "W3D4",
+        "W4D1",
+        "W4D2",
+        "W4D3",
+        "W4D4",
+        "W5D1",
+        "W5D2",
+        "W5D3",
+        "W5D4",
+        "W6D1",
+        "W6D2",
+        "W6D3",
+        "W6D4",
+        "W7D1",
+        "W7D2",
+        "W7D3",
+        "W7D4",
+        "W8D1",
+        "W8D2",
+        "W8D3",
+        "W8D4",
+        "W9D1",
+        "W9D2",
+        "W9D3",
+        "W9D4",
+        "W10D1",
+        "W10D2",
+        "W10D3",
+        "W10D4",
+        "W11D1",
+        "W11D2",
+        "W11D3",
+        "W11D4",
+        "W12D1",
+        "W12D2",
+        "W12D3",
+        "W12D4"
+      ],
+      "frequency_count": 48
+    },
+    {
+      "strategy_id": "rf-phrase-sentence-read-copy",
+      "strategy_name_hindi": "सीखे गए वर्णों से बने वाक्यांश/वाक्य पढ़ना और लिखना",
+      "strategy_name_english": "Decodable Phrase & Sentence Reading",
+      "type": "competency",
+      "competency_ids": [
+        "RF2",
+        "WR2"
+      ],
+      "how_to_hindi": "सीखे गए वर्णों/अक्षरों से बने कुछ वाक्यांश या छोटे वाक्य बोर्ड पर लिखें; बच्चे उन्हें उच्चारित करते हुए पढ़ें और फिर कॉपी में लिखें।",
+      "how_to_english": "Write a few phrases or short sentences built only from taught letters on the board; children read them aloud and then copy them into notebooks.",
+      "example": "वाक्यांश: 'मगर का बकरा', 'दीपा का पपीता'; वाक्य: 'आसमान में काले बादल आए। मोर नाचने लगा।'",
+      "variants": [
+        {
+          "note": "Phrases (वाक्यांश) only",
+          "source_refs": [
+            "W2D1",
+            "W2D2",
+            "W2D3"
+          ]
+        },
+        {
+          "note": "Full short sentences (2-3 linked sentences)",
+          "source_refs": [
+            "W3D1",
+            "W3D3",
+            "W4D1",
+            "W4D2",
+            "W4D3",
+            "W4D5"
+          ]
+        },
+        {
+          "note": "Revision week: Group A sentence reading",
+          "source_refs": [
+            "W20D5"
+          ]
+        }
+      ],
+      "source_refs": [
+        "W2D1",
+        "W2D2",
+        "W2D3",
+        "W3D1",
+        "W3D3",
+        "W4D1",
+        "W4D2",
+        "W4D3",
+        "W4D5",
+        "W20D5"
+      ],
+      "frequency_count": 10
+    },
+    {
+      "strategy_id": "rf-fluency-reading",
+      "strategy_name_hindi": "प्रवाहपूर्ण पठन अभ्यास",
+      "strategy_name_english": "Timed One-Minute Fluency Reading",
+      "type": "competency",
+      "competency_ids": [
+        "RF3"
+      ],
+      "how_to_hindi": "सभी बच्चे जोड़ियों/समूहों में दिन का प्रवाहपूर्ण पठन पाठ पढ़ें; शिक्षक एक-एक बच्चे को बुलाकर उसकी अपनी प्रति से एक मिनट तक पढ़वाएँ और सही पढ़े गए शब्दों की संख्या दर्ज करें; अंत में सभी बच्चों से पाठ पर कुछ बंद प्रश्न पूछें।",
+      "how_to_english": "Pairs or groups read the day's fluency passage while the teacher calls children one at a time to read from their own copy for one minute and records the number of words read correctly; finish with a few closed comprehension questions to the whole class.",
+      "detailed_explanation_hindi": "तैयारी: मोबाइल (टाइमर), पेंसिल, रबर और कार्यपुस्तिका की एक प्रति अपने पास रखें। प्रक्रिया: मोबाइल में 1 मिनट का टाइमर लगाएँ; बच्चे की कार्यपुस्तिका अपने पास रखें ताकि उसी में सही शब्द रिकॉर्ड कर सकें। गलत पढ़े गए शब्द के नीचे लाइन खींचें — यदि बच्चा दोबारा उसे सही पढ़ ले तो लाइन मिटाकर सही मानें। एक मिनट होने पर अंतिम पढ़े गए शब्द पर निशान लगाएँ, फिर सही शब्द गिनकर 'सही पढ़े गए शब्दों की संख्या' कोष्ठक में लिखें और पठन स्तर पर निशान लगाएँ। ध्यान दें: प्रतिदिन कक्षा के 25% बच्चों के साथ ही यह प्रक्रिया करें (सप्ताह में सभी बच्चे); बाकी बच्चे उस दिन का पाठ पढ़ते रहें; पीछे रहने वाले बच्चों की गलतियों की प्रकृति पर ध्यान दें और उसी के आधार पर रिमीडियल योजना बनाएँ।",
+      "detailed_explanation_english": "Have ready: a phone timer, pencil, eraser and your own copy of the workbook. Set a one-minute timer and keep the child's own workbook in front of you so you can mark it. Underline any word read wrongly, but erase the line if the child self-corrects. When the minute ends, mark the last word read, count the words read correctly, write the count in the box and tick the reading level. Only about a quarter of the class is heard each day, so everyone is covered once a week, while the rest keep reading the day's passage. For children who lag, notice the type of errors they make and plan remedial work around them. (BM pp.178–179; level descriptors omitted as rubric content.)",
+      "materials": [
+        "मोबाइल टाइमर, पेंसिल, रबर (phone timer, pencil, eraser)"
+      ],
+      "shared_resource_refs": [
+        "SR-PRAVAH-PATHAN",
+        "SR-TRACKER"
+      ],
+      "variants": [
+        {
+          "note": "From Week 22, Day 4 covers passages 1-3 together as a consolidated reading",
+          "source_refs": [
+            "W22D4",
+            "W23D4",
+            "W24D4",
+            "W25D4"
+          ]
+        }
+      ],
+      "source_refs": [
+        "W14D1",
+        "W14D2",
+        "W14D3",
+        "W14D4",
+        "W15D1",
+        "W15D2",
+        "W15D3",
+        "W15D4",
+        "W16D1",
+        "W16D2",
+        "W16D3",
+        "W16D4",
+        "W17D1",
+        "W17D2",
+        "W17D3",
+        "W17D4",
+        "W18D1",
+        "W18D2",
+        "W18D3",
+        "W18D4",
+        "W19D1",
+        "W19D2",
+        "W19D3",
+        "W19D4",
+        "W21D1",
+        "W21D2",
+        "W21D3",
+        "W21D4",
+        "W22D1",
+        "W22D2",
+        "W22D3",
+        "W22D4",
+        "W23D1",
+        "W23D2",
+        "W23D3",
+        "W23D4",
+        "W24D1",
+        "W24D2",
+        "W24D3",
+        "W24D4",
+        "W25D1",
+        "W25D2",
+        "W25D3",
+        "W25D4"
+      ],
+      "frequency_count": 44
+    },
+    {
+      "strategy_id": "rf-repeated-speed-reading",
+      "strategy_name_hindi": "गतिविधि को 8-10 बार जल्दी-जल्दी पढ़ना",
+      "strategy_name_english": "Repeated Speed Reading",
+      "type": "competency",
+      "competency_ids": [
+        "RF3"
+      ],
+      "how_to_hindi": "बच्चों को कार्यपुस्तिका की कोई छोटी पठन गतिविधि/पाठ 8-10 बार जल्दी-जल्दी पढ़ने को कहें ताकि पढ़ने की गति और सहजता बढ़े।",
+      "how_to_english": "Have children read a short workbook text or activity 8–10 times in quick succession, building speed and automaticity through repetition.",
+      "shared_resource_refs": [
+        "SR-WORKBOOK-1"
+      ],
+      "source_refs": [
+        "W14D3",
+        "W16D3"
+      ],
+      "frequency_count": 2
+    },
+    {
+      "strategy_id": "rf-independent-reading",
+      "strategy_name_hindi": "स्वतंत्र पठन",
+      "strategy_name_english": "Free Choice Reading",
+      "type": "competency",
+      "competency_ids": [
+        "RF4",
+        "OL5"
+      ],
+      "how_to_hindi": "पुस्तकालय या रीडिंग कॉर्नर से बच्चे अपनी पसंद की चित्रात्मक किताबें चुनें; उन्हें किताबें देखने, पलटने, पढ़ने और आपस में चर्चा करने का पर्याप्त समय दें; लगभग 50% बच्चों को पढ़ी गई कहानी पर अपनी बात रखने का अवसर दें और जैसी भी कहानी बताएँ, स्वीकार करें।",
+      "how_to_english": "Children choose picture books from the library or reading corner and get unhurried time to browse, read and talk about them; about half the class then tells what their book was about, and every retelling is accepted and praised.",
+      "shared_resource_refs": [
+        "SR-LIBRARY"
+      ],
+      "variants": [
+        {
+          "note": "Group B reads independently while Group A does revision decoding work",
+          "source_refs": [
+            "W13D2",
+            "W13D3"
+          ]
+        }
+      ],
+      "source_refs": [
+        "W1D5",
+        "W2D5",
+        "W3D5",
+        "W4D5",
+        "W5D5",
+        "W6D5",
+        "W7D5",
+        "W8D5",
+        "W9D5",
+        "W10D5",
+        "W11D5",
+        "W12D5",
+        "W13D2",
+        "W13D3",
+        "W14D5",
+        "W15D5",
+        "W16D5",
+        "W17D5",
+        "W18D5",
+        "W19D5",
+        "W20D2",
+        "W20D3",
+        "W20D4",
+        "W20D5",
+        "W21D5",
+        "W22D5",
+        "W23D5",
+        "W24D5",
+        "W25D5"
+      ],
+      "frequency_count": 29
+    },
+    {
+      "strategy_id": "rc-model-reading-textbook",
+      "strategy_name_hindi": "आदर्श वाचन एवं शब्दावली विकास",
+      "strategy_name_english": "Model Read-Aloud of the Lesson",
+      "type": "competency",
+      "competency_ids": [
+        "RC1",
+        "RF1",
+        "OL4"
+      ],
+      "how_to_hindi": "पाठ के चित्रों एवं शीर्षक पर अनुमान लगवाएँ; पाठ को हाव-भाव के साथ 1-2 बार पढ़कर सुनाएँ, बच्चे अपनी पुस्तक में अंगुली रखकर अनुसरण करें; जुड़ाव के लिए बीच में 1-2 बंद प्रश्न पूछें; कठिन शब्द बोर्ड पर लिखकर उनके अर्थ बच्चों के परिवेश से जोड़कर समझाएँ।",
+      "how_to_english": "Have children predict from the lesson's pictures and title; read the text aloud expressively 1–2 times while children follow with a finger in their own books, dropping in 1–2 closed questions to hold attention; then put hard words on the board and explain them through children's own surroundings.",
+      "detailed_explanation_hindi": "कविता के लिए: अनुमान → हाव-भाव से 1-2 बार पाठ → बच्चे साथ में 1-2 बार गाएँ → कठिन शब्द। अगले दिन: कल की चर्चा पर बंद प्रश्न → साथ गाना → बच्चे स्वयं गाएँ → पिछले दिन के शब्दों के अर्थ पूछकर मौखिक वाक्य बनवाना। कहानी के लिए: अनुमान → 1-2 बार पढ़ना, बीच में 1-2 बंद प्रश्न, बच्चे अंगुली से अनुसरण करें → खुले प्रश्न। अगले दिन चयनित पाठ्यांश का आदर्श वाचन: कल की कहानी संक्षेप में अपने शब्दों में सुनाएँ, बंद प्रश्न पूछें, फिर पाठ्यांश हाव-भाव से पढ़ें। ध्यान दें: आदर्श वाचन के दौरान अनुकरण वाचन (बच्चों से पीछे-पीछे दोहरवाना) और अधिक प्रश्न पूछने से बचें।",
+      "detailed_explanation_english": "Poem lessons: predict → read expressively 1–2 times → children sing along 1–2 times → hard words. Next day: closed recap questions → sing together → children sing alone → ask meanings of yesterday's words and have children use them in oral sentences. Story lessons: predict → read 1–2 times with 1–2 closed check-in questions while children track with a finger → open questions. Next day, model-read a selected excerpt: briefly retell yesterday's story, ask a few closed questions, then read the excerpt expressively. Watch-out: don't turn model reading into echo reading, and don't interrupt it with too many questions. (BM p.166)",
+      "shared_resource_refs": [
+        "SR-SARANGI-2"
+      ],
+      "variants": [
+        {
+          "note": "Poem lesson: children sing along after the teacher's reading",
+          "source_refs": [
+            "W6D1",
+            "W7D1"
+          ]
+        },
+        {
+          "note": "Poem day 2: recap questions, sing together then alone, revisit yesterday's words in oral sentences",
+          "source_refs": [
+            "W6D2",
+            "W7D2"
+          ]
+        },
+        {
+          "note": "Story day 2: model-read only a selected excerpt (पाठ्यांश) after a brief retell",
+          "source_refs": [
+            "W6D4",
+            "W7D4"
+          ]
+        },
+        {
+          "note": "Applied to the workbook's levelled text in Period 2 (day 1 of the levelled-text cycle)",
+          "source_refs": [
+            "W8D3",
+            "W9D3",
+            "W10D3",
+            "W11D3",
+            "W12D3"
+          ]
+        }
+      ],
+      "source_refs": [
+        "W5D1",
+        "W6D1",
+        "W6D2",
+        "W6D3",
+        "W6D4",
+        "W7D1",
+        "W7D2",
+        "W7D3",
+        "W7D4",
+        "W8D1",
+        "W8D2",
+        "W8D3",
+        "W8D4",
+        "W9D1",
+        "W9D2",
+        "W10D1",
+        "W10D2",
+        "W10D3",
+        "W10D4",
+        "W11D1",
+        "W11D2",
+        "W11D3",
+        "W11D4",
+        "W12D1",
+        "W14D1",
+        "W14D2",
+        "W15D1",
+        "W15D2",
+        "W15D3",
+        "W15D4",
+        "W16D1",
+        "W16D2",
+        "W16D3",
+        "W16D4",
+        "W17D1",
+        "W17D2",
+        "W18D1",
+        "W18D2",
+        "W19D1",
+        "W19D2",
+        "W19D3",
+        "W21D1",
+        "W21D2",
+        "W21D3",
+        "W21D4",
+        "W22D1",
+        "W22D2",
+        "W22D3",
+        "W22D4",
+        "W23D1",
+        "W23D2",
+        "W23D3",
+        "W23D4",
+        "W24D1",
+        "W24D2",
+        "W24D3",
+        "W24D4",
+        "W25D1",
+        "W25D2"
+      ],
+      "frequency_count": 59
+    },
+    {
+      "strategy_id": "rc-true-false-sentence",
+      "strategy_name_hindi": "सही या गलत? वाक्य पर तर्क",
+      "strategy_name_english": "True or False — and Why?",
+      "type": "competency",
+      "competency_ids": [
+        "RC2"
+      ],
+      "how_to_hindi": "पढ़े गए पाठ से संबंधित कोई एक वाक्य बोलें और बच्चों से पूछें कि यह वाक्य सही है या गलत — और क्यों।",
+      "how_to_english": "Say a statement about the lesson just read and ask children whether it is true or false — and to justify their answer.",
+      "variants": [
+        {
+          "note": "Teacher says 2-3 statements about the lesson; children judge each, then mark सही/गलत in the workbook",
+          "source_refs": [
+            "W8D2"
+          ]
+        }
+      ],
+      "source_refs": [
+        "W6D5",
+        "W8D2"
+      ],
+      "frequency_count": 2
+    },
+    {
+      "strategy_id": "rc-levelled-text-cycle",
+      "strategy_name_hindi": "स्तरित पाठ पर कार्य (आदर्श वाचन → मार्गदर्शन में पठन → स्वतंत्र पठन)",
+      "strategy_name_english": "Three-Day Levelled Text Cycle",
+      "type": "competency",
+      "competency_ids": [
+        "RC3",
+        "RC2",
+        "RF1"
+      ],
+      "how_to_hindi": "सप्ताह के पाठ से जुड़े स्तरित पाठ पर तीन दिन कार्य करें: पहले दिन आदर्श वाचन, समृद्ध चर्चा और प्रश्न; दूसरे दिन संक्षिप्त दोहराव के बाद जोड़ियों/समूहों में मार्गदर्शन में पठन; तीसरे दिन एक बार फिर आदर्श वाचन के बाद प्रत्येक बच्चा पाठ स्वतंत्र रूप से पढ़े।",
+      "how_to_english": "Work one short levelled text, linked to the week's lesson, over three days: day 1 model reading, rich discussion and questions; day 2 brief recap, then guided reading in pairs or groups; day 3 one more model reading, then every child reads it independently.",
+      "detailed_explanation_hindi": "दिन-1 (सप्ताह का तीसरा दिन): चित्र/शीर्षक पर अनुमान → हाव-भाव से 1-2 बार पढ़ना, बच्चे अंगुली रखकर अनुसरण करें, बीच में 1-2 बंद प्रश्न (10-12 मिनट) → बंद/खुले प्रश्न, आवश्यकतानुसार कठिन व अमूर्त शब्दों पर परिवेश से जोड़कर चर्चा (7-10 मिनट) → पाठ आधारित प्रश्नों पर मौखिक चर्चा फिर लिखित उत्तर (12-15 मिनट)। दिन-2: कल की चर्चा संक्षेप में दोहराना, 2-3 बंद प्रश्न, पाठ के बारे में बच्चों की राय → जोड़ियों/समूहों में बारी-बारी से पढ़ना; शब्द स्तर वाले बच्चों पर विशेष ध्यान → कार्यपुस्तिका गतिविधियाँ। दिन-3: आदर्श वाचन → प्रत्येक बच्चा स्वतंत्र रूप से पढ़े → पाठ आधारित प्रश्नों पर मौखिक चर्चा और गतिविधि। यह क्रम बच्चों को अज्ञात पाठ पढ़कर समझने की ओर ले जाता है।",
+      "detailed_explanation_english": "Day 1 (week-day 3): predict from pictures/title → read expressively 1–2 times while children track with a finger, with 1–2 closed check-in questions (10–12 min) → closed and open questions, unpacking hard or abstract words through children's surroundings as needed (7–10 min) → oral discussion of the text questions, then written answers (12–15 min). Day 2: brief recap with 2–3 closed questions and children's opinions → pairs or groups take turns reading, with extra help for word-level readers → workbook activities. Day 3: model reading again → every child reads alone → oral discussion of text questions and the activity. The gradual shift from teacher reading to independent reading is what builds the skill of reading unseen text with understanding. (BM p.175)",
+      "shared_resource_refs": [
+        "SR-STARIT-PATH",
+        "SR-WORKBOOK-1"
+      ],
+      "variants": [
+        {
+          "note": "Day 1 of cycle: model reading + rich discussion + oral-then-written questions",
+          "source_refs": [
+            "W8D3",
+            "W9D3",
+            "W10D3",
+            "W11D3",
+            "W12D3"
+          ]
+        },
+        {
+          "note": "Day 2 of cycle: recap + guided reading in pairs/groups + activities",
+          "source_refs": [
+            "W8D4",
+            "W9D4",
+            "W10D4",
+            "W11D4",
+            "W12D4"
+          ]
+        },
+        {
+          "note": "Day 3 of cycle (revision day): model reading + independent reading by every child",
+          "source_refs": [
+            "W8D5",
+            "W9D5",
+            "W10D5",
+            "W11D5",
+            "W12D5"
+          ]
+        },
+        {
+          "note": "[merged from 'Model Then Solo Reading'] Final-day solo read: model the text 1-2 times, then every child reads it independently (also used standalone on revision days)",
+          "source_refs": [
+            "W8D5",
+            "W9D5",
+            "W10D5",
+            "W11D5",
+            "W12D5",
+            "W14D5",
+            "W15D5",
+            "W16D5",
+            "W17D5",
+            "W18D5",
+            "W19D5",
+            "W21D5",
+            "W22D5",
+            "W23D5",
+            "W24D5",
+            "W25D5"
+          ]
+        }
+      ],
+      "source_refs": [
+        "W8D3",
+        "W8D4",
+        "W8D5",
+        "W9D3",
+        "W9D4",
+        "W9D5",
+        "W10D3",
+        "W10D4",
+        "W10D5",
+        "W11D3",
+        "W11D4",
+        "W11D5",
+        "W12D3",
+        "W12D4",
+        "W12D5",
+        "W14D3",
+        "W14D4",
+        "W14D5",
+        "W15D3",
+        "W15D4",
+        "W15D5",
+        "W16D3",
+        "W16D4",
+        "W16D5",
+        "W17D3",
+        "W17D4",
+        "W17D5",
+        "W18D3",
+        "W18D4",
+        "W18D5",
+        "W19D3",
+        "W19D4",
+        "W19D5",
+        "W21D3",
+        "W21D4",
+        "W21D5",
+        "W22D3",
+        "W22D4",
+        "W22D5",
+        "W23D3",
+        "W23D4",
+        "W23D5",
+        "W24D3",
+        "W24D4",
+        "W24D5",
+        "W25D3",
+        "W25D4",
+        "W25D5"
+      ],
+      "frequency_count": 48
+    },
+    {
+      "strategy_id": "rc-guided-reading",
+      "strategy_name_hindi": "मार्गदर्शन में पठन",
+      "strategy_name_english": "Guided Pair Reading of an Excerpt",
+      "type": "competency",
+      "competency_ids": [
+        "RC3"
+      ],
+      "how_to_hindi": "बच्चों को जोड़ियों/समूहों में बाँटकर पाठ का चयनित अंश बारी-बारी से पढ़ने को कहें; शिक्षक घूम-घूमकर अवलोकन करें और जो बच्चे अभी भी शब्द स्तर पर हैं, उन पर विशेष ध्यान दें।",
+      "how_to_english": "Split the class into pairs or small groups to take turns reading a selected excerpt; circulate, observe, and give extra attention to children still reading at word level.",
+      "detailed_explanation_hindi": "मार्गदर्शन में पठन के दौरान बच्चों को पढ़ने का पर्याप्त समय दें और आवश्यकता अनुसार सहायता करें। आदर्श वाचन → मार्गदर्शन में पठन → स्वतंत्र पठन का क्रम बच्चों को अज्ञात पाठ पढ़कर समझने की ओर ले जाता है।",
+      "detailed_explanation_english": "Give ample reading time and help only as needed. The sequence model reading → guided reading → independent reading is how the guide moves children towards reading unseen text with understanding. (BM pp.166, 175)",
+      "shared_resource_refs": [
+        "SR-SARANGI-2"
+      ],
+      "variants": [
+        {
+          "note": "Whole lesson (not just an excerpt) read in pairs/groups",
+          "source_refs": [
+            "W9D3"
+          ]
+        },
+        {
+          "note": "Levelled text, preceded by a recap and 2-3 closed questions",
+          "source_refs": [
+            "W8D4",
+            "W9D4",
+            "W10D4",
+            "W11D4",
+            "W12D4"
+          ]
+        }
+      ],
+      "source_refs": [
+        "W6D3",
+        "W6D4",
+        "W7D3",
+        "W7D4",
+        "W8D4",
+        "W9D1",
+        "W9D2",
+        "W9D3",
+        "W9D4",
+        "W10D4",
+        "W11D2",
+        "W11D3",
+        "W11D4",
+        "W12D4",
+        "W14D4",
+        "W15D4",
+        "W16D1",
+        "W16D2",
+        "W16D3",
+        "W16D4",
+        "W17D4",
+        "W19D1",
+        "W19D2",
+        "W19D3",
+        "W21D1",
+        "W21D2",
+        "W21D3",
+        "W21D4",
+        "W23D1",
+        "W23D2",
+        "W24D1",
+        "W24D2",
+        "W24D3",
+        "W24D4"
+      ],
+      "frequency_count": 34
+    },
+    {
+      "strategy_id": "rc-question-generation",
+      "strategy_name_hindi": "प्रश्न निर्माण",
+      "strategy_name_english": "Pairs Write Questions for Pairs",
+      "type": "competency",
+      "competency_ids": [
+        "RC4",
+        "OL2"
+      ],
+      "how_to_hindi": "जोड़ियों/समूहों में पाठ्यांश पढ़ने के बाद बच्चे उस पाठ्यांश पर आधारित प्रश्न बनाएँ और दूसरी जोड़ियों/समूहों से पूछें।",
+      "how_to_english": "After reading an excerpt in pairs or groups, children frame their own questions about it and put them to another pair or group to answer.",
+      "detailed_explanation_hindi": "प्रश्न निर्माण के दौरान बच्चों की सहायता करें — शुरुआत में प्रश्नवाचक शब्द (क्या, कब, कौन, क्यों, कैसे, कहाँ) बोर्ड पर लिख सकते हैं।",
+      "detailed_explanation_english": "Support children while they frame questions; question words (क्या, कब, कौन, क्यों, कैसे, कहाँ) on the board are a helpful scaffold at first. (BM pp.166, 182)",
+      "variants": [
+        {
+          "note": "Question words (कब, कौन, क्यों, कहाँ, कैसे) on the board; children write 1-2 questions using each (Group B independent work)",
+          "source_refs": [
+            "BM p.182"
+          ]
+        }
+      ],
+      "source_refs": [
+        "W6D4",
+        "W7D4",
+        "W9D2",
+        "W9D3",
+        "W11D2",
+        "W11D3",
+        "W11D4",
+        "W16D2",
+        "W16D3",
+        "W16D4",
+        "W19D2",
+        "W19D3",
+        "W21D2",
+        "W21D3",
+        "W21D4",
+        "W23D2",
+        "W24D2",
+        "W24D3",
+        "W24D4"
+      ],
+      "frequency_count": 19
+    },
+    {
+      "strategy_id": "rc-text-to-experience",
+      "strategy_name_hindi": "प्रश्नों को पाठ से संबंधित बच्चों के अनुभवों पर केंद्रित करना",
+      "strategy_name_english": "Text-to-Self Questions",
+      "type": "competency",
+      "competency_ids": [
+        "RC5",
+        "OL2"
+      ],
+      "how_to_hindi": "पाठ पर चर्चा करते समय ऐसे खुले प्रश्न पूछें जो पाठ की घटना/विषय को बच्चों के अपने अनुभवों से जोड़ें (जैसे 'क्या आपने कभी किसी का इंतज़ार किया है और क्यों?'), और पाठ के बारे में बच्चों की राय भी पूछें।",
+      "how_to_english": "During discussion of a lesson, ask open questions that tie its events or theme to children's own lives ('Have you ever waited for someone? Why?'), and ask what they personally thought of the text.",
+      "variants": [
+        {
+          "note": "Also asks for children's opinion of the lesson (पाठ के बारे में बच्चों की राय)",
+          "source_refs": [
+            "W6D2",
+            "W6D3",
+            "W7D2",
+            "W7D3"
+          ]
+        },
+        {
+          "note": "After a story, children share with peers a similar experience of their own (Group B independent work)",
+          "source_refs": [
+            "BM p.182"
+          ]
+        }
+      ],
+      "source_refs": [
+        "W5D1",
+        "W5D2",
+        "W5D3",
+        "W6D1",
+        "W6D2",
+        "W6D3",
+        "W7D1",
+        "W7D2",
+        "W7D3",
+        "W8D1",
+        "W8D2",
+        "W8D3",
+        "W8D4",
+        "W9D1",
+        "W9D3",
+        "W10D1",
+        "W10D2",
+        "W10D3",
+        "W10D4",
+        "W11D1",
+        "W11D3",
+        "W12D1",
+        "W12D2",
+        "W12D3",
+        "W14D1",
+        "W14D2",
+        "W14D3",
+        "W15D1",
+        "W15D2",
+        "W15D3",
+        "W15D4",
+        "W16D1",
+        "W16D3",
+        "W17D1",
+        "W17D2",
+        "W17D3",
+        "W18D1",
+        "W18D2",
+        "W18D3",
+        "W19D1",
+        "W19D3",
+        "W21D1",
+        "W21D3",
+        "W22D1",
+        "W22D2",
+        "W22D3",
+        "W22D4",
+        "W23D1",
+        "W23D3",
+        "W23D4",
+        "W24D1",
+        "W24D3",
+        "W25D1",
+        "W25D2",
+        "W25D3"
+      ],
+      "frequency_count": 55
+    },
+    {
+      "strategy_id": "wr-draw-and-share",
+      "strategy_name_hindi": "लेखन कार्य — चित्र बनाकर साथी से बातचीत",
+      "strategy_name_english": "Draw, Colour and Talk",
+      "type": "competency",
+      "competency_ids": [
+        "WR1",
+        "OL1"
+      ],
+      "how_to_hindi": "दिन की गतिविधि/चर्चा से जुड़ा चित्र बनाकर रंग भरने को कहें; बच्चे अपना चित्र साथी को दिखाकर उस पर बात करें; अंत में 3-4 बच्चे चित्र पर हुई बातचीत पूरी कक्षा से साझा करें।",
+      "how_to_english": "After the day's oral activity, children draw and colour a picture linked to it and talk about it with a partner; 3–4 children then share their picture and conversation with the class.",
+      "materials": [
+        "रंग (colours)"
+      ],
+      "variants": [
+        {
+          "note": "Picture linked to the day's SEL/oral game; finished drawings put up in the Children's Corner",
+          "source_refs": [
+            "W1D1",
+            "W1D4"
+          ]
+        },
+        {
+          "note": "Picture linked to a picture-chart discussion; pairs discuss each other's drawings",
+          "source_refs": [
+            "W1D2"
+          ]
+        },
+        {
+          "note": "Free choice — children draw anything they like",
+          "source_refs": [
+            "W1D3"
+          ]
+        },
+        {
+          "note": "Picture linked to a poem just recited",
+          "source_refs": [
+            "W1D5"
+          ]
+        },
+        {
+          "note": "Progression: from Week 2 children also write a word or 1-2 sentences alongside the drawing",
+          "source_refs": [
+            "W2D1",
+            "W2D2",
+            "W2D3",
+            "W2D4",
+            "W2D5",
+            "W3D1",
+            "W3D2",
+            "W3D3",
+            "W3D4",
+            "W3D5",
+            "W4D1",
+            "W4D2",
+            "W4D3",
+            "W4D4",
+            "W4D5"
+          ]
+        }
+      ],
+      "source_refs": [
+        "W1D1",
+        "W1D2",
+        "W1D3",
+        "W1D4",
+        "W1D5",
+        "W2D1",
+        "W2D2",
+        "W2D3",
+        "W2D4",
+        "W2D5",
+        "W3D1",
+        "W3D2",
+        "W3D3",
+        "W3D4",
+        "W3D5",
+        "W4D1",
+        "W4D2",
+        "W4D3",
+        "W4D4",
+        "W4D5",
+        "W5D5",
+        "W5D6",
+        "W6D5",
+        "W6D6",
+        "W7D5",
+        "W7D6",
+        "W8D5",
+        "W8D6",
+        "W9D4",
+        "W10D5",
+        "W11D5",
+        "W12D4",
+        "W13D2",
+        "W13D3",
+        "W13D4",
+        "W13D6",
+        "W14D4",
+        "W18D4",
+        "W18D6",
+        "W19D4",
+        "W20D2",
+        "W20D3",
+        "W20D4",
+        "W20D6",
+        "W21D6",
+        "W22D5",
+        "W22D6",
+        "W23D6",
+        "W24D5",
+        "W24D6",
+        "W25D4",
+        "W25D6"
+      ],
+      "frequency_count": 52
+    },
+    {
+      "strategy_id": "wr-draw-letter-object",
+      "strategy_name_hindi": "लक्षित ध्वनि से जुड़ी वस्तु का चित्र बनाना",
+      "strategy_name_english": "Draw the Sound Object",
+      "type": "competency",
+      "competency_ids": [
+        "WR1",
+        "DC1"
+      ],
+      "how_to_hindi": "बच्चों से लक्षित वर्ण/ध्वनि वाली किसी परिचित वस्तु का चित्र कॉपी में बनाकर रंग भरने और साथियों को दिखाने को कहें।",
+      "how_to_english": "Children draw and colour a familiar object whose name contains the target sound, then show it to classmates.",
+      "example": "कटहल का चित्र (target letter क) — W1D1; मछली का चित्र — W1D3.",
+      "materials": [
+        "कॉपी/नोटबुक, रंग (notebook, colours)"
+      ],
+      "source_refs": [
+        "W1D1",
+        "W1D3"
+      ],
+      "frequency_count": 2
+    },
+    {
+      "strategy_id": "wr-letter-copy",
+      "strategy_name_hindi": "वर्ण को पाँच-पाँच बार लिखना",
+      "strategy_name_english": "Letter Copy Practice",
+      "type": "competency",
+      "competency_ids": [
+        "WR2",
+        "DC2"
+      ],
+      "how_to_hindi": "पहचाने गए लक्षित वर्णों को बच्चे कॉपी/नोटबुक में पाँच-पाँच बार लिखें।",
+      "how_to_english": "Children write each newly identified target letter five times in their notebooks.",
+      "materials": [
+        "कॉपी/नोटबुक (notebook)"
+      ],
+      "source_refs": [
+        "W1D1",
+        "W1D2",
+        "W1D3",
+        "W1D4",
+        "W2D1",
+        "W2D2",
+        "W2D3",
+        "W2D4",
+        "W3D1",
+        "W3D2",
+        "W3D3",
+        "W3D4",
+        "W4D1",
+        "W4D2",
+        "W4D3",
+        "W4D4"
+      ],
+      "frequency_count": 16
+    },
+    {
+      "strategy_id": "wr-picture-naming",
+      "strategy_name_hindi": "चित्र पहचानकर नाम लिखना",
+      "strategy_name_english": "Picture Naming",
+      "type": "competency",
+      "competency_ids": [
+        "WR2",
+        "DC6"
+      ],
+      "how_to_hindi": "कुछ परिचित वस्तुओं के चित्र बोर्ड पर बनाएँ या कार्यपुस्तिका से दिखाएँ; बच्चे चित्र पहचानकर उनके नाम अपनी कॉपी में लिखें।",
+      "how_to_english": "Draw a few familiar objects on the board (or show them from the workbook); children identify each picture and write its name in their notebooks.",
+      "shared_resource_refs": [
+        "SR-DIGITAL-WB"
+      ],
+      "source_refs": [
+        "W2D3",
+        "W2D4",
+        "W2D5",
+        "W3D3"
+      ],
+      "frequency_count": 4
+    },
+    {
+      "strategy_id": "wr-dictation",
+      "strategy_name_hindi": "सुनकर लिखें (श्रुतलेख)",
+      "strategy_name_english": "Dictation with Peer Check",
+      "type": "competency",
+      "competency_ids": [
+        "WR3"
+      ],
+      "how_to_hindi": "2-3 वर्ण वाले पाँच शब्द एक-एक कर बोलें और प्रत्येक शब्द तीन बार दोहराएँ; सभी बच्चे लिख लें तो शब्द उसी क्रम में बोर्ड पर लिखें और बच्चे जोड़ियों में एक-दूसरे की कॉपी जाँचें।",
+      "how_to_english": "Say five 2–3-letter words one at a time, repeating each three times; once everyone has written, write the words on the board in order and have partners swap notebooks and check each other.",
+      "detailed_explanation_hindi": "श्रुतलेख वर्ण → शब्द → वाक्य के क्रम में आगे बढ़ता है। प्रत्येक इकाई कम से कम 3 बार बोलें। शब्द/वाक्य को एक साथ बोलें, तोड़-तोड़कर नहीं। बोर्ड पर लिखे उत्तरों से बच्चे एक-दूसरे की कॉपी बदलकर जाँचें। इससे सही वर्तनी और विराम चिह्न जैसे कौशल विकसित होते हैं।",
+      "detailed_explanation_english": "Dictation progresses from letters to words to sentences over the year. Say each item at least three times, always as a whole unit rather than broken into letters. Children swap notebooks and check against the board. It builds spelling and, later, punctuation. (BM p.176)",
+      "materials": [
+        "कॉपी/नोटबुक (notebook)"
+      ],
+      "variants": [
+        {
+          "note": "Remedial (Group A): five 2-letter words, each said three times, no board check specified",
+          "source_refs": [
+            "W1D2",
+            "W1D4"
+          ]
+        },
+        {
+          "note": "Whole-class dictation segment within the weekly assessment day",
+          "source_refs": [
+            "W1D6"
+          ]
+        },
+        {
+          "note": "From Week 5 main-lesson and assessment dictation uses 3-4 letter words",
+          "source_refs": [
+            "W5D1",
+            "W5D3",
+            "W6D3",
+            "W6D5",
+            "W7D1"
+          ]
+        },
+        {
+          "note": "From Week 8, main-lesson and assessment dictation is one 3-5-word sentence, said three times; Group A remedial still dictates 2-3-letter words",
+          "source_refs": [
+            "W8D2",
+            "W8D5",
+            "W8D6",
+            "W9D1",
+            "W9D6",
+            "W10D1",
+            "W10D5",
+            "W10D6",
+            "W11D2",
+            "W11D6",
+            "W12D1",
+            "W12D5",
+            "W12D6"
+          ]
+        },
+        {
+          "note": "From Week 14 sentences are 4-6 words; from Week 17 two linked sentences are dictated together",
+          "source_refs": [
+            "W14D1",
+            "W17D2",
+            "W17D5",
+            "W17D6"
+          ]
+        },
+        {
+          "note": "Weeks 18-25: main/assessment dictation is 2 sentences of 4-6 words, rising to 2-3 sentences of 6-8 words from Week 21; remedial dictation is 1-3 sentences of 3-6 words",
+          "source_refs": [
+            "W18D1",
+            "W21D2",
+            "W21D6",
+            "W24D1",
+            "W25D6"
+          ]
+        }
+      ],
+      "source_refs": [
+        "W1D2",
+        "W1D4",
+        "W1D5",
+        "W1D6",
+        "W2D2",
+        "W2D3",
+        "W2D4",
+        "W2D5",
+        "W2D6",
+        "W3D2",
+        "W3D4",
+        "W3D5",
+        "W3D6",
+        "W4D2",
+        "W4D4",
+        "W4D5",
+        "W4D6",
+        "W5D1",
+        "W5D2",
+        "W5D3",
+        "W5D4",
+        "W5D6",
+        "W6D2",
+        "W6D3",
+        "W6D4",
+        "W6D5",
+        "W6D6",
+        "W7D1",
+        "W7D2",
+        "W7D4",
+        "W7D6",
+        "W8D2",
+        "W8D4",
+        "W8D5",
+        "W8D6",
+        "W9D1",
+        "W9D2",
+        "W9D4",
+        "W9D6",
+        "W10D1",
+        "W10D2",
+        "W10D4",
+        "W10D5",
+        "W10D6",
+        "W11D2",
+        "W11D4",
+        "W11D6",
+        "W12D1",
+        "W12D2",
+        "W12D4",
+        "W12D5",
+        "W12D6",
+        "W14D1",
+        "W14D2",
+        "W14D4",
+        "W14D6",
+        "W15D2",
+        "W15D4",
+        "W15D5",
+        "W15D6",
+        "W16D2",
+        "W16D6",
+        "W17D2",
+        "W17D4",
+        "W17D5",
+        "W17D6",
+        "W18D1",
+        "W18D2",
+        "W18D4",
+        "W18D6",
+        "W19D1",
+        "W19D2",
+        "W19D3",
+        "W19D4",
+        "W19D5",
+        "W19D6",
+        "W21D2",
+        "W21D3",
+        "W21D4",
+        "W21D6",
+        "W22D1",
+        "W22D3",
+        "W22D4",
+        "W22D5",
+        "W22D6",
+        "W23D1",
+        "W23D2",
+        "W23D3",
+        "W23D4",
+        "W23D6",
+        "W24D1",
+        "W24D2",
+        "W24D3",
+        "W24D4",
+        "W24D5",
+        "W24D6",
+        "W25D1",
+        "W25D3",
+        "W25D4",
+        "W25D6"
+      ],
+      "frequency_count": 100
+    },
+    {
+      "strategy_id": "wr-write-pair-share",
+      "strategy_name_hindi": "सुनी कहानी पर अपने विचार लिखना",
+      "strategy_name_english": "Write-Pair-Share Response",
+      "type": "competency",
+      "competency_ids": [
+        "WR4",
+        "OL2"
+      ],
+      "how_to_hindi": "सुनी गई कहानी पर बच्चे अपने विचार/समझ कुछ शब्दों या 1-2 वाक्यों में लिखें; फिर जोड़ियों में अपने लिखे पर बात करें और 3-4 बच्चे अपनी बात कक्षा में साझा करें।",
+      "how_to_english": "After hearing a story, children write their thoughts in a few words or 1–2 sentences, discuss what they wrote with a partner, and 3–4 children share with the class.",
+      "variants": [
+        {
+          "note": "Write 3-4 sentences about a story or lesson just heard (Group B independent work)",
+          "source_refs": [
+            "BM p.182"
+          ]
+        }
+      ],
+      "source_refs": [
+        "W1D6",
+        "W2D6",
+        "W3D6",
+        "W4D6",
+        "W9D6",
+        "W10D6",
+        "W11D6",
+        "W13D5",
+        "W15D6",
+        "W20D5"
+      ],
+      "frequency_count": 10
+    },
+    {
+      "strategy_id": "wr-sentence-completion",
+      "strategy_name_hindi": "अधूरे वाक्य पूरे करना",
+      "strategy_name_english": "Complete the Sentence",
+      "type": "competency",
+      "competency_ids": [
+        "WR4",
+        "RF2"
+      ],
+      "how_to_hindi": "बोर्ड पर 2-3 अधूरे वाक्य लिखें (जैसे 'मेले में ...... खरीदी।'); बच्चे उन्हें पढ़कर अपने शब्दों से पूरा करें और पूरे वाक्य कॉपी में लिखें।",
+      "how_to_english": "Write 2–3 sentences with a blank on the board (e.g., 'At the fair I bought ___.'); children read them, complete each in their own words, and write the full sentences in their notebooks.",
+      "variants": [
+        {
+          "note": "Children choose the correct word from options to complete the sentence (workbook format)",
+          "source_refs": [
+            "W5D2",
+            "W5D4",
+            "W5D5",
+            "W7D4"
+          ]
+        },
+        {
+          "note": "Remedial pairs complete sentences choosing from two given words (पूँछ/आँख)",
+          "source_refs": [
+            "W17D5"
+          ]
+        }
+      ],
+      "source_refs": [
+        "W4D3",
+        "W4D4",
+        "W5D2",
+        "W5D4",
+        "W5D5",
+        "W7D4",
+        "W17D5",
+        "W18D5"
+      ],
+      "frequency_count": 8
+    },
+    {
+      "strategy_id": "wr-words-to-sentences",
+      "strategy_name_hindi": "शब्दों से वाक्य बनाना",
+      "strategy_name_english": "Use Words in Sentences",
+      "type": "competency",
+      "competency_ids": [
+        "WR4",
+        "OL4"
+      ],
+      "how_to_hindi": "उदाहरण के रूप में 2-3 शब्दों (कार्यपुस्तिका से भिन्न) का उपयोग मौखिक रूप से वाक्यों में करके बताएँ और बोर्ड पर लिखें; फिर बच्चे दिए गए शब्दों से वाक्य बनाकर लिखें।",
+      "how_to_english": "Model using 2–3 words (not the workbook's) in spoken sentences and write them on the board; children then write their own sentences with the given words.",
+      "variants": [
+        {
+          "note": "Combine several given words into one sentence (ऊपर–नीचे–गेंद → 'गेंद ऊपर-नीचे होती रहती है')",
+          "source_refs": [
+            "W7D1"
+          ]
+        },
+        {
+          "note": "[merged from 'New Sentence from a Marked Word'] Word is underlined inside a model sentence; children write a brand-new sentence using it",
+          "source_refs": [
+            "W16D2"
+          ]
+        }
+      ],
+      "source_refs": [
+        "W6D2",
+        "W7D1",
+        "W7D2",
+        "W16D2",
+        "W25D1"
+      ],
+      "frequency_count": 5
+    },
+    {
+      "strategy_id": "wr-experience-prompt-writing",
+      "strategy_name_hindi": "अनुभव से जुड़े प्रश्न पर जोड़ियों में चर्चा कर लिखना",
+      "strategy_name_english": "Personal Prompt, Pair Write",
+      "type": "competency",
+      "competency_ids": [
+        "WR4",
+        "OL6"
+      ],
+      "how_to_hindi": "बच्चों से उनके अनुभव से जुड़ा कोई प्रश्न पूछें (जैसे 'आपको क्या-क्या करना अच्छा लगता है?'); बच्चे जोड़ियों में प्रश्न पर चर्चा करते हुए उसके बारे में कुछ शब्द या 1-2 वाक्य लिखें और पढ़ें; 3-4 जोड़ियाँ सबके साथ साझा करें।",
+      "how_to_english": "Ask a question about children's own lives ('What do you like doing?'); pairs talk it over, then write a few words or 1–2 sentences about it and read them aloud; 3–4 pairs share with the class.",
+      "variants": [
+        {
+          "note": "Prompt: things you like doing",
+          "source_refs": [
+            "W21D5"
+          ]
+        },
+        {
+          "note": "Prompt: food you like",
+          "source_refs": [
+            "W23D5"
+          ]
+        },
+        {
+          "note": "Prompt: what you saw on the way to school",
+          "source_refs": [
+            "W24D5"
+          ]
+        },
+        {
+          "note": "Prompt: games you like",
+          "source_refs": [
+            "W25D5"
+          ]
+        }
+      ],
+      "source_refs": [
+        "W21D5",
+        "W23D5",
+        "W24D5",
+        "W25D5"
+      ],
+      "frequency_count": 4
+    },
+    {
+      "strategy_id": "wr-textbook-exercise",
+      "strategy_name_hindi": "पाठ अभ्यास एवं संबंधित लेखन कार्य / पाठ आधारित प्रश्नों पर मौखिक चर्चा, फिर लिखित उत्तर",
+      "strategy_name_english": "Talk-Then-Write Question Answering",
+      "type": "competency",
+      "competency_ids": [
+        "WR5",
+        "RC2"
+      ],
+      "how_to_hindi": "पाठ्यपुस्तक के पाठ की अभ्यास गतिविधि (जैसे प्रश्नों के उत्तर लिखिए, शब्दों का खेल) पर पहले बच्चों से मौखिक रूप से चर्चा करें, फिर उन्हें उत्तर लिखने या निर्देशानुसार गतिविधि करने को कहें।",
+      "how_to_english": "Discuss the lesson's end-of-chapter exercise orally with the class first, then have children write their answers or complete the task as instructed.",
+      "shared_resource_refs": [
+        "SR-SARANGI-2",
+        "SR-WORKBOOK-1"
+      ],
+      "variants": [
+        {
+          "note": "Oral discussion only (conversation-type exercises such as 'बातचीत के लिए')",
+          "source_refs": [
+            "W6D2",
+            "W7D2",
+            "W7D4"
+          ]
+        },
+        {
+          "note": "After discussion, children read the exercise text together in pairs ('मिलकर पढ़िए', riddles)",
+          "source_refs": [
+            "W5D4",
+            "W6D4"
+          ]
+        },
+        {
+          "note": "Riddle-solving exercise (पहेली)",
+          "source_refs": [
+            "W11D3"
+          ]
+        },
+        {
+          "note": "Colouring / art-and-writing exercise (चित्रकारी, रंग भरिए)",
+          "source_refs": [
+            "W8D1",
+            "W11D1",
+            "W11D4"
+          ]
+        },
+        {
+          "note": "Open writing exercises from the textbook: 'कहानी लिखिए', 'मेरी कहानी', 'write 5-6 sentences using the given words'",
+          "source_refs": [
+            "W21D3",
+            "W22D1",
+            "W22D2",
+            "W24D3"
+          ]
+        },
+        {
+          "note": "[merged from 'Read, Answer Aloud, Then Write'] Workbook passage version: pairs/groups first take turns reading the passage, then oral answers, then written answers",
+          "source_refs": [
+            "W7D3",
+            "W8D3",
+            "W8D5",
+            "W9D3",
+            "W9D5",
+            "W10D3",
+            "W10D5",
+            "W11D3",
+            "W11D5",
+            "W12D3",
+            "W12D5",
+            "W14D3",
+            "W14D5",
+            "W15D3",
+            "W15D5",
+            "W16D3",
+            "W16D5",
+            "W17D3",
+            "W17D5",
+            "W18D3",
+            "W18D5",
+            "W19D3",
+            "W19D5",
+            "W21D3",
+            "W21D5",
+            "W22D3",
+            "W22D5",
+            "W23D3",
+            "W23D5",
+            "W24D3",
+            "W24D5",
+            "W25D3",
+            "W25D5"
+          ]
+        },
+        {
+          "note": "Questions on the levelled text: oral discussion first, then written answers",
+          "source_refs": [
+            "W8D3",
+            "W9D3",
+            "W10D3",
+            "W11D3",
+            "W12D3"
+          ]
+        },
+        {
+          "note": "'Think and write' prompt on the levelled text asking children to predict an outcome (e.g., who will win the race)",
+          "source_refs": [
+            "W18D3"
+          ]
+        }
+      ],
+      "source_refs": [
+        "W5D1",
+        "W5D2",
+        "W5D3",
+        "W5D4",
+        "W6D1",
+        "W6D2",
+        "W6D3",
+        "W6D4",
+        "W7D1",
+        "W7D2",
+        "W7D3",
+        "W7D4",
+        "W8D1",
+        "W8D2",
+        "W8D3",
+        "W8D4",
+        "W8D5",
+        "W9D1",
+        "W9D2",
+        "W9D3",
+        "W9D5",
+        "W10D1",
+        "W10D2",
+        "W10D3",
+        "W10D4",
+        "W10D5",
+        "W11D1",
+        "W11D2",
+        "W11D3",
+        "W11D4",
+        "W11D5",
+        "W12D1",
+        "W12D2",
+        "W12D3",
+        "W12D5",
+        "W14D1",
+        "W14D2",
+        "W14D3",
+        "W14D5",
+        "W15D1",
+        "W15D2",
+        "W15D3",
+        "W15D4",
+        "W15D5",
+        "W16D1",
+        "W16D2",
+        "W16D3",
+        "W16D4",
+        "W16D5",
+        "W17D1",
+        "W17D2",
+        "W17D3",
+        "W17D4",
+        "W17D5",
+        "W18D1",
+        "W18D2",
+        "W18D3",
+        "W18D5",
+        "W19D1",
+        "W19D2",
+        "W19D3",
+        "W19D5",
+        "W21D1",
+        "W21D2",
+        "W21D3",
+        "W21D4",
+        "W21D5",
+        "W22D1",
+        "W22D2",
+        "W22D3",
+        "W22D4",
+        "W22D5",
+        "W23D1",
+        "W23D2",
+        "W23D3",
+        "W23D4",
+        "W23D5",
+        "W24D1",
+        "W24D2",
+        "W24D3",
+        "W24D4",
+        "W24D5",
+        "W25D1",
+        "W25D2",
+        "W25D3",
+        "W25D4",
+        "W25D5"
+      ],
+      "frequency_count": 87
+    },
+    {
+      "strategy_id": "wr-grammar-concept-demo",
+      "strategy_name_hindi": "व्याकरण की अवधारणा बोर्ड पर उदाहरण सहित समझाना",
+      "strategy_name_english": "Grammar Concept via Board Examples",
+      "type": "competency",
+      "competency_ids": [
+        "WR6",
+        "OL4"
+      ],
+      "how_to_hindi": "किसी व्याकरणिक अवधारणा (जैसे एकवचन-बहुवचन, संज्ञा, विशेषता बताने वाले शब्द, स्त्रीलिंग-पुल्लिंग, समानार्थी शब्द) पर पहले मौखिक चर्चा करें; कार्यपुस्तिका से भिन्न उदाहरण बोर्ड पर लिखकर समझाएँ; फिर बच्चे कार्यपुस्तिका की गतिविधि करें और आवश्यकतानुसार सहायता लें।",
+      "how_to_english": "Introduce a grammar idea (singular/plural, nouns, describing words, gender, synonyms) through talk, show it with board examples different from the workbook's, then let children do the workbook task with support as needed.",
+      "detailed_explanation_hindi": "अवधारणा को बच्चों के परिचित वाक्यों से समझाएँ, परिभाषा रटवाने से नहीं। उदाहरण: संज्ञा — 'मोहन और सोहन दोस्त हैं' में मोहन और सोहन लोगों के नाम हैं; विशेषता — 'यह बकरी भूरी रंग की है' में भूरी बकरी की विशेषता है; लिंग — चींटा/चींटी; वचन — बकरी/बकरियाँ; समानार्थी — आग/अग्नि।",
+      "detailed_explanation_english": "Teach through familiar sentences rather than memorised definitions. Examples: noun — in 'मोहन और सोहन दोस्त हैं', मोहन and सोहन name people; describing word — in 'यह बकरी भूरी रंग की है', भूरी describes the goat; gender — चींटा/चींटी; number — बकरी/बकरियाँ; synonyms — आग/अग्नि.",
+      "shared_resource_refs": [
+        "SR-WORKBOOK-1"
+      ],
+      "variants": [
+        {
+          "note": "Singular / plural (एकवचन-बहुवचन)",
+          "source_refs": [
+            "W9D1",
+            "W11D2",
+            "W12D4"
+          ]
+        },
+        {
+          "note": "Synonyms (समानार्थी शब्द)",
+          "source_refs": [
+            "W10D1"
+          ]
+        },
+        {
+          "note": "Nouns (संज्ञा) — names of people, places, things, animals, groups",
+          "source_refs": [
+            "W10D2",
+            "W12D2"
+          ]
+        },
+        {
+          "note": "Describing words (विशेषता)",
+          "source_refs": [
+            "W12D1"
+          ]
+        },
+        {
+          "note": "Masculine / feminine (स्त्रीलिंग-पुल्लिंग) — children rewrite words changing gender",
+          "source_refs": [
+            "W11D4"
+          ]
+        },
+        {
+          "note": "Full stop (पूर्ण विराम) — where and why to place it",
+          "source_refs": [
+            "W14D1"
+          ]
+        },
+        {
+          "note": "Verbs (क्रिया शब्द) — words that show an action; model a sentence with one",
+          "source_refs": [
+            "W14D2"
+          ]
+        },
+        {
+          "note": "Noun vs verb sorting: children read given words and decide whether each is a संज्ञा or क्रिया",
+          "source_refs": [
+            "W23D2"
+          ]
+        }
+      ],
+      "source_refs": [
+        "W9D1",
+        "W10D1",
+        "W10D2",
+        "W11D2",
+        "W11D4",
+        "W12D1",
+        "W12D2",
+        "W12D4",
+        "W14D1",
+        "W14D2",
+        "W15D2",
+        "W16D1",
+        "W16D4",
+        "W18D1",
+        "W18D2",
+        "W18D4",
+        "W19D1",
+        "W19D2",
+        "W22D2",
+        "W23D2"
+      ],
+      "frequency_count": 20
+    },
+    {
+      "strategy_id": "wr-jumbled-sentence",
+      "strategy_name_hindi": "शब्दों का क्रम सही करके वाक्य बनाना",
+      "strategy_name_english": "Unjumble the Sentence",
+      "type": "competency",
+      "competency_ids": [
+        "WR6",
+        "RF2"
+      ],
+      "how_to_hindi": "बोर्ड पर एक ऐसा वाक्य लिखें जिसके शब्दों का क्रम सही न हो (जैसे किताब / कोमल / पढ़ती है); उसे सही क्रम में लिखकर दिखाएँ (कोमल किताब पढ़ती है), फिर बच्चे ऐसे वाक्य स्वयं ठीक करें।",
+      "how_to_english": "Write a sentence with its words scrambled (किताब / कोमल / पढ़ती है) and model rewriting it in the correct order (कोमल किताब पढ़ती है); children then fix similar sentences on their own.",
+      "variants": [
+        {
+          "note": "Remedial (Group A) version: reorder word cards into a sentence, write and read it",
+          "source_refs": [
+            "W22D3",
+            "W24D3"
+          ]
+        }
+      ],
+      "source_refs": [
+        "W7D4",
+        "W8D1",
+        "W22D3",
+        "W24D3"
+      ],
+      "frequency_count": 4
+    },
+    {
+      "strategy_id": "wr-statement-to-question",
+      "strategy_name_hindi": "प्रश्नवाचक शब्द लगाकर वाक्य को प्रश्न में बदलना",
+      "strategy_name_english": "Turn Statements into Questions",
+      "type": "competency",
+      "competency_ids": [
+        "WR6",
+        "RC4"
+      ],
+      "how_to_hindi": "बोर्ड पर कुछ सामान्य वाक्य लिखें और उनमें 'क्या', 'कब', 'कौन', 'क्यों' जैसे प्रश्नवाचक शब्द लगाकर प्रश्नवाचक वाक्य बनाने की प्रक्रिया करके दिखाएँ; फिर बच्चे ऐसे वाक्य स्वयं बदलें।",
+      "how_to_english": "Write a few plain statements on the board and model turning each into a question by adding a question word (क्या, कब, कौन, क्यों) — 'नीतू घर गयी' → 'नीतू कब घर गयी?'; children then convert sentences themselves.",
+      "example": "आरती पढ़ती है → आरती कब पढ़ती है? / आरती क्यों पढ़ती है?",
+      "variants": [
+        {
+          "note": "Single question word (कब) — where and how it can be used",
+          "source_refs": [
+            "W9D2"
+          ]
+        },
+        {
+          "note": "Multiple question words (क्या, कौन, क्यों) on the same statement",
+          "source_refs": [
+            "W11D1"
+          ]
+        }
+      ],
+      "source_refs": [
+        "W9D2",
+        "W11D1",
+        "W22D1",
+        "W24D1"
+      ],
+      "frequency_count": 4
+    },
+    {
+      "strategy_id": "wr-category-list",
+      "strategy_name_hindi": "जोड़ियों में चर्चा कर शब्दों की सूची लिखना",
+      "strategy_name_english": "Category Word Listing in Pairs",
+      "type": "competency",
+      "competency_ids": [
+        "WR7",
+        "OL4"
+      ],
+      "how_to_hindi": "बच्चे जोड़ियों/समूहों में चर्चा करके किसी एक श्रेणी की 5 वस्तुओं के नाम लिखें; 3-4 जोड़ियाँ सबके साथ साझा करें; वर्तनी की त्रुटियों पर ध्यान न दें और जैसे भी लिखें, सराहना करें।",
+      "how_to_english": "Pairs discuss and write the names of five things in a category; 3–4 pairs share with the class. Ignore spelling errors and praise every attempt.",
+      "detailed_explanation_hindi": "हर समूह का एक ग्रुप लीडर ग्रिड को कॉपी/पन्ने पर बनाए। ग्रिड में 5-7 पंक्तियाँ रखें। गतिविधि के बाद समूह का पेपर 'बच्चों का कोना' में लगाएँ।",
+      "detailed_explanation_english": "Each group's leader draws the grid, with 5–7 rows, on a page. Display the group sheets in the Children's Corner afterwards. (BM p.169)",
+      "example": "पाँच फलों के नाम (W1D5).",
+      "variants": [
+        {
+          "note": "Done individually in the main lesson rather than as remedial pair work (e.g., names of five toys, five classmates)",
+          "source_refs": [
+            "W3D4",
+            "W4D3"
+          ]
+        },
+        {
+          "note": "Theme brainstorm rather than a strict category: words associated with a setting (e.g., a fair — झूला, दुकान, भीड़)",
+          "source_refs": [
+            "W6D5"
+          ]
+        },
+        {
+          "note": "[merged from 'Four-Column List Grid'] सूची बनाओ: groups fill a four-column grid (friends, places, animals, things) and read it out; group sheets displayed",
+          "source_refs": [
+            "W22D5"
+          ]
+        }
+      ],
+      "source_refs": [
+        "W1D5",
+        "W2D5",
+        "W3D4",
+        "W3D5",
+        "W4D3",
+        "W4D5",
+        "W5D5",
+        "W6D5",
+        "W8D5",
+        "W22D5"
+      ],
+      "frequency_count": 10
+    },
+    {
+      "strategy_id": "wr-story-from-words",
+      "strategy_name_hindi": "दिए गए शब्दों / वाक्य से कहानी बनाना",
+      "strategy_name_english": "Build a Story from a Prompt",
+      "type": "competency",
+      "competency_ids": [
+        "WR7",
+        "OL5"
+      ],
+      "how_to_hindi": "बोर्ड पर 3-4 शब्द (कार्यपुस्तिका से भिन्न) लिखें और उनका उपयोग करते हुए मौखिक रूप से वाक्यों में एक छोटी कहानी बनाकर दिखाएँ कि कहानी कैसे बनाई जा सकती है; फिर बच्चे दिए गए शब्दों से अपनी कहानी बनाएँ।",
+      "how_to_english": "Write 3–4 words (not the workbook's) on the board and model weaving them into a short spoken story; children then build their own short story around the given set of words.",
+      "example": "गर्मी का दिन था। → लोग आराम करने के लिए पेड़ों के नीचे बैठे। → पेड़ों की छाँव में सबको आराम मिला।",
+      "variants": [
+        {
+          "note": "[merged from 'Grow a Story from One Sentence'] Prompt is one opening sentence that children extend with 2-3 linked sentences",
+          "source_refs": [
+            "W12D2"
+          ]
+        }
+      ],
+      "source_refs": [
+        "W12D2",
+        "W15D1",
+        "W17D4",
+        "W19D5",
+        "W21D2",
+        "W25D2"
+      ],
+      "frequency_count": 6
+    },
+    {
+      "strategy_id": "wr-card-making",
+      "strategy_name_hindi": "कार्ड बनाना (धन्यवाद कार्ड / ग्रीटिंग कार्ड)",
+      "strategy_name_english": "Card Making with a Message",
+      "type": "competency",
+      "competency_ids": [
+        "WR7",
+        "SE1"
+      ],
+      "how_to_hindi": "बच्चे किसी व्यक्ति के लिए कार्ड बनाकर उस पर छोटा संदेश लिखें; फिर कार्ड उस व्यक्ति/साथी को दें या 3-4 बच्चे कार्ड दिखाते हुए अपने विचार सबके साथ साझा करें।",
+      "how_to_english": "Children make a card for someone and write a short message inside; they give it to that person or classmate, and 3–4 children show their cards and explain what they wrote.",
+      "detailed_explanation_hindi": "ग्रीटिंग कार्ड गतिविधि: बच्चों को 1-1 पर्ची दें जिस पर किसी साथी का नाम लिखा हो; जिसका नाम मिला, उसके लिए कार्ड बनाना है। आवश्यक सामग्री दें, कार्ड बनने पर उसे साथी को देने को कहें। ध्यान रखें कि सभी बच्चे भाग लें। लेखन में जोड़ियों में बैठकर कार्ड पर अपने दोस्त के बारे में संदेश लिखें और उस पर चर्चा करें; कार्ड 'बच्चों का कोना' में लगाएँ।",
+      "detailed_explanation_english": "Greeting-card version: hand each child a chit naming a classmate; they make a card for that person. Provide materials, then have each child give the card to the named classmate — ensure everyone takes part. In the writing slot, pairs write a message about their friend on the card and talk about it; display cards in the Children's Corner. (BM p.168)",
+      "materials": [
+        "कागज़/चार्ट, रंग, नाम की पर्चियाँ (paper/card, colours, name chits)"
+      ],
+      "variants": [
+        {
+          "note": "Thank-you card, set as a textbook exercise after a lesson",
+          "source_refs": [
+            "W8D2",
+            "W8D4"
+          ]
+        },
+        {
+          "note": "Greeting card for a classmate drawn by lot (creative activity)",
+          "source_refs": [
+            "W9D5"
+          ]
+        }
+      ],
+      "source_refs": [
+        "W8D2",
+        "W8D4",
+        "W9D5",
+        "W23D5"
+      ],
+      "frequency_count": 4
+    },
+    {
+      "strategy_id": "wr-paragraph-attempt",
+      "strategy_name_hindi": "अनुच्छेद लिखने का प्रयास करना",
+      "strategy_name_english": "First Paragraph Attempts",
+      "type": "competency",
+      "competency_ids": [
+        "WR7"
+      ],
+      "how_to_hindi": "बोर्ड/नोटबुक पर किसी परिचित विषय (जैसे साफ़-सफ़ाई, मेरे पसंदीदा खेल, मेला, पानी की बचत) का नाम लिखें और बच्चों से उस पर छोटा अनुच्छेद लिखने को कहें; शुरू में केवल चित्र बनवाएँ, अगले चरण में चित्र के साथ अनुच्छेद।",
+      "how_to_english": "Give a familiar topic (cleanliness, my favourite game, a fair, saving water) and ask children to write a short paragraph on it; start with a drawing only, then progress to a drawing plus a paragraph.",
+      "source_refs": [],
+      "reference_pages": [
+        "BM p.182"
+      ],
+      "frequency_count": 0
+    },
+    {
+      "strategy_id": "ga-warmup-routine",
+      "strategy_name_hindi": "सौहार्दपूर्ण वातावरण निर्माण की गतिविधि",
+      "strategy_name_english": "Period-Opening Warm-Up",
+      "type": "general",
+      "competency_ids": [],
+      "bucket_id": "GA-WARM",
+      "how_to_hindi": "प्रत्येक कालांश की शुरुआत में 2-3 मिनट कोई स्थानीय गीत, कविता, बालगीत या खेल गतिविधि कराएँ; पहले स्वयं करके दिखाएँ और बच्चों को उठने-बैठने, चलने-फिरने का अवसर दें; गतिविधि 2-3 बार दोहराएँ।",
+      "how_to_english": "Open every period with a 2–3-minute local song, rhyme or movement game: model it first, let children stand, sit and move, and repeat it 2–3 times so they can join in fully.",
+      "detailed_explanation_hindi": "निर्देश स्पष्टता के साथ दें और पालन करने में सहायता करें। सभी बच्चे भाग लें यह सुनिश्चित करें। चयन करते समय कक्षा में जगह, बच्चों की संख्या और गतिविधि का स्तर ध्यान में रखें। प्रतिदिन गतिविधि का प्रकार बदलते रहें।",
+      "detailed_explanation_english": "Give clear instructions and help children follow them; make sure everyone takes part. Choose activities that suit the space, class size and children's level, and vary the type each day so it stays fresh. The purpose is a warm, positive climate that readies children for the main lesson.",
+      "source_refs": [],
+      "reference_pages": [
+        "BM p.158"
+      ],
+      "frequency_count": 0
+    },
+    {
+      "strategy_id": "cfu-sahi-galat-parchi",
+      "strategy_name_hindi": "सही-गलत की पर्ची",
+      "strategy_name_english": "Green/Red Card Response",
+      "type": "general",
+      "competency_ids": [],
+      "bucket_id": "GA-CFU",
+      "how_to_hindi": "बच्चे हरे रंग की पर्ची पर 'सही' और लाल रंग की पर्ची पर 'गलत' लिखकर रखें; शिक्षक कुछ प्रश्न/कथन बोलें और सभी बच्चे एक साथ सही होने पर हरी और गलत होने पर लाल पर्ची दिखाएँ।",
+      "how_to_english": "Each child makes a green 'सही' (true) card and a red 'गलत' (false) card; the teacher reads out statements or questions and the whole class holds up green or red at once, giving an instant read of who has understood.",
+      "detailed_explanation_hindi": "समझ की जाँच योगात्मक आकलन नहीं है — यह शिक्षण के दौरान छोटी, सरल गतिविधि है जिसका उद्देश्य प्रक्रिया में सुधार है। ध्यान दें: (1) इसे दिनचर्या का हिस्सा बनाएँ ताकि बच्चों पर मानसिक भार न पड़े; (2) प्रश्नों का स्तर उचित चुनौती वाला हो — न बहुत आसान, न बहुत कठिन; (3) 'हर बच्चा सीख सकता है' की सोच से सबको समान अवसर दें; (4) केवल उत्तर न सुनें — बच्चों से पूछें कि वे उस उत्तर तक कैसे पहुँचे।",
+      "detailed_explanation_english": "Checks for understanding are not summative tests — they are quick, low-stakes moments during teaching whose purpose is to adjust instruction. Four principles: make them a routine so they don't feel like a burden; pitch questions at a stretch level, neither too easy nor too hard; act on the belief that every child can learn and give everyone equal chances; and go beyond the answer — ask children how they reached it. (Front matter pp.8–9)",
+      "materials": [
+        "हरी और लाल पर्चियाँ (green and red chits)"
+      ],
+      "source_refs": [
+        "W13D2",
+        "W20D2"
+      ],
+      "frequency_count": 2
+    },
+    {
+      "strategy_id": "cfu-thumbs",
+      "strategy_name_hindi": "थम्स-अप, थम्स-डाउन",
+      "strategy_name_english": "Thumbs Up / Thumbs Down",
+      "type": "general",
+      "competency_ids": [],
+      "bucket_id": "GA-CFU",
+      "how_to_hindi": "आज की गतिविधि से जुड़ा कोई प्रश्न पूछें; जिन्हें उत्तर पता है वे थम्स-अप और जिन्हें नहीं पता वे थम्स-डाउन करें।",
+      "how_to_english": "Ask a question about the day's activity; children who know the answer show thumbs up, those who don't show thumbs down — a quick scan of the room tells you who needs help.",
+      "source_refs": [
+        "W13D3",
+        "W20D3"
+      ],
+      "frequency_count": 2
+    },
+    {
+      "strategy_id": "cfu-do-sach-ek-jhooth",
+      "strategy_name_hindi": "दो सच एक झूठ",
+      "strategy_name_english": "Two Truths and a Lie",
+      "type": "general",
+      "competency_ids": [
+        "RC2"
+      ],
+      "bucket_id": "GA-CFU",
+      "how_to_hindi": "सिखाई गई दक्षता या पढ़ाए गए पाठ के आधार पर तीन-तीन वाक्य बोलें (या बोर्ड पर लिखें), जिनमें दो सही और एक गलत हो; बच्चे गलत वाक्य पहचानें।",
+      "how_to_english": "Say (or write) three statements about the skill or text just taught — two true, one false — and have children spot the false one; it can be done with the whole class or with individual children.",
+      "source_refs": [
+        "W13D4",
+        "W20D4"
+      ],
+      "frequency_count": 2
+    },
+    {
+      "strategy_id": "cfu-notebook-response",
+      "strategy_name_hindi": "नोटबुक पर लिखना",
+      "strategy_name_english": "All-Write Notebook Check",
+      "type": "general",
+      "competency_ids": [],
+      "bucket_id": "GA-CFU",
+      "how_to_hindi": "कक्षा के सभी बच्चों को एक प्रश्न दें; सभी बच्चे निश्चित समय में अपनी नोटबुक में उत्तर लिखकर एक साथ दिखाएँ — इससे पूरी कक्षा की समझ एक साथ ज्ञात हो जाती है।",
+      "how_to_english": "Pose one question to the whole class; everyone writes an answer in their notebook within a set time and holds it up together, so you see the whole class's understanding at a glance.",
+      "materials": [
+        "नोटबुक (notebook)"
+      ],
+      "source_refs": [
+        "W13D5",
+        "W20D5"
+      ],
+      "frequency_count": 2
+    },
+    {
+      "strategy_id": "cfu-ek-kadam",
+      "strategy_name_hindi": "एक कदम आगे, एक कदम पीछे कूदो",
+      "strategy_name_english": "Step Forward, Step Back",
+      "type": "general",
+      "competency_ids": [],
+      "bucket_id": "GA-CFU",
+      "how_to_hindi": "किसी अवधारणा/विषयवस्तु पर कार्य के बाद उससे संबंधित कुछ तथ्य बोलें; यदि बच्चों को तथ्य सही लगे तो एक कदम आगे कूदें और गलत लगे तो एक कदम पीछे कूदें।",
+      "how_to_english": "After teaching a concept, call out statements about it; children jump one step forward if they think it's true and one step back if false — a movement-based whole-class check.",
+      "source_refs": [
+        "W13D6",
+        "W20D6"
+      ],
+      "frequency_count": 2
+    },
+    {
+      "strategy_id": "ga-weekly-assessment",
+      "strategy_name_hindi": "साप्ताहिक आकलन 'मैंने सीख लिया'",
+      "strategy_name_english": "Weekly One-to-One Assessment",
+      "type": "general",
+      "competency_ids": [],
+      "bucket_id": "GA-ASSESS",
+      "how_to_hindi": "बच्चों को बारी-बारी से अपने पास बुलाकर सामान्य बातचीत से सहज करें, फिर 'मैंने सीख लिया' पत्रक के वर्ण/अक्षर/शब्द एक-एक कर पढ़वाएँ और परिणाम दर्ज करें; इस बीच बाकी बच्चे सप्ताह के पठन अभ्यास पढ़ें-लिखें; अंत में सामूहिक श्रुतलेख कराएँ।",
+      "how_to_english": "Call children one at a time, put each at ease with light conversation, and have them read the items on the weekly sheet while you record results; meanwhile the rest re-read and write the week's practice passages. Finish with a whole-class dictation.",
+      "detailed_explanation_hindi": "आकलन से पूर्व (5 मिनट): सप्ताह के पठन अभ्यास बोर्ड पर लिखें, बच्चे उन्हें पढ़ें-लिखें; कक्षा में उपलब्ध अन्य पठन सामग्री पढ़ने को प्रोत्साहित करें। आकलन (55-60 मिनट): 'मैंने सीख लिया' का प्रिंट या कॉपी में स्पष्ट लिखा पत्रक; प्रत्येक सही पढ़े गए शब्द का परिणाम कार्यपुस्तिका के कोष्ठक में दर्ज करें। सामूहिक 'सुनकर लिखें' — 5 शब्द, प्रत्येक तीन बार, फिर बोर्ड से जोड़ियों में जाँच। आकलन के पश्चात (10-12 मिनट): 'साप्ताहिक आकलन ट्रैकर' में प्रगति दर्ज करें, परिणाम के आधार पर समूह बनाएँ और अगले सप्ताह समूह-A को केंद्र में रखकर रिमीडियल योजना लागू करें।",
+      "detailed_explanation_english": "Before (5 min): put the week's practice passages on the board for children to read and write, and encourage any other reading material in the room. During (55–60 min): use the printed sheet (or copy it clearly into a notebook), have each child read it to you, and record correct items in the workbook box. Then a whole-class dictation of five words, each said three times, checked in pairs against the board. After (10–12 min): enter results in the Weekly Assessment Tracker, regroup children, and plan next week's remedial work around Group A. (Scoring rules/rubric deliberately omitted.)",
+      "shared_resource_refs": [
+        "SR-MAINE-SEEKH-LIYA",
+        "SR-TRACKER",
+        "SR-DIGITAL-WB",
+        "SR-PATHAN-ABHYAS"
+      ],
+      "variants": [
+        {
+          "note": "From Week 5 the sheet has words and sentences; waiting children pair-read the week's workbook reading-practice passages",
+          "source_refs": [
+            "W5D6",
+            "W6D6",
+            "W7D6"
+          ]
+        },
+        {
+          "note": "From Week 8: child reads a short passage aloud, then answers text-based questions orally; dictation becomes a 3-5-word sentence",
+          "source_refs": [
+            "W8D6",
+            "W9D6",
+            "W10D6",
+            "W11D6",
+            "W12D6"
+          ]
+        },
+        {
+          "note": "From Week 14 waiting children pair-read the week's fluency passages",
+          "source_refs": [
+            "W14D6",
+            "W15D6",
+            "W16D6",
+            "W17D6"
+          ]
+        },
+        {
+          "note": "Stop rule: if a child misreads every word of the first sentence, stop the reading and move them to Group A work; don't ask comprehension questions of a child who reads under 25% of the words",
+          "source_refs": [
+            "BM p.181"
+          ]
+        }
+      ],
+      "source_refs": [
+        "W1D6",
+        "W2D6",
+        "W3D6",
+        "W4D6",
+        "W5D6",
+        "W6D6",
+        "W7D6",
+        "W8D6",
+        "W9D6",
+        "W10D6",
+        "W11D6",
+        "W12D6",
+        "W14D6",
+        "W15D6",
+        "W16D6",
+        "W17D6",
+        "W18D6",
+        "W19D6",
+        "W21D6",
+        "W22D6",
+        "W23D6",
+        "W24D6",
+        "W25D6"
+      ],
+      "frequency_count": 23
+    },
+    {
+      "strategy_id": "ga-oral-language-observation",
+      "strategy_name_hindi": "मौखिक भाषा विकास का अवलोकन",
+      "strategy_name_english": "Ongoing Oral Language Observation",
+      "type": "general",
+      "competency_ids": [],
+      "bucket_id": "GA-ASSESS",
+      "how_to_hindi": "नियमित शिक्षण के दौरान प्रत्येक बच्चे का प्रति सप्ताह कम से कम 2 बार मौखिक भाषा कौशलों पर अवलोकन करें — देखें कि वह पूरे वाक्यों में, क्रमबद्ध और विषय से जुड़ी बात सहजता से कह पा रहा है या नहीं।",
+      "how_to_english": "During normal lessons, observe each child's oral language at least twice a week — whether they speak naturally, in full sentences, in a logical order and on topic.",
+      "detailed_explanation_hindi": "ध्यान दें: (1) बच्चों को बोलने के पर्याप्त अवसर दें; (2) सिर्फ उत्तर नहीं, सोच की प्रक्रिया पर ध्यान दें; (3) भाषा की स्वाभाविकता देखें — रटी हुई पंक्तियाँ दोहराना सृजनात्मक प्रयोग नहीं है; (4) वाक्य-स्तरीय अभिव्यक्ति पर ज़ोर दें; (5) गलतियों को सीखने का अवसर मानें; (6) भाषायी विविधता को स्वीकार करें।",
+      "detailed_explanation_english": "Principles: give ample chances to speak; attend to the thinking process, not just the answer; look for natural language rather than memorised lines; press for sentence-level expression; treat errors as learning opportunities; accept linguistic diversity and home-language mixing. (Level descriptors omitted as rubric content.)",
+      "source_refs": [],
+      "reference_pages": [
+        "BM p.183"
+      ],
+      "frequency_count": 0
+    },
+    {
+      "strategy_id": "ga-lesson-word-review",
+      "strategy_name_hindi": "पाठ्यपुस्तक के पाठ पर आधारित पुनरावृत्ति",
+      "strategy_name_english": "Lesson Word Review",
+      "type": "general",
+      "competency_ids": [
+        "OL4"
+      ],
+      "bucket_id": "GA-REVIEW",
+      "how_to_hindi": "सप्ताह के पाठ से संबंधित कुछ कठिन शब्द बोर्ड पर लिखें और बच्चों से पढ़वाएँ; फिर 4-5 बच्चे इन शब्दों से मौखिक रूप से वाक्य बनाकर सुनाएँ।",
+      "how_to_english": "Write a few hard words from the week's lesson on the board for children to read; then 4–5 children make oral sentences with them.",
+      "source_refs": [
+        "W5D5",
+        "W6D5",
+        "W7D5",
+        "W8D5",
+        "W9D5",
+        "W10D5",
+        "W11D5",
+        "W12D5",
+        "W14D5",
+        "W15D5",
+        "W16D5",
+        "W17D5",
+        "W18D5",
+        "W19D5",
+        "W21D5",
+        "W22D5",
+        "W23D5",
+        "W24D5",
+        "W25D5"
+      ],
+      "frequency_count": 19
+    },
+    {
+      "strategy_id": "ga-pair-group-work",
+      "strategy_name_hindi": "जोड़ी/समूह में कार्य",
+      "strategy_name_english": "Pair and Small-Group Work",
+      "type": "general",
+      "competency_ids": [],
+      "bucket_id": "GA-PEER",
+      "how_to_hindi": "नियमित रूप से बच्चों को जोड़ियों और छोटे समूहों में काम करने के अवसर दें — जैसे चित्र संवाद, शब्द-चित्र मिलान, वाक्य पूरा करो, पढ़कर सुनाना, कहानी बनाओ, शब्द-संग्रह, छोटा नाटक, वाक्य बनाओ; समूहों को मिश्रित (लड़के-लड़कियाँ) रखें।",
+      "how_to_english": "Build regular pair and small-group work into lessons — picture dialogues, word–picture matching, sentence completion, reading aloud to a partner, story building, word collections, short plays, sentence making — using mixed-gender groups.",
+      "detailed_explanation_hindi": "जोड़ी/समूह कार्य से बच्चों की भाषा, सोच और आत्मविश्वास बढ़ता है; बातचीत से बोलने-सुनने, शब्दावली और समझ का विकास होता है; सीखना रटने के बजाय अर्थपूर्ण बनता है; परिचित साथियों के साथ डर खत्म होता है; सहयोग, सम्मान और ज़िम्मेदारी जैसे गुण विकसित होते हैं।",
+      "detailed_explanation_english": "Pair and group work builds language, thinking and confidence; talk develops listening, speaking, vocabulary and understanding; learning becomes meaningful rather than rote; working with familiar peers removes fear; and it builds cooperation, respect and responsibility. The daily plans use pairs constantly — pair reading, peer-checking dictation, pair drawing talk — so this entry is the umbrella principle.",
+      "source_refs": [],
+      "reference_pages": [
+        "Front matter p.10",
+        "Front matter p.12"
+      ],
+      "frequency_count": 0
+    },
+    {
+      "strategy_id": "ga-childrens-corner",
+      "strategy_name_hindi": "बच्चों का कोना",
+      "strategy_name_english": "Children's Work Corner",
+      "type": "general",
+      "competency_ids": [],
+      "bucket_id": "GA-DISPLAY",
+      "how_to_hindi": "बच्चों द्वारा बनाए गए चित्र/कार्य कक्षा के 'बच्चों का कोना' पर लगाएँ और 3-4 बच्चों को अपने कार्य के बारे में सबके साथ बात करने के लिए बुलाएँ।",
+      "how_to_english": "Display children's drawings and work in a dedicated 'Children's Corner' of the classroom, and invite 3–4 children to talk to the class about what they made.",
+      "source_refs": [
+        "W1D1",
+        "W1D4",
+        "W2D1",
+        "W2D4",
+        "W3D1",
+        "W3D4",
+        "W4D1",
+        "W4D3",
+        "W4D4",
+        "W5D6",
+        "W6D6",
+        "W9D5",
+        "W10D5",
+        "W11D5",
+        "W15D5",
+        "W18D5",
+        "W22D5",
+        "W23D5",
+        "W25D5"
+      ],
+      "frequency_count": 19
+    },
+    {
+      "strategy_id": "ga-create-school-favourites",
+      "strategy_name_hindi": "स्कूल में मेरी पसंद की चीजें / रेखांकन और चित्रकारी",
+      "strategy_name_english": "Draw and Present a Favourite Thing",
+      "type": "general",
+      "competency_ids": [
+        "OL6",
+        "WR1"
+      ],
+      "bucket_id": "GA-CREATE",
+      "how_to_hindi": "बच्चों से संक्षेप में चर्चा करें कि उन्हें स्कूल में क्या-क्या करना अच्छा लगता है; फिर वे कागज़ पर वह चीज़ चित्र के रूप में बनाएँ (या उसका मॉडल बनाएँ) और पूरी कक्षा के सामने बताएँ कि उन्होंने क्या बनाया और क्यों।",
+      "how_to_english": "Briefly discuss what children enjoy doing at school; each child then draws (or models) that thing and presents to the class what they made and why it matters to them.",
+      "detailed_explanation_hindi": "गतिविधि निर्देश एवं उदाहरण देकर समझाएँ और चरणों के अनुसार कराएँ। सभी बच्चों की भागीदारी सुनिश्चित करें और बच्चों के कार्य/उत्तरों को सही-गलत के पैमाने पर न आँकें। लेखन कार्य में जोड़ियाँ स्कूल की पसंदीदा चीज़ का चित्र बनाकर उस पर चर्चा करें, और चित्र 'बच्चों का कोना' में लगाएँ।",
+      "detailed_explanation_english": "Explain with instructions and a worked example, then run it step by step. Involve every child and don't judge the work as right or wrong. The follow-up writing slot has pairs draw a favourite school thing and discuss it; display in the Children's Corner. (BM p.168)",
+      "materials": [
+        "कागज़, रंग, मॉडल बनाने की सामग्री (paper, colours, modelling materials)",
+        "कागज़, रंग, पेंसिल (paper, colours, pencils)"
+      ],
+      "variants": [
+        {
+          "note": "[merged from 'Draw Your Favourite Thing'] रेखांकन और चित्रकारी: open choice of any favourite thing, drawing only",
+          "source_refs": [
+            "W11D5"
+          ]
+        }
+      ],
+      "source_refs": [
+        "W10D5",
+        "W11D5"
+      ],
+      "frequency_count": 2
+    },
+    {
+      "strategy_id": "ga-create-cycle-parts",
+      "strategy_name_hindi": "साइकिल बनाओ, काम बताओ",
+      "strategy_name_english": "Build It, Name Its Parts",
+      "type": "general",
+      "competency_ids": [
+        "OL4",
+        "WR7"
+      ],
+      "bucket_id": "GA-CREATE",
+      "how_to_hindi": "बच्चों को छोटे समूहों में बाँटकर किसी परिचित बहु-भागीय वस्तु का चित्र बनाने को कहें और उसके प्रत्येक भाग का नाम व उसका काम लिखने को कहें; फिर प्रत्येक समूह अपना कार्य कक्षा में प्रस्तुत करे और उसे 'बच्चों का कोना' में लगाएँ।",
+      "how_to_english": "Small groups draw a familiar multi-part object, label each part and write what it does; each group then presents to the class and the work goes up in the Children's Corner.",
+      "detailed_explanation_hindi": "5 छोटे समूह बनाएँ। समूह कार्य के बाद बारी-बारी से हर समूह को प्रस्तुति के लिए आगे बुलाएँ। इसी प्रकार कुछ अन्य वस्तुओं पर भी यह गतिविधि कराई जा सकती है — जैसे पंखा बनाओ काम बताओ, कंप्यूटर बनाओ काम बताओ। लेखन कार्य में जोड़ियाँ भागों के कार्य लिखें और 3-4 बच्चे साझा करें।",
+      "detailed_explanation_english": "Form five small groups; after the group work, call each group up in turn to present. The same structure works with any familiar multi-part object — a fan, a computer. In the follow-up writing slot, pairs write the function of each part and 3–4 children share. (BM p.169)",
+      "example": "साइकिल बनाओ, काम बताओ — children draw a bicycle and label the pedal, chain, brake, bell, etc. with what each does.",
+      "materials": [
+        "चार्ट पेपर/कागज़, रंग (chart paper, colours)"
+      ],
+      "source_refs": [
+        "W15D5",
+        "W25D5"
+      ],
+      "frequency_count": 2
+    },
+    {
+      "strategy_id": "ga-create-class-map",
+      "strategy_name_hindi": "कक्षा का मानचित्र",
+      "strategy_name_english": "Map Our Space",
+      "type": "general",
+      "competency_ids": [
+        "OL4",
+        "WR7"
+      ],
+      "bucket_id": "GA-CREATE",
+      "how_to_hindi": "कक्षा को 5 छोटे समूहों में बाँटकर हर समूह को बैठने की अलग जगह दें; प्रत्येक समूह अपनी जगह से किसी परिचित स्थान का मानचित्र बनाए और उसमें दिशा-संकेत शब्दों में लिखे; फिर हर समूह अपना मानचित्र कक्षा में प्रस्तुत करे।",
+      "how_to_english": "Split the class into five groups seated at different spots; each group draws a map of a familiar space as seen from where they sit, labelling directions in words, then presents it to the class.",
+      "detailed_explanation_hindi": "पहले बोर्ड पर मानचित्र बनाकर उदाहरण से समझाएँ। समूह कार्य के बाद बारी-बारी से हर समूह को प्रस्तुति के लिए बुलाएँ और कार्य 'बच्चों का कोना' में लगाएँ। इसी प्रकार घर, रसोई, गली आदि का मानचित्र भी बनवाया जा सकता है।",
+      "detailed_explanation_english": "Model a map on the board first. After group work, call each group up to present and display the maps in the Children's Corner. The same structure works for a home, kitchen or street. (BM p.169)",
+      "example": "Map of the classroom drawn from each group's seat.",
+      "materials": [
+        "चार्ट पेपर/कागज़, रंग (chart paper, colours)"
+      ],
+      "source_refs": [
+        "W18D5"
+      ],
+      "frequency_count": 1
+    },
+    {
+      "strategy_id": "ga-create-word-hunt-book",
+      "strategy_name_hindi": "किताब से शब्द छाँटो",
+      "strategy_name_english": "Book Word Hunt",
+      "type": "general",
+      "competency_ids": [
+        "DC6",
+        "WR6"
+      ],
+      "bucket_id": "GA-CREATE",
+      "how_to_hindi": "कक्षा को चार समूहों में बाँटकर हर समूह को एक कहानी की किताब दें; बच्चे कहानी से किसी एक प्रकार के शब्द (जैसे क्रिया शब्द) छाँटकर लिखें; फिर हर समूह अपने शब्द और उनकी संख्या पढ़कर बताए और बाकी बच्चे जाँचें कि शब्द सही प्रकार के हैं या नहीं।",
+      "how_to_english": "Give each of four groups a storybook; groups hunt through it for one type of word (e.g., action words), list them, then read out their list and count while the other groups check that each word really fits the category.",
+      "detailed_explanation_hindi": "शुरू करने से पहले उस प्रकार के शब्दों (जैसे क्रिया शब्द — भागना, कूदना, हँसना) पर बच्चों से चर्चा करें और उदाहरण दें।",
+      "detailed_explanation_english": "Before starting, discuss the target word type with examples (action words — भागना, कूदना, हँसना). Peer-checking by the other groups is part of the method. (BM p.169)",
+      "materials": [
+        "कहानी की किताबें (storybooks)"
+      ],
+      "shared_resource_refs": [
+        "SR-LIBRARY"
+      ],
+      "source_refs": [
+        "W21D5"
+      ],
+      "frequency_count": 1
+    },
+    {
+      "strategy_id": "ga-create-suno-pata-lagao",
+      "strategy_name_hindi": "सुनो और पता लगाओ",
+      "strategy_name_english": "Listen and Find Out",
+      "type": "general",
+      "competency_ids": [
+        "OL7"
+      ],
+      "bucket_id": "GA-CREATE",
+      "how_to_hindi": "गतिविधि को निर्देश एवं उदाहरण देकर समझाएँ और चरणों के अनुसार कराएँ; बाद में बच्चे जोड़ियों में गतिविधि की पर्चियों से संबंधित कोई चित्र बनाकर रंग भरें और 3-4 बच्चे अपना चित्र साझा करें।",
+      "how_to_english": "A chit-based listening activity; afterwards pairs draw and colour a picture related to their chit and 3–4 children share. The source gives no step-by-step procedure for the activity itself.",
+      "source_refs": [
+        "W24D5"
+      ],
+      "frequency_count": 1
+    },
+    {
+      "strategy_id": "ga-workbook-talk-demo",
+      "strategy_name_hindi": "गतिविधि पर मौखिक चर्चा एवं भिन्न उदाहरण से समझाना",
+      "strategy_name_english": "Talk and Demo Before Workbook Tasks",
+      "type": "general",
+      "competency_ids": [],
+      "bucket_id": "GA-FACIL",
+      "how_to_hindi": "कार्यपुस्तिका की किसी गतिविधि से पहले उस पर बच्चों से मौखिक चर्चा करें (उसे उनके जीवन से जोड़ें) और बोर्ड पर कार्यपुस्तिका से भिन्न एक उदाहरण हल करके दिखाएँ; कुछ बच्चों की प्रतिक्रिया लें, फिर बच्चों को गतिविधि स्वयं करने दें।",
+      "how_to_english": "Before any workbook task, talk it through orally (linking it to children's lives) and solve one example on the board that is different from the workbook's items; take a few responses, then let children do the task themselves.",
+      "detailed_explanation_hindi": "उदाहरण कार्यपुस्तिका से भिन्न रखें ताकि बच्चे उत्तर की नकल न करें बल्कि प्रक्रिया समझें। यह 'सीखने की ज़िम्मेदारी का क्रमिक हस्तांतरण' है — मैं करता हूँ → हम करते हैं → आप करें। प्रत्येक गतिविधि स्पष्ट निर्देश एवं उदाहरण के साथ समझाएँ।",
+      "detailed_explanation_english": "Keep the demo item different from the workbook so children learn the process rather than copy an answer. It's the gradual release of responsibility in miniature — I do, we do, you do. Every activity should be introduced with clear instructions and an example. (Front matter p.10; BM p.175)",
+      "example": "Before a workbook page on family relations, discuss family members and relations orally (अभय–भाई, नीलम–माता); before a taste-sorting task, name sour foods together (इमली, कच्चा आम).",
+      "shared_resource_refs": [
+        "SR-WORKBOOK-1"
+      ],
+      "source_refs": [
+        "W5D1",
+        "W5D2",
+        "W5D3",
+        "W5D4",
+        "W5D5",
+        "W6D1",
+        "W6D2",
+        "W6D3",
+        "W6D4",
+        "W6D5",
+        "W7D1",
+        "W7D2",
+        "W7D3",
+        "W7D4",
+        "W7D5",
+        "W8D1",
+        "W8D2",
+        "W8D4",
+        "W9D1",
+        "W9D2",
+        "W9D4",
+        "W10D1",
+        "W10D2",
+        "W10D4",
+        "W11D1",
+        "W11D2",
+        "W11D4",
+        "W12D1",
+        "W12D2",
+        "W12D4",
+        "W14D1",
+        "W14D2",
+        "W14D4",
+        "W15D1",
+        "W15D2",
+        "W15D4",
+        "W16D1",
+        "W16D2",
+        "W16D4",
+        "W17D1",
+        "W17D2",
+        "W17D4",
+        "W18D2",
+        "W18D4",
+        "W19D2",
+        "W19D4",
+        "W21D1",
+        "W21D4",
+        "W22D1",
+        "W22D2",
+        "W22D4",
+        "W23D1",
+        "W23D4",
+        "W24D1",
+        "W24D4",
+        "W25D1",
+        "W25D2",
+        "W25D4"
+      ],
+      "frequency_count": 58
+    },
+    {
+      "strategy_id": "ga-home-language",
+      "strategy_name_hindi": "बच्चे की घर की भाषा को सम्मान",
+      "strategy_name_english": "Welcoming Home Language",
+      "type": "general",
+      "competency_ids": [],
+      "bucket_id": "GA-FACIL",
+      "how_to_hindi": "कक्षा की चर्चाओं में बच्चों को उनकी घर की भाषा में बोलने दें और उसे सम्मान दें — इससे उनका आत्मविश्वास बढ़ता है और वे कक्षा में सम्मिलित और सुरक्षित महसूस करते हैं।",
+      "how_to_english": "Let children speak in their home language during class discussions and treat it with respect; this builds confidence and helps them feel included and safe.",
+      "source_refs": [
+        "W1D2",
+        "W1D3",
+        "W1D6",
+        "W2D2",
+        "W2D3",
+        "W3D2",
+        "W3D3",
+        "W4D2",
+        "W4D3",
+        "W7D5",
+        "W7D6",
+        "W8D5",
+        "W8D6",
+        "W9D4",
+        "W12D4",
+        "W13D3",
+        "W13D4",
+        "W14D4",
+        "W18D4",
+        "W18D6",
+        "W19D4",
+        "W20D3",
+        "W20D4",
+        "W21D6",
+        "W22D6",
+        "W23D6",
+        "W24D6",
+        "W25D4",
+        "W25D6"
+      ],
+      "frequency_count": 29
+    },
+    {
+      "strategy_id": "ga-gender-sensitive-questions",
+      "strategy_name_hindi": "जेंडर संवेदनशील प्रश्न",
+      "strategy_name_english": "Gender-Sensitive Questioning",
+      "type": "general",
+      "competency_ids": [],
+      "bucket_id": "GA-FACIL",
+      "how_to_hindi": "चर्चा के दौरान ऐसे प्रश्न शामिल करें जो रूढ़िगत जेंडर भूमिकाओं पर बच्चों को सोचने के लिए प्रेरित करें (जैसे 'क्या महिलाएँ ठेला, रिक्शा चला सकती हैं?', 'आपके घर में कपड़े कौन धोता है और क्यों?')।",
+      "how_to_english": "Weave questions into discussions that prompt children to examine gender stereotypes — who does which work at home, whether women can drive a rickshaw, why men are shown making tea at a stall but women do it at home.",
+      "detailed_explanation_hindi": "जेंडर संवेदनशीलता को इन अवसरों पर शामिल करें: कहानी चुनते समय (लड़कियाँ नेतृत्व करती और लड़के देखभाल करते दिखें); समृद्ध चर्चा में भूमिकाओं के बदलाव वाले प्रश्न; अनुभव साझा करते समय; कल्पना आधारित लेखन में बदली भूमिकाएँ; मिश्रित लिंग समूह; गैर-पारंपरिक उदाहरण (महिला पायलट, पुरुष नर्स); कक्षा के काम बारी-बारी से, जेंडर के आधार पर नहीं; त्योहारों की तैयारी साझा करने पर चर्चा।",
+      "detailed_explanation_english": "Other places to build it in: choose stories where girls lead and boys care for others; in rich discussion, ask role-reversal questions ('What if Mother went out to earn and Father looked after the home?'); in experience sharing and imaginative writing, invite changed roles; form mixed-gender groups; give counter-stereotypical examples (women pilots, male nurses); rotate classroom chores rather than assigning by gender; discuss how festival preparations can be shared. (Front matter pp.11–12)",
+      "source_refs": [
+        "W1D3",
+        "W2D2",
+        "W2D3",
+        "W3D5",
+        "W7D3",
+        "W7D6",
+        "W8D5",
+        "W8D6"
+      ],
+      "frequency_count": 8
+    },
+    {
+      "strategy_id": "ga-wait-time",
+      "strategy_name_hindi": "इंतज़ार का समय देना",
+      "strategy_name_english": "Wait Time",
+      "type": "general",
+      "competency_ids": [],
+      "bucket_id": "GA-FACIL",
+      "how_to_hindi": "प्रश्न पूछने के बाद बच्चों को उत्तर देने से पहले 8-10 सेकंड सोचने का समय दें, ताकि वे प्रश्न के बारे में सोचकर उत्तर दे सकें।",
+      "how_to_english": "After asking a question, pause 8–10 seconds before taking answers so every child has time to think, not just the quickest.",
+      "source_refs": [],
+      "reference_pages": [
+        "Front matter p.7"
+      ],
+      "frequency_count": 0
+    },
+    {
+      "strategy_id": "ga-praise-effort",
+      "strategy_name_hindi": "सराहना करें",
+      "strategy_name_english": "Praise the Attempt",
+      "type": "general",
+      "competency_ids": [],
+      "bucket_id": "GA-FACIL",
+      "how_to_hindi": "बच्चों के उत्तर को सीधे गलत न बताएँ और न ही उनकी लेबलिंग करें; उत्तर सही न होने पर भी उनके प्रयास और सोच की सराहना करें, जैसे 'अच्छा प्रयास है' या 'तुम सही दिशा में सोच रहे हो'।",
+      "how_to_english": "Never flatly call an answer wrong or label a child; praise the effort and thinking even when the answer misses ('Good try', 'You're thinking in the right direction'), so children learn without fear.",
+      "source_refs": [],
+      "reference_pages": [
+        "Front matter p.7",
+        "BM p.170"
+      ],
+      "frequency_count": 0
+    },
+    {
+      "strategy_id": "ga-recast-model-language",
+      "strategy_name_hindi": "सही भाषा का मॉडल प्रस्तुत करें",
+      "strategy_name_english": "Recast in a Full Sentence",
+      "type": "general",
+      "competency_ids": [
+        "OL4"
+      ],
+      "bucket_id": "GA-FACIL",
+      "how_to_hindi": "बच्चे की कही बात को सही और पूरे वाक्य में दोहराकर उदाहरण दें — उसे टोके या सुधारे बिना; चर्चा में बच्चों को पूरे वाक्यों में उत्तर देने के लिए प्रोत्साहित करें।",
+      "how_to_english": "Repeat back what a child said as a correct, complete sentence — modelling the language without interrupting or correcting them — and keep nudging children towards full-sentence answers.",
+      "detailed_explanation_hindi": "बच्चों की भाषा संबंधी त्रुटियों को अवरोध नहीं, विकास के संकेत की तरह देखें। सरल शब्दों और वाक्यों से शुरू करें और धीरे-धीरे जटिल विचारों की ओर बढ़ें। घर की भाषा और हिंदी के मिश्रित प्रयोग को सहज रूप से स्वीकार करें।",
+      "detailed_explanation_english": "Treat language errors as signs of development, not obstacles. Start from simple words and sentences and move gradually to more complex ideas. Accept mixing of home language and Hindi naturally.",
+      "source_refs": [],
+      "reference_pages": [
+        "BM p.170",
+        "BM p.183"
+      ],
+      "frequency_count": 0
+    },
+    {
+      "strategy_id": "ga-scaffolding-grr",
+      "strategy_name_hindi": "स्कैफोल्डिंग एवं सीखने की ज़िम्मेदारी का क्रमिक हस्तांतरण",
+      "strategy_name_english": "Scaffolding and Gradual Release",
+      "type": "general",
+      "competency_ids": [],
+      "bucket_id": "GA-FACIL",
+      "how_to_hindi": "बच्चे अभी क्या कर पा रहे हैं, यह समझकर उन्हें थोड़ा चुनौतीपूर्ण कार्य दें; शुरुआत में स्वयं करके दिखाएँ (मैं करता हूँ), फिर साथ मिलकर करें (हम करते हैं), फिर मार्गदर्शन में अभ्यास कराएँ और अंत में बच्चे स्वतंत्र रूप से करें (आप करें)।",
+      "how_to_english": "Pitch tasks just beyond what children can already do, then hand over responsibility step by step: I do (model), we do (together), you do with guidance, you do alone.",
+      "detailed_explanation_hindi": "स्कैफोल्डिंग के तरीके: (1) छोटे-छोटे आसान चरणों में शिक्षण — बड़े पाठ पर पहले टुकड़ों में काम करें, फिर पूरे पाठ पर; (2) पूर्व-ज्ञान को सक्रिय करना — नया पाठ शुरू करने से पहले संबंधित अनुभव जगाएँ, कोई 'हुक' प्रयोग करें; (3) बच्चों के घर की भाषा का इस्तेमाल — कठिन शब्दों/अवधारणाओं को समझाने और बात कहने के लिए; (4) सीखने की ज़िम्मेदारी का क्रमिक हस्तांतरण (GRR)।",
+      "detailed_explanation_english": "Four scaffolding moves: (1) teach in small, easy steps — work a long text in chunks before the whole; (2) activate prior knowledge — surface related experiences, use a 'hook' before new content; (3) use children's home language to explain hard words and ideas and let them express themselves; (4) gradual release of responsibility (GRR). The daily 'Talk and Demo Before Workbook Tasks' entry is the most frequent concrete application of this principle.",
+      "source_refs": [],
+      "reference_pages": [
+        "Front matter p.10"
+      ],
+      "frequency_count": 0
+    }
+  ]
+}

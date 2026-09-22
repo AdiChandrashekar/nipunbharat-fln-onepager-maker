@@ -50,7 +50,7 @@ export function onepagerFiles(): Plugin {
             return doc ? send(res, 200, doc) : send(res, 404, { error: "unknown render token" });
           }
           // Export: POST /api/export?format=pdf|png&dpi=150|300&bleed=0|1, body = document JSON → file download.
-          // A copy is kept in onepager/exports/ (git-ignored).
+          // A copy is kept in exports/ (git-ignored).
           if (url.pathname === "/api/export" && req.method === "POST") {
             const doc = JSON.parse((await readBody(req)).toString("utf-8"));
             const format = url.searchParams.get("format");
@@ -79,7 +79,7 @@ export function onepagerFiles(): Plugin {
             res.statusCode = 200;
             res.setHeader("Content-Type", type);
             res.setHeader("Content-Disposition", `attachment; filename="${name}"`);
-            res.setHeader("X-Export-Path", `onepager/exports/${name}`);
+            res.setHeader("X-Export-Path", `exports/${name}`);
             return res.end(data);
           }
           // GET /api/documents → list; GET/PUT/DELETE /api/documents/<id>

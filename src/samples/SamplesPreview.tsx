@@ -33,7 +33,7 @@ export function SamplesPreview() {
     for (const d of docs) {
       await fetch(`/api/documents/${d.id}`, { method: "PUT", body: JSON.stringify(d) });
     }
-    setSaved(`Saved ${docs.map((d) => `${d.id}.json`).join(", ")} to onepager/documents/`);
+    setSaved(`Saved ${docs.map((d) => `${d.id}.json`).join(", ")} to documents/`);
   }
 
   return (

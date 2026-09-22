@@ -302,7 +302,7 @@ export function Maker() {
     if (!res.ok) return setMessage(`Save failed: ${(await res.json()).error}`);
     savedRef.current = h.get();
     setSavedAt(new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }));
-    setMessage(`Saved to onepager/documents/${d.id}.json`);
+    setMessage(`Saved to documents/${d.id}.json`);
   }
   async function showOpen() {
     const res = await fetch("/api/documents");
@@ -498,7 +498,7 @@ export function Maker() {
         <div className="modal-back" onClick={() => setOpenList(null)}>
           <div className="modal small" role="dialog" aria-label="Open document" onClick={(e) => e.stopPropagation()}>
             <header><strong>Open a document</strong><button className="x" onClick={() => setOpenList(null)} aria-label="Close">×</button></header>
-            {!openList.length && <p className="hint">No saved documents yet in onepager/documents/.</p>}
+            {!openList.length && <p className="hint">No saved documents yet in documents/.</p>}
             <ul className="open-list">
               {openList.sort((a, b) => (b.updated ?? "").localeCompare(a.updated ?? "")).map((d) => (
                 <li key={d.id}><button onClick={() => open(d.id)}>{d.title || "(untitled)"} <small className="muted">{d.id} · {d.updated?.slice(0, 16).replace("T", " ")}</small></button></li>

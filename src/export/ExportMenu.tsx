@@ -26,7 +26,7 @@ export function ExportMenu({ doc, setMessage }: { doc: OnePagerDocument; setMess
       a.download = name;
       a.click();
       setTimeout(() => URL.revokeObjectURL(a.href), 5000);
-      setMessage(`Exported ${label}: ${name} (a copy is in ${res.headers.get("X-Export-Path") ?? "onepager/exports/"})`);
+      setMessage(`Exported ${label}: ${name} (a copy is in ${res.headers.get("X-Export-Path") ?? "exports/"})`);
     } catch (e) {
       setMessage(`Export failed: ${(e as Error).message}`);
     } finally {

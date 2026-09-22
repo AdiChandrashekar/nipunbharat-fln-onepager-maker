@@ -1,9 +1,9 @@
 /**
- * Read-only view of the data pipeline output (compendium.json + web/translations_hi.json + image library).
- * Never write back: content changes go through merge.py / consolidate.py.
+ * Read-only view of the strategy data (data/compendium.json + data/translations_hi.json + image library).
+ * These are copies from the रणनीति कोश pipeline (refresh with `npm run sync-data`); never edited here.
  */
-import rawCompendium from "../../../compendium.json";
-import translations from "../../../web/translations_hi.json";
+import rawCompendium from "../../data/compendium.json";
+import translations from "../../data/translations_hi.json";
 import imageLibrary from "../../data/image_library.json";
 
 export interface Variant { note: string; note_hindi: string; source_refs: string[] }

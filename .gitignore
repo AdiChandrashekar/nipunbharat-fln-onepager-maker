@@ -1,0 +1,11 @@
+node_modules/
+dist/
+__pycache__/
+*.pyc
+# TG illustration crops are derived from the source PDF: never commit them
+assets/tg/
+# Your saved documents, uploads, exports and test runs stay local (the three samples are kept)
+documents/*
+!documents/sample-*.json
+exports/
+test-output/

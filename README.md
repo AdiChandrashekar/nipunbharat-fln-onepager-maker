@@ -1,7 +1,12 @@
 # One-Pager Maker
 
 A local tool for making teacher and mentor one-pagers (which may run to a few pages) on how to teach
-specific competencies, from the Grade 2 Hindi *Sandarshika* strategy compendium in this repository.
+specific competencies, from the Grade 2 Hindi *Sandarshika* strategy compendium.
+
+It is a separate app from the **रणनीति कोश** (the published strategy web page,
+[AdiChandrashekar/nipunbharat-fln-teachingstrategies](https://github.com/AdiChandrashekar/nipunbharat-fln-teachingstrategies)).
+It keeps its own copy of the kosh's strategy data in `data/` and never reads or writes the kosh folder
+while it runs.
 Pick competencies or single strategies; the document lays itself out with the guide's text and
 illustrations, sized to how much you picked; then edit anything by hand and export PDF or PNG.
 
@@ -12,7 +17,6 @@ Everything runs on your computer. Nothing is uploaded anywhere.
 You need **Node.js 18+** and **Python 3.9+**.
 
 ```bash
-cd onepager
 npm install
 npx playwright install chromium     # headless browser for export (~150 MB); without it, export uses your installed Chrome
 pip install pymupdf pillow          # for the TG illustration crops
@@ -27,6 +31,15 @@ python scripts/tg_images.py --pdf "D:/path/Hindi TG Grade 2.pdf"
 ```
 
 Without this step the tool still works; image frames just show nothing until the crops exist.
+
+**Strategy data.** `data/compendium.json` and `data/translations_hi.json` are copies of the रणनीति कोश
+pipeline output. When the kosh's data changes (after `python merge.py && python consolidate.py` there),
+refresh the copies — this only reads from the kosh folder:
+
+```bash
+npm run sync-data                                   # expects the kosh at ../TG Compendium, or:
+python scripts/sync_data.py --kosh "D:/path/TG Compendium"
+```
 
 ## Running
 
@@ -152,7 +165,8 @@ npm run test:export    # exports test documents as PDF + PNG and verifies size, 
 | Path | What it is |
 |---|---|
 | `src/model/` | The **document model** — the single source of truth: pages of `text`, `image`, `shape`, `line`, `group` elements, all geometry in millimetres, fonts in points, concrete colours, image crops as fractions of the source, and a `binding` recording where auto-filled content came from |
-| `src/data/compendium.ts` | Read-only view of `../compendium.json`, `../web/translations_hi.json` and `data/image_library.json` |
+| `data/` | Copies of the kosh's `compendium.json` and `translations_hi.json` (`npm run sync-data`), and the TG image index `image_library.json` |
+| `src/data/compendium.ts` | Read-only view of `data/` |
 | `src/selection/` | Tray groups, limits, de-duplication |
 | `src/content/fields.ts` | Language rules for every printed field |
 | `src/templates/` | The five templates and their tiers (data) |
@@ -163,8 +177,8 @@ npm run test:export    # exports test documents as PDF + PNG and verifies size, 
 | `server/exporters/` | One module per format (`pdf.ts`, `png.ts`) reading only the document model |
 | `scripts/tg_images.py`, `scripts/tg_image_sources.json` | TG illustration crops and their strategy / competency tags |
 
-The compendium is never written by this tool. To change content, change the data pipeline
-(`merge.py`, `consolidate.py`) and rebuild; the tool picks the new data up on reload.
+The data is never edited here. To change content, change the रणनीति कोश pipeline (`merge.py`,
+`consolidate.py` in that repository), rebuild it, then `npm run sync-data`.
 
 **Later: Figma and Canva.** Because every element's position, size, rotation, crop and style is in the
 JSON, a Figma plugin (frames, text layers, image fills) or a PPTX exporter for Canva can rebuild pages

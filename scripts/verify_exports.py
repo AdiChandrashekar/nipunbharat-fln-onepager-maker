@@ -1,6 +1,6 @@
 """Verify exports written by scripts/export-test.mjs.
 
-    python onepager/scripts/verify_exports.py <outdir>
+    python scripts/verify_exports.py <outdir>
 
 Checks, per document: page count and size (mm, incl. bleed), embedded fonts, extractable/searchable text,
 text position vs the document model (mm), PNG pixel sizes per DPI, and PDF-vs-PNG raster alignment.

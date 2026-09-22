@@ -1,5 +1,5 @@
 {
-  "_comment": "Curated TG illustration regions. pdf_page is 1-based (printed page = pdf_page - 2). locate.xref = embedded raster (bbox from the page); locate.bbox = [x0,y0,x1,y1] in PDF points for vector art or rasters with text labels outside them. A strategy's primary image is the first entry (in file order) whose strategy_ids list contains it; later entries are alternates. Run `python onepager/scripts/tg_images.py --detect` to list raw candidates.",
+  "_comment": "Curated TG illustration regions. pdf_page is 1-based (printed page = pdf_page - 2). locate.xref = embedded raster (bbox from the page); locate.bbox = [x0,y0,x1,y1] in PDF points for vector art or rasters with text labels outside them. A strategy's primary image is the first entry (in file order) whose strategy_ids list contains it; later entries are alternates. Run `python scripts/tg_images.py --detect` to list raw candidates.",
   "images": [
     {"image_id": "tg-warmup", "pdf_page": 160, "locate": {"xref": 5997}, "kind": "illustration",
      "caption_hi": "सौहार्दपूर्ण वातावरण निर्माण की गतिविधि", "caption_en": "Warm-up & classroom climate",
