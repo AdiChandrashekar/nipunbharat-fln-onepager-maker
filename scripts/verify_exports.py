@@ -19,6 +19,7 @@ import pymupdf
 import pypdfium2 as pdfium  # PDFium = the engine of Chrome's / Edge's PDF viewers
 from PIL import Image
 
+sys.stdout.reconfigure(encoding="utf-8")  # Hindi in the report; Windows consoles default to a legacy code page
 MM_PER_PT = 25.4 / 72
 TEST = "क्षत्रिय प्रवाहपूर्ण श्रुतलेख स्त्रीलिंग"
 out = Path(sys.argv[1])

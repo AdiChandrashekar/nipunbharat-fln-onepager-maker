@@ -1,5 +1,13 @@
 # Prompt: Competency One-Pager Maker (build in this project)
 
+> **Changes agreed during the build (September 2026).** These override the brief below; `README.md` describes the tool as built.
+> - One-pagers print **no internal codes** (DC5, OL2, CFU …) and **no NIPUN or "R2/R3 की पूर्व-तैयारी" chips**: they are not Sandarshika language. Codes remain in the selector and tray for categorisation; cross-references use competency names.
+> - **"संदर्शिका में" (weeks) and "अन्य रूप" (variants)** are in no template; they are opt-in extras per document. Templates were re-balanced to use the space.
+> - Images are **one per strategy** (by strategy type); competency cards use their first strategy's image.
+> - Tiers each try their own optional fields, then leave them out, before the next tier; compact then shrinks images, then text.
+> - Added beyond the brief: drag-box (marquee) multi-select, a right-click menu, and an in-app clipboard.
+> - PDF text is searchable in Chrome/Edge (PDFium); copy-paste of Devanagari from Chromium PDFs can include stray spaces (see README, *Known limit*).
+
 ## What we're building
 
 A local tool for making **teacher/mentor one-pagers** (which may run to several pages) on how to teach specific competencies. Today my team builds these from scratch each time. The tool should let me:

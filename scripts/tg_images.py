@@ -2,12 +2,14 @@
 
     python onepager/scripts/tg_images.py            # crop curated regions, write manifest + contact sheet
     python onepager/scripts/tg_images.py --detect   # list raw candidates (rasters + vector clusters) for curation
+    python onepager/scripts/tg_images.py --pdf "D:/path/Hindi TG Grade 2.pdf"   # or set TG_PDF
 
 Reads the source PDF (never committed) and tg_image_sources.json (curated regions and tags).
 Writes crops to onepager/assets/tg/ (git-ignored) and the manifest to onepager/data/image_library.json.
 """
 import argparse
 import json
+import os
 import sys
 from pathlib import Path
 
@@ -16,7 +18,8 @@ from PIL import Image, ImageDraw, ImageFont
 
 ROOT = Path(__file__).resolve().parents[2]
 ONEPAGER = ROOT / "onepager"
-PDF = Path(r"C:\Users\adich\Desktop\Hindi TG Grade 2.pdf")
+# Source PDF (never committed). Override with --pdf or the TG_PDF environment variable.
+PDF = Path(os.environ.get("TG_PDF", r"C:\Users\adich\Desktop\Hindi TG Grade 2.pdf"))
 SOURCES = ONEPAGER / "scripts" / "tg_image_sources.json"
 OUT_DIR = ONEPAGER / "assets" / "tg"
 MANIFEST = ONEPAGER / "data" / "image_library.json"
@@ -213,10 +216,11 @@ def wrap(draw, text, font, width):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--detect", action="store_true", help="list raw candidate regions instead of building")
+    ap.add_argument("--pdf", type=Path, default=PDF, help="path to the Grade 2 Hindi Sandarshika PDF (or set TG_PDF)")
     args = ap.parse_args()
-    if not PDF.exists():
-        sys.exit(f"Source PDF not found: {PDF}")
-    doc = pymupdf.open(PDF)
+    if not args.pdf.exists():
+        sys.exit(f"Source PDF not found: {args.pdf}  (pass --pdf or set TG_PDF)")
+    doc = pymupdf.open(args.pdf)
     detect(doc) if args.detect else build(doc)
 
 

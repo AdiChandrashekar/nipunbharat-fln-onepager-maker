@@ -1,11 +1,13 @@
-// End-to-end editor check with real mouse/keyboard input (installed Chrome via Playwright).
+// End-to-end editor check with real mouse/keyboard input (Playwright Chromium).
 // Usage: node scripts/editor-test.mjs <screenshot dir>   (dev server must be running on :5178)
 import { chromium } from "playwright";
 import fs from "node:fs";
 
 const out = process.argv[2] ?? "editor-test-out";
+// Fail fast with a clear message when the dev server isn't up.
+try { await fetch("http://localhost:5178/"); } catch { console.error("The dev server isn't running on :5178. Start it first: npm run dev"); process.exit(2); }
 fs.mkdirSync(out, { recursive: true });
-const browser = await chromium.launch({ channel: "chrome" });
+const browser = await chromium.launch(); // Playwright Chromium (npx playwright install chromium)
 const page = await browser.newPage({ viewport: { width: 1600, height: 1000 } });
 const results = [];
 page.on("dialog", (dlg) => dlg.accept());

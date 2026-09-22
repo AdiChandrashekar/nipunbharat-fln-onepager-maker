@@ -6,6 +6,8 @@ import fs from "node:fs";
 const out = process.argv[2] ?? "export-test-out";
 fs.mkdirSync(out, { recursive: true });
 const ORIGIN = "http://localhost:5178";
+// Fail fast with a clear message when the dev server isn't up.
+try { await fetch("http://localhost:5178/"); } catch { console.error("The dev server isn't running on :5178. Start it first: npm run dev"); process.exit(2); }
 const TEST = "क्षत्रिय प्रवाहपूर्ण श्रुतलेख स्त्रीलिंग";
 
 // ---- 1. Devanagari test document: the hand-written sample plus harder cases.
