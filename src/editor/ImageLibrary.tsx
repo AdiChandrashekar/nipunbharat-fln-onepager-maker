@@ -76,7 +76,7 @@ export function ImageLibrary({ binding, lang, onPick, onClose }: {
           <button className="x" onClick={onClose} aria-label="Close">×</button>
         </header>
         {error && <p className="limit-msg warn">{error}</p>}
-        {!libraryImages.length && <p className="hint">The Sandarshika illustrations are not included in the web version. Use <b>Upload my own…</b> to add an image.</p>}
+        {!libraryImages.length && <p className="hint">No Sandarshika illustrations found. Use <b>Upload my own…</b> to add an image.</p>}
         <div className="lib-grid">
           {list.map((im) => (
             <button key={im.image_id} className="lib-item" onClick={() => onPick({ image_ref: `tg:${im.image_id}`, natural_px: [im.width_px, im.height_px], alt: lang === "en" ? im.caption_en : im.caption_hi })}>

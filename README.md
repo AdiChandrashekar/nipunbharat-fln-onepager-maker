@@ -23,11 +23,12 @@ the local tool in these ways:
 |---|---|---|
 | Save / Open | `documents/` on disk | This browser's storage; **Download** saves a `.json` file, and **Open… → Open a .json file** loads one |
 | Your images | `documents/uploads/` | Embedded in the document (up to 3 MB each) |
-| TG illustrations | Yes, once cropped | Not included: the source guide isn't published. Upload your own |
+| TG illustrations | Yes, once cropped | Yes: the build copies the 34 crops into `docs/tg/` (you need them in `assets/tg/`, see below) |
 | PDF export | One click, headless Chromium | Opens the print dialog; choose **Save as PDF**. Chrome or Edge give the same result as the local tool |
 | PNG export | Headless Chromium | Drawn in the browser, at the same exact pixel sizes |
 
-To update the web version after changing the code, rebuild it and commit `docs/`:
+To update the web version after changing the code, rebuild it and commit `docs/`. The build needs the TG crops
+in `assets/tg/` (`npm run images`) and stops if any is missing:
 
 ```bash
 npm run build:pages

@@ -22,7 +22,8 @@ async function mount(doc: OnePagerDocument, bleed: boolean, scale: number) {
   const imgs = [...host.querySelectorAll("img")];
   await Promise.all(imgs.map((i) => (i.complete ? Promise.resolve() : new Promise((res) => { i.onload = i.onerror = res; }))));
   await document.fonts.ready;
-  await new Promise((r) => requestAnimationFrame(() => r(null)));
+  // One frame for layout; the timeout covers background tabs, where animation frames are paused.
+  await new Promise((r) => { requestAnimationFrame(() => r(null)); setTimeout(r, 100); });
   return { host, done: () => { root.unmount(); host.remove(); } };
 }
 
