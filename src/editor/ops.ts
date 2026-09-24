@@ -185,6 +185,10 @@ export function boundText(d: Doc, b: Binding, pageIndex: number): string | undef
   if (f === "subtitle") return d.meta.subtitle;
   if (f === "footer_credit") return label("credit", lang);
   if (f === "summary") return summaryText(selectionCounts(d.selection), lang);
+  if (f === "summary_count") {
+    const c = selectionCounts(d.selection);
+    return String(c.strategies + c.routines);
+  }
   if (f === "footer_meta") {
     const meta = [d.meta.organisation, d.meta.author, d.meta.date].filter(Boolean).join(" · ");
     const pageNo = `${label("page", lang)} ${pageIndex + 1} / ${d.pages.length}`;

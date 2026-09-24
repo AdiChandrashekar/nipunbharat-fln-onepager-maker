@@ -143,10 +143,14 @@ The **Look** menu restyles any template without changing its layout rules:
 
 | Look | Character | Faces (English · Hindi) |
 |---|---|---|
-| **Bold** | The रणनीति कोश, turned up: a solid colour masthead with a strip of the domains covered, heavy headings, cards with a colour edge | Inter · Mukta |
-| **Neo-brutalist** | Cream paper on a dot grid, thick black outlines, hard offset shadows, flat bright colour, sticker labels and a tilted sticker in the masthead | Space Grotesk, Space Mono · Anek Devanagari, Mukta |
+| **Neo-brutalist** (default) | Cream paper on a dot grid, thick black outlines, hard offset shadows, flat bright colour, sticker labels and a tilted sticker in the masthead | Space Grotesk, Space Mono · Anek Devanagari, Mukta |
+| **Bold** | Editorial colour blocking: an electric-blue masthead with an oversized count, a full-width colour bar with a big number for each competency, crisp white cards | Inter · Mukta |
 | **Material You** | Tonal colour taken from the competencies covered, big rounded containers, pill labels, a colour hero masthead | Bricolage Grotesque, Roboto · Baloo 2, Noto Sans Devanagari |
 | **Liquid Glass** | Frosted translucent cards on a soft colour field, bright white edges, heavy clean type | Inter · Noto Sans Devanagari |
+| **Risograph** | Two-ink zine print: fluorescent pink and blue overprinting on warm paper, fine grain, headlines slightly out of register | Bricolage Grotesque, Space Grotesk · Khand, Mukta |
+| **Swiss** | The International Typographic Style: strict grid, flush-left sans, black with one red, big section numbers, rules instead of boxes | Inter · Mukta |
+| **Bauhaus** | Primary red, blue and yellow with black; circles and squares in the masthead, numbers in colour discs | Poppins · Poppins, Mukta |
+| **Notebook** | A teacher's notebook: ruled paper and margin line, taped sticky notes, handwritten headings, highlighter pen | Kalam, Inter · Kalam, Mukta |
 
 Looks are data too (`src/looks/index.ts`). A Hindi document leads with the Hindi face (it also supplies
 digits and Latin letters); an English document leads with the English face. Everything a look draws —
@@ -154,7 +158,7 @@ hard shadows, colour fields, stickers — is ordinary shapes and text, so it sta
 
 All fonts are bundled Google Fonts (no CDN) and load when first used. The properties panel offers every
 one of them: Mukta, Noto Sans Devanagari, Poppins, Baloo 2, Anek Devanagari, Khand (Hindi and English);
-Inter, Space Grotesk, Roboto, Bricolage Grotesque, Space Mono (English). Tiro Devanagari Hindi is kept only
+Kalam (handwriting, both); Inter, Space Grotesk, Roboto, Bricolage Grotesque, Space Mono (English). Tiro Devanagari Hindi is kept only
 so older documents still render.
 
 ## Editing
@@ -218,7 +222,7 @@ npm run test:export    # exports test documents as PDF + PNG and verifies size, 
 | `src/selection/` | Tray groups, limits, de-duplication |
 | `src/content/fields.ts` | Language rules for every printed field |
 | `src/templates/` | The five templates and their tiers (data) |
-| `src/looks/` | The four looks: colours, faces, cards, labels, step numbers, callouts, masthead (data) |
+| `src/looks/` | The eight looks: colours, faces, cards, labels, step numbers, callouts, masthead (data) |
 | `src/layout/` | Text measurement, the layout engine, and the tier fitter |
 | `src/render/` | DOM page renderer, shared by editor, thumbnails and export |
 | `src/editor/`, `src/ui/` | Editor (react-moveable, react-selecto), panels, tray, selector |

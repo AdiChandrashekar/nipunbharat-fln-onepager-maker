@@ -51,6 +51,7 @@ export const BUNDLED_FONTS: { family: string; weights: number[]; note: string }[
   { family: "Space Grotesk", weights: [400, 500, 600, 700], note: "English: quirky grotesk" },
   { family: "Roboto", weights: [400, 500, 700, 900], note: "English: Material's face" },
   { family: "Bricolage Grotesque", weights: [400, 600, 700, 800], note: "English: expressive display" },
+  { family: "Kalam", weights: [400, 700], note: "Hindi + English: handwriting" },
   { family: "Space Mono", weights: [400, 700], note: "English: monospace labels" },
   { family: "IBM Plex Mono", weights: [500], note: "English: monospace (older documents)" },
   { family: "Tiro Devanagari Hindi", weights: [400], note: "Hindi serif (older documents only)" },
@@ -73,4 +74,10 @@ export function shade(hex: string, amount: number): string {
   const mix = (c: number) => Math.round(c * (1 - amount));
   const r = mix((n >> 16) & 255), g = mix((n >> 8) & 255), b = mix(n & 255);
   return `#${((1 << 24) | (r << 16) | (g << 8) | b).toString(16).slice(1).toUpperCase()}`;
+}
+
+/** A colour at partial opacity, as CSS rgba() (overprints, glazes). */
+export function alpha(hex: string, a: number): string {
+  const n = parseInt(hex.slice(1), 16);
+  return `rgba(${(n >> 16) & 255},${(n >> 8) & 255},${n & 255},${a})`;
 }

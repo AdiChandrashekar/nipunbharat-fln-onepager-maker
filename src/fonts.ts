@@ -47,6 +47,8 @@ import "@fontsource/bricolage-grotesque/400.css";
 import "@fontsource/bricolage-grotesque/600.css";
 import "@fontsource/bricolage-grotesque/700.css";
 import "@fontsource/bricolage-grotesque/800.css";
+import "@fontsource/kalam/400.css";
+import "@fontsource/kalam/700.css";
 import "@fontsource/space-mono/400.css";
 import "@fontsource/space-mono/700.css";
 import "@fontsource/ibm-plex-mono/500.css";

@@ -4,7 +4,7 @@
  * with every look. Everything a look produces is ordinary elements, so it stays editable and exports as is.
  */
 import type { Language, Style } from "../model/types";
-import { shade, tint } from "../theme/tokens";
+import { alpha, shade, tint } from "../theme/tokens";
 
 type W = NonNullable<Style["weight"]>;
 
@@ -26,6 +26,8 @@ export interface CardLook {
   style: Style;
   accent?: { side: "top" | "left"; size: number; colour: string };
   hard?: HardShadow;
+  /** A strip of tape across the card's top edge (notebook). */
+  tape?: string;
 }
 
 export type CardKind = "item" | "group" | "hero";
@@ -55,45 +57,63 @@ export interface Look {
   /** Text colour for coloured labels on light surfaces. */
   onLight(dom: string): string;
   callout(dom: string): { panel: Style; edge?: string; hard?: HardShadow };
-  masthead: "band" | "brutal" | "tonal" | "glass";
+  masthead: "band" | "brutal" | "tonal" | "glass" | "riso" | "swiss" | "bauhaus" | "notebook";
   rule: { colour: string; width: number };
   table: { header: string; headerInk: string; zebra?: string };
+  /**
+   * Full-width section headings: "plain" (kicker + name), "numbered" (a big 01, 02 … beside them),
+   * "block" (a colour-blocked bar with white type and its number), "circle" (the number in a colour disc).
+   */
+  section?: "plain" | "numbered" | "block" | "circle";
+  /** Colour of section numbers ("numbered"). */
+  numeral?(dom: string): string;
+  /** Step numbers as big numerals in every template (otherwise badges, except posters). */
+  steps?: "numerals";
+  /** Display type printed twice, the second copy offset in another ink (riso misregistration). */
+  misregister?: { colour: string; dx: number; dy: number };
+  /** Highlighter-pen stroke behind competency names (notebook). */
+  highlighter?: string;
+  /** Second accent for stickers and big numbers (Bold). */
+  hot?: string;
 }
 
 const DOMAINS = ["OL", "SE", "DC", "RF", "RC", "WR", "GA"];
 const firstDomain = (p: Palette, domains: string[]) => p.d[domains[0]] ?? p.accent;
 
-// ---------------------------------------------------------------- Bold (the kosh, made louder)
+// ---------------------------------------------------------------- Bold: editorial colour blocking
 
 const boldPalette: Palette = {
-  paper: "#FFFFFF", ink: "#15202C", muted: "#4C5A6B", rule: "#D5DDE8", accent: "#1F4F9A", accent_ink: "#FFFFFF",
-  d: { OL: "#B04E28", SE: "#A03A6E", DC: "#2A7553", RF: "#1F4F9A", RC: "#6146A3", WR: "#855F00", GA: "#4C5A6B" },
+  paper: "#FFFFFF", ink: "#0F1B2D", muted: "#465467", rule: "#D5DDE8", accent: "#1A43B8", accent_ink: "#FFFFFF",
+  d: { OL: "#E4572E", SE: "#D62F7A", DC: "#14936B", RF: "#1A43B8", RC: "#6D3FD4", WR: "#E08A00", GA: "#465467" },
 };
+const HOT = "#FFB21A";
 
 const bold: Look = {
   id: "bold",
   name: "Bold",
-  blurb: "The रणनीति कोश look, turned up: a solid colour masthead, heavy Mukta headings, crisp cards with a colour edge.",
+  blurb: "Editorial colour blocking: an electric-blue masthead with an oversized count, full-width colour bars for each competency with big numbers, crisp white cards.",
   palette: boldPalette,
   fonts: { display: ["Inter", "Mukta"], body: ["Inter", "Mukta"], label: ["Inter", "Mukta"] },
-  weight: { display: 800, name: 700, label: 700 },
-  displayScale: 1,
-  displayLineHeight: 1.12,
+  weight: { display: 800, name: 800, label: 800 },
+  displayScale: 1.06,
+  displayLineHeight: 1.08,
   primary: () => boldPalette.accent,
   page: () => "#FFFFFF",
   card: (dom, kind) =>
     kind === "item"
-      ? { style: { fill: "#FFFFFF", stroke: { colour: tint(dom, 0.7), width_mm: 0.3 }, radius_mm: 3 }, accent: { side: "left", size: 1.4, colour: dom } }
-      : { style: { fill: tint(dom, kind === "hero" ? 0.94 : 0.93), radius_mm: 3 }, accent: { side: "top", size: kind === "hero" ? 2.2 : 1.6, colour: dom } },
-  image: { stroke: { colour: "#D5DDE8", width_mm: 0.2 }, radius_mm: 2, fill: "#FFFFFF" },
+      ? { style: { fill: "#FFFFFF", stroke: { colour: tint(dom, 0.72), width_mm: 0.35 }, radius_mm: 3.5 }, accent: { side: "left", size: 2, colour: dom } }
+      : { style: { fill: tint(dom, kind === "hero" ? 0.9 : 0.92), radius_mm: 3.5 }, accent: { side: "top", size: kind === "hero" ? 3.2 : 2.2, colour: dom } },
+  image: { radius_mm: 2.5, fill: "#FFFFFF", stroke: { colour: "#D5DDE8", width_mm: 0.2 } },
   badge: (dom) => ({ style: { fill: dom, colour: "#FFFFFF" }, square: false }),
   kicker: (dom) => ({ colour: dom }),
-  headingBar: true,
+  headingBar: false,
   onLight: (dom) => dom,
-  callout: (dom) => ({ panel: { fill: tint(dom, 0.9), radius_mm: [0, 2, 2, 0] }, edge: dom }),
+  callout: (dom) => ({ panel: { fill: tint(dom, 0.88), radius_mm: [0, 3, 3, 0] }, edge: dom }),
   masthead: "band",
   rule: { colour: "#D5DDE8", width: 0.25 },
-  table: { header: "#15202C", headerInk: "#FFFFFF", zebra: "#F6F8FB" },
+  table: { header: "#0F1B2D", headerInk: "#FFFFFF", zebra: "#F4F7FB" },
+  section: "block",
+  hot: HOT,
 };
 
 // ---------------------------------------------------------------- Neo-brutalist
@@ -207,10 +227,160 @@ const glass: Look = {
   table: { header: "rgba(14,23,38,0.86)", headerInk: "#FFFFFF", zebra: "rgba(255,255,255,0.45)" },
 };
 
-export const LOOKS: Look[] = [bold, brutal, material, glass];
+// ---------------------------------------------------------------- Risograph
+
+const RISO_PINK = "#FF48B0";
+const RISO_BLUE = "#0078BF";
+const RISO_YELLOW = "#F2A900";
+const risoPalette: Palette = {
+  paper: "#F6F0E4", ink: "#1D2A6B", muted: "#3F4A7A", rule: "rgba(29,42,107,0.35)", accent: RISO_PINK, accent_ink: "#FFFFFF",
+  d: { OL: "#FF6C4A", SE: RISO_PINK, DC: "#00A95C", RF: RISO_BLUE, RC: "#765BA7", WR: RISO_YELLOW, GA: "#88898A" },
+};
+const risoText = (dom: string) => (dom === RISO_YELLOW ? "#9A6B00" : dom);
+
+const riso: Look = {
+  id: "riso",
+  name: "Risograph",
+  blurb: "Two-ink zine print: fluorescent pink and blue overprinting on warm paper, a touch of grain, and headlines slightly out of register.",
+  palette: risoPalette,
+  fonts: { display: ["Bricolage Grotesque", "Khand"], body: ["Space Grotesk", "Mukta"], label: ["Space Mono", "Khand"] },
+  weight: { display: 800, name: 700, label: 700 },
+  displayScale: 1.12,
+  displayLineHeight: 1.02,
+  primary: () => RISO_PINK,
+  page: () => `radial-gradient(circle, rgba(29,42,107,0.07) 0.14mm, transparent 0.18mm) 0 0 / 0.9mm 0.9mm, radial-gradient(circle, rgba(255,72,176,0.05) 0.14mm, transparent 0.18mm) 0.45mm 0.45mm / 0.9mm 0.9mm, ${risoPalette.paper}`,
+  card: (dom, kind) => ({
+    style: { fill: alpha(dom, kind === "item" ? 0.13 : kind === "hero" ? 0.2 : 0.16), radius_mm: 1 },
+    hard: { dx: 1.2, dy: 1.2, colour: alpha(dom === RISO_BLUE ? RISO_PINK : RISO_BLUE, 0.18) },
+  }),
+  image: { radius_mm: 0, fill: "#FFFFFF", opacity: 0.92 },
+  badge: (dom) => ({ style: { fill: alpha(dom, 0.9), colour: "#FFFFFF" }, square: false }),
+  kicker: (dom) => ({ colour: risoText(dom) }),
+  headingBar: false,
+  onLight: risoText,
+  callout: (dom) => ({ panel: { fill: alpha(dom, 0.2), radius_mm: 0 }, hard: { dx: 0.8, dy: 0.8, colour: alpha(RISO_PINK, 0.25) } }),
+  masthead: "riso",
+  rule: { colour: "rgba(29,42,107,0.35)", width: 0.3 },
+  table: { header: "#1D2A6B", headerInk: "#FFFFFF", zebra: "rgba(255,72,176,0.07)" },
+  misregister: { colour: "rgba(255,72,176,0.6)", dx: 0.7, dy: 0.45 },
+};
+
+// ---------------------------------------------------------------- Swiss (International Typographic Style)
+
+const SWISS_RED = "#E30613";
+const swissPalette: Palette = {
+  paper: "#FFFFFF", ink: "#111111", muted: "#555555", rule: "#111111", accent: SWISS_RED, accent_ink: "#FFFFFF",
+  d: { OL: SWISS_RED, SE: SWISS_RED, DC: SWISS_RED, RF: SWISS_RED, RC: SWISS_RED, WR: SWISS_RED, GA: SWISS_RED },
+};
+
+const swiss: Look = {
+  id: "swiss",
+  name: "Swiss",
+  blurb: "The International Typographic Style: a strict grid, flush-left sans-serif, black on white with one red, big section numbers, rules instead of boxes.",
+  palette: swissPalette,
+  fonts: { display: ["Inter", "Mukta"], body: ["Inter", "Mukta"], label: ["Inter", "Mukta"] },
+  weight: { display: 800, name: 700, label: 700 },
+  displayScale: 1.05,
+  displayLineHeight: 1.05,
+  primary: () => SWISS_RED,
+  page: () => "#FFFFFF",
+  card: (_dom, kind) => ({ style: {}, accent: { side: "top", size: kind === "hero" ? 1.6 : 0.9, colour: "#111111" } }),
+  image: { radius_mm: 0 },
+  badge: () => ({ style: { fill: SWISS_RED, colour: "#FFFFFF" }, square: true }),
+  kicker: () => ({ colour: SWISS_RED }),
+  headingBar: false,
+  onLight: () => SWISS_RED,
+  callout: () => ({ panel: { fill: "#F2F2F2", radius_mm: 0 }, edge: SWISS_RED }),
+  masthead: "swiss",
+  rule: { colour: "#111111", width: 0.35 },
+  table: { header: "#111111", headerInk: "#FFFFFF", zebra: "#F4F4F4" },
+  section: "numbered",
+  numeral: () => SWISS_RED,
+  steps: "numerals",
+};
+
+// ---------------------------------------------------------------- Bauhaus
+
+const BH = { red: "#D6312B", blue: "#1F4E9C", yellow: "#F2B705", black: "#161616" };
+const bauhausPalette: Palette = {
+  paper: "#F1EADB", ink: BH.black, muted: "#3D3D3D", rule: BH.black, accent: BH.red, accent_ink: "#FFFFFF",
+  d: { OL: BH.red, SE: BH.yellow, DC: BH.blue, RF: BH.blue, RC: BH.red, WR: BH.yellow, GA: BH.black },
+};
+const onBH = (dom: string) => (dom === BH.yellow ? BH.black : "#FFFFFF");
+
+const bauhaus: Look = {
+  id: "bauhaus",
+  name: "Bauhaus",
+  blurb: "Primary red, blue and yellow with black, built from circles and squares: a geometric masthead, numbered discs, flat colour edges.",
+  palette: bauhausPalette,
+  fonts: { display: ["Poppins", "Poppins"], body: ["Poppins", "Mukta"], label: ["Poppins", "Poppins"] },
+  weight: { display: 800, name: 700, label: 700 },
+  displayScale: 1,
+  displayLineHeight: 1.1,
+  primary: () => BH.red,
+  page: () => bauhausPalette.paper,
+  card: (dom, kind) =>
+    kind === "item"
+      ? { style: { fill: "#FFFFFF", radius_mm: 0 }, accent: { side: "top", size: 3, colour: dom } }
+      : { style: { fill: kind === "hero" ? "#FFFFFF" : tint(dom, 0.82), radius_mm: 0 }, accent: { side: "left", size: kind === "hero" ? 4 : 3, colour: dom } },
+  image: { radius_mm: 0, fill: "#FFFFFF" },
+  badge: (dom) => ({ style: { fill: dom, colour: onBH(dom) }, square: false }),
+  kicker: (dom) => ({ colour: onBH(dom), chip: { fill: dom, radius_mm: 0, padding_mm: [0.6, 2, 0.4, 2] } }),
+  headingBar: false,
+  onLight: (dom) => (dom === BH.yellow ? BH.black : dom),
+  callout: (dom) => ({ panel: { fill: tint(dom, 0.8), radius_mm: 0 } }),
+  masthead: "bauhaus",
+  rule: { colour: BH.black, width: 0.5 },
+  table: { header: BH.black, headerInk: "#FFFFFF", zebra: "rgba(255,255,255,0.6)" },
+  section: "circle",
+};
+
+// ---------------------------------------------------------------- Notebook
+
+const notebookPalette: Palette = {
+  paper: "#FFFDF6", ink: "#1E2A55", muted: "#4A5578", rule: "rgba(30,42,85,0.25)", accent: "#E03131", accent_ink: "#FFFFFF",
+  d: { OL: "#D9480F", SE: "#C2255C", DC: "#2B8A3E", RF: "#1971C2", RC: "#7048E8", WR: "#E67700", GA: "#495057" },
+};
+const STICKY: Record<string, string> = {
+  "#D9480F": "#FFE1CC", "#C2255C": "#FFD9E8", "#2B8A3E": "#D8F5DC", "#1971C2": "#D6ECFF", "#7048E8": "#E7DEFF", "#E67700": "#FFF1B8", "#495057": "#EEF0F2",
+};
+const sticky = (dom: string) => STICKY[dom] ?? tint(dom, 0.85);
+
+const notebook: Look = {
+  id: "notebook",
+  name: "Notebook",
+  blurb: "A teacher's notebook: ruled paper with a margin line, sticky notes held on with tape, handwritten headings and a highlighter pen.",
+  palette: notebookPalette,
+  fonts: { display: ["Kalam", "Kalam"], body: ["Inter", "Mukta"], label: ["Kalam", "Kalam"] },
+  weight: { display: 700, name: 700, label: 700 },
+  displayScale: 1.14,
+  displayLineHeight: 1.12,
+  primary: () => "#FFE066",
+  page: () => [
+    "linear-gradient(90deg, transparent 8mm, rgba(224,49,49,0.5) 8mm, rgba(224,49,49,0.5) 8.3mm, transparent 8.3mm)",
+    "repeating-linear-gradient(180deg, transparent 0, transparent 7.8mm, rgba(25,113,194,0.2) 7.8mm, rgba(25,113,194,0.2) 8mm)",
+    notebookPalette.paper,
+  ].join(", "),
+  card: (dom, kind) => ({
+    style: { fill: sticky(dom), radius_mm: 0.6, shadow: "0 0.8mm 2mm rgba(30,42,85,0.18), 0 0.2mm 0.4mm rgba(30,42,85,0.12)" },
+    tape: kind === "group" ? undefined : "rgba(236,225,190,0.85)",
+  }),
+  image: { radius_mm: 0.4, fill: "#FFFFFF", stroke: { colour: "#FFFFFF", width_mm: 1.3 }, shadow: "0 0.6mm 1.6mm rgba(30,42,85,0.2)" },
+  badge: (dom) => ({ style: { fill: "#FFFFFF", colour: dom, stroke: { colour: dom, width_mm: 0.35 } }, square: false }),
+  kicker: (dom) => ({ colour: dom }),
+  headingBar: false,
+  onLight: (dom) => dom,
+  callout: () => ({ panel: { fill: "rgba(255,255,255,0.7)", radius_mm: 0.6, stroke: { colour: "rgba(30,42,85,0.3)", width_mm: 0.25, dash: "dashed" } } }),
+  masthead: "notebook",
+  rule: { colour: "rgba(30,42,85,0.25)", width: 0.3 },
+  table: { header: "#1E2A55", headerInk: "#FFFFFF", zebra: "rgba(255,241,184,0.45)" },
+  highlighter: "rgba(255,224,102,0.8)",
+};
+
+export const LOOKS: Look[] = [brutal, bold, material, glass, riso, swiss, bauhaus, notebook];
 export const lookById = new Map(LOOKS.map((l) => [l.id, l]));
-export const DEFAULT_LOOK = "bold";
-export const lookOf = (id: string | undefined): Look => lookById.get(id ?? DEFAULT_LOOK) ?? bold;
+export const DEFAULT_LOOK = "brutal";
+export const lookOf = (id: string | undefined): Look => lookById.get(id ?? DEFAULT_LOOK) ?? brutal;
 
 /** Palette in the shape older code expects (d_OL …), for the editor's colour swatches. */
 export function flatPalette(l: Look): Record<string, string> {

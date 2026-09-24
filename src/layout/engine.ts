@@ -276,26 +276,130 @@ function dividerColour(ctx: Ctx, dom: string, inCard: boolean): string {
 
 // ---------------------------------------------------------------- parts
 
+function ellipseEl(ctx: Ctx, x: number, y: number, w: number, h: number, style: Style, name: string, z?: number): Element {
+  return { id: uid(), name, type: "shape", x_mm: R(x), y_mm: R(y), w_mm: R(w), h_mm: R(h), rotation: 0, z: z ?? ctx.z++, locked: false, style, content: { shape_kind: "ellipse" } };
+}
+
 /**
- * Group heading: optional short colour bar, the domain as a kicker (text or chip, by look), then the
- * competency name in the display face. No codes.
+ * Display type with the look's effects: a riso look prints it twice, the second copy offset in another ink
+ * (misregistration); a notebook look runs a highlighter pen behind it.
  */
-function headingPart(ctx: Ctx, g: ResolvedGroup, w: number, withBar: boolean): Part {
+function displayPart(ctx: Ctx, text: string, style: Style, w: number, binding?: Binding, name?: string, highlight = false): Part {
+  const p = textPart(text, style, w, binding, name);
+  if (!p.h) return p;
+  const mis = ctx.L.misregister;
+  const hl = highlight ? ctx.L.highlighter : undefined;
+  if (!mis && !hl) return p;
+  const lineH = style.font_size_pt! * PT * (style.line_height ?? 1.2);
+  // Where the lines break (greedy, word by word, as the browser wraps at spaces), for the highlighter.
+  const lineWs: number[] = [];
+  if (hl) {
+    let cur = "";
+    for (const word of text.split(/\s+/)) {
+      const next = cur ? `${cur} ${word}` : word;
+      if (cur && measureTextWidth(next, style) > w) {
+        lineWs.push(measureTextWidth(cur, style));
+        cur = word;
+      } else cur = next;
+    }
+    if (cur) lineWs.push(measureTextWidth(cur, style));
+  }
+  return {
+    h: p.h,
+    render(c, x, y) {
+      const out: Element[] = [];
+      lineWs.forEach((lw, i) => {
+        out.push(rectEl(c, x - 0.8, y + lineH * (i + 0.42), Math.min(w, lw) + 1.6, lineH * 0.46, { fill: hl, radius_mm: 0.8 }, "highlighter"));
+      });
+      if (mis) out.push(textEl(c, x + mis.dx, y + mis.dy, w, p.h, text, { ...style, colour: mis.colour }, undefined, `${name} (misprint)`));
+      out.push(...p.render(c, x, y));
+      return out;
+    },
+  };
+}
+
+/** Kicker (domain), name and English name, in given colours. */
+function plainHeading(ctx: Ctx, g: ResolvedGroup, w: number, colours?: { kicker: string; name: string; secondary: string }): Part {
   const lang = ctx.doc.language;
   const gt = groupText(g.group, lang);
   const st = styles(ctx, gt.domain);
-  const barH = Math.max(1, st.group.font_size_pt! * 0.075);
-  const bar: Part = withBar && ctx.L.headingBar ? { h: barH, render: (c, x, y) => [rectEl(c, x, y, 12, barH, { fill: st.dom, radius_mm: ctx.L.id === "brutal" ? 0 : barH / 2 }, "heading bar")] } : EMPTY;
   const kickerText = gt.kind === "routines" ? "" : domainName(gt.domain, lang);
-  const kicker = st.kicker.fill
-    ? chipPart(kickerText, st.kicker, w, st.kickerHard, groupBinding(g, "domain_name"), "domain")
-    : textPart(kickerText, st.kicker, w, groupBinding(g, "domain_name"), "domain");
+  const kickerStyle = colours ? { ...st.label, colour: colours.kicker } : st.kicker;
+  const kicker = kickerStyle.fill
+    ? chipPart(kickerText, kickerStyle, w, st.kickerHard, groupBinding(g, "domain_name"), "domain")
+    : textPart(kickerText, kickerStyle, w, groupBinding(g, "domain_name"), "domain");
   return vstack([
-    bar,
-    [kicker, bar.h ? 2.4 : 0],
-    [textPart(gt.name, st.group, w, groupBinding(g, "name"), "competency name"), st.kicker.fill ? 1.6 : 0.6],
-    [textPart(gt.name_secondary ?? "", st.secondary, w, groupBinding(g, "name_english"), "competency name (English)"), 0.6],
+    kicker,
+    [displayPart(ctx, gt.name, colours ? { ...st.group, colour: colours.name } : st.group, w, groupBinding(g, "name"), "competency name", true), kickerStyle.fill ? 1.6 : 0.6],
+    [textPart(gt.name_secondary ?? "", colours ? { ...st.secondary, colour: colours.secondary } : st.secondary, w, groupBinding(g, "name_english"), "competency name (English)"), 0.6],
   ]);
+}
+
+/**
+ * Group heading. Inside cards, or with no number: kicker (domain; text or chip, by look) and the name in
+ * the display face, with an optional short colour bar above. Full-width section headings take the look's
+ * section style: a big number beside them, a colour-blocked bar, or the number in a colour disc. No codes.
+ */
+function headingPart(ctx: Ctx, g: ResolvedGroup, w: number, withBar: boolean, index?: number): Part {
+  const L = ctx.L;
+  const gt = groupText(g.group, ctx.doc.language);
+  const st = styles(ctx, gt.domain);
+  const section = index !== undefined ? L.section ?? "plain" : "plain";
+  const num = index !== undefined ? String(index).padStart(2, "0") : "";
+  const gpt = st.group.font_size_pt!;
+
+  if (section === "numbered") {
+    // Swiss: a rule across, then a big number and the heading flush left beside it.
+    const numStyle: Style = { font_family: ctx.F.display, font_size_pt: R(gpt * 2.3), weight: 800, line_height: 0.9, colour: L.numeral?.(st.dom) ?? L.onLight(st.dom), letter_spacing_em: -0.02 };
+    const numW = measureTextWidth("00", numStyle) + 1;
+    const numH = gpt * 2.3 * PT * 0.95;
+    const inner = plainHeading(ctx, g, w - numW - 5);
+    const ruleW = Math.max(0.6, gpt * 0.045);
+    const h = ruleW + 2.8 + Math.max(numH, inner.h);
+    return {
+      h,
+      render: (c, x, y) => [
+        rectEl(c, x, y, w, ruleW, { fill: L.palette.ink }, "section rule"),
+        textEl(c, x, y + ruleW + 2.2, numW, numH, num, numStyle, undefined, "section number"),
+        ...inner.render(c, x + numW + 5, y + ruleW + 2.8),
+      ],
+    };
+  }
+  if (section === "block") {
+    // Colour blocking: a full-width bar in the domain colour, white type, the number oversized at the right.
+    const pad = Math.max(3, gpt * PT * 0.7);
+    const numStyle: Style = { font_family: ctx.F.display, font_size_pt: R(gpt * 2.4), weight: 900, line_height: 0.85, colour: L.hot ?? "#FFFFFF", align: "right" };
+    const numW = measureTextWidth("00", numStyle) + 2;
+    const inner = plainHeading(ctx, g, w - 2 * pad - numW - 4, { kicker: tint(st.dom, 0.7), name: "#FFFFFF", secondary: tint(st.dom, 0.8) });
+    const bh = inner.h + 2 * pad;
+    const numH = Math.min(bh - 1, gpt * 2.4 * PT);
+    return {
+      h: bh,
+      render: (c, x, y) => [
+        rectEl(c, x, y, w, bh, { fill: st.dom, radius_mm: 3 }, "section bar"),
+        ...inner.render(c, x + pad, y + pad),
+        textEl(c, x + w - pad - numW, y + (bh - numH) / 2, numW, numH, num, numStyle, undefined, "section number"),
+      ],
+    };
+  }
+  if (section === "circle") {
+    // Bauhaus: the number in a colour disc, the heading beside it.
+    const inner = plainHeading(ctx, g, w - gpt * PT * 2.6 - 5);
+    const d = Math.max(gpt * PT * 2.6, Math.min(inner.h, gpt * PT * 3.2));
+    const numStyle: Style = { font_family: ctx.F.display, font_size_pt: R(gpt * 1.35), weight: 800, line_height: 1, align: "center", vertical_align: "middle", colour: L.badge(st.dom).style.colour };
+    const h = Math.max(d, inner.h);
+    return {
+      h,
+      render: (c, x, y) => [
+        ellipseEl(c, x, y + (h - d) / 2, d, d, { fill: st.dom }, "section disc"),
+        textEl(c, x, y + (h - d) / 2, d, d, num, numStyle, undefined, "section number"),
+        ...inner.render(c, x + d + 5, y + (h - inner.h) / 2),
+      ],
+    };
+  }
+  const barH = Math.max(1, gpt * 0.075);
+  const bar: Part = withBar && L.headingBar ? { h: barH, render: (c, x, y) => [rectEl(c, x, y, 12, barH, { fill: st.dom, radius_mm: barH / 2 }, "heading bar")] } : EMPTY;
+  return vstack([bar, [plainHeading(ctx, g, w), bar.h ? 2.4 : 0]]);
 }
 
 /** Strategy name, English name (bilingual) and the "also supports" note. */
@@ -304,8 +408,9 @@ function itemHead(ctx: Ctx, e: ResolvedEntry, w: number, domain: string, scale =
   const it = itemText(e.kind, e.id, lang);
   const st = styles(ctx, domain);
   const name = scale === 1 ? st.name : { ...st.name, font_size_pt: R(st.name.font_size_pt! * scale) };
+  const big = name.font_size_pt! >= 13;
   return vstack([
-    textPart(it.name, name, w, itemBinding(e, "name"), "strategy name"),
+    big ? displayPart(ctx, it.name, name, w, itemBinding(e, "name"), "strategy name") : textPart(it.name, name, w, itemBinding(e, "name"), "strategy name"),
     [textPart(it.name_secondary ?? "", st.secondary, w, itemBinding(e, "name_english"), "strategy name (English)"), 0.5],
     [textPart(alsoText(ctx.doc.selection, e.also, lang), st.also, w, itemBinding(e, "also"), "also note"), 0.7],
   ]);
@@ -333,11 +438,12 @@ function stepsPart(ctx: Ctx, e: ResolvedEntry, w: number, domain: string): Part 
   }
   const pt = body.font_size_pt!;
   const lineH = pt * PT * (body.line_height ?? 1.45);
-  const numerals = ctx.t.steps_style === "numerals";
+  const numerals = ctx.t.steps_style === "numerals" || ctx.L.steps === "numerals";
+  const numScale = ctx.t.steps_style === "numerals" ? 2.1 : 1.45;
   const numStyle: Style = numerals
-    ? { font_family: ctx.F.display, font_size_pt: R(pt * 2.1), weight: ctx.L.weight.display, line_height: 1, colour: ctx.L.onLight(st.dom) }
+    ? { font_family: ctx.F.display, font_size_pt: R(pt * numScale), weight: ctx.L.weight.display, line_height: 1, colour: ctx.L.onLight(st.dom) }
     : { font_family: ctx.F.label, font_size_pt: R(pt * 0.74), weight: 800, line_height: 1, align: "center", vertical_align: "middle", ...ctx.L.badge(st.dom).style };
-  const d = numerals ? pt * 2.1 * PT : Math.min(lineH * 0.92, pt * PT * 1.32);
+  const d = numerals ? pt * numScale * PT : Math.min(lineH * 0.92, pt * PT * 1.32);
   if (!numerals) numStyle.radius_mm = ctx.L.badge(st.dom).square ? 0.5 : R(d / 2);
   const gutter = numerals ? d * 0.95 + 1.5 : d + Math.max(1.6, pt * PT * 0.7);
   const tw = w - gutter;
@@ -550,7 +656,7 @@ function cardBlocks(ctx: Ctx, groups: ResolvedGroup[]): Block[] {
       if (first) for (const fp of fieldParts(ctx, first, headW, domain)) blocks.push({ ...fp, frame: groupFrame, card: groupCard, unit: `${g.group.id}/${first.id}` });
     } else if (t.heading_style === "section" && t.frame !== "group") {
       // Full-width section heading; the group's strategies flow in columns (or a grid) beneath it.
-      const head = headingPart(ctx, g, ctx.contentW, true);
+      const head = headingPart(ctx, g, ctx.contentW, true, groups.indexOf(g) + 1);
       const after = cfg.spec.type.group * PT * 0.9;
       blocks.push({ h: head.h + after, span: true, render: (c, x, y) => head.render(c, x, y) });
     } else {
@@ -714,10 +820,15 @@ function tableBlocks(ctx: Ctx, groups: ResolvedGroup[], width: number): { header
 
 /**
  * Masthead on page 1, in the look's style:
- *   band   — a solid colour band to the page edges, white title, a strip of the domains covered under it;
- *   brutal — a yellow slab with a thick outline and hard shadow, and a tilted sticker with the counts;
- *   tonal  — a big rounded container in the document's key colour, counts as pills;
- *   glass  — a frosted panel on the colour field, counts as glass pills.
+ *   band     — a colour band to the page edges, huge white title, an oversized count in the hot colour,
+ *              and a strip of the domains covered under it (Bold);
+ *   brutal   — a yellow slab with a thick outline and hard shadow, and a tilted sticker with the counts;
+ *   tonal    — a big rounded container in the document's key colour, counts as pills (Material);
+ *   glass    — a frosted panel on the colour field, counts as glass pills;
+ *   riso     — overprinting pink and blue discs behind a misregistered title;
+ *   swiss    — flush-left title under a red square, a heavy rule;
+ *   bauhaus  — a red disc, blue bar and yellow square beside the title, a heavy rule;
+ *   notebook — a handwritten title with highlighter, and a sticky note with the counts.
  * Later pages: a running title. Every page: source credit and page number.
  */
 function headerFooter(ctx: Ctx, groups: ResolvedGroup[]) {
@@ -730,33 +841,43 @@ function headerFooter(ctx: Ctx, groups: ResolvedGroup[]) {
   const domains = groups.map(domainOf);
   const primary = L.primary(domains);
   const kind = L.masthead;
-  const inset = kind !== "band";
-  const boxPad = inset ? Math.max(5, m.left * 0.45) : 0;
+  const boxed = kind === "brutal" || kind === "tonal" || kind === "glass";
+  const boxPad = boxed ? Math.max(5, m.left * 0.45) : 0;
   const title = doc.title || label("defaultTitle", lang);
   const onColour = kind === "band" || kind === "tonal";
-  const titleStyle: Style = { font_family: ctx.F.display, font_size_pt: R(t.title * 1.12 * L.displayScale), weight: L.weight.display, line_height: L.displayLineHeight, colour: onColour ? "#FFFFFF" : P.ink };
-  const kickerStyle: Style = {
-    font_family: ctx.F.label, font_size_pt: t.subtitle, weight: 700, line_height: 1.3, letter_spacing_em: 0.03,
-    colour: kind === "band" ? tint(P.accent, 0.72) : kind === "tonal" ? tint(primary, 0.78) : kind === "glass" ? L.onLight(primary) : P.ink,
-  };
-  const logoH = doc.meta.logo_ref ? t.title * PT * 1.6 : 0;
-  const textW = innerW - 2 * boxPad - (logoH ? logoH * 2.2 + 4 : 0);
-  const kicker = textPart(doc.meta.subtitle, kickerStyle, textW, { field: "subtitle" }, "subtitle");
-  const titleP = textPart(title, titleStyle, textW, { field: "title" }, "title");
-  const summary = summaryText(selectionCounts(doc.selection), lang);
+  const counts = selectionCounts(doc.selection);
+  const summary = summaryText(counts, lang);
   const pills = summary.split("  ·  ").filter(Boolean);
+
+  // Space kept on the right of the title for decoration: Bold's big count, Swiss's square, Bauhaus's shapes.
+  const bigNumStyle: Style = { font_family: ctx.F.display, font_size_pt: R(t.title * 3.1), weight: 900, line_height: 0.82, colour: L.hot ?? "#FFFFFF", align: "right", letter_spacing_em: -0.03 };
+  const bigNum = String(counts.strategies + counts.routines);
+  const bigNumW = kind === "band" ? measureTextWidth(bigNum, bigNumStyle) + 2 : 0;
+  const swissSq = kind === "swiss" ? Math.max(12, t.title * PT * 2.2) : 0;
+  const bhD = kind === "bauhaus" ? Math.max(24, t.title * PT * 3.4) : 0;
+  const logoH = doc.meta.logo_ref ? t.title * PT * 1.6 : 0;
+  const reserve = kind === "band" ? bigNumW + 8 : kind === "swiss" ? swissSq + 8 : kind === "bauhaus" ? bhD + 22 : 0;
+  const textW = innerW - 2 * boxPad - reserve - (logoH ? logoH * 2.2 + 4 : 0) - (kind === "brutal" ? 2.2 : 0);
+
+  const titleScale = kind === "band" ? 1.28 : kind === "swiss" ? 1.3 : kind === "riso" ? 1.35 : kind === "notebook" ? 1.25 : 1.12;
+  const titleStyle: Style = { font_family: ctx.F.display, font_size_pt: R(t.title * titleScale * L.displayScale), weight: L.weight.display, line_height: L.displayLineHeight, colour: onColour ? "#FFFFFF" : P.ink, letter_spacing_em: kind === "swiss" || kind === "band" ? -0.01 : undefined };
+  const kickerColour = kind === "band" ? (L.hot ?? tint(P.accent, 0.72)) : kind === "tonal" ? tint(primary, 0.78)
+    : kind === "glass" ? L.onLight(primary) : kind === "riso" ? "#0078BF" : kind === "swiss" || kind === "notebook" ? P.accent : P.ink;
+  const kickerStyle: Style = { font_family: ctx.F.label, font_size_pt: t.subtitle, weight: 700, line_height: 1.3, letter_spacing_em: 0.03, colour: kickerColour };
+  const kicker = textPart(doc.meta.subtitle, kickerStyle, textW, { field: "subtitle" }, "subtitle");
+  const titleP = displayPart(ctx, title, titleStyle, textW, { field: "title" }, "title", kind === "notebook");
   const pillStyle: Style = {
     font_family: ctx.F.label, font_size_pt: Math.max(t.meta, t.subtitle - 1), weight: 700, line_height: 1.25, padding_mm: [0.9, 2.8, 0.7, 2.8],
     ...(kind === "tonal" ? { colour: "#FFFFFF", fill: "rgba(255,255,255,0.2)", radius_mm: 4 }
       : kind === "glass" ? { colour: P.ink, fill: "rgba(255,255,255,0.75)", stroke: { colour: "#FFFFFF", width_mm: 0.3 }, radius_mm: 4 }
-        : { colour: kind === "band" ? tint(P.accent, 0.72) : P.ink }),
+        : { colour: kind === "band" ? tint(P.accent, 0.75) : kind === "riso" ? "#FF48B0" : P.muted }),
   };
-  // Summary: pills in a row (tonal, glass), plain text (band), a sticker (brutal, drawn separately).
   const pillWs = pills.map((p) => measureTextWidth(p, pillStyle) + 0.6);
   const pillH = pills.length ? measureTextHeight(pills[0], pillStyle, pillWs[0]) : 0;
-  const summaryPart: Part = kind === "brutal" || !pills.length ? EMPTY
-    : kind === "band" ? textPart(summary, { ...pillStyle, padding_mm: undefined, weight: 500 }, textW, { field: "summary" }, "summary")
-      : {
+  // Summary: pills in a row (tonal, glass), a sticker (brutal, notebook: drawn separately), plain text otherwise.
+  const summaryPart: Part = kind === "brutal" || kind === "notebook" || !pills.length ? EMPTY
+    : kind === "tonal" || kind === "glass"
+      ? {
         h: pillH,
         render: (c, x, y) => {
           let px = x;
@@ -766,14 +887,19 @@ function headerFooter(ctx: Ctx, groups: ResolvedGroup[]) {
             return el;
           });
         },
-      };
+      }
+      : textPart(summary, { ...pillStyle, padding_mm: undefined, weight: kind === "band" ? 700 : 600 }, textW, { field: "summary" }, "summary");
   const mast = vstack([kicker, [titleP, t.title * PT * 0.3], [summaryPart, t.title * PT * 0.45]]);
+
   const top = kind === "band" ? Math.max(m.top * 0.9, 8) : Math.max(m.top * 0.8, 6);
   const boxH = mast.h + 2 * boxPad;
-  const stripH = 2.2;
+  const stripH = kind === "band" ? 3 : 0;
   const hard: HardShadow | undefined = kind === "brutal" ? { dx: 2.2, dy: 2.2, colour: P.ink } : undefined;
-  // Bottom of the masthead area.
-  const mastBottom = kind === "band" ? top + mast.h + Math.max(m.top * 0.75, 7) : top + boxH + (hard?.dy ?? 0);
+  const decoH = kind === "bauhaus" ? bhD + 4 : kind === "swiss" ? swissSq : 0;
+  const heavyRule = kind === "swiss" || kind === "bauhaus" ? Math.max(1, t.title * 0.05) : 0;
+  const mastBottom = kind === "band" ? top + Math.max(mast.h, bigNumW ? t.title * 3.1 * PT * 0.9 : 0) + Math.max(m.top * 0.75, 7)
+    : boxed ? top + boxH + (hard?.dy ?? 0)
+      : top + Math.max(mast.h, decoH) + (heavyRule ? 3 + heavyRule : 1);
 
   // Domain strip segments (band look), in selection order; neighbours with the same colour merge.
   const segs: { colour: string; weight: number }[] = [];
@@ -797,6 +923,20 @@ function headerFooter(ctx: Ctx, groups: ResolvedGroup[]) {
     return out;
   };
 
+  /** Tilted label with the counts, over the masthead's top-right corner. */
+  const sticker = (c: Ctx, style: Style, rotation: number, shadow?: string): Element[] => {
+    if (!pills.length) return [];
+    const text = pills.join("\n");
+    const sw = Math.max(...pills.map((s) => measureTextWidth(s, style))) + 0.8;
+    const sh = measureTextHeight(text, style, sw);
+    const sx = m.left + innerW - (hard?.dx ?? 0) - sw - 4;
+    const sy = top - sh * 0.35;
+    return [
+      ...(shadow ? [rectEl(c, sx + 1, sy + 1, sw, sh, { fill: shadow }, "sticker shadow", undefined, rotation)] : []),
+      textEl(c, sx, sy, sw, sh, text, style, { field: "summary" }, "summary sticker", undefined, rotation),
+    ];
+  };
+
   const baseMeta = t.meta / cfg.grow;
   const runStyle: Style = { font_family: ctx.F.label, font_size_pt: baseMeta + 0.5, weight: 700, line_height: 1.3, colour: P.ink };
   const runH = measureTextHeight(title, runStyle, innerW * 0.8);
@@ -808,49 +948,73 @@ function headerFooter(ctx: Ctx, groups: ResolvedGroup[]) {
   const footTop = H - m.bottom - creditH;
   const metaText = [doc.meta.organisation, doc.meta.author, doc.meta.date].filter(Boolean).join(" · ");
   const gap = cfg.spec.gap_mm;
+  const strongRule = L.id === "brutal" || L.id === "swiss" || L.id === "bauhaus";
 
   return {
-    contentTop: (p: number) => (p === 0 ? mastBottom + (kind === "band" ? stripH : 0) + gap * 1.2 : runTop + runH + 3 + gap * 0.6),
+    contentTop: (p: number) => (p === 0 ? mastBottom + stripH + gap * 1.2 : runTop + runH + 3 + gap * 0.6),
     contentBottom: footTop - 2 - gap * 0.6,
     render(c: Ctx, p: number, pages: number): Element[] {
       const out: Element[] = [];
+      const R0 = m.left + innerW; // right edge of the content area
       if (p === 0) {
         if (kind === "band") {
           out.push(rectEl(c, -bleed, -bleed, W + 2 * bleed, mastBottom + bleed, { fill: P.accent }, "masthead band"));
           out.push(...strip(c, mastBottom, stripH));
           out.push(...mast.render(c, m.left, top));
-        } else {
+          // The oversized count, and what it counts, bottom-aligned at the right of the band.
+          const numH = t.title * 3.1 * PT;
+          const labStyle: Style = { font_family: ctx.F.label, font_size_pt: Math.max(t.meta, t.subtitle - 1), weight: 800, line_height: 1.2, colour: "#FFFFFF", align: "right" };
+          const lab = lang === "en" ? (counts.strategies + counts.routines === 1 ? "strategy" : "strategies") : "रणनीतियाँ";
+          const labH = measureTextHeight(lab, labStyle, bigNumW + 10);
+          const ny = mastBottom - Math.max(m.top * 0.55, 5) - labH - numH * 0.92;
+          out.push(textEl(c, R0 - bigNumW, ny, bigNumW, numH, bigNum, bigNumStyle, { field: "summary_count" }, "big count"));
+          out.push(textEl(c, R0 - bigNumW - 10, ny + numH * 0.92, bigNumW + 10, labH, lab, labStyle, undefined, "big count label"));
+        } else if (boxed) {
           const boxStyle: Style = kind === "brutal"
             ? { fill: P.accent, stroke: { colour: P.ink, width_mm: 0.8 }, radius_mm: 0 }
             : kind === "tonal" ? { fill: primary, radius_mm: 8 }
               : { fill: "rgba(255,255,255,0.55)", stroke: { colour: "rgba(255,255,255,0.95)", width_mm: 0.4 }, radius_mm: 7, shadow: "0 1mm 4mm rgba(16,24,40,0.10)" };
           out.push(...boxEls(c, m.left, top, innerW - (hard?.dx ?? 0), boxH, boxStyle, "masthead", hard));
           out.push(...mast.render(c, m.left + boxPad, top + boxPad));
-          if (kind === "brutal" && pills.length) {
-            // Tilted sticker with the counts, over the slab's top-right corner.
-            const sticker: Style = { font_family: ctx.F.label, font_size_pt: Math.max(t.meta, t.subtitle - 0.5), weight: 700, line_height: 1.2, colour: P.ink, fill: primary, stroke: { colour: P.ink, width_mm: 0.5 }, padding_mm: [1.2, 3, 1, 3], align: "center" };
-            const text = pills.join("\n");
-            const sw = Math.max(...pills.map((s) => measureTextWidth(s, sticker))) + 0.8;
-            const sh = measureTextHeight(text, sticker, sw);
-            const sx = m.left + innerW - (hard?.dx ?? 0) - sw - 4;
-            const sy = top - sh * 0.35;
-            out.push(rectEl(c, sx + 1, sy + 1, sw, sh, { fill: P.ink }, "sticker shadow", undefined, 4));
-            out.push(textEl(c, sx, sy, sw, sh, text, sticker, { field: "summary" }, "summary sticker", undefined, 4));
+          if (kind === "brutal") {
+            out.push(...sticker(c, { font_family: ctx.F.label, font_size_pt: Math.max(t.meta, t.subtitle - 0.5), weight: 700, line_height: 1.2, colour: P.ink, fill: primary, stroke: { colour: P.ink, width_mm: 0.5 }, padding_mm: [1.2, 3, 1, 3], align: "center" }, 4, P.ink));
           }
+        } else if (kind === "riso") {
+          // Two overprinting ink discs, partly off the page, behind the title.
+          const d1 = Math.min(W * 0.42, 90), d2 = d1 * 0.72;
+          out.push(ellipseEl(c, W - d1 * 0.78, -d1 * 0.38, d1, d1, { fill: "rgba(255,72,176,0.28)" }, "ink disc (pink)"));
+          out.push(ellipseEl(c, W - d1 * 0.78 - d2 * 0.55, -d2 * 0.05, d2, d2, { fill: "rgba(0,120,191,0.22)" }, "ink disc (blue)"));
+          out.push(...mast.render(c, m.left, top));
+          out.push(rectEl(c, m.left, mastBottom - 1, innerW, 0.5, { fill: "rgba(29,42,107,0.5)" }, "masthead rule"));
+        } else if (kind === "swiss") {
+          out.push(rectEl(c, R0 - swissSq, top, swissSq, swissSq, { fill: P.accent }, "red square"));
+          out.push(...mast.render(c, m.left, top));
+          out.push(rectEl(c, m.left, mastBottom - heavyRule, innerW, heavyRule, { fill: P.ink }, "masthead rule"));
+        } else if (kind === "bauhaus") {
+          const d = bhD;
+          const bx = R0 - d - 14;
+          out.push(rectEl(c, R0 - 11, top - 2, 11, d * 1.12, { fill: "#1F4E9C" }, "blue bar"));
+          out.push(ellipseEl(c, bx, top, d, d, { fill: "#D6312B" }, "red disc"));
+          out.push(rectEl(c, bx - d * 0.18, top + d * 0.58, d * 0.46, d * 0.46, { fill: "#F2B705" }, "yellow square"));
+          out.push(...mast.render(c, m.left, top + Math.max(0, (d - mast.h) / 2)));
+          out.push(rectEl(c, m.left, mastBottom - heavyRule, innerW, heavyRule, { fill: P.ink }, "masthead rule"));
+        } else if (kind === "notebook") {
+          out.push(...mast.render(c, m.left, top));
+          out.push(...sticker(c, { font_family: ctx.F.label, font_size_pt: Math.max(t.meta + 1, t.subtitle), weight: 700, line_height: 1.25, colour: P.ink, fill: "#FFE066", padding_mm: [2, 3.5, 1.8, 3.5], align: "center", shadow: "0 0.8mm 2mm rgba(30,42,85,0.2)" }, -4));
         }
         if (doc.meta.logo_ref) {
           const lw = logoH * 2.2;
           out.push({
-            id: uid(), name: "logo", type: "image", x_mm: R(W - m.right - boxPad - lw), y_mm: R(top + boxPad), w_mm: R(lw), h_mm: R(logoH), rotation: 0, z: c.z++, locked: false,
+            id: uid(), name: "logo", type: "image", x_mm: R(R0 - boxPad - reserve - lw), y_mm: R(top + boxPad), w_mm: R(lw), h_mm: R(logoH), rotation: 0, z: c.z++, locked: false,
             style: {}, content: { image_ref: doc.meta.logo_ref, natural_px: doc.meta.logo_px ?? [lw * 10, logoH * 10], crop: { x: 0, y: 0, w: 1, h: 1 }, fit: "contain" }, binding: { field: "logo" },
           });
         }
       } else {
-        if (kind === "band") out.push(...strip(c, -bleed, stripH + bleed));
+        if (kind === "band") out.push(...strip(c, -bleed, 2.2 + bleed));
         out.push(textEl(c, m.left, runTop, innerW * 0.8, runH, title, runStyle, { field: "running_title" }, "running title"));
-        out.push(lineEl(c, m.left, runTop + runH + 1.5, innerW, L.id === "brutal" ? P.ink : L.rule.colour, L.id === "brutal" ? 0.8 : 0.3, "header rule"));
+        out.push(lineEl(c, m.left, runTop + runH + 1.5, innerW, strongRule ? P.ink : L.rule.colour, strongRule ? 0.8 : 0.3, "header rule"));
       }
-      out.push(lineEl(c, m.left, footTop - 2, innerW, L.id === "brutal" ? P.ink : L.rule.colour, L.id === "brutal" ? 0.5 : 0.3, "footer rule"));
+      out.push(lineEl(c, m.left, footTop - 2, innerW, strongRule ? P.ink : L.rule.colour, strongRule ? 0.5 : 0.3, "footer rule"));
       out.push(textEl(c, m.left, footTop, creditW, creditH, credit, footStyle, { field: "footer_credit" }, "source credit"));
       const pageNo = `${label("page", lang)} ${p + 1} / ${pages}`;
       const rightW = innerW - creditW - 4;
@@ -1167,6 +1331,11 @@ export function layoutDocument(doc: OnePagerDocument, t: TemplateDef, cfg: Layou
         ? rectEl(ctx, x + sw, top + sw, w - 2 * sw, a.size, accent, "card accent", frameZ++)
         : rectEl(ctx, x, top, a.size, h, accent, "card accent", frameZ++));
       if (a.side === "top" && card.style.stroke) pages[p.page].elements.push(lineEl(ctx, x, top + sw + a.size, w, card.style.stroke.colour, card.style.stroke.width_mm * 0.8, "card accent rule"));
+    }
+    if (card.tape) {
+      // A strip of tape across the top edge, slightly askew.
+      const tw = Math.min(26, w * 0.34);
+      pages[p.page].elements.push(rectEl(ctx, x + (w - tw) / 2 + (p.col % 2 ? 3 : -3), top - 2.2, tw, 5, { fill: card.tape }, "tape", 500 + frameZ, p.col % 2 ? 3 : -2.5));
     }
   }
   for (const p of placed) {
