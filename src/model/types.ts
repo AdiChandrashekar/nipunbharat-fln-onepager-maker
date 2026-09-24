@@ -182,6 +182,8 @@ export interface Binding {
   bucket_id?: string;
   /** e.g. "name", "how_to", "nipun_chip", "image", "detailed_explanation", "weeks", "footer". */
   field: string;
+  /** Which numbered step of a how-to (field "how_to"), when the how-to is shown as steps. */
+  part?: number;
 }
 
 interface ElementBase {

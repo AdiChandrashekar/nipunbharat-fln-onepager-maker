@@ -165,3 +165,14 @@ export function resolve(sel: SelectionGroup[]): ResolvedGroup[] {
     }),
   }));
 }
+
+/** What the document covers, for the summary line under the title (shown entries only, no duplicates). */
+export function selectionCounts(sel: SelectionGroup[]): { competencies: number; strategies: number; routines: number } {
+  const groups = resolve(sel);
+  const shown = groups.flatMap((g) => g.entries.filter((e) => !e.pointerTo));
+  return {
+    competencies: groups.filter((g) => g.group.kind === "competency").length,
+    strategies: new Set(shown.filter((e) => e.kind === "strategy").map((e) => e.id)).size,
+    routines: new Set(shown.filter((e) => e.kind === "routine").map((e) => e.id)).size,
+  };
+}

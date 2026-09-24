@@ -2,12 +2,12 @@
  * Pure document edits for the editor. Each returns a new document; the caller commits it to history.
  * Any edit to page content marks the layout as hand-edited, so auto re-flow asks before overwriting.
  */
-import { alsoText, continuedText, groupText, itemText, label, pointerText } from "../content/fields";
+import { alsoText, continuedText, domainName, groupText, howToSteps, itemText, label, pointerText, summaryText } from "../content/fields";
 import { imageById, imagesForRoutine, imagesForStrategy } from "../data/compendium";
 import { measureTextHeight } from "../layout/measure";
 import type { Binding, Element, OnePagerDocument, Page, Style } from "../model/types";
 import { uid } from "../model/units";
-import { resolve } from "../selection/selection";
+import { resolve, selectionCounts } from "../selection/selection";
 
 export type Doc = OnePagerDocument;
 
@@ -184,6 +184,7 @@ export function boundText(d: Doc, b: Binding, pageIndex: number): string | undef
   if (f === "title" || f === "running_title") return d.title || label("defaultTitle", lang);
   if (f === "subtitle") return d.meta.subtitle;
   if (f === "footer_credit") return label("credit", lang);
+  if (f === "summary") return summaryText(selectionCounts(d.selection), lang);
   if (f === "footer_meta") {
     const meta = [d.meta.organisation, d.meta.author, d.meta.date].filter(Boolean).join(" · ");
     const pageNo = `${label("page", lang)} ${pageIndex + 1} / ${d.pages.length}`;
@@ -196,13 +197,14 @@ export function boundText(d: Doc, b: Binding, pageIndex: number): string | undef
     if (key === "name") return gt.name;
     if (key === "name_english") return gt.name_secondary;
     if (key === "continued") return continuedText(gt.name, lang);
+    if (key === "domain_name") return domainName(gt.domain, lang);
   }
   const itemId = b.strategy_id ?? b.routine_id;
   if (!itemId) return undefined;
   const it = itemText(b.strategy_id ? "strategy" : "routine", itemId, lang);
   if (f === "name") return it.name;
   if (f === "name_english") return it.name_secondary;
-  if (f === "how_to") return it.how_to;
+  if (f === "how_to") return b.part === undefined ? it.how_to : howToSteps(it.how_to, lang)[b.part];
   if (f === "also") {
     const e = resolve(d.selection).flatMap((g) => g.entries).find((x) => x.id === itemId && !x.pointerTo);
     return e?.also.length ? alsoText(d.selection, e.also, lang) : undefined;

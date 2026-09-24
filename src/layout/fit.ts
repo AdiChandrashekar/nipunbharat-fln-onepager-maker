@@ -6,7 +6,7 @@ import { itemText } from "../content/fields";
 import type { OnePagerDocument, OptionalField, Page, Tier } from "../model/types";
 import { resolve } from "../selection/selection";
 import { templateById } from "../templates";
-import { configLadder, layoutDocument, type LayoutConfig } from "./engine";
+import { configLadder, layoutDocument, makeConfig, type LayoutConfig } from "./engine";
 
 export interface FitResult {
   pages: Page[];
@@ -23,6 +23,8 @@ export interface FitResult {
   /** Pages each rung of the ladder needed, for the UI. */
   ladder: { tier: Tier; step: number; pages: number }[];
 }
+
+const GROW = [1.6, 1.45, 1.32, 1.2, 1.1];
 
 /** Never shown unless the user adds them: "संदर्शिका में" (weeks) and "अन्य रूप" (variants). */
 export const OPT_IN: OptionalField[] = ["weeks", "variants"];
@@ -46,6 +48,20 @@ export function fitDocument(doc: OnePagerDocument): FitResult {
     : results.find((r) => r.pages.length <= target) ?? results[results.length - 1];
   // Among equal page counts prefer a result without column overflow.
   if (pick.overflow) pick = results.find((r) => r.pages.length === pick.pages.length && !r.overflow) ?? pick;
+
+  // Grow to fill: a one-page document that shows everything it is meant to (no fields dropped, no
+  // shrinking) takes the largest type scale that still fits its page, so a poster of two strategies doesn't
+  // leave half the page empty. Longer documents keep their size. Only in automatic mode.
+  if (doc.layout.tier === "auto" && target === "auto" && pick.cfg.step === 0 && !pick.overflow && pick.pages.length === 1) {
+    for (const grow of GROW) {
+      const cfg = makeConfig(t, pick.cfg.tier, 0, doc.page, forced, Math.max(1, units), grow);
+      const r = layoutDocument(doc, t, cfg, groups);
+      if (r.pages.length === pick.pages.length && !r.overflow) {
+        pick = { cfg, ...r };
+        break;
+      }
+    }
+  }
 
   const available = contentFields(doc);
   const full = new Set<OptionalField>([...t.tiers.spacious.fields, ...forced]);

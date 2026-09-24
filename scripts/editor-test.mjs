@@ -37,7 +37,7 @@ check("no NIPUN / preparation chips on the page", !/निपुण\s+[A-Z]+\d|N
 // --- "संदर्शिका में" (weeks) and "अन्य रूप" (variants) are opt-in extras, off in every template by default
 {
   const labels = () => doc().then((x) => x.pages.flatMap((p) => p.elements).filter((e) => e.type === "text").map((e) => e.content.text));
-  const has = (arr, t) => arr.some((s) => s === t);
+  const has = (arr, t) => arr.some((s) => s === t || s.startsWith(`${t} `)); // a label alone, or leading an inline field
   let texts = await labels();
   check("weeks / variants absent by default", !has(texts, "संदर्शिका में") && !has(texts, "अन्य रूप"));
   const chips = await page.locator(".fieldbar .chip.extra").allInnerTexts();

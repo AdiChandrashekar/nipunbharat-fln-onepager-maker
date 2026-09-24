@@ -2,7 +2,7 @@
  * Language-aware text for auto-population. Rule: never mix languages inside one field. Hindi documents use
  * the *_hindi fields, English documents the English ones; bilingual = Hindi primary + English secondary.
  */
-import { bucketById, competencyById, formatWeeks, routineById, strategyById } from "../data/compendium";
+import { bucketById, competencyById, domains, formatWeeks, routineById, strategyById } from "../data/compendium";
 import type { Language, OptionalField, SelectionGroup } from "../model/types";
 
 export const UI_LABELS = {
@@ -22,6 +22,7 @@ export const UI_LABELS = {
     en: "Source: Aadharshila Kriyanvayan Shikshak Sandarshika (Teacher Guide), Grade 2 Hindi, Uttar Pradesh, 2026-27",
   },
   routines: { hi: "विभेदित शिक्षण की दिनचर्या", en: "Differentiation routines" },
+  generalActivities: { hi: "सामान्य गतिविधियाँ", en: "General activities" },
   defaultTitle: { hi: "शिक्षण रणनीतियाँ: शिक्षक एवं मेंटर हेतु", en: "Teaching strategies for teachers and mentors" },
   defaultSubtitle: { hi: "कक्षा 2 हिंदी · निपुण भारत", en: "Grade 2 Hindi · NIPUN Bharat" },
 } as const;
@@ -134,6 +135,55 @@ export function itemText(kind: "strategy" | "routine", id: string, lang: Languag
       english: lang === "bi" ? s.how_to_english : undefined,
     },
   };
+}
+
+/**
+ * A how-to as numbered steps: the compendium joins a strategy's steps with semicolons. Splits only at
+ * top level (not inside brackets or quotes) and ends each step with a full stop (। in Hindi).
+ */
+export function howToSteps(text: string, lang: Language): string[] {
+  const parts: string[] = [];
+  let depth = 0, quote = false, cur = "";
+  for (let i = 0; i < text.length; i++) {
+    const ch = text[i];
+    if ("([{".includes(ch)) depth++;
+    else if (")]}".includes(ch)) depth = Math.max(0, depth - 1);
+    else if (ch === "'" && (i === 0 || /[\s(:]/.test(text[i - 1]) || quote)) quote = !quote;
+    if (ch === ";" && depth === 0 && !quote) {
+      parts.push(cur);
+      cur = "";
+      continue;
+    }
+    cur += ch;
+  }
+  parts.push(cur);
+  const stop = primary(lang) === "en" ? "." : "।";
+  return parts
+    .map((p) => p.trim())
+    .filter(Boolean)
+    .map((p) => {
+      const s = primary(lang) === "en" ? p[0].toUpperCase() + p.slice(1) : p;
+      return /[।.!?)'"”’…]$/.test(s) ? s : s + stop;
+    });
+}
+
+/** Domain name for a group's kicker line ("पठन प्रवाह"), in the document's primary language. */
+export function domainName(domain: string, lang: Language): string {
+  if (domain === "GA") return label("generalActivities", lang);
+  const d = domains.find((x) => x.domain_id === domain);
+  if (!d) return "";
+  return primary(lang) === "en" ? d.domain_name_english : d.domain_name_hindi;
+}
+
+/** "3 दक्षताएँ · 8 रणनीतियाँ" under the title. */
+export function summaryText(counts: { competencies: number; strategies: number; routines: number }, lang: Language): string {
+  const en = primary(lang) === "en";
+  const n = (k: number, one: string, many: string) => `${k} ${k === 1 ? one : many}`;
+  const parts: string[] = [];
+  if (counts.competencies) parts.push(en ? n(counts.competencies, "competency", "competencies") : n(counts.competencies, "दक्षता", "दक्षताएँ"));
+  if (counts.strategies) parts.push(en ? n(counts.strategies, "strategy", "strategies") : n(counts.strategies, "रणनीति", "रणनीतियाँ"));
+  if (counts.routines) parts.push(en ? n(counts.routines, "grouping routine", "grouping routines") : n(counts.routines, "समूह व्यवस्था", "समूह व्यवस्थाएँ"));
+  return parts.join("  ·  ");
 }
 
 /** Heading name of a selected group, for cross-references printed on the page (names, never codes). */
