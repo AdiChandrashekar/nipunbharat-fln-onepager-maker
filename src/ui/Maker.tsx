@@ -18,6 +18,7 @@ import { measureTextHeight } from "../layout/measure";
 import { pageLabel } from "../model/pageSizes";
 import type { Element, OptionalField } from "../model/types";
 import { SCHEMA_VERSION } from "../model/types";
+import { docStore, downloadBlob, fileStem, pickJsonFile, WEB } from "../platform";
 import { templateById } from "../templates";
 import { KOSH_LIGHT, tint } from "../theme/tokens";
 import { Selector } from "./Selector";
@@ -298,20 +299,38 @@ export function Maker() {
   async function save() {
     h.replace((cur) => ({ ...cur, meta: { ...cur.meta, updated: new Date().toISOString() } }));
     const d = { ...h.get(), schema_version: SCHEMA_VERSION };
-    const res = await fetch(`/api/documents/${encodeURIComponent(d.id)}`, { method: "PUT", body: JSON.stringify(d) });
-    if (!res.ok) return setMessage(`Save failed: ${(await res.json()).error}`);
+    try {
+      await docStore.put(d);
+    } catch (e) {
+      return setMessage(`Save failed: ${(e as Error).message}`);
+    }
     savedRef.current = h.get();
     setSavedAt(new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }));
-    setMessage(`Saved to documents/${d.id}.json`);
+    setMessage(`Saved to ${docStore.where(d.id)}`);
   }
   async function showOpen() {
-    const res = await fetch("/api/documents");
-    setOpenList(await res.json());
+    setOpenList(await docStore.list());
+  }
+  function download() {
+    const d = { ...h.get(), schema_version: SCHEMA_VERSION };
+    downloadBlob(new Blob([JSON.stringify(d, null, 1)], { type: "application/json" }), `${fileStem(d)}.json`);
+  }
+  async function openFile() {
+    if (hasWork && !confirm("Discard unsaved changes?")) return;
+    try {
+      const raw = await pickJsonFile();
+      if (raw) load(raw);
+    } catch (e) {
+      setMessage((e as Error).message);
+    }
   }
   async function open(id: string) {
     if (hasWork && !confirm("Discard unsaved changes?")) return;
-    const res = await fetch(`/api/documents/${encodeURIComponent(id)}`);
-    const d = normalise(await res.json());
+    load(await docStore.get(id));
+  }
+  function load(raw: unknown) {
+    if (!raw || typeof raw !== "object" || !Array.isArray((raw as Doc).pages)) return setMessage("That file is not a One-Pager document.");
+    const d = normalise(raw as Doc);
     if (d.schema_version !== SCHEMA_VERSION) setMessage(`This document uses schema v${d.schema_version}; it was opened as v${SCHEMA_VERSION}.`);
     h.reset(d);
     savedRef.current = h.get();
@@ -381,7 +400,8 @@ export function Maker() {
     <span className="file-actions">
       <button onClick={newDoc} title="New document">New</button>
       <button onClick={showOpen} title="Open a saved document">Open…</button>
-      <button onClick={save} title="Save (Ctrl+S)" className={dirty ? "primary" : ""}>{dirty ? "Save" : "Saved"}</button>
+      <button onClick={save} title={WEB ? "Save in this browser (Ctrl+S)" : "Save (Ctrl+S)"} className={dirty ? "primary" : ""}>{dirty ? "Save" : "Saved"}</button>
+      {WEB && <button onClick={download} title="Download this document as a .json file, to keep or share">Download</button>}
       {savedAt && <span className="muted small">{dirty ? "unsaved changes" : `at ${savedAt}`}</span>}
       <button onClick={h.undo} disabled={!h.canUndo} title="Undo (Ctrl+Z)">↶</button>
       <button onClick={h.redo} disabled={!h.canRedo} title="Redo (Ctrl+Shift+Z)">↷</button>
@@ -498,7 +518,8 @@ export function Maker() {
         <div className="modal-back" onClick={() => setOpenList(null)}>
           <div className="modal small" role="dialog" aria-label="Open document" onClick={(e) => e.stopPropagation()}>
             <header><strong>Open a document</strong><button className="x" onClick={() => setOpenList(null)} aria-label="Close">×</button></header>
-            {!openList.length && <p className="hint">No saved documents yet in documents/.</p>}
+            {WEB && <p className="hint">Documents saved in this browser. <button onClick={() => { setOpenList(null); openFile(); }}>Open a .json file…</button></p>}
+            {!openList.length && <p className="hint">{WEB ? "Nothing saved in this browser yet." : "No saved documents yet in documents/."}</p>}
             <ul className="open-list">
               {openList.sort((a, b) => (b.updated ?? "").localeCompare(a.updated ?? "")).map((d) => (
                 <li key={d.id}><button onClick={() => open(d.id)}>{d.title || "(untitled)"} <small className="muted">{d.id} · {d.updated?.slice(0, 16).replace("T", " ")}</small></button></li>

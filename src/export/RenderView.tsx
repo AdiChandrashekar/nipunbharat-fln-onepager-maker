@@ -29,6 +29,14 @@ export function RenderView({ token, bleed, scale = 1 }: { token: string; bleed: 
 
   if (error) return <pre id="render-error">{error}</pre>;
   if (!doc) return null;
+  return <RenderPages doc={doc} bleed={bleed} scale={scale} />;
+}
+
+/**
+ * The pages, one per printed page. `inPage` (web version): mounted inside the editor for window.print(),
+ * so the print rules only apply when printing and everything else on the page is hidden then.
+ */
+export function RenderPages({ doc, bleed, scale = 1, inPage = false }: { doc: OnePagerDocument; bleed: boolean; scale?: number; inPage?: boolean }) {
   const b = bleed ? doc.page.bleed_mm : 0;
   const w = doc.page.width_mm + 2 * b;
   const h = doc.page.height_mm + 2 * b;
@@ -36,7 +44,7 @@ export function RenderView({ token, bleed, scale = 1 }: { token: string; bleed: 
     <>
       <style>{`
         @page { size: ${w}mm ${h}mm; margin: 0; }
-        html, body { margin: 0; padding: 0; background: #fff; }
+        ${inPage ? "@media print { body > *:not(#print-root) { display: none !important; } #print-root { position: static !important; } html, body { margin: 0 !important; padding: 0 !important; background: #fff !important; height: auto !important; overflow: visible !important; } }" : "html, body { margin: 0; padding: 0; background: #fff; }"}
         .render-pages .page-shell { break-after: page; page-break-after: always; overflow: hidden; }
         .render-pages .page-shell:last-child { break-after: auto; page-break-after: auto; }
         ${scale !== 1 ? ".render-pages .page-shell { margin-bottom: 16px; }" : ""}

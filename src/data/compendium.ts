@@ -5,6 +5,7 @@
 import rawCompendium from "../../data/compendium.json";
 import translations from "../../data/translations_hi.json";
 import imageLibrary from "../../data/image_library.json";
+import { WEB } from "../platform";
 
 export interface Variant { note: string; note_hindi: string; source_refs: string[] }
 export interface Strategy {
@@ -113,7 +114,9 @@ export const strategyById = new Map(strategies.map((s) => [s.strategy_id, s]));
 export const routineById = new Map(routines.map((r) => [r.routine_id, r]));
 export const bucketById = new Map(buckets.map((b) => [b.bucket_id, b]));
 
-const lib = imageLibrary as unknown as {
+// The TG illustration crops are not published with the web version, so it has no image library.
+const noImages = { images: [], by_strategy: {}, by_competency: {}, by_bucket: {}, by_routine: {} };
+const lib = (WEB ? noImages : imageLibrary) as unknown as {
   images: LibraryImage[];
   by_strategy: Record<string, string[]>;
   by_competency: Record<string, string[]>;

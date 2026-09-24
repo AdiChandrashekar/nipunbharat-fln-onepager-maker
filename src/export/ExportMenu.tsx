@@ -1,5 +1,6 @@
 import { useState } from "react";
 import type { OnePagerDocument } from "../model/types";
+import { downloadBlob, fileStem, WEB } from "../platform";
 
 type Format = { format: "pdf" } | { format: "png"; dpi: 150 | 300 };
 
@@ -15,6 +16,7 @@ export function ExportMenu({ doc, setMessage }: { doc: OnePagerDocument; setMess
     setBusy(label);
     setMessage(undefined);
     try {
+      if (WEB) return await runInBrowser(f, label);
       const q = new URLSearchParams({ format: f.format, bleed: bleed && doc.page.bleed_mm > 0 ? "1" : "0" });
       if (f.format === "png") q.set("dpi", String(f.dpi));
       const res = await fetch(`/api/export?${q}`, { method: "POST", body: JSON.stringify(doc) });
@@ -34,6 +36,21 @@ export function ExportMenu({ doc, setMessage }: { doc: OnePagerDocument; setMess
     }
   }
 
+  async function runInBrowser(f: Format, label: string) {
+    const withBleed = bleed && doc.page.bleed_mm > 0;
+    const { printToPdf, renderPngs, zipPngs } = await import("./browserExport");
+    if (f.format === "pdf") {
+      await printToPdf(doc, withBleed);
+      setMessage("In the print dialog, choose “Save as PDF” (margins: none, scale 100%). Chrome or Edge give the best result.");
+      return;
+    }
+    const files = await renderPngs(doc, withBleed, f.dpi);
+    const name = `${fileStem(doc)}-${f.dpi}dpi.${files.length === 1 ? "png" : "zip"}`;
+    const data = files.length === 1 ? files[0].data : zipPngs(files);
+    downloadBlob(new Blob([data as BlobPart], { type: files.length === 1 ? "image/png" : "application/zip" }), name);
+    setMessage(`Exported ${label}: ${name}`);
+  }
+
   return (
     <span className="export-menu">
       <button className="primary" onClick={() => setOpen(!open)} disabled={!!busy || !doc.pages.length} aria-expanded={open}>
@@ -41,7 +58,7 @@ export function ExportMenu({ doc, setMessage }: { doc: OnePagerDocument; setMess
       </button>
       {open && (
         <div className="export-pop" role="menu">
-          <button role="menuitem" onClick={() => run({ format: "pdf" })}>PDF <small>vector, selectable text</small></button>
+          <button role="menuitem" onClick={() => run({ format: "pdf" })}>PDF <small>{WEB ? "opens the print dialog: Save as PDF" : "vector, selectable text"}</small></button>
           <button role="menuitem" onClick={() => run({ format: "png", dpi: 150 })}>PNG · 150 dpi <small>screen, sharing</small></button>
           <button role="menuitem" onClick={() => run({ format: "png", dpi: 300 })}>PNG · 300 dpi <small>print</small></button>
           <label className={doc.page.bleed_mm > 0 ? "" : "disabled"} title={doc.page.bleed_mm > 0 ? "" : "Set a bleed in the toolbar first"}>

@@ -72,7 +72,7 @@ export function imagePlacement(c: ImageContent, frameW: number, frameH: number) 
 
 export function imageUrl(ref: string): string {
   const [kind, id] = ref.split(/:(.*)/s);
-  if (kind === "tg") return `/tg/${id}.png`;
+  if (kind === "tg") return `${import.meta.env.BASE_URL}tg/${id}.png`;
   if (kind === "upload") return `/uploads/${id}`;
   return ref;
 }

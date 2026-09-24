@@ -12,6 +12,28 @@ illustrations, sized to how much you picked; then edit anything by hand and expo
 
 Everything runs on your computer. Nothing is uploaded anywhere.
 
+## Web version
+
+**Open it:** https://adichandrashekar.github.io/nipunbharat-fln-onepager-maker/
+
+GitHub Pages serves the `docs/` folder, a build of the same app that needs no server. It differs from
+the local tool in these ways:
+
+| | Local (`npm run dev`) | Web version |
+|---|---|---|
+| Save / Open | `documents/` on disk | This browser's storage; **Download** saves a `.json` file, and **Open… → Open a .json file** loads one |
+| Your images | `documents/uploads/` | Embedded in the document (up to 3 MB each) |
+| TG illustrations | Yes, once cropped | Not included: the source guide isn't published. Upload your own |
+| PDF export | One click, headless Chromium | Opens the print dialog; choose **Save as PDF**. Chrome or Edge give the same result as the local tool |
+| PNG export | Headless Chromium | Drawn in the browser, at the same exact pixel sizes |
+
+To update the web version after changing the code, rebuild it and commit `docs/`:
+
+```bash
+npm run build:pages
+npm run preview:pages      # optional: check it at http://localhost:5179
+```
+
 ## Setting up (once)
 
 You need **Node.js 18+** and **Python 3.9+**.

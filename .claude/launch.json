@@ -9,6 +9,15 @@
         "dev"
       ],
       "port": 5178
+    },
+    {
+      "name": "pages",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "run",
+        "preview:pages"
+      ],
+      "port": 5179
     }
   ]
 }

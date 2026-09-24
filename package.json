@@ -5,6 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "build:pages": "tsc -p tsconfig.json && vite build --mode pages",
+    "preview:pages": "vite preview --mode pages --outDir docs --port 5179",
     "typecheck": "tsc -p tsconfig.json",
     "images": "python scripts/tg_images.py",
     "test:editor": "node scripts/editor-test.mjs test-output/editor",
@@ -17,6 +19,7 @@
     "@fontsource/noto-sans-devanagari": "^5.3.0",
     "@fontsource/tiro-devanagari-hindi": "^5.3.0",
     "fflate": "^0.8.3",
+    "modern-screenshot": "^4.7.0",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
     "react-moveable": "^0.56.0",

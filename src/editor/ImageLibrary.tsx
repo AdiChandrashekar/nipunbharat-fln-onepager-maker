@@ -1,6 +1,8 @@
 import { useRef, useState } from "react";
 import { imagesForBucket, imagesForCompetency, imagesForRoutine, imagesForStrategy, libraryImages, strategyById } from "../data/compendium";
 import type { Binding } from "../model/types";
+import { WEB } from "../platform";
+import { imageUrl } from "../render/styles";
 
 export interface PickedImage {
   image_ref: string;
@@ -19,6 +21,18 @@ function naturalSize(url: string): Promise<[number, number]> {
 }
 
 export async function uploadImage(file: File): Promise<PickedImage> {
+  if (WEB) {
+    // No server: embed the image in the document as a data URL.
+    if (!/\.(png|jpe?g|webp|svg)$/i.test(file.name)) throw new Error("Use a PNG, JPEG, WebP or SVG image");
+    if (file.size > 3 * 1024 * 1024) throw new Error("Image is larger than 3 MB; make it smaller first (it is stored inside the document)");
+    const data = await new Promise<string>((res, rej) => {
+      const r = new FileReader();
+      r.onload = () => res(r.result as string);
+      r.onerror = () => rej(r.error);
+      r.readAsDataURL(file);
+    });
+    return { image_ref: data, natural_px: await naturalSize(data), alt: file.name };
+  }
   const res = await fetch(`/api/uploads?name=${encodeURIComponent(file.name)}`, { method: "POST", body: file });
   const body = await res.json();
   if (!res.ok) throw new Error(body.error ?? "Upload failed");
@@ -62,10 +76,11 @@ export function ImageLibrary({ binding, lang, onPick, onClose }: {
           <button className="x" onClick={onClose} aria-label="Close">×</button>
         </header>
         {error && <p className="limit-msg warn">{error}</p>}
+        {!libraryImages.length && <p className="hint">The Sandarshika illustrations are not included in the web version. Use <b>Upload my own…</b> to add an image.</p>}
         <div className="lib-grid">
           {list.map((im) => (
             <button key={im.image_id} className="lib-item" onClick={() => onPick({ image_ref: `tg:${im.image_id}`, natural_px: [im.width_px, im.height_px], alt: lang === "en" ? im.caption_en : im.caption_hi })}>
-              <img src={`/tg/${im.image_id}.png`} alt={im.caption_en} loading="lazy" />
+              <img src={imageUrl(`tg:${im.image_id}`)} alt={im.caption_en} loading="lazy" />
               <span>{lang === "en" ? im.caption_en : im.caption_hi}<small>p.{im.source.printed_page} · {im.kind}</small></span>
             </button>
           ))}
