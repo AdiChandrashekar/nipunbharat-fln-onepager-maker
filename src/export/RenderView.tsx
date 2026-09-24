@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import type { OnePagerDocument } from "../model/types";
+import { docFamilies, ensureFonts } from "../fonts";
 import { PageView } from "../render/PageView";
 
 /**
@@ -23,6 +24,7 @@ export function RenderView({ token, bleed, scale = 1 }: { token: string; bleed: 
     if (!doc) return;
     const imgs = [...document.images];
     Promise.all(imgs.map((i) => (i.complete ? Promise.resolve() : new Promise((res) => { i.onload = i.onerror = res; }))))
+      .then(() => ensureFonts(docFamilies(doc)))
       .then(() => document.fonts.ready)
       .then(() => requestAnimationFrame(() => { (window as unknown as { __renderReady: boolean }).__renderReady = true; }));
   }, [doc]);

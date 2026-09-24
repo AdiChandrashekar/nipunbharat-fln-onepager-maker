@@ -10,6 +10,7 @@ import { zipSync } from "fflate";
 import { flushSync } from "react-dom";
 import { createRoot } from "react-dom/client";
 import type { OnePagerDocument } from "../model/types";
+import { docFamilies, ensureFonts } from "../fonts";
 import { RenderPages } from "./RenderView";
 
 async function mount(doc: OnePagerDocument, bleed: boolean, scale: number) {
@@ -21,6 +22,7 @@ async function mount(doc: OnePagerDocument, bleed: boolean, scale: number) {
   flushSync(() => root.render(<RenderPages doc={doc} bleed={bleed} scale={scale} inPage />));
   const imgs = [...host.querySelectorAll("img")];
   await Promise.all(imgs.map((i) => (i.complete ? Promise.resolve() : new Promise((res) => { i.onload = i.onerror = res; }))));
+  await ensureFonts(docFamilies(doc));
   await document.fonts.ready;
   // One frame for layout; the timeout covers background tabs, where animation frames are paused.
   await new Promise((r) => { requestAnimationFrame(() => r(null)); setTimeout(r, 100); });

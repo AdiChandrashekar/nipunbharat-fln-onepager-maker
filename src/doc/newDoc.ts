@@ -4,6 +4,7 @@ import type { Language, OnePagerDocument, Orientation, PageSizeId, SelectionGrou
 import { SCHEMA_VERSION } from "../model/types";
 import { uid } from "../model/units";
 import { addCompetency, addStrategy, strategiesForCompetency, uniqueItems } from "../selection/selection";
+import { DEFAULT_LOOK } from "../looks";
 import { KOSH_LIGHT } from "../theme/tokens";
 
 export function createDocument(opts: {
@@ -19,7 +20,7 @@ export function createDocument(opts: {
     page: makePage(opts.size ?? "A4", opts.orientation ?? "portrait"),
     selection: opts.selection ?? [],
     layout: { template: opts.template ?? "competency-cards", tier: "auto", fit_pages: "auto", manually_edited: false },
-    theme: KOSH_LIGHT,
+    theme: { ...KOSH_LIGHT, look: DEFAULT_LOOK },
     meta: { organisation: "", author: "", date: "", subtitle: label("defaultSubtitle", language), created: now, updated: now },
     pages: [],
   };

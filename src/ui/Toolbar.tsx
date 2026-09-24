@@ -3,6 +3,8 @@ import { label } from "../content/fields";
 import { uploadImage } from "../editor/ImageLibrary";
 import { makePage, PAGE_SIZES } from "../model/pageSizes";
 import type { Language, OnePagerDocument, Orientation, PageSizeId, Tier } from "../model/types";
+import { familiesIn, ensureFonts } from "../fonts";
+import { LOOKS, lookFamilies, lookOf } from "../looks";
 import { TEMPLATES } from "../templates";
 
 interface Props {
@@ -41,6 +43,16 @@ export function Toolbar({ doc, update, readout, overflow, actions }: Props) {
         <label>Template
           <select value={doc.layout.template} onChange={(e) => setLayout({ template: e.target.value })}>
             {TEMPLATES.map((t) => <option key={t.id} value={t.id} title={t.description}>{t.name.en} · {t.name.hi}</option>)}
+          </select>
+        </label>
+        <label>Look
+          <select value={lookOf(doc.theme.look).id} title={lookOf(doc.theme.look).blurb} onChange={async (e) => {
+            const l = lookOf(e.target.value);
+            // Load the look's faces first, so the re-fit measures with them.
+            await ensureFonts(familiesIn(lookFamilies(l)));
+            update((d) => ({ ...d, theme: { ...d.theme, look: l.id } }));
+          }}>
+            {LOOKS.map((l) => <option key={l.id} value={l.id} title={l.blurb}>{l.name}</option>)}
           </select>
         </label>
         <label>Page

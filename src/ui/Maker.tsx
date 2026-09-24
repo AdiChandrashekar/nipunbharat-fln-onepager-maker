@@ -18,6 +18,7 @@ import { measureTextHeight } from "../layout/measure";
 import { pageLabel } from "../model/pageSizes";
 import type { Element, OptionalField } from "../model/types";
 import { SCHEMA_VERSION } from "../model/types";
+import { docFamilies, ensureFonts } from "../fonts";
 import { docStore, downloadBlob, fileStem, pickJsonFile, WEB } from "../platform";
 import { templateById } from "../templates";
 import { KOSH_LIGHT, tint } from "../theme/tokens";
@@ -30,7 +31,7 @@ const STEP_NOTE = ["", "", "smaller images", "minimum text size"];
 
 /** Inputs auto-population depends on, split so title/footer edits can patch a hand-edited layout in place. */
 function keys(d: Doc) {
-  const layout = JSON.stringify([d.selection, d.page, d.language, d.layout.template, d.layout.tier, d.layout.fit_pages, d.layout.forced_fields, d.meta.logo_ref]);
+  const layout = JSON.stringify([d.selection, d.page, d.language, d.layout.template, d.layout.tier, d.layout.fit_pages, d.layout.forced_fields, d.meta.logo_ref, d.theme.look]);
   const text = JSON.stringify([d.title, d.meta.subtitle, d.meta.organisation, d.meta.author, d.meta.date]);
   return { layout, text, full: `${layout}§${text}` };
 }
@@ -328,9 +329,10 @@ export function Maker() {
     if (hasWork && !confirm("Discard unsaved changes?")) return;
     load(await docStore.get(id));
   }
-  function load(raw: unknown) {
+  async function load(raw: unknown) {
     if (!raw || typeof raw !== "object" || !Array.isArray((raw as Doc).pages)) return setMessage("That file is not a One-Pager document.");
     const d = normalise(raw as Doc);
+    await ensureFonts(docFamilies(d));
     if (d.schema_version !== SCHEMA_VERSION) setMessage(`This document uses schema v${d.schema_version}; it was opened as v${SCHEMA_VERSION}.`);
     h.reset(d);
     savedRef.current = h.get();

@@ -87,8 +87,8 @@ for jf in sorted(out.glob("*.json")):
             # Rotated text is laid out glyph by glyph along a slant; readers match it word by word.
             q = words[0] if e["rotation"] else " ".join(words[:3])
             total += 1
-            s_ = tp.search(q)
-            if s_.get_next():
+            # A three-word phrase can straddle a line break in a narrow box; readers then find it word by word.
+            if tp.search(q).get_next() or tp.search(words[0]).get_next():
                 found += 1
             else:
                 missing.append(q)

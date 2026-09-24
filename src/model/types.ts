@@ -72,6 +72,8 @@ export interface LayoutSettings {
 export interface Theme {
   palette: Record<string, string>;
   fonts: { display: string; body: string; mono: string };
+  /** Visual look (src/looks): colours, type, cards, masthead. Absent in older documents = "bold". */
+  look?: string;
 }
 
 export interface DocMeta {
@@ -120,7 +122,7 @@ export type Box4 = number | [number, number, number, number];
 export interface Style {
   font_family?: string;
   font_size_pt?: number;
-  weight?: 400 | 500 | 600 | 700;
+  weight?: 400 | 500 | 600 | 700 | 800 | 900;
   italic?: boolean;
   colour?: string;
   align?: "left" | "center" | "right" | "justify";
@@ -134,6 +136,8 @@ export interface Style {
   radius_mm?: Box4;
   padding_mm?: Box4;
   opacity?: number;
+  /** CSS box-shadow in mm, e.g. "0 1mm 3mm rgba(0,0,0,.15)" (soft shadows; hard ones are separate shapes). */
+  shadow?: string;
 }
 
 /** Crop is the visible source region as fractions (0–1) of the source image. The renderer scales that

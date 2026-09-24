@@ -1,6 +1,7 @@
 import { competencyById, routineById, strategyById } from "../data/compendium";
 import type { Box4, Element, ImageElement, Style } from "../model/types";
-import { KOSH_LIGHT } from "../theme/tokens";
+import { ensureFonts, familiesIn } from "../fonts";
+import { BUNDLED_FONTS } from "../theme/tokens";
 import { boundText, findElement, mapElements, patchElements, patchStyle, refreshFromData, type Doc, type ZMove } from "./ops";
 
 interface Props {
@@ -17,7 +18,8 @@ interface Props {
   onAlign: (a: "left" | "center" | "right" | "top" | "middle" | "bottom") => void;
 }
 
-const FONTS = [KOSH_LIGHT.fonts.body, KOSH_LIGHT.fonts.display, "Noto Sans Devanagari", KOSH_LIGHT.fonts.mono];
+// Every bundled family (Hindi and English faces); a look's own stacks ("Inter, Mukta") are offered too.
+const FONTS = BUNDLED_FONTS.map((f) => f.family).filter((f) => f !== "Tiro Devanagari Hindi");
 const SWATCHES = ["#15202C", "#4C5A6B", "#1F4F9A", "#FFFFFF", "#EDF1F6", "#8F5F00", "#FBE9C2", "#B04E28", "#A03A6E", "#2A7553", "#6146A3", "#855F00"];
 
 function Num({ label, value, step = 0.5, min, onChange, suffix }: { label: string; value: number | undefined; step?: number; min?: number; onChange: (v: number) => void; suffix?: string }) {
@@ -122,8 +124,12 @@ export function Properties(p: Props) {
           <h4>Text</h4>
           <label className="prop wide">
             <span>Font</span>
-            <select value={st.font_family ?? FONTS[0]} onChange={(e) => set({ font_family: e.target.value })}>
-              {FONTS.map((f) => <option key={f} value={f}>{f}</option>)}
+            <select value={st.font_family ?? FONTS[0]} onChange={async (e) => {
+              const f = e.target.value;
+              await ensureFonts(familiesIn([f]));
+              set({ font_family: f });
+            }}>
+              {[...(st.font_family && !FONTS.includes(st.font_family) ? [st.font_family] : []), ...FONTS].map((f) => <option key={f} value={f}>{f}</option>)}
             </select>
           </label>
           <div className="grid4">

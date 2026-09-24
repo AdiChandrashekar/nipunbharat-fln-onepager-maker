@@ -85,7 +85,7 @@ preview pane.
 2. **Arrange** in the *Selection tray* (right panel): drag groups and strategies to reorder; the document
    follows. A strategy that serves several selected competencies is printed once, with a
    "इनमें भी सहायक: …" note, and a one-line pointer under the other headings.
-3. **Set the page** (toolbar): template, page size (A3, A4, A5, A6, US Letter, US Legal or custom mm),
+3. **Set the page** (toolbar): template, look, page size (A3, A4, A5, A6, US Letter, US Legal or custom mm),
    portrait / landscape, margins, bleed, and language (हिंदी, English, or द्विभाषी = Hindi with English).
 4. **Title and footer**: title, subtitle, organisation, author, date, optional logo. The footer always
    credits the *Sandarshika* 2026-27.
@@ -120,17 +120,42 @@ The toolbar readout shows the result, e.g. *Standard · 2 pages, A4 portrait*. F
 appear as chips you can click to switch back on (the document may grow a page). You can also force a tier
 or choose *Fit to N pages*.
 
-### Templates
+### Templates: what goes where
 
-| Template | One card per | Best for |
+| Template | What it is | Best for |
 |---|---|---|
-| Competency cards · दक्षता कार्ड | competency group, with one TG illustration | whole competencies or a domain |
-| Strategy cards · रणनीति कार्ड | strategy, with its illustration | a hand-picked mix of strategies |
-| Deep-dive · विस्तृत विवरण | strategy, full detail | 1–4 strategies |
-| Strategy table · रणनीति तालिका | row per strategy | comparing many; landscape |
-| Poster · पोस्टर | strategy, large type and hero image | walls; A3 or A4, a few strategies |
+| Competency cards · दक्षता कार्ड | The overview sheet: one card per competency with its picture and all its strategies, packed in columns | Whole competencies or a domain on one sheet |
+| Strategy cards · रणनीति कार्ड | A deck: one equal-size card per strategy with its picture as a banner, in a grid under each competency | A hand-picked set; cut-out cards for a training |
+| Deep-dive · विस्तृत विवरण | A magazine feature: big headlines, the full read-more text, the example as a pull quote | 1–4 strategies explained in full |
+| Strategy table · रणनीति तालिका | At a glance: competencies as bands, one striped row per strategy | Many strategies side by side; landscape |
+| Poster · पोस्टर | For the wall: a hero picture, a huge name and giant step numbers on a colour card | 1–4 strategies; A3 or A4 |
+
+Every strategy's how-to is printed as **numbered steps** (at the compact size the numbers run on in one
+paragraph, to save lines). Competency headings span the page with the domain as a small label above.
+A picture appears once per document (posters may repeat one rather than leave a card without).
+One-page documents scale their type up to fill the page.
 
 Templates are data (`src/templates/index.ts`); a new one is another entry there.
+
+### Looks
+
+The **Look** menu restyles any template without changing its layout rules:
+
+| Look | Character | Faces (English · Hindi) |
+|---|---|---|
+| **Bold** | The रणनीति कोश, turned up: a solid colour masthead with a strip of the domains covered, heavy headings, cards with a colour edge | Inter · Mukta |
+| **Neo-brutalist** | Cream paper on a dot grid, thick black outlines, hard offset shadows, flat bright colour, sticker labels and a tilted sticker in the masthead | Space Grotesk, Space Mono · Anek Devanagari, Mukta |
+| **Material You** | Tonal colour taken from the competencies covered, big rounded containers, pill labels, a colour hero masthead | Bricolage Grotesque, Roboto · Baloo 2, Noto Sans Devanagari |
+| **Liquid Glass** | Frosted translucent cards on a soft colour field, bright white edges, heavy clean type | Inter · Noto Sans Devanagari |
+
+Looks are data too (`src/looks/index.ts`). A Hindi document leads with the Hindi face (it also supplies
+digits and Latin letters); an English document leads with the English face. Everything a look draws —
+hard shadows, colour fields, stickers — is ordinary shapes and text, so it stays editable and exports as is.
+
+All fonts are bundled Google Fonts (no CDN) and load when first used. The properties panel offers every
+one of them: Mukta, Noto Sans Devanagari, Poppins, Baloo 2, Anek Devanagari, Khand (Hindi and English);
+Inter, Space Grotesk, Roboto, Bricolage Grotesque, Space Mono (English). Tiro Devanagari Hindi is kept only
+so older documents still render.
 
 ## Editing
 
@@ -193,6 +218,7 @@ npm run test:export    # exports test documents as PDF + PNG and verifies size, 
 | `src/selection/` | Tray groups, limits, de-duplication |
 | `src/content/fields.ts` | Language rules for every printed field |
 | `src/templates/` | The five templates and their tiers (data) |
+| `src/looks/` | The four looks: colours, faces, cards, labels, step numbers, callouts, masthead (data) |
 | `src/layout/` | Text measurement, the layout engine, and the tier fitter |
 | `src/render/` | DOM page renderer, shared by editor, thumbnails and export |
 | `src/editor/`, `src/ui/` | Editor (react-moveable, react-selecto), panels, tray, selector |

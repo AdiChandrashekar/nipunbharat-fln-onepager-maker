@@ -35,6 +35,7 @@ export function boxCss(style: Style, ellipse = false): CSSProperties {
     border: style.stroke ? `${mm(style.stroke.width_mm)} ${style.stroke.dash ?? "solid"} ${style.stroke.colour}` : undefined,
     borderRadius: ellipse ? "50%" : r.some(Boolean) ? r.map(mm).join(" ") : undefined,
     opacity: style.opacity,
+    boxShadow: style.shadow,
     boxSizing: "border-box",
   };
 }
