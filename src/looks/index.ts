@@ -4,7 +4,7 @@
  * with every look. Everything a look produces is ordinary elements, so it stays editable and exports as is.
  */
 import type { Language, Style } from "../model/types";
-import { alpha, shade, tint } from "../theme/tokens";
+import { shade, tint } from "../theme/tokens";
 
 type W = NonNullable<Style["weight"]>;
 
@@ -57,7 +57,7 @@ export interface Look {
   /** Text colour for coloured labels on light surfaces. */
   onLight(dom: string): string;
   callout(dom: string): { panel: Style; edge?: string; hard?: HardShadow };
-  masthead: "band" | "brutal" | "tonal" | "glass" | "riso" | "swiss" | "bauhaus" | "notebook";
+  masthead: "band" | "brutal" | "tonal" | "glass" | "swiss" | "bauhaus" | "notebook";
   rule: { colour: string; width: number };
   table: { header: string; headerInk: string; zebra?: string };
   /**
@@ -69,8 +69,6 @@ export interface Look {
   numeral?(dom: string): string;
   /** Step numbers as big numerals in every template (otherwise badges, except posters). */
   steps?: "numerals";
-  /** Display type printed twice, the second copy offset in another ink (riso misregistration). */
-  misregister?: { colour: string; dx: number; dy: number };
   /** Highlighter-pen stroke behind competency names (notebook). */
   highlighter?: string;
   /** Second accent for stickers and big numbers (Bold). */
@@ -227,44 +225,6 @@ const glass: Look = {
   table: { header: "rgba(14,23,38,0.86)", headerInk: "#FFFFFF", zebra: "rgba(255,255,255,0.45)" },
 };
 
-// ---------------------------------------------------------------- Risograph
-
-const RISO_PINK = "#FF48B0";
-const RISO_BLUE = "#0078BF";
-const RISO_YELLOW = "#F2A900";
-const risoPalette: Palette = {
-  paper: "#F6F0E4", ink: "#1D2A6B", muted: "#3F4A7A", rule: "rgba(29,42,107,0.35)", accent: RISO_PINK, accent_ink: "#FFFFFF",
-  d: { OL: "#FF6C4A", SE: RISO_PINK, DC: "#00A95C", RF: RISO_BLUE, RC: "#765BA7", WR: RISO_YELLOW, GA: "#88898A" },
-};
-const risoText = (dom: string) => (dom === RISO_YELLOW ? "#9A6B00" : dom);
-
-const riso: Look = {
-  id: "riso",
-  name: "Risograph",
-  blurb: "Two-ink zine print: fluorescent pink and blue overprinting on warm paper, a touch of grain, and headlines slightly out of register.",
-  palette: risoPalette,
-  fonts: { display: ["Bricolage Grotesque", "Khand"], body: ["Space Grotesk", "Mukta"], label: ["Space Mono", "Khand"] },
-  weight: { display: 800, name: 700, label: 700 },
-  displayScale: 1.12,
-  displayLineHeight: 1.02,
-  primary: () => RISO_PINK,
-  page: () => `radial-gradient(circle, rgba(29,42,107,0.07) 0.14mm, transparent 0.18mm) 0 0 / 0.9mm 0.9mm, radial-gradient(circle, rgba(255,72,176,0.05) 0.14mm, transparent 0.18mm) 0.45mm 0.45mm / 0.9mm 0.9mm, ${risoPalette.paper}`,
-  card: (dom, kind) => ({
-    style: { fill: alpha(dom, kind === "item" ? 0.13 : kind === "hero" ? 0.2 : 0.16), radius_mm: 1 },
-    hard: { dx: 1.2, dy: 1.2, colour: alpha(dom === RISO_BLUE ? RISO_PINK : RISO_BLUE, 0.18) },
-  }),
-  image: { radius_mm: 0, fill: "#FFFFFF", opacity: 0.92 },
-  badge: (dom) => ({ style: { fill: alpha(dom, 0.9), colour: "#FFFFFF" }, square: false }),
-  kicker: (dom) => ({ colour: risoText(dom) }),
-  headingBar: false,
-  onLight: risoText,
-  callout: (dom) => ({ panel: { fill: alpha(dom, 0.2), radius_mm: 0 }, hard: { dx: 0.8, dy: 0.8, colour: alpha(RISO_PINK, 0.25) } }),
-  masthead: "riso",
-  rule: { colour: "rgba(29,42,107,0.35)", width: 0.3 },
-  table: { header: "#1D2A6B", headerInk: "#FFFFFF", zebra: "rgba(255,72,176,0.07)" },
-  misregister: { colour: "rgba(255,72,176,0.6)", dx: 0.7, dy: 0.45 },
-};
-
 // ---------------------------------------------------------------- Swiss (International Typographic Style)
 
 const SWISS_RED = "#E30613";
@@ -377,7 +337,7 @@ const notebook: Look = {
   highlighter: "rgba(255,224,102,0.8)",
 };
 
-export const LOOKS: Look[] = [brutal, bold, material, glass, riso, swiss, bauhaus, notebook];
+export const LOOKS: Look[] = [brutal, bold, material, glass, swiss, bauhaus, notebook];
 export const lookById = new Map(LOOKS.map((l) => [l.id, l]));
 export const DEFAULT_LOOK = "brutal";
 export const lookOf = (id: string | undefined): Look => lookById.get(id ?? DEFAULT_LOOK) ?? brutal;

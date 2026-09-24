@@ -75,9 +75,3 @@ export function shade(hex: string, amount: number): string {
   const r = mix((n >> 16) & 255), g = mix((n >> 8) & 255), b = mix(n & 255);
   return `#${((1 << 24) | (r << 16) | (g << 8) | b).toString(16).slice(1).toUpperCase()}`;
 }
-
-/** A colour at partial opacity, as CSS rgba() (overprints, glazes). */
-export function alpha(hex: string, a: number): string {
-  const n = parseInt(hex.slice(1), 16);
-  return `rgba(${(n >> 16) & 255},${(n >> 8) & 255},${n & 255},${a})`;
-}

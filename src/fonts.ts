@@ -53,7 +53,7 @@ import "@fontsource/space-mono/400.css";
 import "@fontsource/space-mono/700.css";
 import "@fontsource/ibm-plex-mono/500.css";
 import "@fontsource/tiro-devanagari-hindi/400.css";
-import { lookFamilies, lookOf } from "./looks";
+import { DEFAULT_LOOK, lookFamilies, lookOf } from "./looks";
 import type { OnePagerDocument } from "./model/types";
 import { BUNDLED_FONTS, DEFAULT_FAMILIES } from "./theme/tokens";
 
@@ -81,7 +81,7 @@ export function docFamilies(doc: OnePagerDocument): string[] {
   return familiesIn([...lookFamilies(l), ...els.map((e) => e.style.font_family)]);
 }
 
-/** Startup: the standard families (the default look's and the ones older documents use). */
+/** Startup: the standard families, the ones older documents use, and every face of the default look. */
 export function fontsReady(): Promise<void> {
-  return ensureFonts(DEFAULT_FAMILIES);
+  return ensureFonts([...DEFAULT_FAMILIES, ...familiesIn(lookFamilies(lookOf(DEFAULT_LOOK)))]);
 }

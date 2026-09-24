@@ -280,16 +280,12 @@ function ellipseEl(ctx: Ctx, x: number, y: number, w: number, h: number, style: 
   return { id: uid(), name, type: "shape", x_mm: R(x), y_mm: R(y), w_mm: R(w), h_mm: R(h), rotation: 0, z: z ?? ctx.z++, locked: false, style, content: { shape_kind: "ellipse" } };
 }
 
-/**
- * Display type with the look's effects: a riso look prints it twice, the second copy offset in another ink
- * (misregistration); a notebook look runs a highlighter pen behind it.
- */
+/** Display type with the look's effects: a notebook look runs a highlighter pen behind it. */
 function displayPart(ctx: Ctx, text: string, style: Style, w: number, binding?: Binding, name?: string, highlight = false): Part {
   const p = textPart(text, style, w, binding, name);
   if (!p.h) return p;
-  const mis = ctx.L.misregister;
   const hl = highlight ? ctx.L.highlighter : undefined;
-  if (!mis && !hl) return p;
+  if (!hl) return p;
   const lineH = style.font_size_pt! * PT * (style.line_height ?? 1.2);
   // Where the lines break (greedy, word by word, as the browser wraps at spaces), for the highlighter.
   const lineWs: number[] = [];
@@ -311,7 +307,6 @@ function displayPart(ctx: Ctx, text: string, style: Style, w: number, binding?: 
       lineWs.forEach((lw, i) => {
         out.push(rectEl(c, x - 0.8, y + lineH * (i + 0.42), Math.min(w, lw) + 1.6, lineH * 0.46, { fill: hl, radius_mm: 0.8 }, "highlighter"));
       });
-      if (mis) out.push(textEl(c, x + mis.dx, y + mis.dy, w, p.h, text, { ...style, colour: mis.colour }, undefined, `${name} (misprint)`));
       out.push(...p.render(c, x, y));
       return out;
     },
@@ -825,7 +820,6 @@ function tableBlocks(ctx: Ctx, groups: ResolvedGroup[], width: number): { header
  *   brutal   — a yellow slab with a thick outline and hard shadow, and a tilted sticker with the counts;
  *   tonal    — a big rounded container in the document's key colour, counts as pills (Material);
  *   glass    — a frosted panel on the colour field, counts as glass pills;
- *   riso     — overprinting pink and blue discs behind a misregistered title;
  *   swiss    — flush-left title under a red square, a heavy rule;
  *   bauhaus  — a red disc, blue bar and yellow square beside the title, a heavy rule;
  *   notebook — a handwritten title with highlighter, and a sticky note with the counts.
@@ -859,10 +853,10 @@ function headerFooter(ctx: Ctx, groups: ResolvedGroup[]) {
   const reserve = kind === "band" ? bigNumW + 8 : kind === "swiss" ? swissSq + 8 : kind === "bauhaus" ? bhD + 22 : 0;
   const textW = innerW - 2 * boxPad - reserve - (logoH ? logoH * 2.2 + 4 : 0) - (kind === "brutal" ? 2.2 : 0);
 
-  const titleScale = kind === "band" ? 1.28 : kind === "swiss" ? 1.3 : kind === "riso" ? 1.35 : kind === "notebook" ? 1.25 : 1.12;
+  const titleScale = kind === "band" ? 1.28 : kind === "swiss" ? 1.3 : kind === "notebook" ? 1.25 : 1.12;
   const titleStyle: Style = { font_family: ctx.F.display, font_size_pt: R(t.title * titleScale * L.displayScale), weight: L.weight.display, line_height: L.displayLineHeight, colour: onColour ? "#FFFFFF" : P.ink, letter_spacing_em: kind === "swiss" || kind === "band" ? -0.01 : undefined };
   const kickerColour = kind === "band" ? (L.hot ?? tint(P.accent, 0.72)) : kind === "tonal" ? tint(primary, 0.78)
-    : kind === "glass" ? L.onLight(primary) : kind === "riso" ? "#0078BF" : kind === "swiss" || kind === "notebook" ? P.accent : P.ink;
+    : kind === "glass" ? L.onLight(primary) : kind === "swiss" || kind === "notebook" ? P.accent : P.ink;
   const kickerStyle: Style = { font_family: ctx.F.label, font_size_pt: t.subtitle, weight: 700, line_height: 1.3, letter_spacing_em: 0.03, colour: kickerColour };
   const kicker = textPart(doc.meta.subtitle, kickerStyle, textW, { field: "subtitle" }, "subtitle");
   const titleP = displayPart(ctx, title, titleStyle, textW, { field: "title" }, "title", kind === "notebook");
@@ -870,7 +864,7 @@ function headerFooter(ctx: Ctx, groups: ResolvedGroup[]) {
     font_family: ctx.F.label, font_size_pt: Math.max(t.meta, t.subtitle - 1), weight: 700, line_height: 1.25, padding_mm: [0.9, 2.8, 0.7, 2.8],
     ...(kind === "tonal" ? { colour: "#FFFFFF", fill: "rgba(255,255,255,0.2)", radius_mm: 4 }
       : kind === "glass" ? { colour: P.ink, fill: "rgba(255,255,255,0.75)", stroke: { colour: "#FFFFFF", width_mm: 0.3 }, radius_mm: 4 }
-        : { colour: kind === "band" ? tint(P.accent, 0.75) : kind === "riso" ? "#FF48B0" : P.muted }),
+        : { colour: kind === "band" ? tint(P.accent, 0.75) : P.muted }),
   };
   const pillWs = pills.map((p) => measureTextWidth(p, pillStyle) + 0.6);
   const pillH = pills.length ? measureTextHeight(pills[0], pillStyle, pillWs[0]) : 0;
@@ -979,13 +973,6 @@ function headerFooter(ctx: Ctx, groups: ResolvedGroup[]) {
           if (kind === "brutal") {
             out.push(...sticker(c, { font_family: ctx.F.label, font_size_pt: Math.max(t.meta, t.subtitle - 0.5), weight: 700, line_height: 1.2, colour: P.ink, fill: primary, stroke: { colour: P.ink, width_mm: 0.5 }, padding_mm: [1.2, 3, 1, 3], align: "center" }, 4, P.ink));
           }
-        } else if (kind === "riso") {
-          // Two overprinting ink discs, partly off the page, behind the title.
-          const d1 = Math.min(W * 0.42, 90), d2 = d1 * 0.72;
-          out.push(ellipseEl(c, W - d1 * 0.78, -d1 * 0.38, d1, d1, { fill: "rgba(255,72,176,0.28)" }, "ink disc (pink)"));
-          out.push(ellipseEl(c, W - d1 * 0.78 - d2 * 0.55, -d2 * 0.05, d2, d2, { fill: "rgba(0,120,191,0.22)" }, "ink disc (blue)"));
-          out.push(...mast.render(c, m.left, top));
-          out.push(rectEl(c, m.left, mastBottom - 1, innerW, 0.5, { fill: "rgba(29,42,107,0.5)" }, "masthead rule"));
         } else if (kind === "swiss") {
           out.push(rectEl(c, R0 - swissSq, top, swissSq, swissSq, { fill: P.accent }, "red square"));
           out.push(...mast.render(c, m.left, top));
