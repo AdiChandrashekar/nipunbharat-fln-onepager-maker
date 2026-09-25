@@ -14,11 +14,14 @@ interface Props {
   readout: string;
   overflow: boolean;
   actions?: ReactNode;
+  /** Minimised: only the first row (file actions, title, readout). */
+  collapsed?: boolean;
+  onToggle?: () => void;
 }
 
 const LANGS: [Language, string][] = [["hi", "हिंदी"], ["en", "English"], ["bi", "द्विभाषी"]];
 
-export function Toolbar({ doc, update, readout, overflow, actions }: Props) {
+export function Toolbar({ doc, update, readout, overflow, actions, collapsed, onToggle }: Props) {
   const p = doc.page;
   const setPage = (size: PageSizeId, orientation: Orientation, custom?: { w: number; h: number }) =>
     update((d) => {
@@ -38,7 +41,13 @@ export function Toolbar({ doc, update, readout, overflow, actions }: Props) {
         <input className="sub-input" value={doc.meta.subtitle} placeholder="Subtitle (optional)"
           onChange={(e) => setMeta({ subtitle: e.target.value }, "subtitle")} aria-label="Subtitle" />
         <span className={`readout mono${overflow ? " warn" : ""}`} aria-live="polite">{readout}</span>
+        {onToggle && (
+          <button className="bar-toggle" onClick={onToggle} aria-expanded={!collapsed} title={collapsed ? "Show page, look and details settings" : "Minimise the settings bars"}>
+            {collapsed ? "Settings ▾" : "▴"}
+          </button>
+        )}
       </div>
+      {!collapsed && <>
       <div className="row controls">
         <label>Template
           <select value={doc.layout.template} onChange={(e) => setLayout({ template: e.target.value })}>
@@ -122,6 +131,7 @@ export function Toolbar({ doc, update, readout, overflow, actions }: Props) {
         </label>
         {doc.meta.logo_ref && <button onClick={() => setMeta({ logo_ref: undefined, logo_px: undefined })}>Remove logo</button>}
       </div>
+      </>}
     </header>
   );
 }

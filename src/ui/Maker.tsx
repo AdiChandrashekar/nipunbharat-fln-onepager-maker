@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { FIELD_NAMES } from "../content/fields";
 import { createDocument } from "../doc/newDoc";
 import { Canvas, type ContextInfo } from "../editor/Canvas";
@@ -25,6 +25,7 @@ import { KOSH_LIGHT, tint } from "../theme/tokens";
 import { Selector } from "./Selector";
 import { Toolbar } from "./Toolbar";
 import { Tray } from "./Tray";
+import { usePref } from "./usePref";
 
 const TIER_LABEL = { spacious: "Spacious", standard: "Standard", compact: "Compact" } as const;
 const STEP_NOTE = ["", "", "smaller images", "minimum text size"];
@@ -76,6 +77,63 @@ export function Maker() {
   const [menu, setMenu] = useState<ContextInfo | null>(null);
   const clipboard = useRef<Element[]>([]);
   const [guides, setGuides] = useState(true);
+  // Workspace layout, remembered in this browser: side panel widths and which bars are minimised.
+  const [leftW, setLeftW] = usePref("leftW", 330);
+  const [rightW, setRightW] = usePref("rightW", 320);
+  const [leftOpen, setLeftOpen] = usePref("leftOpen", true);
+  const [rightOpen, setRightOpen] = usePref("rightOpen", true);
+  const [barsOpen, setBarsOpen] = usePref("barsOpen", true);
+  const canvasRef = useRef<HTMLElement>(null);
+  // Ctrl/Cmd + scroll (and trackpad pinch, which browsers report the same way) zooms around the pointer.
+  const zoomAnchor = useRef<{ px: number; py: number; cx: number; cy: number; ratio: number } | null>(null);
+  useEffect(() => {
+    const node = canvasRef.current;
+    if (!node) return;
+    const onWheel = (e: WheelEvent) => {
+      if (!(e.ctrlKey || e.metaKey) || (e.target as HTMLElement).closest(".crop-live")) return;
+      e.preventDefault();
+      const edit = node.querySelector(".canvas-edit");
+      const unit = e.deltaMode === 1 ? 16 : e.deltaMode === 2 ? 400 : 1;
+      setZoom((z) => {
+        const next = Math.min(3, Math.max(0.25, Math.round(z * Math.exp((-e.deltaY * unit) / 500) * 1000) / 1000));
+        if (next !== z && edit) {
+          const r = edit.getBoundingClientRect();
+          zoomAnchor.current = { px: e.clientX - r.left, py: e.clientY - r.top, cx: e.clientX, cy: e.clientY, ratio: next / z };
+        }
+        return next;
+      });
+    };
+    node.addEventListener("wheel", onWheel, { passive: false });
+    return () => node.removeEventListener("wheel", onWheel);
+  }, []);
+  useLayoutEffect(() => {
+    const a = zoomAnchor.current;
+    const node = canvasRef.current;
+    const edit = node?.querySelector(".canvas-edit");
+    if (!a || !node || !edit) return;
+    zoomAnchor.current = null;
+    const r = edit.getBoundingClientRect();
+    // Keep the point that was under the pointer under it after the zoom.
+    node.scrollBy(r.left + a.px * a.ratio - a.cx, r.top + a.py * a.ratio - a.cy);
+  }, [zoom]);
+  /** Drag a panel edge: the width follows the pointer, within limits. */
+  const startResize = (side: "left" | "right") => (e: React.PointerEvent) => {
+    e.preventDefault();
+    const x0 = e.clientX;
+    const w0 = side === "left" ? leftW : rightW;
+    const move = (ev: PointerEvent) => {
+      const w = Math.round(Math.min(620, Math.max(220, w0 + (side === "left" ? ev.clientX - x0 : x0 - ev.clientX))));
+      (side === "left" ? setLeftW : setRightW)(w);
+    };
+    const up = () => {
+      window.removeEventListener("pointermove", move);
+      window.removeEventListener("pointerup", up);
+      document.body.classList.remove("resizing");
+    };
+    document.body.classList.add("resizing");
+    window.addEventListener("pointermove", move);
+    window.addEventListener("pointerup", up);
+  };
   const [openList, setOpenList] = useState<{ id: string; title: string; updated?: string }[] | null>(null);
   const savedRef = useRef<Doc | null>(null);
   const [savedAt, setSavedAt] = useState<string>();
@@ -413,8 +471,8 @@ export function Maker() {
 
   return (
     <div className="maker">
-      <Toolbar doc={doc} update={update} readout={readout} overflow={!!res?.overflow} actions={actions} />
-      {(res?.dropped_fields.length || res?.extra_fields?.length || forced.length) && templateById.has(doc.layout.template) ? (
+      <Toolbar doc={doc} update={update} readout={readout} overflow={!!res?.overflow} actions={actions} collapsed={!barsOpen} onToggle={() => setBarsOpen(!barsOpen)} />
+      {barsOpen && (res?.dropped_fields.length || res?.extra_fields?.length || forced.length) && templateById.has(doc.layout.template) ? (
         <div className="fieldbar">
           {res?.dropped_fields.length ? <span className="muted">Left out to fit — click to switch back on:</span> : null}
           {res?.dropped_fields.map((f) => (
@@ -437,9 +495,16 @@ export function Maker() {
           <button onClick={keepAndAppend}>Keep my layout</button>
         </div>
       )}
-      <div className="workspace">
+      <div className="workspace" style={{ gridTemplateColumns: `${leftOpen ? leftW : 30}px ${leftOpen ? 6 : 0}px minmax(0, 1fr) ${rightOpen ? 6 : 0}px ${rightOpen ? rightW : 30}px` }}>
+        {!leftOpen ? (
+          <aside className="panel rail">
+            <button onClick={() => setLeftOpen(true)} title="Show the Content / Pages / Layers panel" aria-label="Show left panel">»</button>
+            <span>Content · Pages · Layers</span>
+          </aside>
+        ) : (
         <aside className="panel left">
           <div className="tabs" role="tablist">
+            <button className="collapse" onClick={() => setLeftOpen(false)} title="Hide this panel" aria-label="Hide left panel">«</button>
             {(["content", "pages", "layers"] as LeftTab[]).map((t) => (
               <button key={t} role="tab" aria-selected={left === t} onClick={() => setLeft(t)}>{t === "content" ? "Content" : t === "pages" ? `Pages (${doc.pages.length})` : "Layers"}</button>
             ))}
@@ -448,7 +513,9 @@ export function Maker() {
           {left === "pages" && <Pages doc={doc} current={currentPage} setCurrent={setCurrentPage} commit={h.commit} />}
           {left === "layers" && <Layers doc={doc} pageIndex={currentPage} selected={selected} setSelected={setSelected} commit={h.commit} />}
         </aside>
-        <main className="canvas">
+        )}
+        <div className="splitter" hidden={!leftOpen} onPointerDown={startResize("left")} onDoubleClick={() => setLeftW(330)} title="Drag to resize · double-click to reset" />
+        <main className="canvas" ref={canvasRef}>
           <div className="insert-bar">
             <button onClick={() => insert("text")}>+ Text</button>
             <button onClick={() => setLibrary({ mode: "insert" })}>+ Image</button>
@@ -457,7 +524,7 @@ export function Maker() {
             <button onClick={() => insert("line")}>+ Line</button>
             <span className="sep" />
             <button onClick={() => setZoom((z) => Math.max(0.25, Math.round((z - 0.1) * 100) / 100))} aria-label="Zoom out">−</button>
-            <span className="mono">{Math.round(zoom * 100)}%</span>
+            <span className="mono" title="Ctrl + scroll (or pinch) to zoom">{Math.round(zoom * 100)}%</span>
             <button onClick={() => setZoom((z) => Math.min(3, Math.round((z + 0.1) * 100) / 100))} aria-label="Zoom in">+</button>
             <button onClick={() => {
               const w = (document.querySelector(".canvas")?.clientWidth ?? 800) - 80;
@@ -489,10 +556,18 @@ export function Maker() {
             setCurrentPage={setCurrentPage} commit={h.commit} showGuides={guides} onContextMenu={setMenu}
           />
         </main>
+        <div className="splitter" hidden={!rightOpen} onPointerDown={startResize("right")} onDoubleClick={() => setRightW(320)} title="Drag to resize · double-click to reset" />
+        {!rightOpen ? (
+          <aside className="panel rail">
+            <button onClick={() => setRightOpen(true)} title="Show the Properties / Selection tray panel" aria-label="Show right panel">«</button>
+            <span>Properties · Selection tray</span>
+          </aside>
+        ) : (
         <aside className="panel right">
           <div className="tabs" role="tablist">
             <button role="tab" aria-selected={right === "props"} onClick={() => setRight("props")}>Properties</button>
             <button role="tab" aria-selected={right === "tray"} onClick={() => setRight("tray")}>Selection tray</button>
+            <button className="collapse" onClick={() => setRightOpen(false)} title="Hide this panel" aria-label="Hide right panel">»</button>
           </div>
           <div className="panel-body">
             {right === "props" ? (
@@ -511,6 +586,7 @@ export function Maker() {
             )}
           </div>
         </aside>
+        )}
       </div>
       {menu && <ContextMenu x={menu.clientX} y={menu.clientY} items={menuItems(menu)} onClose={() => setMenu(null)} />}
       {library && (
