@@ -84,13 +84,13 @@ export function Maker() {
   const [rightOpen, setRightOpen] = usePref("rightOpen", true);
   const [barsOpen, setBarsOpen] = usePref("barsOpen", true);
   const canvasRef = useRef<HTMLElement>(null);
-  // Ctrl/Cmd + scroll (and trackpad pinch, which browsers report the same way) zooms around the pointer.
+  // Scrolling over the canvas (mouse wheel, trackpad, pinch) zooms around the pointer. Move around by dragging.
   const zoomAnchor = useRef<{ px: number; py: number; cx: number; cy: number; ratio: number } | null>(null);
   useEffect(() => {
     const node = canvasRef.current;
     if (!node) return;
     const onWheel = (e: WheelEvent) => {
-      if (!(e.ctrlKey || e.metaKey) || (e.target as HTMLElement).closest(".crop-live")) return;
+      if ((e.target as HTMLElement).closest(".crop-live")) return;
       e.preventDefault();
       const edit = node.querySelector(".canvas-edit");
       const unit = e.deltaMode === 1 ? 16 : e.deltaMode === 2 ? 400 : 1;
@@ -105,6 +105,51 @@ export function Maker() {
     };
     node.addEventListener("wheel", onWheel, { passive: false });
     return () => node.removeEventListener("wheel", onWheel);
+  }, []);
+  // Hand tool: drag the grey background with the left button, hold Space and drag anywhere, or drag with the
+  // middle button. Dragging on a page itself still selects (marquee) and moves elements.
+  const [panning, setPanning] = useState(false);
+  const spaceDown = useRef(false);
+  useEffect(() => {
+    const node = canvasRef.current;
+    if (!node) return;
+    const typing = (t: EventTarget | null) => !!(t as HTMLElement | null)?.closest?.("input, textarea, select, [contenteditable], .editing-text");
+    const onKey = (e: KeyboardEvent) => {
+      if (e.code !== "Space" || typing(e.target)) return;
+      e.preventDefault(); // no page scroll, no button press
+      spaceDown.current = e.type === "keydown";
+      node.classList.toggle("hand", spaceDown.current);
+    };
+    const onDown = (e: PointerEvent) => {
+      const t = e.target as HTMLElement;
+      const onBackground = !t.closest(".page, .moveable-control-box, .insert-bar, .limit-msg, .empty-hint, button, input, label, select, a");
+      if (!(e.button === 1 || (e.button === 0 && (spaceDown.current || onBackground)))) return;
+      if (t.closest(".editing-text, .crop-live")) return;
+      e.preventDefault();
+      e.stopPropagation(); // the marquee and element dragging don't start
+      let x = e.clientX, y = e.clientY;
+      setPanning(true);
+      const move = (ev: PointerEvent) => {
+        node.scrollBy(x - ev.clientX, y - ev.clientY);
+        x = ev.clientX;
+        y = ev.clientY;
+      };
+      const up = () => {
+        window.removeEventListener("pointermove", move, true);
+        window.removeEventListener("pointerup", up, true);
+        setPanning(false);
+      };
+      window.addEventListener("pointermove", move, true);
+      window.addEventListener("pointerup", up, true);
+    };
+    window.addEventListener("keydown", onKey);
+    window.addEventListener("keyup", onKey);
+    node.addEventListener("pointerdown", onDown, true);
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      window.removeEventListener("keyup", onKey);
+      node.removeEventListener("pointerdown", onDown, true);
+    };
   }, []);
   useLayoutEffect(() => {
     const a = zoomAnchor.current;
@@ -515,7 +560,7 @@ export function Maker() {
         </aside>
         )}
         <div className="splitter" hidden={!leftOpen} onPointerDown={startResize("left")} onDoubleClick={() => setLeftW(330)} title="Drag to resize · double-click to reset" />
-        <main className="canvas" ref={canvasRef}>
+        <main className={`canvas${panning ? " panning" : ""}`} ref={canvasRef}>
           <div className="insert-bar">
             <button onClick={() => insert("text")}>+ Text</button>
             <button onClick={() => setLibrary({ mode: "insert" })}>+ Image</button>
@@ -524,7 +569,7 @@ export function Maker() {
             <button onClick={() => insert("line")}>+ Line</button>
             <span className="sep" />
             <button onClick={() => setZoom((z) => Math.max(0.25, Math.round((z - 0.1) * 100) / 100))} aria-label="Zoom out">−</button>
-            <span className="mono" title="Ctrl + scroll (or pinch) to zoom">{Math.round(zoom * 100)}%</span>
+            <span className="mono" title="Scroll to zoom · drag the background (or hold Space and drag) to move around">{Math.round(zoom * 100)}%</span>
             <button onClick={() => setZoom((z) => Math.min(3, Math.round((z + 0.1) * 100) / 100))} aria-label="Zoom in">+</button>
             <button onClick={() => {
               const w = (document.querySelector(".canvas")?.clientWidth ?? 800) - 80;
